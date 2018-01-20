@@ -1,0 +1,16 @@
+ext.configs = [:]
+
+def compile = [:]
+compile.sourceCompatibility = JavaVersion.VERSION_1_7
+compile.targetCompatibility = JavaVersion.VERSION_1_7
+configs.compile = compile
+
+def android = [:]
+android.compileSdkVersion = 27
+android.buildToolsVersion = "27.0.0"
+android.applicationId = "com.example.rapiddvpt"
+android.minSdkVersion = 15
+android.targetSdkVersion = 26
+android.versionCode = 1
+android.versionName = "1.0"
+configs.android = android
