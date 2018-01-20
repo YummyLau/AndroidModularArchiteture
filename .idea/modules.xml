@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/basiclib/basiclib.iml" filepath="$PROJECT_DIR$/basiclib/basiclib.iml" />
       <module fileurl="file://$PROJECT_DIR$/componentlib/componentlib.iml" filepath="$PROJECT_DIR$/componentlib/componentlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weiboComponent/weiboComponent.iml" filepath="$PROJECT_DIR$/weiboComponent/weiboComponent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weiboaAcountService/weiboaAcountService.iml" filepath="$PROJECT_DIR$/weiboaAcountService/weiboaAcountService.iml" />
     </modules>
   </component>
 </project>

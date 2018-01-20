@@ -1,1 +1,1 @@
-include ':app', ':basiclib', ':componentlib'
+include ':app', ':basiclib', ':componentlib', ':weiboaAcountService', ':weiboComponent'
