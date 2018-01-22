@@ -3,11 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidModularArchiteture.iml" filepath="$PROJECT_DIR$/AndroidModularArchiteture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DemoAccountService/DemoAccountService.iml" filepath="$PROJECT_DIR$/DemoAccountService/DemoAccountService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DemoComponent/DemoComponent.iml" filepath="$PROJECT_DIR$/DemoComponent/DemoComponent.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/basiclib/basiclib.iml" filepath="$PROJECT_DIR$/basiclib/basiclib.iml" />
       <module fileurl="file://$PROJECT_DIR$/componentlib/componentlib.iml" filepath="$PROJECT_DIR$/componentlib/componentlib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/weiboComponent/weiboComponent.iml" filepath="$PROJECT_DIR$/weiboComponent/weiboComponent.iml" />
-      <module fileurl="file://$PROJECT_DIR$/weiboaAcountService/weiboaAcountService.iml" filepath="$PROJECT_DIR$/weiboaAcountService/weiboaAcountService.iml" />
     </modules>
   </component>
 </project>

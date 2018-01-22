@@ -1,10 +1,14 @@
 package example.componentlib.component.interfaces;
 
+import example.componentlib.component.IComponent;
+
 /**
- * 底层提供的单例处理
+ * DemoComponent provide apis
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2017/12/11.
  */
 
-public class IDemoComponent {
+public interface IDemoComponent extends IComponent {
+
+    String getMainPath();
 }

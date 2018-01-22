@@ -1,5 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: "dependencie.gradle"
+apply from: "dependence.gradle"
 apply from: "config.gradle"
 
 buildscript {
@@ -12,7 +12,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
 
-        // NOTE: Do not place your application dependencie here; they belong
+        // NOTE: Do not place your application dependence here; they belong
         // in the individual module build.gradle files
     }
 }

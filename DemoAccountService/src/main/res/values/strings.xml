@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="account_app_name">accountservice</string>
+
+    <!-- login -->
+    <string name="account_login_title">Architeture</string>
+    <string name="account_login_info">Demo that user Weibo \n login Apis.</string>
+    <string name="account_login_with_weibo">Sign up with Weibo</string>
+
+</resources>

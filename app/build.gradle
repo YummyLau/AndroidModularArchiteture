@@ -1,21 +1,36 @@
 apply plugin: 'com.android.application'
 android {
 
+    compileSdkVersion configs.android.compileSdkVersion
+    buildToolsVersion configs.android.buildToolsVersion
+
     compileOptions {
         sourceCompatibility configs.compile.sourceCompatibility
         targetCompatibility configs.compile.targetCompatibility
     }
 
-    compileSdkVersion configs.android.compileSdkVersion
-    buildToolsVersion configs.android.buildToolsVersion
+    dataBinding {
+        enabled = true
+    }
 
     defaultConfig {
+
+        //multi dex
+        multiDexEnabled true
+
         applicationId "example.androidmodulararchiteture"
         minSdkVersion configs.android.minSdkVersion
         targetSdkVersion configs.android.targetSdkVersion
         versionCode configs.android.versionCode
         versionName configs.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //arouter request
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -23,13 +38,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    resourcePrefix "app_"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //component basic lib
+    implementation project(':componentlib')
+
+    //int config.gradle
+    implementation project(':DemoAccountService')
+
+    //annotation
+    annotationProcessor deps.arouter.compiler
+    annotationProcessor deps.dagger.compiler
+    annotationProcessor deps.dagger.androidProcessor
 }

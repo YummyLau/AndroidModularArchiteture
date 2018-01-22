@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
 
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryLight">#B2DFDB</color>
@@ -9,7 +9,7 @@
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#757575</color>
     <color name="colorDivider">#BDBDBD</color>
-
+    <color name="windowBackgroup">#F3F3F3</color>
 
 
     <color name="gray_50">#FAFAFA</color>

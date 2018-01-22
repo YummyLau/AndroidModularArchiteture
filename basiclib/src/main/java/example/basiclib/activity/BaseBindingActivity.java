@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
-import yummylau.common.systemui.StatusbarUtil;
-import yummylau.commonres.ColorGetter;
+import example.basiclib.R;
+import example.basiclib.util.StatusbarUtil;
+
 
 /**
  * Email yummyl.lau@gmail.com
@@ -43,7 +45,7 @@ public abstract class BaseBindingActivity<DB extends ViewDataBinding> extends Ap
 
     @ColorInt
     public int getStatusBarColor() {
-        return ColorGetter.getStatusBarColor(this);
+        return ContextCompat.getColor(this, R.color.colorPrimary);
     }
 
     public void setStatusBar() {

@@ -10,8 +10,6 @@ import android.app.Application;
 
 public interface IService {
 
-    Class register();
-
     void createAsLibrary(Application application);
 
     void release();

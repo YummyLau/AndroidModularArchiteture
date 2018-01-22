@@ -28,6 +28,8 @@ android {
         }
     }
 
+    resourcePrefix "basic_"
+
 }
 
 dependencies {
