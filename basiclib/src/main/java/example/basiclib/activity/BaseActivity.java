@@ -72,7 +72,7 @@ public abstract class BaseActivity<VM extends ViewModel, DB extends ViewDataBind
 
     @ColorInt
     public int getStatusBarColor() {
-        return ContextCompat.getColor(this, R.color.colorPrimaryDark);
+        return ContextCompat.getColor(this, R.color.colorPrimary);
     }
 
     public void setStatusBar() {

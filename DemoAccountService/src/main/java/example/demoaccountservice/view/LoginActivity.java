@@ -1,4 +1,5 @@
 package example.demoaccountservice.view;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 
 import example.basiclib.activity.BaseActivity;
+import example.basiclib.util.FontUtils;
 import example.demoaccountservice.Constants;
 import example.demoaccountservice.R;
 import example.demoaccountservice.databinding.AccountActivityLoginLayoutBinding;
@@ -42,6 +44,11 @@ public class LoginActivity extends BaseActivity<LoginViewModel, AccountActivityL
         mSsoHandler = new SsoHandler(this);
         dataBinding.setViewmodel(viewModel);
         dataBinding.setSsohandler(mSsoHandler);
+        initView();
+    }
+
+    private void initView() {
+        FontUtils.getInstance().replaceFontFromAsset(dataBinding.title, "fonts/DIN-Condensed-Bold-2.ttf");
     }
 
     @Override

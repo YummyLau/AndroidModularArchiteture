@@ -57,7 +57,7 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
         dataBinding.loadingProgress.setProgressType(CircleTextProgressbar.ProgressType.COUNT);
         dataBinding.loadingProgress.setProgressLineWidth(5);
         dataBinding.loadingProgress.setTimeMillis(3000);
-        dataBinding.loadingProgress.setProgressColor(ContextCompat.getColor(this, R.color.colorTextPrimary));
+        dataBinding.loadingProgress.setProgressColor(ContextCompat.getColor(this, R.color.colorTextSecondary));
         dataBinding.loadingProgress.setOutLineColor(Color.WHITE);
         dataBinding.loadingProgress.setInCircleColor(Color.WHITE);
         dataBinding.loadingProgress.setCountdownProgressListener(PROGRESS_DEFAULT_WHAT, new CircleTextProgressbar.OnCountdownProgressListener() {
@@ -72,7 +72,7 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
         dataBinding.loadingProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dataBinding.loadingProgress.setProgress(100);
+                checkLoginStatus();
             }
         });
     }
