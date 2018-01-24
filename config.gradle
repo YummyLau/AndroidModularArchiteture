@@ -17,4 +17,9 @@ configs.android = android
 
 def service = [:]
 service.accountService = "true"
+service.skinService = "true"
 configs.service = service
+
+def component = [:]
+component.demo = "true"
+configs.component = component

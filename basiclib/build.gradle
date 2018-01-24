@@ -27,9 +27,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    resourcePrefix "basic_"
-
 }
 
 dependencies {
@@ -73,6 +70,11 @@ dependencies {
     api deps.dagger.android
     api deps.dagger.androidSupport
 
+    //skin
+    api deps.skin.support
+    api deps.skin.design
+    api deps.skin.cardview
+
     api deps.paging
     api deps.log
     api deps.statusbar
@@ -91,6 +93,7 @@ dependencies {
     api deps.ucrop
     api deps.photoview
     api deps.pageindicatorview
+    api deps.flexbox
 
     annotationProcessor deps.glideCompiler
     annotationProcessor deps.dagger.compiler

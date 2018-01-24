@@ -2,8 +2,7 @@ package example.componentlib.service.account;
 
 
 import example.componentlib.service.IService;
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.Flowable;
 
 /**
  * account service that you can define some account rule!
@@ -15,7 +14,13 @@ public interface IAccountService extends IService {
 
     void login(String returnActivityPath);
 
+    void logout();
+
+    void logout(boolean forceLogin);
+
+    void logout(boolean forceLogin, String returnActivityPath);
+
     String getLoginPath();
 
-    Observable<Account> getAccount();
+    Flowable<Account> getAccount();
 }

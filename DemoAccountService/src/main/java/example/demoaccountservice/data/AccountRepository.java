@@ -42,7 +42,7 @@ public class AccountRepository implements AccountDataSource {
 
     @Override
     public void refreshAccount() {
-        if(!TextUtils.isEmpty(getAccount().getRefreshToken())){
+        if (!TextUtils.isEmpty(getAccount().getRefreshToken())) {
             AccessTokenKeeper.refreshToken(Constants.APP_KEY, mApplication, new RequestListener() {
                 @Override
                 public void onComplete(String s) {

@@ -90,7 +90,7 @@ public class CrashManager implements UncaughtExceptionHandler {
             public void run() {
                 Looper.prepare();
                 try {
-                    Toast.makeText(mContext, mContext.getString(R.string.basic_crash_toast), Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, mContext.getString(R.string.crash_toast), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

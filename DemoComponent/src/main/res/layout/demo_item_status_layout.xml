@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        android:stateListAnimator="@animator/lift_on_touch"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <example.basiclib.widget.roundimage.RoundedImageView
+                android:id="@+id/avatar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                app:oval="true"
+                app:srcCompat="@color/colorAccent" />
+
+            <ImageView
+                android:id="@+id/more_layout"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp"
+                android:src="@drawable/ic_more_vert_black_24dp" />
+
+            <TextView
+                android:id="@+id/nick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/avatar"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/avatar"
+                android:text="TextView"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="十一月的肖邦" />
+
+            <TextView
+                android:id="@+id/create_time"
+                android:maxLines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/avatar"
+                android:layout_alignLeft="@+id/nick"
+                android:layout_marginBottom="5dp"
+                android:text="今天 14:44"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/source"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/avatar"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/create_time"
+                android:text="iPhone客户端"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/avatar"
+                android:layout_below="@+id/avatar"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textColor="@color/colorTextPrimary" />
+
+            <example.basiclib.widget.nineimage.NineImageView
+                android:id="@+id/image_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/content"
+                android:layout_below="@+id/content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="16dp"
+                app:imgGap="4dp"
+                app:maxSize="9"
+                app:showStyle="grid" />
+
+            <RelativeLayout
+                android:id="@+id/action_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/content"
+                android:layout_below="@+id/image_layout"
+                android:layout_marginRight="16dp">
+
+                <LinearLayout
+                    android:id="@+id/relay_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp">
+
+                    <ImageView
+                        android:id="@+id/relay_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_forward_black_24dp" />
+
+
+                    <TextView
+                        android:id="@+id/relay_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:includeFontPadding="false"
+                        android:text="123"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/comment_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/relay_layout"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp">
+
+
+                    <ImageView
+                        android:id="@+id/comment_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_comment_black_24dp" />
+
+                    <TextView
+                        android:id="@+id/comment_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:includeFontPadding="false"
+                        android:text="123"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/like_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/comment_layout"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp">
+
+                    <ImageView
+                        android:id="@+id/like_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_favorite_border_black_24dp" />
+
+                    <TextView
+                        android:id="@+id/like_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:includeFontPadding="false"
+                        android:text="123"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>

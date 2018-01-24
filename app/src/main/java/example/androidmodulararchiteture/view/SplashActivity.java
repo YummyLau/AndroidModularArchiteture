@@ -52,8 +52,6 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //make fullscreen
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         dataBinding.loadingProgress.setProgressType(CircleTextProgressbar.ProgressType.COUNT);
         dataBinding.loadingProgress.setProgressLineWidth(5);
         dataBinding.loadingProgress.setTimeMillis(3000);
@@ -77,6 +75,11 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
         });
     }
 
+    @Override
+    public int getStatusBarColor() {
+        return ContextCompat.getColor(this, R.color.windowBackground);
+    }
+
     private Disposable checkLoginStatus() {
         return viewModel.checkLoginStatus()
                 .subscribeOn(Schedulers.io())
@@ -85,7 +88,8 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
                     @Override
                     public void accept(Account account) throws Exception {
                         if (account == null) {
-                            RouterUtls.navigation(ServiceManager.getService(IAccountService.class).getLoginPath());
+                            ServiceManager.getService(IAccountService.class).login(
+                                    ComponentManager.getComponent(IDemoComponent.class).getMainPath());
                         } else {
                             //go to democomponent main activity
                             RouterUtls.navigation(ComponentManager.getComponent(IDemoComponent.class).getMainPath());
@@ -96,7 +100,8 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.e(Constants.LOG_TAG, "check login status fail :" + throwable.getMessage());
-                        RouterUtls.navigation(ServiceManager.getService(IAccountService.class).getLoginPath());
+                        ServiceManager.getService(IAccountService.class).login(
+                                ComponentManager.getComponent(IDemoComponent.class).getMainPath());
                         finish();
                     }
                 });

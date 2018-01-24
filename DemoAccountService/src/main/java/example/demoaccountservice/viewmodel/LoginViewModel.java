@@ -3,6 +3,7 @@ package example.demoaccountservice.viewmodel;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WbAuthListener;
 import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
@@ -10,6 +11,9 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 
 import javax.inject.Inject;
 
+import example.basiclib.util.EventbusUtils;
+import example.componentlib.service.account.AccountEvent;
+import example.demoaccountservice.Constants;
 import example.demoaccountservice.data.AccountRepository;
 
 import static example.demoaccountservice.Constants.LOG_TAG;
@@ -35,6 +39,7 @@ public class LoginViewModel extends ViewModel {
             @Override
             public void onSuccess(Oauth2AccessToken oauth2AccessToken) {
                 accountRepository.saveAccount(oauth2AccessToken);
+                EventbusUtils.post(new AccountEvent(AccountEvent.LOGIN_TYPE));
                 Log.d(LOG_TAG, "login success!");
             }
 
@@ -49,9 +54,4 @@ public class LoginViewModel extends ViewModel {
             }
         });
     }
-
-    public void onRefreshToken(){
-
-    }
-
 }

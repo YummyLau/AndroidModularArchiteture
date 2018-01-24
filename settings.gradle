@@ -1,1 +1,4 @@
-include ':app', ':basiclib', ':componentlib', ':DemoComponent', ':DemoAccountService'
+include ':app', ':basiclib', ':componentlib', ':SkinBlueGreyProvider', ':SkinPickProvider'
+include ':DemoComponent'
+include ':DemoAccountService', ':DemoSkinService'
+include ':SkinGreenProvider'

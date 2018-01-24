@@ -15,5 +15,4 @@ public interface AccountDataSource {
     Oauth2AccessToken getAccount();
 
     void refreshAccount();
-
 }

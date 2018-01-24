@@ -20,6 +20,8 @@ import example.componentlib.component.ComponentManager;
 import example.componentlib.component.interfaces.IDemoComponent;
 import example.componentlib.service.ServiceManager;
 import example.demoaccountservice.AccountServiceImpl;
+import example.demoskinservice.SkinServiceImpl;
+import example.weibocomponent.DemoComponentImpl;
 
 /**
  * Email yummyl.lau@gmail.com
@@ -68,8 +70,10 @@ public class App extends Application implements HasActivityInjector {
 
         //初始化基础服务
         ServiceManager.register(this, AccountServiceImpl.class);
+        ServiceManager.register(this, SkinServiceImpl.class);
+
         //初始化组件
-        ComponentManager.bind(this, IDemoComponent.class);
+        ComponentManager.bind(this, DemoComponentImpl.class);
     }
 
 }

@@ -40,7 +40,7 @@ public class HttpClient {
         sHttpClientBuilder.writeTimeout(httpParam.writeTimeOut, TimeUnit.SECONDS);
 
         sHttpClientBuilder.interceptors().clear();
-        sHttpClientBuilder.addInterceptor(new CacheInterceptor(httpParam.cache, NetStatusChecker.networkAvailable(sContext)));
+        sHttpClientBuilder.addInterceptor(new CacheInterceptor(httpParam.cache, NetChecker.networkAvailable(sContext)));
         if (httpParam.debug) {
             sHttpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
             sHttpClientBuilder.addInterceptor(new LogInterceptor());

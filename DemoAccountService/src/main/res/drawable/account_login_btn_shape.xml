@@ -5,5 +5,5 @@
     <corners android:radius="25dp" />
     <stroke
         android:width="1px"
-        android:color="@android:color/white" />
+        android:color="@color/colorTextPrimary" />
 </shape>

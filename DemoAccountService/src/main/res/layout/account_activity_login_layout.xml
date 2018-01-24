@@ -8,6 +8,10 @@
             type="example.demoaccountservice.viewmodel.LoginViewModel" />
 
         <variable
+            name="returnPath"
+            type="String" />
+
+        <variable
             name="ssohandler"
             type="com.sina.weibo.sdk.auth.sso.SsoHandler" />
     </data>

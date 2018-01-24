@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import example.componentlib.service.ServiceManager;
 import example.componentlib.service.account.Account;
 import example.componentlib.service.account.IAccountService;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 
 /**
  * Email yummyl.lau@gmail.com
@@ -19,7 +19,7 @@ public class SplashViewModel extends ViewModel {
 
     }
 
-    public Observable<Account> checkLoginStatus() {
+    public Flowable<Account> checkLoginStatus() {
         return ServiceManager.getService(IAccountService.class)
                 .getAccount();
     }

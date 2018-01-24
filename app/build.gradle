@@ -48,11 +48,13 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    //component basic lib
-    implementation project(':componentlib')
-
     //int config.gradle
     implementation project(':DemoAccountService')
+    implementation project(':DemoSkinService')
+    implementation project(':DemoComponent')
+
+    //component basic lib
+    implementation project(':componentlib')
 
     //annotation
     annotationProcessor deps.arouter.compiler

@@ -36,6 +36,8 @@ versions.rxAndroid = "2.0.1"
 //dagger
 versions.dagger = "2.11"
 
+//skin
+versions.skin = "2.2.3"
 
 versions.ijkplayer = "0.8.4"
 versions.espresso = "3.0.1"
@@ -67,6 +69,7 @@ versions.matisse = "0.4.3"
 versions.ucrop = "2.2.1"
 versions.photoview = "2.1.3"
 versions.pageindicatorview = "1.0.0"
+versions.flexbox = "0.3.2"
 
 
 def support = [:]
@@ -137,6 +140,12 @@ dagger.androidSupport = "com.google.dagger:dagger-android-support:$versions.dagg
 dagger.androidProcessor = "com.google.dagger:dagger-android-processor:$versions.dagger"
 deps.dagger = dagger
 
+def skin = [:]
+skin.support = "skin.support:skin-support:$versions.skin"
+skin.design = "skin.support:skin-support-design:$versions.skin"
+skin.cardview = "skin.support:skin-support-cardview:$versions.skin"
+deps.skin = skin
+
 def ijkplayer = [:]
 ijkplayer.java = "tv.danmaku.ijk.media:ijkplayer-java:$versions.ijkplayer"
 ijkplayer.armv7a = "tv.danmaku.ijk.media:ijkplayer-armv7a:$versions.ijkplayer"
@@ -165,6 +174,7 @@ deps.matisse = "com.zhihu.android:matisse:$versions.matisse"
 deps.ucrop = "com.github.yalantis:ucrop:$versions.ucrop"
 deps.photoview = "com.github.chrisbanes:PhotoView:$versions.photoview"
 deps.pageindicatorview = "com.romandanylyk:pageindicatorview:$versions.pageindicatorview"
+deps.flexbox = "com.google.android:flexbox:$versions.flexbox"
 
 project.ext {
     android = [

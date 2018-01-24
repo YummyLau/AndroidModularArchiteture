@@ -2,21 +2,25 @@ package example.demoaccountservice;
 
 import android.app.Application;
 import android.content.Context;
+import android.text.TextUtils;
+import android.util.EventLog;
 import android.util.Log;
 
+import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.sina.weibo.sdk.WbSdk;
 import com.sina.weibo.sdk.auth.AccessTokenKeeper;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
+import example.basiclib.util.EventbusUtils;
 import example.componentlib.service.account.Account;
+import example.componentlib.service.account.AccountEvent;
 import example.componentlib.service.account.IAccountService;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 
 /**
- *
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2017/12/11.
  */
@@ -32,26 +36,48 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public Observable<Account> getAccount() {
-        return Observable.just(AccessTokenKeeper.readAccessToken(mApplication))
+    public void logout() {
+        logout(false);
+    }
+
+    @Override
+    public void logout(boolean forceLogin) {
+        logout(forceLogin, null);
+    }
+
+    @Override
+    public void logout(boolean forceLogin, String returnActivityPath) {
+        AccessTokenKeeper.clear(mApplication);
+        EventbusUtils.post(new AccountEvent(AccountEvent.LOGOUT_TYPE));
+        if (forceLogin) {
+            Postcard postcard = ARouter.getInstance().build(getLoginPath());
+            if (!TextUtils.isEmpty(returnActivityPath)) {
+                postcard.withString(Constants.RETURN_ACTIVITY_PATH, returnActivityPath);
+            }
+            postcard.navigation();
+        }
+    }
+
+    @Override
+    public Flowable<Account> getAccount() {
+        return Flowable.just(AccessTokenKeeper.readAccessToken(mApplication))
                 .map(new Function<Oauth2AccessToken, Account>() {
-                         @Override
-                         public Account apply(Oauth2AccessToken oauth2AccessToken) throws Exception {
-                             Account account = null;
-                             if (!oauth2AccessToken.isSessionValid()) {
-                                 Log.e(Constants.LOG_TAG, "AccountServiceImpl#getAccount token invalid!");
-                             } else {
-                                 account = new Account();
-                             }
-                             account.uid = Integer.valueOf(oauth2AccessToken.getUid());
-                             account.token = oauth2AccessToken.getToken();
-                             account.refreshToken = oauth2AccessToken.getRefreshToken();
-                             account.expiresTime = oauth2AccessToken.getExpiresTime();
-                             account.phoneNum = oauth2AccessToken.getPhoneNum();
-                             return account;
-                         }
-                     }
-                );
+                    @Override
+                    public Account apply(Oauth2AccessToken oauth2AccessToken) throws Exception {
+                        Account account = null;
+                        if (!oauth2AccessToken.isSessionValid()) {
+                            Log.e(Constants.LOG_TAG, "AccountServiceImpl#getAccount token invalid!");
+                        } else {
+                            account = new Account();
+                            account.uid = Integer.valueOf(oauth2AccessToken.getUid());
+                            account.token = oauth2AccessToken.getToken();
+                            account.refreshToken = oauth2AccessToken.getRefreshToken();
+                            account.expiresTime = oauth2AccessToken.getExpiresTime();
+                            account.phoneNum = oauth2AccessToken.getPhoneNum();
+                        }
+                        return account;
+                    }
+                });
     }
 
     @Override

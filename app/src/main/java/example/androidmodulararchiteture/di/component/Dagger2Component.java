@@ -14,6 +14,7 @@ import example.androidmodulararchiteture.di.module.ActivityBuildersModule;
 import example.androidmodulararchiteture.di.module.ViewModelModule;
 import example.basiclib.di.module.ViewModelFactoryModule;
 import example.demoaccountservice.di.module.AccountModule;
+import example.weibocomponent.di.module.DemoModule;
 
 /**
  * 顶级注入，用于壳app处理
@@ -35,6 +36,7 @@ import example.demoaccountservice.di.module.AccountModule;
 
                 //account module
                 AccountModule.class,
+                DemoModule.class
         })
 public interface Dagger2Component {
 

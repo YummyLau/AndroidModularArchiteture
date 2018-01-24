@@ -4,7 +4,7 @@
         <shape android:shape="rectangle">
             <solid android:color="@color/colorTextSecondary" />
             <corners android:radius="10dp" />
-            <stroke android:width="1px" android:color="@color/colorTextSecondary" />
+            <stroke android:width="1px" android:color="@android:color/transparent" />
         </shape>
     </item>
     <item android:drawable="@drawable/account_login_btn_shape" />
