@@ -9,7 +9,7 @@ import io.reactivex.Flowable;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2018/01/22.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class SplashViewModel extends ViewModel {

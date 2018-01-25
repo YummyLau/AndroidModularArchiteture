@@ -12,7 +12,7 @@ import com.bumptech.glide.request.FutureTarget;
 /**
  * 图片处理暴露接口，方便以后替换第三方库处理
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/25.
+ * Created by yummylau on 2018/01/25.
  */
 
 public interface IImageLoader {
@@ -28,7 +28,4 @@ public interface IImageLoader {
               @DrawableRes int placeholderImg,
               @DrawableRes int fallbackImg,
               @DrawableRes int errorImg);
-
-
-    FutureTarget<Bitmap> getBitmap(Context context, String url, int width, int height);
 }

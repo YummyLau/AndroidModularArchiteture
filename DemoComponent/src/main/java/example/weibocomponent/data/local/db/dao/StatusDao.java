@@ -11,8 +11,8 @@ import java.util.List;
 import example.weibocomponent.data.local.db.entity.StatusEntity;
 
 /**
- * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/7.
+ Email yummyl.lau@gmail.com
+ * Created by yummylau on 2018/01/25.
  */
 
 @Dao

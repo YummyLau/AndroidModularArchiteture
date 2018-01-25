@@ -6,7 +6,7 @@ import android.arch.persistence.room.Entity;
 /**
  * 时区表
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/24.
+ * Created by yummylau on 2018/01/25.
  */
 @Entity(tableName = TimeZoneEntity.TABLE_NAME,
         primaryKeys = TimeZoneEntity.COLUMN_ID_NAME)

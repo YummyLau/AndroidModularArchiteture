@@ -19,7 +19,7 @@ import dagger.android.support.AndroidSupportInjection;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  * {@link dagger.android.support.DaggerFragment}
  */
 

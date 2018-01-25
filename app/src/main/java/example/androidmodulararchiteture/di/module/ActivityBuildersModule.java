@@ -6,7 +6,8 @@ import dagger.android.ContributesAndroidInjector;
 import example.androidmodulararchiteture.view.SplashActivity;
 
 /**
- * Created by g8931 on 2017/12/12.
+ * Email yummyl.lau@gmail.com
+ * Created by yummylau on 2018/01/25.
  */
 @Module
 public abstract class ActivityBuildersModule {

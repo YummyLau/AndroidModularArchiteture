@@ -15,9 +15,8 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import example.androidmodulararchiteture.di.component.DaggerDagger2Component;
 import example.basiclib.net.HttpClient;
-import example.basiclib.support.CrashManager;
+import example.basiclib.util.crash.CrashManager;
 import example.componentlib.component.ComponentManager;
-import example.componentlib.component.interfaces.IDemoComponent;
 import example.componentlib.service.ServiceManager;
 import example.demoaccountservice.AccountServiceImpl;
 import example.demoskinservice.SkinServiceImpl;
@@ -25,7 +24,7 @@ import example.weibocomponent.DemoComponentImpl;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class App extends Application implements HasActivityInjector {

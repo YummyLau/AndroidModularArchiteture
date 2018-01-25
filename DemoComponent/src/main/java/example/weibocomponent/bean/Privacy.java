@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * 隐私设置
- * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ Email yummyl.lau@gmail.com
+ * Created by yummylau on 2018/01/25.
  */
 
 public class Privacy {

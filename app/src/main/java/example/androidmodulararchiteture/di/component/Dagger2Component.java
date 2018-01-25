@@ -17,10 +17,9 @@ import example.demoaccountservice.di.module.AccountModule;
 import example.weibocomponent.di.module.DemoModule;
 
 /**
- * 顶级注入，用于壳app处理
  * app dagger2 dependence inject!
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/12.
+ * Created by yummylau on 2018/01/25.
  */
 
 @Singleton

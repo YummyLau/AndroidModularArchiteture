@@ -5,7 +5,7 @@ import android.arch.lifecycle.LiveData;
 /**
  * A LiveData class that has {@code null} value.
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/13
+ * Created by yummylau on 2018/01/25.
  */
 
 public class AbsentLiveData extends LiveData {

@@ -15,7 +15,7 @@ import example.basiclib.R;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2018/01/02.
+ * Created by yummylau on 2018/01/25.
  */
 
 class ImageViewerAdapter extends PagerAdapter {

@@ -8,5 +8,9 @@
         <activity
             android:name=".view.MainActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="example.basiclib.widget.imageviewer.ImageViewerActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

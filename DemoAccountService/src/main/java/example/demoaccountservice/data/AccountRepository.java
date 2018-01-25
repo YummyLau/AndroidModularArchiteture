@@ -17,7 +17,7 @@ import example.demoaccountservice.Constants;
 /**
  * 账号模块仓库
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/28.
+ * Created by yummylau on 2018/01/25.
  */
 @Singleton
 public class AccountRepository implements AccountDataSource {
@@ -56,35 +56,4 @@ public class AccountRepository implements AccountDataSource {
             });
         }
     }
-
-    //    @Override
-//    public Flowable<Boolean> isLogin() {
-//        return Flowable.just(AccessTokenKeeper.readAccessToken(mApplication))
-//                .map(new Function<Oauth2AccessToken, Boolean>() {
-//                    @Override
-//                    public Boolean apply(Oauth2AccessToken oauth2AccessToken) throws Exception {
-//                        return oauth2AccessToken != null && oauth2AccessToken.isSessionValid();
-//                    }
-//                });
-//    }
-//
-//    @Override
-//    public Flowable<Token> getAccount() {
-//        return Flowable.just(AccessTokenKeeper.readAccessToken(mApplication))
-//                .map(new Function<Oauth2AccessToken, Token>() {
-//                    @Override
-//                    public Token apply(Oauth2AccessToken oauth2AccessToken) throws Exception {
-//                        if (!oauth2AccessToken.isSessionValid()) {
-//                            throw new TokenInvalidException();
-//                        }
-//                        Token token = new Token();
-//                        token.uid = Integer.valueOf(oauth2AccessToken.getUid());
-//                        token.accessToken = oauth2AccessToken.getAccount();
-//                        token.refreshToken = oauth2AccessToken.getRefreshToken();
-//                        token.expiresTime = oauth2AccessToken.getExpiresTime();
-//                        token.phoneNum = oauth2AccessToken.getPhoneNum();
-//                        return token;
-//                    }
-//                });
-//    }
 }

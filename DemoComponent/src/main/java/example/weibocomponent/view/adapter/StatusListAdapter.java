@@ -31,7 +31,8 @@ import example.weibocomponent.data.local.db.entity.UserEntity;
 
 /**
  * 微博adapter
- * Created by g8931 on 2017/12/5.
+ * Email yummyl.lau@gmail.com
+ * Created by yummylau on 2018/01/25.
  */
 
 public class StatusListAdapter extends BaseQuickAdapter<StatusEntity, BaseViewHolder> {

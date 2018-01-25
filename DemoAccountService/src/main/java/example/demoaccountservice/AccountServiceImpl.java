@@ -3,7 +3,6 @@ package example.demoaccountservice;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.EventLog;
 import android.util.Log;
 
 import com.alibaba.android.arouter.facade.Postcard;
@@ -13,7 +12,7 @@ import com.sina.weibo.sdk.auth.AccessTokenKeeper;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
-import example.basiclib.util.EventbusUtils;
+import example.basiclib.util.EventBusUtils;
 import example.componentlib.service.account.Account;
 import example.componentlib.service.account.AccountEvent;
 import example.componentlib.service.account.IAccountService;
@@ -22,7 +21,7 @@ import io.reactivex.functions.Function;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 public class AccountServiceImpl implements IAccountService {
 
@@ -48,7 +47,7 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     public void logout(boolean forceLogin, String returnActivityPath) {
         AccessTokenKeeper.clear(mApplication);
-        EventbusUtils.post(new AccountEvent(AccountEvent.LOGOUT_TYPE));
+        EventBusUtils.post(new AccountEvent(AccountEvent.LOGOUT_TYPE));
         if (forceLogin) {
             Postcard postcard = ARouter.getInstance().build(getLoginPath());
             if (!TextUtils.isEmpty(returnActivityPath)) {

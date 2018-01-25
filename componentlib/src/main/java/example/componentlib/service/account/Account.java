@@ -4,7 +4,7 @@ package example.componentlib.service.account;
  * save user account info!
  * You can user jsonString to replace as long as you want
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class Account {

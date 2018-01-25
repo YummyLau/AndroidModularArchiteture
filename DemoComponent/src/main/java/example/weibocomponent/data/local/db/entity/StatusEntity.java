@@ -17,7 +17,7 @@ import example.weibocomponent.data.local.db.converter.PicConverters;
 /**
  * 微博实体
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/24.
+ * Created by yummylau on 2018/01/25.
  */
 @Entity(tableName = StatusEntity.TABLE_NAME,
         primaryKeys = StatusEntity.COLUMN_ID)

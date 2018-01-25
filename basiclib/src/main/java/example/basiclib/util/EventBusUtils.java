@@ -4,12 +4,11 @@ package example.basiclib.util;
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * module内驱动
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 
-public class EventbusUtils {
+public class EventBusUtils {
 
     public static void register(Object subscriber) {
         if (!EventBus.getDefault().isRegistered(subscriber)) {

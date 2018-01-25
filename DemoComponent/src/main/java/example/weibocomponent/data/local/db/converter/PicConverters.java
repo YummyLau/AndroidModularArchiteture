@@ -13,7 +13,7 @@ import example.weibocomponent.bean.Pic;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/25.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class PicConverters {
@@ -24,7 +24,8 @@ public class PicConverters {
             return Collections.emptyList();
         }
 
-        Type listType = new TypeToken<List<Pic>>() {}.getType();
+        Type listType = new TypeToken<List<Pic>>() {
+        }.getType();
 
         return new Gson().fromJson(data, listType);
     }

@@ -13,6 +13,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
@@ -20,11 +27,15 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import example.basiclib.R;
-import example.basiclib.util.StatusbarUtils;
+import example.basiclib.event.RefreshSkinEvent;
+import example.basiclib.util.EventBusUtils;
+import example.basiclib.util.statusbar.StatusbarHelper;
+import skin.support.SkinCompatManager;
+import skin.support.content.res.SkinCompatResources;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  * {@link dagger.android.support.DaggerAppCompatActivity}
  */
 
@@ -38,6 +49,9 @@ public abstract class BaseActivity<VM extends ViewModel, DB extends ViewDataBind
 
     public DB dataBinding;
 
+    private @ColorInt
+    int statusBarColor;
+
     public VM viewModel;
 
     public abstract Class<VM> getViewModel();
@@ -49,8 +63,32 @@ public abstract class BaseActivity<VM extends ViewModel, DB extends ViewDataBind
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+        if (SkinCompatManager.getInstance() == null) {
+            statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary);
+        } else {
+            statusBarColor = SkinCompatResources.getColor(this, R.color.colorPrimary);
+        }
         dataBinding = DataBindingUtil.setContentView(this, getLayoutRes());
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModel());
+        EventBusUtils.register(this);
+        if (supportHandleStatusBar() && !QMUIStatusBarHelper.isFullScreen(this)) {
+            handleStatusBar(getStatusBarColor());
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBusUtils.unRegister(this);
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(RefreshSkinEvent refreshSkinEvent) {
+        if (refreshSkinEvent.color != null) {
+            statusBarColor = refreshSkinEvent.color;
+            handleStatusBar(getStatusBarColor());
+        }
     }
 
     @Override
@@ -58,24 +96,16 @@ public abstract class BaseActivity<VM extends ViewModel, DB extends ViewDataBind
         return fragmentAndroidInjector;
     }
 
-    @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
-        if (supportHandlerStatusBar()) {
-            setStatusBar();
-        }
-    }
-
-    protected boolean supportHandlerStatusBar() {
+    protected boolean supportHandleStatusBar() {
         return true;
     }
 
     @ColorInt
     public int getStatusBarColor() {
-        return ContextCompat.getColor(this, R.color.colorPrimary);
+        return statusBarColor;
     }
 
-    public void setStatusBar() {
-        StatusbarUtils.setStatusbarColor(this, getStatusBarColor());
+    public void handleStatusBar(@ColorInt int statusBarColor) {
+        StatusbarHelper.setStatusBarColor(this, statusBarColor);
     }
 }

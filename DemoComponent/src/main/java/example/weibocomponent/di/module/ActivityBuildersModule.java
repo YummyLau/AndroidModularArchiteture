@@ -7,7 +7,7 @@ import example.weibocomponent.view.MainActivity;
 /**
  * @Module 用于标记提供Activity依赖的类
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 @Module
 public abstract class ActivityBuildersModule {

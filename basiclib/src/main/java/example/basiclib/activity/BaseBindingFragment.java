@@ -1,8 +1,5 @@
 package example.basiclib.activity;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -15,7 +12,7 @@ import android.view.ViewGroup;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 
 public abstract class BaseBindingFragment<DB extends ViewDataBinding> extends Fragment {

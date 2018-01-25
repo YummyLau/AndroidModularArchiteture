@@ -6,7 +6,6 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import example.weibocomponent.data.local.db.dao.StatusDao;
-import example.weibocomponent.data.local.db.dao.TimeZoneDao;
 import example.weibocomponent.data.local.db.dao.UserDao;
 import example.weibocomponent.data.local.db.entity.StatusEntity;
 import example.weibocomponent.data.local.db.entity.TimeZoneEntity;
@@ -14,14 +13,12 @@ import example.weibocomponent.data.local.db.entity.UserEntity;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/4.
+ * Created by yummylau on 2018/01/25.
  */
 @Database(entities = {UserEntity.class, StatusEntity.class, TimeZoneEntity.class}, version = 1)
 public abstract class AppDataBase extends RoomDatabase {
 
     public abstract UserDao userDao();
-
-    public abstract TimeZoneDao timeZoneDao();
 
     public abstract StatusDao statusDao();
 

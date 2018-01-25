@@ -7,7 +7,7 @@ import android.content.ContextWrapper;
 /**
  * activity工具类
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class ActivityUtils {

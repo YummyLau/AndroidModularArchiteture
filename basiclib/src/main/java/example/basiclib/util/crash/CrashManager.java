@@ -1,4 +1,4 @@
-package example.basiclib.support;
+package example.basiclib.util.crash;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

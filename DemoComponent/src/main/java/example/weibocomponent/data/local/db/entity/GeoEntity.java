@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * 地理信息
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/24.
+ * Created by yummylau on 2017/12/26.
  */
 @Entity(tableName = "geo_table")
 public class GeoEntity {

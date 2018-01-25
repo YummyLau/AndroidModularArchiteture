@@ -13,7 +13,7 @@ import example.demoaccountservice.di.module.AccountModule;
 /**
  * when you use AccountComponent as App,this class will be used by dagger2
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 
 @Component(modules = {AccountModule.class,

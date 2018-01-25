@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,7 +23,6 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
-import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,6 @@ import example.basiclib.net.resource.Resource;
 import example.basiclib.widget.imageviewer.ImageViewer;
 import example.componentlib.service.ServiceManager;
 import example.componentlib.service.account.IAccountService;
-import example.componentlib.service.skin.ISkinService;
 import example.weibocomponent.Constants;
 import example.weibocomponent.R;
 import example.weibocomponent.data.local.db.entity.UserEntity;
@@ -56,8 +55,6 @@ public class MainActivity extends BaseActivity<MainViewModel, DemoActivityMainLa
     private SkinFragment mSkinFragment;
 
     private IAccountService accountService;
-    private ISkinService skinService;
-    private boolean hasChangeSkin = false;
 
     @Override
     public Class<MainViewModel> getViewModel() {
@@ -79,7 +76,6 @@ public class MainActivity extends BaseActivity<MainViewModel, DemoActivityMainLa
         mFragments.add(mHomeFragment);
         mFragments.add(mSkinFragment);
         mFragmentManager = super.getSupportFragmentManager();
-        mFragmentManager.beginTransaction().replace(R.id.content_frame, mFragments.get(0), null).commit();
         initView();
         viewModel.getUser().observe(this, new Observer<Resource<UserEntity>>() {
             @Override
@@ -98,15 +94,18 @@ public class MainActivity extends BaseActivity<MainViewModel, DemoActivityMainLa
         });
         viewModel.initInfo();
         accountService = ServiceManager.getService(IAccountService.class);
-        skinService = ServiceManager.getService(ISkinService.class);
     }
 
 
     private void initView() {
         setSupportActionBar(dataBinding.toolbar);
-        dataBinding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colorTextIcon));
         getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mFragmentManager.beginTransaction().add(
+                R.id.content_frame, mFragments.get(0), getString(R.string.demo_menu_home)).show(mFragments.get(0)).commit();
+        getSupportActionBar().setTitle(R.string.demo_menu_home);
+        dataBinding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colorTextIcon));
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
@@ -119,11 +118,31 @@ public class MainActivity extends BaseActivity<MainViewModel, DemoActivityMainLa
         dataBinding.navigationLayout.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.nav_main) {
-                    mFragmentManager.beginTransaction().replace(R.id.content_frame, mFragments.get(0), null).commit();
-                } else if (item.getItemId() == R.id.nav_skin_peeling) {
-                    mFragmentManager.beginTransaction().replace(R.id.content_frame, mFragments.get(1), null).commit();
-                } else if (item.getItemId() == R.id.nav_logout) {
+
+                if (item.getItemId() != R.id.nav_logout) {
+                    Fragment fragment = mFragmentManager.findFragmentByTag(item.getTitle().toString());
+                    List<Fragment> fragments = mFragmentManager.getFragments();
+                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                    if (fragment == null) {
+                        if (item.getItemId() == R.id.nav_main) {
+                            fragment = mFragments.get(0);
+                        } else {
+                            fragment = mFragments.get(1);
+                        }
+                        fragmentTransaction.add(R.id.content_frame, fragment, item.getTitle().toString()).show(fragment);
+                        fragments.add(fragment);
+                    } else {
+                        fragmentTransaction.show(fragment);
+                    }
+                    for (int i = 0; i < fragments.size(); i++) {
+                        if (fragments.get(i) != fragment) {
+                            fragmentTransaction.hide(fragments.get(i));
+                        }
+                    }
+                    fragmentTransaction.commit();
+                }
+
+                if (item.getItemId() == R.id.nav_logout) {
                     if (accountService != null) {
                         accountService.logout(true, Constants.ROUTER_MAIN);
                         finish();
@@ -139,7 +158,6 @@ public class MainActivity extends BaseActivity<MainViewModel, DemoActivityMainLa
         });
         toggle.syncState();
         dataBinding.navigationLayout.setCheckedItem(R.id.nav_main);
-        dataBinding.toolbar.setTitle(R.string.demo_menu_home);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -151,15 +169,6 @@ public class MainActivity extends BaseActivity<MainViewModel, DemoActivityMainLa
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    protected boolean supportHandlerStatusBar() {
-        return false;
-    }
-
-    @Override
-    public void setStatusBar() {
-        StatusBarUtil.setColorForDrawerLayout(this, dataBinding.drawerLayout, ContextCompat.getColor(this, R.color.colorPrimary));
     }
 
     @Override

@@ -14,7 +14,7 @@ import example.componentlib.service.ServiceManager;
 /**
  * 组件注册管理
  * Email yummyl.lau@gmail.com
- * Created by g8931 on 2018/1/17.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class ComponentManager {
@@ -41,7 +41,7 @@ public class ComponentManager {
             sComponentMap.put(IComponentImpl.getSimpleName(), registerService);
             registerService.createAsLibrary(application);
         } else {
-            Log.e(TAG, "IService is not service's grandfather!");
+            Log.e(TAG, "IComponent is not component's grandfather!");
         }
     }
 

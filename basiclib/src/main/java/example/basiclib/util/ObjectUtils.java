@@ -1,10 +1,9 @@
-package example.basiclib.net;
+package example.basiclib.util;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/13.
+ * Created by yummylau on 2018/01/25.
  */
-
 public class ObjectUtils {
 
     public static boolean equals(Object o1, Object o2) {

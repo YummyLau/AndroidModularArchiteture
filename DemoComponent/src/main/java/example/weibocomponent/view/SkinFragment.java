@@ -1,6 +1,5 @@
 package example.weibocomponent.view;
 
-import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,12 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.util.List;
-
-import example.basiclib.activity.BaseBindingActivity;
 import example.basiclib.activity.BaseBindingFragment;
-import example.basiclib.activity.BaseFragment;
-import example.basiclib.net.resource.Resource;
 import example.basiclib.widget.roundimage.RoundedImageView;
 import example.componentlib.service.ServiceManager;
 import example.componentlib.service.skin.ISkinService;
@@ -23,7 +17,7 @@ import example.weibocomponent.databinding.DemoFragmentSkinLayoutBinding;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2018/1/24.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class SkinFragment extends BaseBindingFragment<DemoFragmentSkinLayoutBinding> {
@@ -48,13 +42,13 @@ public class SkinFragment extends BaseBindingFragment<DemoFragmentSkinLayoutBind
 
     private void initView() {
         if (skinService == null) {
-            Toast.makeText(getContext(), R.string.demo_skin_no_registe, Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(), R.string.demo_skin_no_registe, Toast.LENGTH_SHORT).show();
             return;
         }
         final Skin[] skins = skinService.getSkins();
 
         if (skins == null) {
-            Toast.makeText(getContext(), R.string.demo_skin_no_content, Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(), R.string.demo_skin_no_content, Toast.LENGTH_SHORT).show();
         }
 
         for (int i = 0; i < skins.length; i++) {

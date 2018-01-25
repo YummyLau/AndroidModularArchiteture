@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 覆盖扩展{@link NineImageView}
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class NineImageView<T> extends ViewGroup {

@@ -10,7 +10,7 @@ import example.weibocomponent.data.remote.result.ApiResult;
 /**
  * 微博评论
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/11/15.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class Comment extends ApiResult {

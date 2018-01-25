@@ -39,7 +39,6 @@ versions.dagger = "2.11"
 //skin
 versions.skin = "2.2.3"
 
-versions.ijkplayer = "0.8.4"
 versions.espresso = "3.0.1"
 versions.junit = "4.12"
 versions.dexmaker = "2.2.0"
@@ -51,8 +50,6 @@ versions.hamcrest = "1.3"
 
 
 versions.pagingRuntime = "1.0.0-alpha3"
-versions.log = "1.15"
-versions.statusbar = "1.4.0"
 versions.jsoup = "1.11.2"
 versions.ninegridimageview = "1.0.2"
 versions.eventbus = "3.0.0"
@@ -70,6 +67,7 @@ versions.ucrop = "2.2.1"
 versions.photoview = "2.1.3"
 versions.pageindicatorview = "1.0.0"
 versions.flexbox = "0.3.2"
+versions.qmui = "1.0.6"
 
 
 def support = [:]
@@ -146,18 +144,11 @@ skin.design = "skin.support:skin-support-design:$versions.skin"
 skin.cardview = "skin.support:skin-support-cardview:$versions.skin"
 deps.skin = skin
 
-def ijkplayer = [:]
-ijkplayer.java = "tv.danmaku.ijk.media:ijkplayer-java:$versions.ijkplayer"
-ijkplayer.armv7a = "tv.danmaku.ijk.media:ijkplayer-armv7a:$versions.ijkplayer"
-deps.ijkplayer = ijkplayer
-
 deps.junit = "junit:junit:$versions.junit"
 deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
 deps.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
 
 deps.paging = "android.arch.paging:runtime:$versions.pagingRuntime"
-deps.log = "com.orhanobut:logger:$versions.log"
-deps.statusbar = "com.jaeger.statusbarutil:library:$versions.statusbar"
 deps.jsoup = "org.jsoup:jsoup:$versions.jsoup"
 deps.ninegridimageview = "com.jaeger.ninegridimageview:library:$versions.ninegridimageview"
 deps.eventbus = "org.greenrobot:eventbus:$versions.eventbus"
@@ -175,6 +166,7 @@ deps.ucrop = "com.github.yalantis:ucrop:$versions.ucrop"
 deps.photoview = "com.github.chrisbanes:PhotoView:$versions.photoview"
 deps.pageindicatorview = "com.romandanylyk:pageindicatorview:$versions.pageindicatorview"
 deps.flexbox = "com.google.android:flexbox:$versions.flexbox"
+deps.qmui = "com.qmuiteam:qmui:$versions.qmui"
 
 project.ext {
     android = [

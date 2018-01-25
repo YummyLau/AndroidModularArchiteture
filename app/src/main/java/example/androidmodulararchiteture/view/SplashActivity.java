@@ -6,14 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 
+
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import example.androidmodulararchiteture.R;
 import example.androidmodulararchiteture.databinding.AppActivitySplashLayoutBinding;
 import example.androidmodulararchiteture.viewmodel.SplashViewModel;
 import example.basiclib.activity.BaseActivity;
-import example.basiclib.util.RouterUtls;
 import example.basiclib.widget.CircleTextProgressbar;
 import example.componentlib.component.ComponentManager;
 import example.componentlib.component.interfaces.IDemoComponent;
@@ -30,7 +30,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Splash
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySplashLayoutBinding> {
@@ -75,11 +75,6 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
         });
     }
 
-    @Override
-    public int getStatusBarColor() {
-        return ContextCompat.getColor(this, R.color.windowBackground);
-    }
-
     private Disposable checkLoginStatus() {
         return viewModel.checkLoginStatus()
                 .subscribeOn(Schedulers.io())
@@ -92,7 +87,9 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
                                     ComponentManager.getComponent(IDemoComponent.class).getMainPath());
                         } else {
                             //go to democomponent main activity
-                            RouterUtls.navigation(ComponentManager.getComponent(IDemoComponent.class).getMainPath());
+                            ARouter.getInstance()
+                                    .build(ComponentManager.getComponent(IDemoComponent.class).getMainPath())
+                                    .navigation();
                         }
                         finish();
                     }

@@ -11,7 +11,8 @@ import example.weibocomponent.view.adapter.StatusListAdapter;
 
 /**
  * 微博组件，用于暂时微博列表
- * Created by g8931 on 2017/12/5.
+ * Email yummyl.lau@gmail.com
+ * Created by yummylau on 2018/01/25.
  */
 
 public class StatusListWidget extends RecyclerView {

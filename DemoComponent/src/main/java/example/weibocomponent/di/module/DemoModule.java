@@ -5,9 +5,9 @@ import javax.inject.Singleton;
 import dagger.Module;
 
 /**
- * feature 模块所有modules
+ * Demo 模块所有modules
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 @Singleton
 @Module(includes = {

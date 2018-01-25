@@ -23,7 +23,7 @@ import example.basiclib.interfaces.IImageLoader;
  * 过度 {@link Transformation}
  * <p>
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/25.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class ImageLoader implements IImageLoader {
@@ -68,13 +68,5 @@ public class ImageLoader implements IImageLoader {
                 .load(url)
                 .apply(requestOptions)
                 .into(imageView);
-    }
-
-    @Override
-    public FutureTarget<Bitmap> getBitmap(Context context, String url, int width, int height) {
-        return Glide.with(context)
-                .asBitmap()
-                .load(url)
-                .submit(width, height);
     }
 }

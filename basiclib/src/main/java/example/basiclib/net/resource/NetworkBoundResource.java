@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 
-import example.basiclib.net.ObjectUtils;
+import example.basiclib.util.ObjectUtils;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * 定义仓库资源处理逻辑
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/13.
+ * Created by yummylau on 2018/01/25.
  * <a href="https://developer.android.com/topic/libraries/architecture/guide.html#addendum">NetworkBoundResource</a>
  */
 

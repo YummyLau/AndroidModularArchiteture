@@ -4,32 +4,62 @@ import android.arch.lifecycle.Observer;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
+import java.util.Map;
+
+import example.basiclib.activity.ActivityEvent;
 import example.basiclib.activity.BaseFragment;
+import example.basiclib.event.RefreshSkinEvent;
 import example.basiclib.net.resource.Resource;
+import example.basiclib.util.EventBusUtils;
 import example.weibocomponent.R;
 import example.weibocomponent.data.local.db.entity.StatusEntity;
 import example.weibocomponent.databinding.DemoFragmentHomeLayoutBinding;
 import example.weibocomponent.videmodel.HomeViewModel;
 import example.weibocomponent.view.adapter.StatusListAdapter;
+import skin.support.SkinCompatManager;
+import skin.support.content.res.SkinCompatResources;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2018/1/24.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class HomeFragment extends BaseFragment<HomeViewModel, DemoFragmentHomeLayoutBinding> {
 
     private LinearLayoutManager mLinearLayoutManager;
     public StatusListAdapter statusListAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBusUtils.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBusUtils.unRegister(this);
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(RefreshSkinEvent refreshSkinEvent) {
+        if (refreshSkinEvent.color != null) {
+            dataBinding.swipeLayout.setColorSchemeColors(refreshSkinEvent.color);
+        }
+    }
 
     @Nullable
     @Override
@@ -46,9 +76,12 @@ public class HomeFragment extends BaseFragment<HomeViewModel, DemoFragmentHomeLa
                 dataBinding.swipeLayout.setRefreshing(listResource.loading());
             }
         });
-        dataBinding.swipeLayout.setColorSchemeColors(Color.WHITE);
+        int color = SkinCompatManager.getInstance() != null ?
+                SkinCompatResources.getColor(getContext(), R.color.colorPrimary) : Color.WHITE;
+        dataBinding.swipeLayout.setColorSchemeColors(color);
         return dataBinding.getRoot();
     }
+
 
     @Override
     public Class<HomeViewModel> getViewModel() {

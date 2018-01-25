@@ -22,7 +22,7 @@ import android.widget.ImageView.ScaleType;
 /**
  * 实现圆角图片，使用开源库
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  *
  */
 public class RoundedDrawable extends Drawable {

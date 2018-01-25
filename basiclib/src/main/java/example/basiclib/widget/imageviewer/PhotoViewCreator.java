@@ -9,7 +9,7 @@ import example.basiclib.util.imageloader.ImageLoader;
 /**
  * 构建pagerview查看项
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2018/01/02.
+ * Created by yummylau on 2018/01/25.
  */
 
 class PhotoViewCreator {

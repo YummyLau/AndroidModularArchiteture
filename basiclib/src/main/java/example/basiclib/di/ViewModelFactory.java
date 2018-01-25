@@ -12,7 +12,7 @@ import javax.inject.Singleton;
 /**
  * 单例管理viewmodel
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/12/11.
+ * Created by yummylau on 2018/01/25.
  */
 @Singleton
 public class ViewModelFactory implements ViewModelProvider.Factory {

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2017/11/24.
+ * Created by yummylau on 2018/01/25.
  */
 @Entity(tableName = UserEntity.TABLE_NAME,
         primaryKeys = UserEntity.COLUMN_ID)

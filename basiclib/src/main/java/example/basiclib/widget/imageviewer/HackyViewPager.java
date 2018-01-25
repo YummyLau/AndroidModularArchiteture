@@ -9,7 +9,7 @@ import android.view.MotionEvent;
  * 解决项目框架bug
  * https://github.com/chrisbanes/PhotoView/blob/master/sample/src/main/java/com/github/chrisbanes/photoview/sample/HackyViewPager.java
  * Email yummyl.lau@gmail.com
- * Created by yummylau on 2018/01/02.
+ * Created by yummylau on 2018/01/25.
  */
 
 public class HackyViewPager extends ViewPager {

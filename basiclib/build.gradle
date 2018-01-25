@@ -61,10 +61,6 @@ dependencies {
     api deps.room.runtime
     api deps.room.rxjava2
 
-    //ijkplayer
-    api deps.ijkplayer.java
-    api deps.ijkplayer.armv7a
-
     //dagger
     api deps.dagger.runtime
     api deps.dagger.android
@@ -76,8 +72,6 @@ dependencies {
     api deps.skin.cardview
 
     api deps.paging
-    api deps.log
-    api deps.statusbar
     api deps.ninegridimageview
     api deps.jsoup
     api deps.eventbus
@@ -94,12 +88,12 @@ dependencies {
     api deps.photoview
     api deps.pageindicatorview
     api deps.flexbox
+    api deps.qmui
 
     annotationProcessor deps.glideCompiler
     annotationProcessor deps.dagger.compiler
     annotationProcessor deps.dagger.androidProcessor
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
