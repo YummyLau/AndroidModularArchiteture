@@ -87,9 +87,7 @@ public class SplashActivity extends BaseActivity<SplashViewModel, AppActivitySpl
                                     ComponentManager.getComponent(IDemoComponent.class).getMainPath());
                         } else {
                             //go to democomponent main activity
-                            ARouter.getInstance()
-                                    .build(ComponentManager.getComponent(IDemoComponent.class).getMainPath())
-                                    .navigation();
+                            ComponentManager.getComponent(IDemoComponent.class).gotoMainActivity();
                         }
                         finish();
                     }

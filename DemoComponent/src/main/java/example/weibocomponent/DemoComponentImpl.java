@@ -2,6 +2,9 @@ package example.weibocomponent;
 
 import android.app.Application;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
+import example.componentlib.component.ComponentManager;
 import example.componentlib.component.interfaces.IDemoComponent;
 
 /**
@@ -20,6 +23,12 @@ public class DemoComponentImpl implements IDemoComponent {
         return Constants.ROUTER_MAIN;
     }
 
+    @Override
+    public void gotoMainActivity() {
+        ARouter.getInstance()
+                .build(ComponentManager.getComponent(IDemoComponent.class).getMainPath())
+                .navigation();
+    }
 
     @Override
     public void createAsLibrary(Application application) {

@@ -11,4 +11,6 @@ import example.componentlib.component.IComponent;
 public interface IDemoComponent extends IComponent {
 
     String getMainPath();
+
+    void gotoMainActivity();
 }
