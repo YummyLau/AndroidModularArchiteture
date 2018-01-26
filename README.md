@@ -3,7 +3,8 @@
 ### About
 该Sample主要是总结当前自己项目上的经验及学习[Google Architecture Components](https://developer.android.com/arch)方案进行项目尝试。  
 目前已有部分线上App校验过该Sample的运行逻辑，完全可行，适合一些中小规模App快速开发，并结合自身的库及用户需求自定扩展。  
-由于Android项目架构多样化，技术迭代更新很快，该项目会持续集成优化主流技术，并在线上App校验可行下更新项目。希望有经验的开发者能指出不足，一起学习。
+由于Android项目架构多样化，技术迭代更新很快，该项目会持续集成优化主流技术，并在线上App校验可行的情况下更新项目。希望有经验的开发者能指出不足，一起学习 :relaxed: :relaxed:
+
 
 ### Project Architeture  
 项目采用模块化结构设计，基于[Google Architecture Components](https://developer.android.com/arch)方案和MVVM设计模式完成模块开发完成
