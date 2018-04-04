@@ -32,9 +32,20 @@ android {
             }
         }
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("../android.keystore")
+            storePassword "android"
+            keyAlias "android.keystore"
+            keyPassword "android"
+        }
+    }
+
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
