@@ -1,0 +1,41 @@
+apply plugin: 'groovy'
+//apply maven 发布插件
+apply plugin: 'maven'
+
+group = 'com.effective.plugin.component'
+version = '1.0.0'
+
+//设置本地发布路径
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //指定发布到本地的版本信息
+            repository(url: uri('../repo'))
+        }
+    }
+}
+
+
+dependencies {
+    compile 'com.android.tools.build:gradle:3.2.1'
+    compile group: 'org.javassist', name: 'javassist', version: '3.20.0-GA'
+    //gradle sdk
+    compile gradleApi()
+    //groovy sdk
+    compile localGroovy()
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src/main/groovy']
+        }
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+

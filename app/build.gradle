@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion configs.android.compileSdkVersion
-    buildToolsVersion configs.android.buildToolsVersion
 
     compileOptions {
         sourceCompatibility configs.compile.sourceCompatibility
@@ -51,6 +50,7 @@ android {
     }
 
     resourcePrefix "app_"
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.effective.plugin.component</groupId>
+  <artifactId>gradle_build</artifactId>
+  <versioning>
+    <release>1.0.0</release>
+    <versions>
+      <version>1.0.0</version>
+    </versions>
+    <lastUpdated>20190124085452</lastUpdated>
+  </versioning>
+</metadata>

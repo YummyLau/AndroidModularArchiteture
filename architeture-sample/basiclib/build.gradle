@@ -1,0 +1,100 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion configs.android.compileSdkVersion
+
+    compileOptions {
+        sourceCompatibility configs.compile.sourceCompatibility
+        targetCompatibility configs.compile.targetCompatibility
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        minSdkVersion configs.android.minSdkVersion
+        targetSdkVersion configs.android.targetSdkVersion
+        versionCode configs.android.versionCode
+        versionName configs.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //android support
+    api deps.support.v4
+    api deps.support.app_compat
+    api deps.support.design
+    api deps.support.recyclerview
+    api deps.support.cardview
+
+    //rx
+    api deps.rx.rxjava2
+    api deps.rx.rxAndroid
+
+    //retrofit
+    api deps.retrofit.runtime
+    api deps.retrofit.converterGson
+    api deps.retrofit.converterScalars
+    api deps.retrofit.rxJava2Adapter
+
+    //arouter
+    api deps.arouter.runtime
+
+    //lifecycler
+    api deps.lifecycle.runtime
+    api deps.lifecycle.java8
+    api deps.lifecycle.extensions
+
+    //room
+    api deps.room.runtime
+    api deps.room.rxjava2
+
+    //dagger
+    api deps.dagger.runtime
+    api deps.dagger.android
+    api deps.dagger.androidSupport
+
+    //skin
+    api deps.skin.support
+    api deps.skin.design
+    api deps.skin.cardview
+
+    api deps.paging
+    api deps.ninegridimageview
+    api deps.jsoup
+    api deps.eventbus
+    api deps.multiDex
+    api deps.gson
+    api deps.stetho
+    api deps.stethoOkhttp3
+    api deps.glide
+    api deps.guaua
+    api deps.constraintLayout
+    api deps.baseRecyclerViewAdapterHelper
+    api deps.matisse
+    api deps.ucrop
+    api deps.photoview
+    api deps.pageindicatorview
+    api deps.flexbox
+    api deps.qmui
+
+    annotationProcessor deps.glideCompiler
+    annotationProcessor deps.dagger.compiler
+    annotationProcessor deps.dagger.androidProcessor
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}

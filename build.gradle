@@ -5,12 +5,18 @@ apply from: "config.gradle"
 buildscript {
 
     repositories {
+        maven {
+            url uri('./component_build/repo')
+            name 'repo'
+        }
         google()
         jcenter()
+
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.effective.plugin.component:gradle_build:1.0.0'
+        classpath 'com.android.tools.build:gradle:3.2.1'
 
         // NOTE: Do not place your application dependence here; they belong
         // in the individual module build.gradle files
@@ -21,6 +27,11 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        maven {
+            url uri('./component_build/repo')
+            name 'repo'
+        }
 
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
         maven { url "https://jitpack.io" }
