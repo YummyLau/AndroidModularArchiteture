@@ -83,7 +83,6 @@ dependencies {
     api deps.guaua
     api deps.constraintLayout
     api deps.baseRecyclerViewAdapterHelper
-    api deps.matisse
     api deps.ucrop
     api deps.photoview
     api deps.pageindicatorview

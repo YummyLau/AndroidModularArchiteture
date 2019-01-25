@@ -38,7 +38,6 @@ import example.weibocomponent.data.local.db.entity.UserEntity;
 import example.weibocomponent.databinding.DemoActivityMainLayoutBinding;
 import example.weibocomponent.videmodel.MainViewModel;
 
-import static it.sephiroth.android.library.imagezoom.ImageViewTouchBase.LOG_TAG;
 
 
 /**
@@ -148,7 +147,7 @@ public class MainActivity extends BaseActivity<MainViewModel, DemoActivityMainLa
                         finish();
                         Toast.makeText(MainActivity.this, R.string.demo_menu_logout, Toast.LENGTH_SHORT).show();
                     } else {
-                        Log.w(LOG_TAG, "IAccountService was not be resigted!");
+                        Log.w("", "IAccountService was not be resigted!");
                     }
                 }
                 dataBinding.toolbar.setTitle(item.getTitle());

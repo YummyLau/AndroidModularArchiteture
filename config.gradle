@@ -1,8 +1,8 @@
 ext.configs = [:]
 
 def compile = [:]
-compile.sourceCompatibility = JavaVersion.VERSION_1_7
-compile.targetCompatibility = JavaVersion.VERSION_1_7
+compile.sourceCompatibility = JavaVersion.VERSION_1_8
+compile.targetCompatibility = JavaVersion.VERSION_1_8
 configs.compile = compile
 
 def android = [:]

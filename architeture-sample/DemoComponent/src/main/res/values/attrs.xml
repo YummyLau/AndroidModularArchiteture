@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- 圆角ImageView -->
-    <declare-styleable name="RoundedImageView" tools:ignore="ResourceName">
-        <attr name="corner_radius" format="dimension" />
-        <attr name="border_width" format="dimension" />
-        <attr name="border_color" format="color" />
-        <attr name="mutate_background" format="boolean" />
-        <attr name="oval" format="boolean" />
-        <attr name="android:scaleType" />
-    </declare-styleable>
 
     <declare-styleable name="TitlebarWidget" tools:ignore="ResourceName">
         <attr name="activity_title" format="string" />

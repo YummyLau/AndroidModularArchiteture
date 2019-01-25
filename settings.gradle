@@ -1,12 +1,12 @@
 
-include ':app', ':basiclib', ':componentlib', ':SkinBlueGreyProvider', ':SkinPickProvider', ':lib_imageloader', ':lib_webview', ':lib_video', ':lib_share', ':lib_net'
+include ':app', ':basiclib', ':componentlib', ':SkinBlueGreyProvider', ':SkinPickProvider', ':lib_imageloader', ':lib_webview', ':lib_video', ':lib_share', ':lib_net', ':lib_base', ':lib_skin'
 include ':DemoComponent'
 include ':DemoAccountService', ':DemoSkinService'
 include ':SkinGreenProvider'
 include ':gradle_build'
 
 project(':gradle_build').projectDir = new File('component_build/gradle_build')
-//project(':app').projectDir = new File('architeture-sample/app')
+project(':app').projectDir = new File('architeture-sample/app')
 project(':basiclib').projectDir = new File('architeture-sample/basiclib')
 project(':componentlib').projectDir = new File('architeture-sample/componentlib')
 project(':SkinBlueGreyProvider').projectDir = new File('architeture-sample/SkinBlueGreyProvider')
