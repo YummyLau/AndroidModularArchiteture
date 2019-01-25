@@ -1,5 +1,5 @@
 
-include ':app', ':basiclib', ':componentlib', ':SkinBlueGreyProvider', ':SkinPickProvider', ':lib_imageloader'
+include ':app', ':basiclib', ':componentlib', ':SkinBlueGreyProvider', ':SkinPickProvider', ':lib_imageloader', ':lib_webview', ':lib_video', ':lib_share', ':lib_net'
 include ':DemoComponent'
 include ':DemoAccountService', ':DemoSkinService'
 include ':SkinGreenProvider'
