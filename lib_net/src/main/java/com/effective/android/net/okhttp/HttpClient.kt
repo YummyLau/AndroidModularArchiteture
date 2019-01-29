@@ -2,10 +2,7 @@ package com.effective.android.net.okhttp
 
 
 import android.app.Application
-
-import com.effective.android.base.core.net.okhttp.cookie.OkHttpCookieJar
-import com.facebook.stetho.Stetho
-import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.effective.android.net.okhttp.cookie.OkHttpCookieJar
 
 import java.util.concurrent.TimeUnit
 
@@ -62,7 +59,7 @@ object HttpClient {
     //证书
     //HttpsUtils.allowAllCertificates(builder);
     //cookie
-    val instance: OkHttpClient?
+    val instance: OkHttpClient
         get() {
             if (sApplication == null) {
                 throw RuntimeException("$TAG#getInstancesApplication can't be null ! please invoke init at Application#onCreate")
@@ -74,11 +71,10 @@ object HttpClient {
 
                         if (sDebug) {
                             val logInterceptor = HttpLoggingInterceptor()
-                            logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+                            logInterceptor.level = HttpLoggingInterceptor.Level.BODY
                             builder.addInterceptor(logInterceptor)
-                            builder.addNetworkInterceptor(StethoInterceptor())
                         }
-                        builder.cookieJar(OkHttpCookieJar(sApplication))
+                        builder.cookieJar(OkHttpCookieJar(sApplication!!.baseContext))
 
                         sClient = builder.connectTimeout(CONNECT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                                 .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
@@ -87,7 +83,7 @@ object HttpClient {
                     }
                 }
             }
-            return sClient
+            return sClient!!
         }
 
     /**
@@ -96,9 +92,6 @@ object HttpClient {
     fun init(application: Application, debug: Boolean) {
         sApplication = application
         sDebug = debug
-        if (sDebug) {
-            Stetho.initializeWithDefaults(application)
-        }
     }
 
 }

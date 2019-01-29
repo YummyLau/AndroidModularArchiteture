@@ -2,9 +2,8 @@ package com.effective.android.net.retrofit.covert
 
 import android.util.Log
 
-import com.effective.android.base.core.net.MediaTypes
+import com.effective.android.net.MediaTypes
 
-import java.io.IOException
 import java.lang.reflect.Type
 
 import okhttp3.RequestBody

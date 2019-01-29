@@ -20,7 +20,7 @@ class SerializableOkHttpCookie(@field:Transient private val cookie: Cookie) : Se
     fun getCookie(): Cookie {
         var bestCookie = cookie
         if (clientCookie != null) {
-            bestCookie = clientCookie
+            bestCookie = clientCookie!!
         }
         return bestCookie
     }

@@ -251,14 +251,14 @@ class PersistentCookieStore(context: Context) {
      * @param bytes byte array to be converted
      * @return string containing hex values
      */
-    protected fun byteArrayToHexString(bytes: ByteArray): String {
+    private fun byteArrayToHexString(bytes: ByteArray): String {
         val sb = StringBuilder(bytes.size * 2)
         for (element in bytes) {
-            val v = element and 0xFF
+            val v = element and 0xFF.toByte()
             if (v < 16) {
                 sb.append('0')
             }
-            sb.append(Integer.toHexString(v))
+            sb.append(Integer.toHexString(v.toInt()))
         }
         return sb.toString().toUpperCase(Locale.US)
     }
