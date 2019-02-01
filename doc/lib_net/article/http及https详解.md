@@ -70,7 +70,7 @@ HTTP 基于请求响应的模型, 每一个请求都算一个事务, 无论是�
 
 **请求报文**
 
-<img src="../pic/http_1.png" width = "400" height = "150" alt="图片名称" align=center />
+<img src="../pics/net/http_1.png" width = "400" height = "150" alt="图片名称" align=center />
 
 
 * 开始行
@@ -132,7 +132,7 @@ HTTP 基于请求响应的模型, 每一个请求都算一个事务, 无论是�
 
 **响应报文**
 
-<img src="../pic/http_2.png" width = "400" height = "150" alt="图片名称" align=center />
+<img src="../pics/net/http_2.png" width = "400" height = "150" alt="图片名称" align=center />
 
 * 开始行
 
@@ -355,7 +355,7 @@ Certificate Request:
 ```
 **如何进行数字签名**
 
-<img src="../pic/signing.jpg" width = "300" height = "400" alt="图片名称" align=center />
+<img src="../pics/net/signing.jpg" width = "300" height = "400" alt="图片名称" align=center />
 
 上图来自于互联网, 整个流程成大致分为一下几个步骤
 
@@ -365,7 +365,7 @@ Certificate Request:
 
 **如何进行签名认证**
 
-<img src="../pic/verification.jpg" width = "300" height = "400" alt="图片名称" align=center />
+<img src="../pics/net/verification.jpg" width = "300" height = "400" alt="图片名称" align=center />
 
 上图来自于互联网, 整个流程成大致分为一下几个步骤
 
@@ -387,8 +387,9 @@ Certificate Request:
 
 <h4 id="3_3">SSL/TLS握手流程</h4>
 
-在了解握手流程之前, 先看一张整体的流程图（图片来自于互联网）。 
-<img src="../pic/ssl_1.png" width = "600" height = "400" alt="图片名称" align=center />
+在了解握手流程之前, 先看一张整体的流程图（图片来自于互联网）。
+
+<img src="../pics/net/ssl_1.png" width = "600" height = "400" alt="图片名称" align=center />
 
 在 TCP 完成三次握手建立连接之后, HTTPS 开始加密认证握手流程。
  
