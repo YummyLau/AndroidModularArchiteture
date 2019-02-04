@@ -36,12 +36,9 @@ public class App extends Application{
     }
 
 
-
     @Override
     public void onCreate() {
         super.onCreate();
-
-
 
         //crash
         CrashManager.getInstance().init(this);
