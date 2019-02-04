@@ -52,3 +52,12 @@
 [License](https://github.com/YummyLau/AndroidModularArchiteture/blob/master/LICENSE)
 
 [banner]: https://github.com/YummyLau/AndroidModularArchiteture/blob/master/art/banner.png
+
+
+### 更新技术栈（进行中）
+* 基础库提供
+* 模块化及插件构建
+* 模块通讯重构
+* 性能优化方案
+* java字节码及android持续集成技术
+目前在feature_lab开始进行
