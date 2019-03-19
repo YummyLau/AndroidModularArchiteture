@@ -30,6 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support.app_compat
     implementation deps.kotlin.stdlib
+    api deps.qmui
 }
 
 componentBuild {
