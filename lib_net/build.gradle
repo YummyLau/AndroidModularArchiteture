@@ -36,7 +36,6 @@ dependencies {
     api deps.retrofit.converterGson
     api deps.retrofit.rxJava2Adapter
     api deps.gson
-
 }
 
 componentBuild {

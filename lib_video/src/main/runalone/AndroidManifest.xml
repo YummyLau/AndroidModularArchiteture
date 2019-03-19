@@ -1,18 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.effective.android.lib_imageloader">
+    package="com.effective.android.video">
 
 
     <application
-        android:name=".ImageLoaderApplication"
+        android:name="com.effective.android.video.TestVideoApplication"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
         tools:replace="android:label">
-        <activity android:name=".ImageLoaderTestActivity">
+        <activity android:name="com.effective.android.video.TestVideoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

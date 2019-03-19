@@ -1,14 +1,16 @@
-package com.effective.android.lib_imageloader;
+package com.effective.android.share;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-public class ImageLoaderTestActivity extends Activity{
+import com.effective.android.share.R;
+
+public class TestShareActivity extends Activity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_imagle_loader_test);
+        setContentView(R.layout.activity_share_test);
     }
 }

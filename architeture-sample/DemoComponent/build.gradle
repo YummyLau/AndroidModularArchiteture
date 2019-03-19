@@ -77,24 +77,24 @@ dependencies {
 
 
     // Espresso UI Testing
-    androidTestCompile deps.espresso.core
-    androidTestCompile deps.espresso.contrib
-    androidTestCompile deps.espresso.intents
+    testImplementation deps.espresso.core
+    testImplementation deps.espresso.contrib
+    testImplementation deps.espresso.intents
 
     // Dependencies for Android unit tests
-    androidTestCompile deps.junit
-    androidTestCompile deps.mockito.core, { exclude group: 'net.bytebuddy' }
-    androidTestCompile deps.dexmaker
+    testImplementation deps.junit
+    testImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
+    testImplementation deps.dexmaker
 
     // Android Testing Support Library's runner and rules
-    androidTestCompile deps.atsl.runner
-    androidTestCompile deps.atsl.rules
-    androidTestCompile deps.room.testing
-    androidTestCompile deps.arch_core.testing
+    testImplementation deps.atsl.runner
+    testImplementation deps.atsl.rules
+    testImplementation deps.room.testing
+    testImplementation deps.arch_core.testing
 
     // Dependencies for local unit tests
-    testCompile deps.junit
-    testCompile deps.hamcrest
-    testCompile deps.arch_core.testing
-    testCompile deps.mockito.all
+    testImplementation deps.junit
+    testImplementation deps.hamcrest
+    testImplementation deps.arch_core.testing
+    testImplementation deps.mockito.all
 }

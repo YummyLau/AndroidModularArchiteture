@@ -32,6 +32,6 @@ dependencies {
 }
 
 componentBuild {
-    applicationName = 'com.effective.android.runalone.application.ImageLoaderApplication'
+    applicationName = 'com.effective.android.ImageLoaderApplication'
     isRegisterComponentAuto = true
 }

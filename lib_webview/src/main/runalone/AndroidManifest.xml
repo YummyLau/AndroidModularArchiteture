@@ -1,24 +1,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.effective.android.lib_imageloader">
+    package="com.effective.android.webview">
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".ImageLoaderApplication"
+        android:name="com.effective.android.webview.runalone.TestWebViewApplication"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
         tools:replace="android:label">
-        <activity android:name=".ImageLoaderTestActivity">
+        <activity android:name="com.effective.android.webview.runalone.TestWebViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!--     在AndroidManifest.xml中增加内核首次加载时优化Service声明；    该Service仅在TBS内核首次Dex加载时触发并执行dex2oat任务，任务完成后自动结束。  -->
+        <service
+            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+            android:label="dexopt"
+            android:process=":dexopt" />
     </application>
+
 
 </manifest>
 
