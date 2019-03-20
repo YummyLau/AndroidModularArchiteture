@@ -8,9 +8,10 @@ import android.os.Build
 import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.ViewGroup
-import com.effective.android.webview.communication.Request
-import com.effective.android.webview.communication.Result
+import com.effective.android.webview.bean.Request
+import com.effective.android.webview.bean.Result
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
@@ -24,17 +25,19 @@ import java.net.URL
  */
 object X5Utils {
 
-    fun result2Json(result: Result<*>, type: Type): String? {
+    inline fun <reified T> genericType() = object : TypeToken<T>() {}.type
+
+    fun object2Json(obj: Any, type: Type): String {
         return try {
-            Gson().toJson(result, type)
+            Gson().toJson(obj, type)
         } catch (e: Exception) {
-            null
+            ""
         }
     }
 
-    fun json2Request(json: String, type: Type): Request<*>? {
+    fun <T> json2Obj(json: String): T? {
         return try {
-            Gson().fromJson(json, type)
+            Gson().fromJson<T>(json, object : TypeToken<T>() {}.type)
         } catch (e: Exception) {
             null
         }
@@ -170,8 +173,6 @@ object X5Utils {
     }
 
 
-
-
     /**
      * 1、WebView:postUrl()前检测url的合法性
      * 2、Js调用Native方法前检测当前界面url的合法性
@@ -183,7 +184,7 @@ object X5Utils {
         if (!TextUtils.isEmpty(url)) {
             try {
                 val realUrl = URL(url)
-                if(true){
+                if (true) {
                     //添加校验url逻辑
                     return true
                 }

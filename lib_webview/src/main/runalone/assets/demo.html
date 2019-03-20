@@ -42,15 +42,11 @@
         }
 
         function testClick() {
-            var str1 = document.getElementById("text1").value;
-            var str2 = document.getElementById("text2").value;
-
-            //send message to native
-            var data = {id: 1, content: "这是一个图片 <img src=\"a.png\"/> test\r\nhahaha"};
+            var data = "Hello, I'm web !"
             window.WebViewJavascriptBridge.send(
                 data
                 , function(responseData) {
-                    document.getElementById("show").innerHTML = "repsonseData from java, data = " + responseData
+                    document.getElementById("show").innerHTML = "native : " + responseData
                 }
             );
 
@@ -62,10 +58,10 @@
 
             //call native method
             window.WebViewJavascriptBridge.callHandler(
-                'submitFromWeb'
-                , {'param': '中文测试'}
+                'functionInNative'
+                , {'userName': str1,'password': str2, 'caller': 'web'}
                 , function(responseData) {
-                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                    document.getElementById("show").innerHTML = "native reponse(functionInNative) : " + responseData
                 }
             );
         }
@@ -88,23 +84,24 @@
             }
         }
 
+
         connectWebViewJavascriptBridge(function(bridge) {
+
+            // 处理 native 发送的 message 
             bridge.init(function(message, responseCallback) {
-                console.log('JS got a message', message);
-                var data = {
-                    'Javascript Responds': '测试中文!'
-                };
+
+                document.getElementById("show").innerHTML = "native : " + message
 
                 if (responseCallback) {
-                    console.log('JS responding with', data);
-                    responseCallback(data);
+                    responseCallback("Hi, I'm web!");
                 }
             });
 
+            // 注册 js 方法 
             bridge.registerHandler("functionInJs", function(data, responseCallback) {
-                document.getElementById("show").innerHTML = ("data from Java: = " + data);
+                document.getElementById("show").innerHTML = ("native request(functionInJs): " + data);
                 if (responseCallback) {
-                    var responseData = "Javascript Says Right back aka!";
+                    var responseData = "{'code': 200,'message': 'success', 'data': ''}";
                     responseCallback(responseData);
                 }
             });

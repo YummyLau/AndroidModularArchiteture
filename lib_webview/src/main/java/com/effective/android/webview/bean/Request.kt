@@ -1,4 +1,4 @@
-package com.effective.android.webview.communication
+package com.effective.android.webview.bean
 
 import com.google.gson.annotations.SerializedName
 
@@ -7,6 +7,6 @@ import com.google.gson.annotations.SerializedName
  * Created by yummylau on 2018/5/7.
  */
 data class Request<T>(
-        @SerializedName("iosVersion") var iosVersion: String,
-        @SerializedName("androidVersion") var androidVersion: String,
+        @SerializedName("platform") var platform: String,
+        @SerializedName("version") var version: String,
         @SerializedName("params") var data: T)

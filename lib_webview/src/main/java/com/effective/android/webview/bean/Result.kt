@@ -1,4 +1,4 @@
-package com.effective.android.webview.communication
+package com.effective.android.webview.bean
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,4 +9,4 @@ import com.google.gson.annotations.SerializedName
 data class Result<T>(
         @SerializedName("code") val code: Int,
         @SerializedName("msg") val msg: String,
-        @SerializedName("msg") val data: T)
+        @SerializedName("data") val data: T)
