@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -14,24 +15,32 @@ import android.widget.TextView
 import com.effective.android.webview.R
 import com.effective.android.webview.X5JsWebView
 import com.effective.android.webview.X5Utils
+import com.effective.android.webview.X5WebChromeClient
 import com.effective.android.webview.bean.Request
 import com.effective.android.webview.bean.Result
 import com.effective.android.webview.interfaces.BridgeHandler
 import com.effective.android.webview.interfaces.CallBackFunction
-import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.tencent.smtt.sdk.WebChromeClient
-import java.lang.reflect.Type
+import com.tencent.smtt.sdk.WebView
+import android.content.ClipData
+import android.os.Build.VERSION_CODES
+import android.annotation.TargetApi
+import android.os.Build
+
 
 class TestWebViewActivity : Activity() {
 
     private val TAG = "TestWebViewActivity"
 
-    internal var RESULT_CODE = 0
-    internal var mUploadMessage: ValueCallback<Uri>? = null
 
     private val JS_METHOD = "functionInJs"
     private val NATIVE_METHOD = "functionInNative"
+
+    private var mValueCallback: com.tencent.smtt.sdk.ValueCallback<Uri>? = null
+    private var mFilePathCallback: com.tencent.smtt.sdk.ValueCallback<Array<Uri>>? = null
+
+    private val FILE_CHOOSER_RESULT_CODE = 0x01
 
     private fun getVersionCode(context: Context): String? {
         return try {
@@ -44,7 +53,7 @@ class TestWebViewActivity : Activity() {
 
     private fun setContent(content: String, nativeContent: TextView) {
         val currentContent = nativeContent.text.toString()
-        nativeContent.text = currentContent + "\n" + content;
+        nativeContent.text = currentContent + "\n" + content
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,7 +108,7 @@ class TestWebViewActivity : Activity() {
             }
             val request = Request(platform, version!!, userBean)
             var requestData = X5Utils.object2Json(request)
-            if(TextUtils.isEmpty(requestData)){
+            if (TextUtils.isEmpty(requestData)) {
                 requestData = ""
             }
             val log = "android request($JS_METHOD) : $requestData"
@@ -133,41 +142,82 @@ class TestWebViewActivity : Activity() {
             }
         })
 
+        webView.webChromeClient = object : X5WebChromeClient() {
 
-        webView.setWebChromeClient(object : WebChromeClient() {
-
-            fun openFileChooser(uploadMsg: ValueCallback<Uri>, AcceptType: String, capture: String) {
-                this.openFileChooser(uploadMsg)
+            override fun openFileChooser(valueCallback: com.tencent.smtt.sdk.ValueCallback<Uri>) {
+                super.openFileChooser(valueCallback)
+                mValueCallback = valueCallback
+                openImageChooserActivity()
             }
 
-            fun openFileChooser(uploadMsg: ValueCallback<Uri>, AcceptType: String) {
-                this.openFileChooser(uploadMsg)
+            override fun openFileChooser(valueCallback: com.tencent.smtt.sdk.ValueCallback<Uri>, acceptType: String) {
+                super.openFileChooser(valueCallback, acceptType)
+                mValueCallback = valueCallback
+                openImageChooserActivity()
             }
 
-            fun openFileChooser(uploadMsg: ValueCallback<Uri>) {
-                mUploadMessage = uploadMsg
-                pickFile()
+            override fun openFileChooser(valueCallback: com.tencent.smtt.sdk.ValueCallback<Uri>, acceptType: String?, capture: String?) {
+                super.openFileChooser(valueCallback, acceptType, capture)
+                mValueCallback = valueCallback
+                openImageChooserActivity()
             }
-        })
 
+            @RequiresApi(21)
+            override fun onShowFileChooser(webView: WebView?, filePathCallback: com.tencent.smtt.sdk.ValueCallback<Array<Uri>>?, fileChooserParams: FileChooserParams?): Boolean {
+                return super.onShowFileChooser(webView, filePathCallback, fileChooserParams)
+                mFilePathCallback = filePathCallback
+                openImageChooserActivity()
+            }
+
+        }
         webView.loadUrl("file:///android_asset/demo.html")
-
     }
 
-    fun pickFile() {
-        val chooserIntent = Intent(Intent.ACTION_GET_CONTENT)
-        chooserIntent.type = "image/*"
-        startActivityForResult(chooserIntent, RESULT_CODE)
+
+    private fun openImageChooserActivity() {
+        val i = Intent(Intent.ACTION_GET_CONTENT)
+        i.addCategory(Intent.CATEGORY_OPENABLE)
+        i.type = "image/*"
+        startActivityForResult(Intent.createChooser(i,
+                "Image Chooser"), FILE_CHOOSER_RESULT_CODE)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        if (requestCode == RESULT_CODE) {
-            if (null == mUploadMessage) {
-                return
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == FILE_CHOOSER_RESULT_CODE) {
+            if (null == mValueCallback && null == mFilePathCallback) return
+            val result = if (data == null || resultCode != Activity.RESULT_OK) null else data.data
+            if (mFilePathCallback != null) {
+                onActivityResultAboveL(requestCode, resultCode, data)
+            } else if (mValueCallback != null) {
+                mValueCallback!!.onReceiveValue(result)
+                mValueCallback = null
             }
-            val result = if (intent == null || resultCode != Activity.RESULT_OK) null else intent.data
-            mUploadMessage!!.onReceiveValue(result)
-            mUploadMessage = null
         }
     }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun onActivityResultAboveL(requestCode: Int, resultCode: Int, intent: Intent?) {
+        if (requestCode != FILE_CHOOSER_RESULT_CODE || mFilePathCallback == null)
+            return
+        var results: Array<Uri>? = null
+        if (resultCode == Activity.RESULT_OK) {
+            if (intent != null) {
+                val dataString = intent.dataString
+                val clipData = intent.clipData
+                if (clipData != null) {
+                    results = Array(clipData.itemCount, { Uri.Builder().build() })
+                    for (i in 0 until clipData.itemCount) {
+                        val item = clipData.getItemAt(i)
+                        results[i] = item.uri
+                    }
+                }
+                if (dataString != null)
+                    results = arrayOf(Uri.parse(dataString))
+            }
+        }
+        mFilePathCallback!!.onReceiveValue(results)
+        mFilePathCallback = null
+    }
+
 }

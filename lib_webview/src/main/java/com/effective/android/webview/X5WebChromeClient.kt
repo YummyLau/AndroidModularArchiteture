@@ -20,15 +20,25 @@ import com.tencent.smtt.sdk.WebView
  * 文件上传
  * Created by yummylau on 2018/5/7.
  */
-class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChromeClient() {
+open class X5WebChromeClient : WebChromeClient {
 
+    constructor() : this(null)
+
+    constructor(webChromeClient: WebChromeClient?) {
+        this.webChromeClient = webChromeClient
+    }
+
+    private var webChromeClient: WebChromeClient? = null
+
+
+    //<input type="file"> 回调
     // For Android < 3.0
-    fun openFileChooser(valueCallback: ValueCallback<Uri>) {
+    open fun openFileChooser(valueCallback: ValueCallback<Uri>) {
         Log.d(TAG, "openFileChooser < 3.0")
     }
 
     // For Android  >= 3.0
-    fun openFileChooser(valueCallback: ValueCallback<*>, acceptType: String) {
+    open fun openFileChooser(valueCallback: ValueCallback<Uri>, acceptType: String) {
         Log.d(TAG, "openFileChooser >= 3.0")
     }
 
@@ -55,7 +65,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onProgressChanged(view: WebView?, newProgress: Int) {
         Log.d(TAG, "onProgressChanged")
         if (webChromeClient != null) {
-            webChromeClient.onProgressChanged(view, newProgress)
+            webChromeClient!!.onProgressChanged(view, newProgress)
         } else {
             super.onProgressChanged(view, newProgress)
         }
@@ -64,7 +74,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onReceivedTitle(view: WebView?, title: String?) {
         Log.d(TAG, "onReceivedTitle")
         if (webChromeClient != null) {
-            webChromeClient.onReceivedTitle(view, title)
+            webChromeClient!!.onReceivedTitle(view, title)
         } else {
             super.onReceivedTitle(view, title)
         }
@@ -73,7 +83,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onReceivedIcon(view: WebView?, icon: Bitmap?) {
         Log.d(TAG, "onReceivedIcon")
         if (webChromeClient != null) {
-            webChromeClient.onReceivedIcon(view, icon)
+            webChromeClient!!.onReceivedIcon(view, icon)
         } else {
             super.onReceivedIcon(view, icon)
         }
@@ -82,7 +92,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onReceivedTouchIconUrl(view: WebView?, url: String?, precomposed: Boolean) {
         Log.d(TAG, "onReceivedTouchIconUrl")
         if (webChromeClient != null) {
-            webChromeClient.onReceivedTouchIconUrl(view, url, precomposed)
+            webChromeClient!!.onReceivedTouchIconUrl(view, url, precomposed)
         } else {
             super.onReceivedTouchIconUrl(view, url, precomposed)
         }
@@ -91,7 +101,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onShowCustomView(view: View?, callback: IX5WebChromeClient.CustomViewCallback?) {
         Log.d(TAG, "onShowCustomView")
         if (webChromeClient != null) {
-            webChromeClient.onShowCustomView(view, callback)
+            webChromeClient!!.onShowCustomView(view, callback)
         } else {
             super.onShowCustomView(view, callback)
         }
@@ -100,7 +110,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onHideCustomView() {
         Log.d(TAG, "onHideCustomView")
         if (webChromeClient != null) {
-            webChromeClient.onHideCustomView()
+            webChromeClient!!.onHideCustomView()
         } else {
             super.onHideCustomView()
         }
@@ -115,7 +125,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onRequestFocus(view: WebView?) {
         Log.d(TAG, "onRequestFocus")
         if (webChromeClient != null) {
-            webChromeClient.onRequestFocus(view)
+            webChromeClient!!.onRequestFocus(view)
         } else {
             super.onRequestFocus(view)
         }
@@ -124,7 +134,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onCloseWindow(window: WebView?) {
         Log.d(TAG, "onCloseWindow")
         if (webChromeClient != null) {
-            webChromeClient.onCloseWindow(window)
+            webChromeClient!!.onCloseWindow(window)
         } else {
             super.onCloseWindow(window)
         }
@@ -185,7 +195,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onGeolocationPermissionsShowPrompt(origin: String, callback: GeolocationPermissionsCallback) {
         Log.d(TAG, "onGeolocationPermissionsShowPrompt")
         if (webChromeClient != null) {
-            webChromeClient.onGeolocationPermissionsShowPrompt(origin, callback)
+            webChromeClient!!.onGeolocationPermissionsShowPrompt(origin, callback)
         } else {
             super.onGeolocationPermissionsShowPrompt(origin, callback)
         }
@@ -194,7 +204,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun onGeolocationPermissionsHidePrompt() {
         Log.d(TAG, "onGeolocationPermissionsHidePrompt")
         if (webChromeClient != null) {
-            webChromeClient.onGeolocationPermissionsHidePrompt()
+            webChromeClient!!.onGeolocationPermissionsHidePrompt()
         } else {
             super.onGeolocationPermissionsHidePrompt()
         }
@@ -215,7 +225,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun getDefaultVideoPoster(): Bitmap? {
         Log.d(TAG, "getDefaultVideoPoster")
         return if (webChromeClient != null) {
-            webChromeClient.defaultVideoPoster
+            webChromeClient!!.defaultVideoPoster
         } else {
             super.getDefaultVideoPoster()
         }
@@ -224,7 +234,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun getVideoLoadingProgressView(): View? {
         Log.d(TAG, "getVideoLoadingProgressView")
         return if (webChromeClient != null) {
-            webChromeClient.videoLoadingProgressView
+            webChromeClient!!.videoLoadingProgressView
         } else {
             super.getVideoLoadingProgressView()
         }
@@ -233,7 +243,7 @@ class X5WebChromeClient(private val webChromeClient: WebChromeClient?) : WebChro
     override fun getVisitedHistory(callback: ValueCallback<Array<String>>?) {
         Log.d(TAG, "getVisitedHistory")
         if (webChromeClient != null) {
-            webChromeClient.getVisitedHistory(callback)
+            webChromeClient!!.getVisitedHistory(callback)
         } else {
             super.getVisitedHistory(callback)
         }
