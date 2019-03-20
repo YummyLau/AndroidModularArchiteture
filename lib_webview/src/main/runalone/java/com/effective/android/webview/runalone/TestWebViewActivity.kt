@@ -18,7 +18,10 @@ import com.effective.android.webview.bean.Request
 import com.effective.android.webview.bean.Result
 import com.effective.android.webview.interfaces.BridgeHandler
 import com.effective.android.webview.interfaces.CallBackFunction
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.tencent.smtt.sdk.WebChromeClient
+import java.lang.reflect.Type
 
 class TestWebViewActivity : Activity() {
 
@@ -36,20 +39,6 @@ class TestWebViewActivity : Activity() {
         } catch (e: Exception) {
             ""
         }
-    }
-
-    private fun getUserInfo(userNameEt: EditText, passwordEt: EditText): String {
-        val userName = userNameEt.editableText.toString()
-        val password = passwordEt.editableText.toString()
-        val userBean = UserBean(userName, password, "androider")
-        val platform = "android"
-        var version = getVersionCode(this)
-        if (TextUtils.isEmpty(version)) {
-            version = ""
-        }
-        val request = Request(platform, version!!, userBean);
-        val result = X5Utils.object2Json(request, X5Utils.genericType<Request<UserBean>>())
-        return result!!
     }
 
 
@@ -100,7 +89,19 @@ class TestWebViewActivity : Activity() {
         })
 
         callWeb.setOnClickListener {
-            val requestData = getUserInfo(userName, password)
+            val userName = userName.editableText.toString()
+            val password = password.editableText.toString()
+            val userBean = UserBean(userName, password, "android")
+            val platform = "android"
+            var version = getVersionCode(this)
+            if (TextUtils.isEmpty(version)) {
+                version = ""
+            }
+            val request = Request(platform, version!!, userBean)
+            var requestData = X5Utils.object2Json(request)
+            if(TextUtils.isEmpty(requestData)){
+                requestData = ""
+            }
             val log = "android request($JS_METHOD) : $requestData"
             Log.i(TAG, log)
             setContent(log, nativeContent)
@@ -109,8 +110,8 @@ class TestWebViewActivity : Activity() {
                     if (!TextUtils.isEmpty(data)) {
                         val log = "web reponse($JS_METHOD) : $data"
                         Log.i(TAG, log)
-                        setContent(data!!, nativeContent)
-//                        var result = X5Utils.json2Obj<Result<UserBean>>(data!!)
+                        setContent(log, nativeContent)
+                        var result = X5Utils.json2Obj<Result<String>>(data!!, object : TypeToken<Result<String>>() {}.type)
                     }
                 }
             })
@@ -119,12 +120,13 @@ class TestWebViewActivity : Activity() {
         webView.registerHandler(NATIVE_METHOD, object : BridgeHandler {
             override fun handler(data: String?, function: CallBackFunction) {
                 if (!TextUtils.isEmpty(data)) {
+                    var request = X5Utils.json2Obj<Request<UserBean>>(data!!, object : TypeToken<Request<UserBean>>() {}.type)
                     val requestLog = "web request($NATIVE_METHOD) : $data"
                     Log.i(TAG, requestLog)
                     setContent(requestLog!!, nativeContent)
-
-                    val result = Result(200, "success", "")
-                    val reponseLog = "android reponse($NATIVE_METHOD) : $result"
+                    val json = X5Utils.object2Json(Result(200, "success", ""))
+                    function.onCallBack(json)
+                    val reponseLog = "android reponse($NATIVE_METHOD) : $json"
                     Log.i(TAG, reponseLog)
                     setContent(reponseLog, nativeContent)
                 }

@@ -25,24 +25,21 @@ import java.net.URL
  */
 object X5Utils {
 
-    inline fun <reified T> genericType() = object : TypeToken<T>() {}.type
-
-    fun object2Json(obj: Any, type: Type): String {
+    fun <T> object2Json(obj: T): String {
         return try {
-            Gson().toJson(obj, type)
+            Gson().toJson(obj, object : TypeToken<T>() {}.type)
         } catch (e: Exception) {
             ""
         }
     }
 
-    fun <T> json2Obj(json: String): T? {
+    fun <T> json2Obj(json: String, type: Type): T? {
         return try {
-            Gson().fromJson<T>(json, object : TypeToken<T>() {}.type)
+            Gson().fromJson<T>(json, type)
         } catch (e: Exception) {
             null
         }
     }
-
 
     fun hookKeyCode(webView: WebView, keyCode: Int): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

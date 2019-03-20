@@ -56,12 +56,23 @@
             var str1 = document.getElementById("text1").value;
             var str2 = document.getElementById("text2").value;
 
+            var request = new Object;
+            request.platform = "web";
+            request.version = "1.0";
+            var user = new Object;
+            user.userName = str1
+            user.password = str2;
+            user.caller = "web";
+            request.params = user
+     
+            var requestData =JSON.stringify(request);
             //call native method
             window.WebViewJavascriptBridge.callHandler(
                 'functionInNative'
-                , {'userName': str1,'password': str2, 'caller': 'web'}
+                , requestData
                 , function(responseData) {
-                    document.getElementById("show").innerHTML = "native reponse(functionInNative) : " + responseData
+                    //WebViewJavascriptBridge.js #88 已经转成object
+                    document.getElementById("show").innerHTML = "native reponse(functionInNative) : " + JSON.stringify(responseData);
                 }
             );
         }
@@ -101,7 +112,11 @@
             bridge.registerHandler("functionInJs", function(data, responseCallback) {
                 document.getElementById("show").innerHTML = ("native request(functionInJs): " + data);
                 if (responseCallback) {
-                    var responseData = "{'code': 200,'message': 'success', 'data': ''}";
+                    var result = new Object;
+                    result.data = "";
+                    result.code = 200;
+                    result.message = "success";
+                    var responseData=JSON.stringify(result);
                     responseCallback(responseData);
                 }
             });

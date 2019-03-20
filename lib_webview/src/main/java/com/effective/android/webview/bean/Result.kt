@@ -8,5 +8,5 @@ import com.google.gson.annotations.SerializedName
  */
 data class Result<T>(
         @SerializedName("code") val code: Int,
-        @SerializedName("msg") val msg: String,
+        @SerializedName("message") val message: String,
         @SerializedName("data") val data: T)
