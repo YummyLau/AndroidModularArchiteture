@@ -1,4 +1,6 @@
 apply plugin: 'com.effective.plugin.component'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
@@ -22,16 +24,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation deps.glide
+
+    implementation deps.androidx.appCompat
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.constraintlayout
+
+    implementation deps.glide.core
+    implementation deps.glide.transformations
+    implementation deps.glide.gpuImage
+
+    implementation deps.kotlin.stdlib
 }
 
 componentBuild {
-    applicationName = 'com.effective.android.ImageLoaderApplication'
+    applicationName = 'com.effective.android.imageloader.ImageLoaderApplication'
     isRegisterComponentAuto = true
 }

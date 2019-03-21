@@ -33,11 +33,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //android support
-    api deps.support.v4
-    api deps.support.app_compat
-    api deps.support.design
-    api deps.support.recyclerview
-    api deps.support.cardview
+
+
+    api deps.androidx.design
+    api deps.androidx.cardview
+    api deps.androidx.v4
+    api deps.androidx.recyclerview
+    api deps.androidx.constraintlayout
+    api deps.androidx.appCompat
 
     //rx
     api deps.rx.rxjava2
@@ -79,9 +82,8 @@ dependencies {
     api deps.gson
     api deps.stetho
     api deps.stethoOkhttp3
-    api deps.glide
     api deps.guaua
-    api deps.constraintLayout
+
     api deps.baseRecyclerViewAdapterHelper
     api deps.ucrop
     api deps.photoview
@@ -89,7 +91,9 @@ dependencies {
     api deps.flexbox
     api deps.qmui
 
-    annotationProcessor deps.glideCompiler
+    api deps.glide.core
+    annotationProcessor deps.glide.compiler
+
     annotationProcessor deps.dagger.compiler
     annotationProcessor deps.dagger.androidProcessor
 

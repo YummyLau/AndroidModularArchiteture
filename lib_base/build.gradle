@@ -28,7 +28,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.support.app_compat
+    implementation deps.androidx.appCompat
     implementation deps.kotlin.stdlib
     api deps.qmui
 }

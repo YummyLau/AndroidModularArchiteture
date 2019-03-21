@@ -1,5 +1,16 @@
 ![banner][banner]
 
+### 更新技术栈（进行中）
+* 基础库提供
+    * androidx逐步迁移（进行中）
+* 模块化及插件构建
+    * lib_webview(2019-03-20完成)
+    * lib_imageloader(进行中)
+* 模块通讯重构
+* 性能优化方案
+* java字节码及android持续集成技术
+目前在feature_lab开始进行
+
 ### About
 该Sample主要是总结当前自己项目上的经验及学习[Google Architecture Components](https://developer.android.com/arch)方案进行项目尝试。  
 目前已有部分线上App校验过该Sample的运行逻辑，完全可行，适合一些中小规模App快速开发，并结合自身的库及用户需求自定扩展。  
@@ -53,11 +64,3 @@
 
 [banner]: https://github.com/YummyLau/AndroidModularArchiteture/blob/master/art/banner.png
 
-
-### 更新技术栈（进行中）
-* 基础库提供
-* 模块化及插件构建
-* 模块通讯重构
-* 性能优化方案
-* java字节码及android持续集成技术
-目前在feature_lab开始进行

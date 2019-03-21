@@ -23,8 +23,9 @@ import java.net.URL
  * 工具类
  * Created by yummylau on 2018/5/7.
  */
-object X5Utils {
+object Utils {
 
+    @JvmStatic
     fun <T> object2Json(obj: T): String {
         return try {
             Gson().toJson(obj, object : TypeToken<T>() {}.type)
@@ -33,6 +34,7 @@ object X5Utils {
         }
     }
 
+    @JvmStatic
     fun <T> json2Obj(json: String, type: Type): T? {
         return try {
             Gson().fromJson<T>(json, type)
@@ -41,6 +43,7 @@ object X5Utils {
         }
     }
 
+    @JvmStatic
     fun hookKeyCode(webView: WebView, keyCode: Int): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (webView.canGoBack()) {
@@ -51,6 +54,7 @@ object X5Utils {
         return false
     }
 
+    @JvmStatic
     fun compatVideoPlay(activity: Activity) {
         val window = activity.window
         window.setFormat(PixelFormat.TRANSLUCENT)
@@ -65,6 +69,7 @@ object X5Utils {
 
     }
 
+    @JvmStatic
     fun destroyWebView(webView: WebView?) {
         if (webView != null) {
             val parent = webView.parent
@@ -85,6 +90,7 @@ object X5Utils {
         }
     }
 
+    @JvmStatic
     fun setDefaultWebViewSetting(webView: WebView?) {
         if (webView == null) {
             return
@@ -145,6 +151,7 @@ object X5Utils {
         setUA(webView)
     }
 
+    @JvmStatic
     fun setUA(webView: WebView?) {
         if (webView == null) {
             return
@@ -158,6 +165,7 @@ object X5Utils {
         webView.settings.userAgentString = ua
     }
 
+    @JvmStatic
     fun getAppVersionName(context: Context, packageName: String): String? {
         try {
             val info = context.packageManager.getPackageInfo(packageName, 0)
@@ -177,6 +185,7 @@ object X5Utils {
      * @param url
      * @return
      */
+    @JvmStatic
     fun isTrustUrl(url: String?): Boolean {
         if (!TextUtils.isEmpty(url)) {
             try {
@@ -193,6 +202,7 @@ object X5Utils {
         return false
     }
 
+    @JvmStatic
     fun isTrustUrl(webView: X5JsWebView?): Boolean {
         val url = webView?.url
         return isTrustUrl(url)

@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 android {
 
     compileSdkVersion configs.android.compileSdkVersion
@@ -71,4 +73,8 @@ dependencies {
     annotationProcessor deps.arouter.compiler
     annotationProcessor deps.dagger.compiler
     annotationProcessor deps.dagger.androidProcessor
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

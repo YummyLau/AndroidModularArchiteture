@@ -27,7 +27,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.support.app_compat
+    implementation deps.androidx.appCompat
     api deps.skin.support
     api deps.skin.design
 }

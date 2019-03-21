@@ -59,7 +59,7 @@ class X5JsWebView : BridgeWebView {
     }
 
     override fun postUrl(s: String, bytes: ByteArray) {
-        if (X5Utils.isTrustUrl(s)) {
+        if (Utils.isTrustUrl(s)) {
             super.postUrl(s, bytes)
         } else {
             super.postUrl(s, null)

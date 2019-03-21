@@ -9,22 +9,18 @@ import android.support.annotation.RequiresApi
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.webkit.ValueCallback
 import android.widget.EditText
 import android.widget.TextView
 import com.effective.android.webview.R
 import com.effective.android.webview.X5JsWebView
-import com.effective.android.webview.X5Utils
+import com.effective.android.webview.Utils
 import com.effective.android.webview.X5WebChromeClient
 import com.effective.android.webview.bean.Request
 import com.effective.android.webview.bean.Result
 import com.effective.android.webview.interfaces.BridgeHandler
 import com.effective.android.webview.interfaces.CallBackFunction
 import com.google.gson.reflect.TypeToken
-import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
-import android.content.ClipData
-import android.os.Build.VERSION_CODES
 import android.annotation.TargetApi
 import android.os.Build
 
@@ -107,7 +103,7 @@ class TestWebViewActivity : Activity() {
                 version = ""
             }
             val request = Request(platform, version!!, userBean)
-            var requestData = X5Utils.object2Json(request)
+            var requestData = Utils.object2Json(request)
             if (TextUtils.isEmpty(requestData)) {
                 requestData = ""
             }
@@ -120,7 +116,7 @@ class TestWebViewActivity : Activity() {
                         val log = "web reponse($JS_METHOD) : $data"
                         Log.i(TAG, log)
                         setContent(log, nativeContent)
-                        var result = X5Utils.json2Obj<Result<String>>(data!!, object : TypeToken<Result<String>>() {}.type)
+                        var result = Utils.json2Obj<Result<String>>(data!!, object : TypeToken<Result<String>>() {}.type)
                     }
                 }
             })
@@ -129,11 +125,11 @@ class TestWebViewActivity : Activity() {
         webView.registerHandler(NATIVE_METHOD, object : BridgeHandler {
             override fun handler(data: String?, function: CallBackFunction) {
                 if (!TextUtils.isEmpty(data)) {
-                    var request = X5Utils.json2Obj<Request<UserBean>>(data!!, object : TypeToken<Request<UserBean>>() {}.type)
+                    var request = Utils.json2Obj<Request<UserBean>>(data!!, object : TypeToken<Request<UserBean>>() {}.type)
                     val requestLog = "web request($NATIVE_METHOD) : $data"
                     Log.i(TAG, requestLog)
                     setContent(requestLog!!, nativeContent)
-                    val json = X5Utils.object2Json(Result(200, "success", ""))
+                    val json = Utils.object2Json(Result(200, "success", ""))
                     function.onCallBack(json)
                     val reponseLog = "android reponse($NATIVE_METHOD) : $json"
                     Log.i(TAG, reponseLog)
