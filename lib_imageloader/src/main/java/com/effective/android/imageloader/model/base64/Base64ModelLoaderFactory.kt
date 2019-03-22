@@ -1,4 +1,4 @@
-package com.effective.android.imageloader
+package com.effective.android.imageloader.model.base64
 
 
 import com.bumptech.glide.load.model.ModelLoader

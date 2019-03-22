@@ -30,7 +30,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation deps.kotlin.stdlib
     api deps.okhttp.okhttp3
-    implementation deps.okhttp.okhttp3_logger
+    implementation deps.okhttp.okhttp3Logger
 
     api deps.retrofit.runtime
     api deps.retrofit.converterGson

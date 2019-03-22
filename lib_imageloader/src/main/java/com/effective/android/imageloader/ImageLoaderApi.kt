@@ -1,6 +1,6 @@
 package com.effective.android.imageloader
 
-import android.graphics.Color
+import android.content.Context
 import android.graphics.PointF
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
@@ -18,7 +18,14 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
  */
 interface ImageLoaderApi {
 
+    //取消请求
     fun clearRequest(imageView: ImageView)
+
+    //清除磁盘缓存
+    fun clearDiskCache(context: Context)
+
+    //清除内存缓存
+    fun clearMemory(context: Context)
 
     //遮罩
     fun mask(imageView: ImageView, source: String, @DrawableRes mask: Int, requestOptions: RequestOptions? = null, requestListener: RequestListener<Drawable>? = null)

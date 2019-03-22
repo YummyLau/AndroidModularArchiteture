@@ -81,9 +81,9 @@ versions.design = "1.0.0-rc01"
 versions.cardview = "1.0.0"
 
 //glide
-versions.glide = "4.4.0"
+versions.glide = "4.9.0"
 versions.glideTransformations = "4.0.1"
-versions.glideCompiler = "4.4.0"
+versions.glideCompiler = "4.9.0"
 versions.gpuImage = "2.0.3"
 
 
@@ -102,6 +102,7 @@ glide.core = "com.github.bumptech.glide:glide:$versions.glide"
 glide.transformations = "jp.wasabeef:glide-transformations:$versions.glideTransformations"
 glide.compiler = "com.github.bumptech.glide:compiler:$versions.glideCompiler"
 glide.gpuImage = "jp.co.cyberagent.android:gpuimage:$versions.gpuImage"
+glide.okhttp3 = "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
 deps.glide = glide
 
 
@@ -126,7 +127,7 @@ deps.lifecycle = lifecycle
 
 def okhttp = [:]
 okhttp.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
-okhttp.okhttp3_logger = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3_logger"
+okhttp.okhttp3Logger = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3_logger"
 deps.okhttp = okhttp
 
 def retrofit = [:]

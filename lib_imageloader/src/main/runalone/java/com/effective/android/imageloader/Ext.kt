@@ -16,8 +16,18 @@ package jp.wasabeef.example.glide
  * limitations under the License.
  */
 
+import android.content.Context
 import android.content.res.Resources
+import android.view.View
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
+
+//扩展属性
 
 val Float.px: Float get() = (this * Resources.getSystem().displayMetrics.density)
 
 val Int.px: Int get() = ((this * Resources.getSystem().displayMetrics.density).toInt())
+
+fun Context.color(@ColorRes colorRes: Int) = ContextCompat.getColor(this, colorRes)
+
+fun View.color(colorRes: Int) = context.color(colorRes)

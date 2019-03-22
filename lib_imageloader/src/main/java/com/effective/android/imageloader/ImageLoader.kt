@@ -1,5 +1,6 @@
 package com.effective.android.imageloader
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.PointF
 import android.graphics.drawable.Drawable
@@ -15,6 +16,11 @@ import jp.wasabeef.glide.transformations.*
 import jp.wasabeef.glide.transformations.gpu.*
 
 /**
+ * api提供：
+ * 1. 清除磁盘缓存
+ * 2. 清除内存缓存
+ * 3. 各类图片显示
+ * 4. 取消图片请求
  * Created by yummyLau on 2018/4/26.
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
@@ -22,7 +28,15 @@ import jp.wasabeef.glide.transformations.gpu.*
 class ImageLoader : ImageLoaderApi {
 
     override fun clearRequest(imageView: ImageView) {
+        Glide.with(imageView.context).clear(imageView)
+    }
 
+    override fun clearDiskCache(context: Context) {
+        Glide.get(context).clearDiskCache()
+    }
+
+    override fun clearMemory(context: Context) {
+        Glide.get(context).clearMemory()
     }
 
     private fun loadTemp(imageView: ImageView, source: Any, requestOptions: RequestOptions?, requestListener: RequestListener<Drawable>?, transformation: Transformation<Bitmap>) {
@@ -35,31 +49,21 @@ class ImageLoader : ImageLoaderApi {
                 is KuwaharaFilterTransformation -> makeRequestOptions.dontAnimate()
                 is VignetteFilterTransformation -> makeRequestOptions.dontAnimate()
             }
-            Glide.with(imageView.context)
+            val requestBuilder = Glide.with(imageView.context)
                     .asDrawable()
                     .load(source)
-                    .apply(makeRequestOptions).apply {
-                        if (requestOptions != null) {
-                            apply(requestOptions)
-                        }
-                        if (requestListener != null) {
-                            listener(requestListener)
-                        }
-                    }.into(imageView)
+                    .apply(makeRequestOptions)
+
+            if (requestOptions != null) {
+                requestBuilder.apply(requestOptions)
+            }
+            if (requestListener != null) {
+                requestBuilder.listener(requestListener)
+            }
+            requestBuilder.into(imageView)
         }
     }
 
-    @JvmOverloads
-    fun circleGif(imageView: ImageView, source: Drawable) {
-        var context = Utils.isValidContextForGlide(imageView)
-        if (context != null) {
-            val makeRequestOptions = RequestOptions.bitmapTransform(CircleCrop())
-            Glide.with(imageView.context)
-                    .asGif()
-                    .load(source)
-                    .apply(makeRequestOptions).into(imageView)
-        }
-    }
 
     @JvmOverloads
     override fun mask(imageView: ImageView, source: Drawable, mask: Int, requestOptions: RequestOptions?, requestListener: RequestListener<Drawable>?) {
