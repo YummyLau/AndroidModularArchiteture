@@ -1,15 +1,15 @@
 package example.weibocomponent.data.local.db.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Embedded;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.TypeConverters;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.TypeConverters;
 import example.weibocomponent.bean.Pic;
 import example.weibocomponent.data.local.db.converter.PicConverters;
 

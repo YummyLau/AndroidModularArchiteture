@@ -1,10 +1,11 @@
 package example.weibocomponent.data.local.db;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
+
 import android.content.Context;
 
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import example.weibocomponent.data.local.db.dao.StatusDao;
 import example.weibocomponent.data.local.db.dao.UserDao;
 import example.weibocomponent.data.local.db.entity.StatusEntity;

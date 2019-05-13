@@ -67,10 +67,6 @@ dependencies {
     //room
     annotationProcessor deps.room.compiler
 
-    //dagger2
-    annotationProcessor deps.dagger.compiler
-    annotationProcessor deps.dagger.androidProcessor
-
     //接入微博api
     implementation 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
 

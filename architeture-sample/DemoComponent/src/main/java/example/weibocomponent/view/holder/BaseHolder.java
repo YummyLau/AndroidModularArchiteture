@@ -1,7 +1,8 @@
 package example.weibocomponent.view.holder;
 
-import android.databinding.ViewDataBinding;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Email yummyl.lau@gmail.com

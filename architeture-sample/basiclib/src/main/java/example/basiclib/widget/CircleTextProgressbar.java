@@ -24,11 +24,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.ColorInt;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.ColorInt;
+import androidx.appcompat.widget.AppCompatTextView;
 import example.basiclib.R;
 
 /**

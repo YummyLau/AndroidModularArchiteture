@@ -2,14 +2,14 @@ package example.androidmodulararchiteture.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import example.androidmodulararchiteture.R;
 import example.androidmodulararchiteture.databinding.AppActivitySplashLayoutBinding;
 import example.androidmodulararchiteture.viewmodel.SplashViewModel;

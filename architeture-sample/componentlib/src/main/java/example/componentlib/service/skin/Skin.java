@@ -1,6 +1,7 @@
 package example.componentlib.service.skin;
 
-import android.support.annotation.ColorInt;
+
+import androidx.annotation.ColorInt;
 
 /**
  * Email yummyl.lau@gmail.com

@@ -3,17 +3,11 @@ package example.androidmodulararchiteture;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.stetho.Stetho;
 
-import javax.inject.Inject;
-
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
-import example.androidmodulararchiteture.di.component.DaggerDagger2Component;
+import androidx.multidex.MultiDex;
 import example.basiclib.net.HttpClient;
 import example.basiclib.util.crash.CrashManager;
 import example.componentlib.component.ComponentManager;

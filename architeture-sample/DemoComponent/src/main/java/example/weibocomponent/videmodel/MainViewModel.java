@@ -1,16 +1,16 @@
 package example.weibocomponent.videmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Transformations;
-import android.arch.lifecycle.ViewModel;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
-import javax.inject.Inject;
-
+import androidx.arch.core.util.Function;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModel;
 import example.basiclib.AbsentLiveData;
 import example.basiclib.net.resource.Resource;
+import example.weibocomponent.App;
 import example.weibocomponent.data.DemoRepository;
 import example.weibocomponent.data.local.db.entity.UserEntity;
 
@@ -21,20 +21,16 @@ import example.weibocomponent.data.local.db.entity.UserEntity;
  */
 public class MainViewModel extends ViewModel {
 
-    @Inject
-    public DemoRepository featureRepository;
-
     private final LiveData<Resource<UserEntity>> ownUserInfo;
     private final MutableLiveData<Boolean> commandInitInfo = new MutableLiveData<>();
 
-    @Inject
     public MainViewModel() {
         ARouter.getInstance().inject(this);
-        ownUserInfo = Transformations.switchMap(commandInitInfo, new android.arch.core.util.Function<Boolean, LiveData<Resource<UserEntity>>>() {
+        ownUserInfo = Transformations.switchMap(commandInitInfo, new Function<Boolean, LiveData<Resource<UserEntity>>>() {
             @Override
             public LiveData<Resource<UserEntity>> apply(Boolean commandInitInfo) {
                 if (commandInitInfo) {
-                    return featureRepository.getUserInfo(11l);
+                    return App.demoRepository.getUserInfo(11l);
                 } else {
                     return AbsentLiveData.create();
                 }

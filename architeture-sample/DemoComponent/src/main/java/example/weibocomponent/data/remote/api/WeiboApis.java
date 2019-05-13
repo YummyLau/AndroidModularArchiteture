@@ -1,10 +1,10 @@
 package example.weibocomponent.data.remote.api;
 
 
-import android.support.annotation.Nullable;
 
 import java.util.Map;
 
+import androidx.annotation.Nullable;
 import example.weibocomponent.bean.Comment;
 import example.weibocomponent.data.local.db.entity.UserEntity;
 import example.weibocomponent.data.remote.result.CommentListResult;

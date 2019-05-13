@@ -64,11 +64,6 @@ dependencies {
     api deps.room.runtime
     api deps.room.rxjava2
 
-    //dagger
-    api deps.dagger.runtime
-    api deps.dagger.android
-    api deps.dagger.androidSupport
-
     //skin
     api deps.skin.support
     api deps.skin.design
@@ -93,9 +88,6 @@ dependencies {
 
     api deps.glide.core
     annotationProcessor deps.glide.compiler
-
-    annotationProcessor deps.dagger.compiler
-    annotationProcessor deps.dagger.androidProcessor
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

@@ -3,12 +3,13 @@ package example.basiclib.widget.imageviewer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 
 /**
  * 外部调用入口

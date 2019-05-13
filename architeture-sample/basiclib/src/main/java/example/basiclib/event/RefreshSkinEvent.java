@@ -1,7 +1,8 @@
 package example.basiclib.event;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 /**
  * Email yummyl.lau@gmail.com

@@ -38,9 +38,6 @@ versions.arouterCompiler = "1.1.4"
 versions.rxjava2 = "2.1.3"
 versions.rxAndroid = "2.0.1"
 
-//dagger
-versions.dagger = "2.11"
-
 //skin
 versions.skin = "2.2.3"
 
@@ -86,7 +83,8 @@ versions.glideTransformations = "4.0.1"
 versions.glideCompiler = "4.9.0"
 versions.gpuImage = "2.0.3"
 
-
+//permissoion
+versions.permission = "3.0.0"
 
 def androidx = [:]
 androidx.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
@@ -168,20 +166,13 @@ def arch_core = [:]
 arch_core.testing = "android.arch.core:core-testing:$versions.arch"
 deps.arch_core = arch_core
 
-def dagger = [:]
-dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
-dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
-dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
-dagger.androidSupport = "com.google.dagger:dagger-android-support:$versions.dagger"
-dagger.androidProcessor = "com.google.dagger:dagger-android-processor:$versions.dagger"
-deps.dagger = dagger
-
 def skin = [:]
 skin.support = "skin.support:skin-support:$versions.skin"
 skin.design = "skin.support:skin-support-design:$versions.skin"
 skin.cardview = "skin.support:skin-support-cardview:$versions.skin"
 deps.skin = skin
 
+deps.permissions = "pub.devrel:easypermissions:$versions.permission"
 deps.junit = "junit:junit:$versions.junit"
 deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
 deps.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"

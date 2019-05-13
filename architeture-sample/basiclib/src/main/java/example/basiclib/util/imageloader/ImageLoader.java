@@ -2,15 +2,14 @@ package example.basiclib.util.imageloader;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.app.Fragment;
+
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.Transformation;
-import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestOptions;
 
+import androidx.fragment.app.Fragment;
 import example.basiclib.interfaces.IImageLoader;
 
 
@@ -43,6 +42,7 @@ public class ImageLoader implements IImageLoader {
                 .load(url)
                 .into(imageView);
     }
+
 
     @Override
     public void load(Fragment fragment, String url, ImageView imageView) {

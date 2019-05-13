@@ -1,11 +1,11 @@
 package example.weibocomponent.bean.assist;
 
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import example.weibocomponent.bean.Pic;
 
 /**

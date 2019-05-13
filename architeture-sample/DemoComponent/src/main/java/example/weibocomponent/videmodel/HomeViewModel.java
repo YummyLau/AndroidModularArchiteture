@@ -1,20 +1,18 @@
 package example.weibocomponent.videmodel;
 
-import android.arch.core.util.Function;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Transformations;
-import android.arch.lifecycle.ViewModel;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import androidx.arch.core.util.Function;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModel;
 import example.basiclib.AbsentLiveData;
 import example.basiclib.net.resource.Resource;
-import example.weibocomponent.data.DemoRepository;
+import example.weibocomponent.App;
 import example.weibocomponent.data.local.db.entity.StatusEntity;
 
 /**
@@ -24,20 +22,16 @@ import example.weibocomponent.data.local.db.entity.StatusEntity;
 
 public class HomeViewModel extends ViewModel {
 
-    @Inject
-    public DemoRepository featureRepository;
-
     private final LiveData<Resource<List<StatusEntity>>> mAllStatus;
     private final MutableLiveData<Boolean> commandRefresh = new MutableLiveData<>();
 
-    @Inject
     public HomeViewModel() {
         ARouter.getInstance().inject(this);
         mAllStatus = Transformations.switchMap(commandRefresh, new Function<Boolean, LiveData<Resource<List<StatusEntity>>>>() {
             @Override
             public LiveData<Resource<List<StatusEntity>>> apply(Boolean toFreshList) {
                 if (toFreshList) {
-                    return featureRepository.getHomeStatus();
+                    return App.demoRepository.getHomeStatus();
                 } else {
                     return AbsentLiveData.create();
                 }

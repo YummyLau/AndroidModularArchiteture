@@ -3,13 +3,21 @@
 ### 更新技术栈（进行中）
 * 基础库提供
     * androidx逐步迁移（进行中）
+    * 权限模块基于 easyPermisson进行适配
+    * 系统UI适配（沉浸式,状态栏+导航栏）参考 QMUIStatusBarHelper 源码进行封装处理
 * 模块化及插件构建
     * lib_webview(2019-03-20完成)
     * lib_imageloader(进行中)
 * 模块通讯重构
 * 性能优化方案
 * java字节码及android持续集成技术
-目前在feature_lab开始进行
+目前在feature_lab开始进行i
+
+【参考/使用第三方库列表】
+
+[权限适配-easypermissions](https://github.com/googlesamples/easypermissions)
+[便捷UI-QMUI_Android](https://github.com/Tencent/QMUI_Android)
+
 
 ### About
 该Sample主要是总结当前自己项目上的经验及学习[Google Architecture Components](https://developer.android.com/arch)方案进行项目尝试。  

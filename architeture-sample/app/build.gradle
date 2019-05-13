@@ -36,7 +36,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("../android.keystore")
+            storeFile file("../../android.keystore")
             storePassword "android"
             keyAlias "android.keystore"
             keyPassword "android"
@@ -70,9 +70,6 @@ dependencies {
     implementation project(':componentlib')
 
     //annotation
-    annotationProcessor deps.arouter.compiler
-    annotationProcessor deps.dagger.compiler
-    annotationProcessor deps.dagger.androidProcessor
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

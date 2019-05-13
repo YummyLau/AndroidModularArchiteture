@@ -31,6 +31,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     api project(':basiclib')
-    annotationProcessor deps.dagger.compiler
-    annotationProcessor deps.dagger.androidProcessor
 }

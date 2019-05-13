@@ -2,12 +2,12 @@ package example.basiclib.interfaces;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.annotation.DrawableRes;
-import android.support.v4.app.Fragment;
+
 import android.widget.ImageView;
 
-import com.bumptech.glide.request.FutureTarget;
+
+import androidx.annotation.DrawableRes;
+import androidx.fragment.app.Fragment;
 
 /**
  * 图片处理暴露接口，方便以后替换第三方库处理

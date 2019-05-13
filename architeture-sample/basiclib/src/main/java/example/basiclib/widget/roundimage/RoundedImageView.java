@@ -8,10 +8,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.ImageView;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import example.basiclib.R;
 
 /**
@@ -23,11 +24,11 @@ public class RoundedImageView extends AppCompatImageView {
   public static final String TAG = "RoundedImageView";
   public static final float DEFAULT_RADIUS = 0f;
   public static final float DEFAULT_BORDER_WIDTH = 0f;
-  private static final ScaleType[] SCALE_TYPES = {
-      ScaleType.MATRIX,
-      ScaleType.FIT_XY,
-      ScaleType.FIT_START,
-      ScaleType.FIT_CENTER,
+  private static final ImageView.ScaleType[] SCALE_TYPES = {
+      ImageView.ScaleType.MATRIX,
+      ImageView.ScaleType.FIT_XY,
+      ImageView.ScaleType.FIT_START,
+      ImageView.ScaleType.FIT_CENTER,
       ScaleType.FIT_END,
       ScaleType.CENTER,
       ScaleType.CENTER_CROP,

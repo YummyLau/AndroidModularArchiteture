@@ -1,7 +1,7 @@
 package example.androidmodulararchiteture.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
-import javax.inject.Inject;
+
+import androidx.lifecycle.ViewModel;
 import example.componentlib.service.ServiceManager;
 import example.componentlib.service.account.Account;
 import example.componentlib.service.account.IAccountService;

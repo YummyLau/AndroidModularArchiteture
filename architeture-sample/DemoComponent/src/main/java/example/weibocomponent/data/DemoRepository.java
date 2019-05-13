@@ -1,19 +1,16 @@
 package example.weibocomponent.data;
 
 
-import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import org.reactivestreams.Publisher;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
 import example.basiclib.net.resource.NetworkBoundResource;
 import example.basiclib.net.resource.Resource;
 import example.componentlib.service.ServiceManager;
@@ -31,13 +28,11 @@ import io.reactivex.functions.Function;
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2018/01/25.
  */
-@Singleton
 public class DemoRepository implements DemoDataSource {
 
     private AppDataBase mAppDataBase;
     private WeiboApis mWeiboApis;
 
-    @Inject
     public DemoRepository(AppDataBase appDataBase, WeiboApis weiboApis) {
         this.mAppDataBase = appDataBase;
         this.mWeiboApis = weiboApis;

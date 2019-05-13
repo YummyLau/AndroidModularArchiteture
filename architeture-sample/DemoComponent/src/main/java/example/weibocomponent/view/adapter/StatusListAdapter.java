@@ -3,7 +3,6 @@ package example.weibocomponent.view.adapter;
 
 import android.app.SharedElementCallback;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
 import example.basiclib.util.ActivityUtils;
 import example.basiclib.util.imageloader.ImageLoader;
 import example.basiclib.widget.imageviewer.ImageViewer;

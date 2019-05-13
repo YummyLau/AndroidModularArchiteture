@@ -72,8 +72,6 @@ dependencies {
     annotationProcessor deps.lifecycle.compiler
     annotationProcessor deps.room.compiler
     annotationProcessor deps.glide.compiler
-    annotationProcessor deps.dagger.compiler
-    annotationProcessor deps.dagger.androidProcessor
 
 
     // Espresso UI Testing

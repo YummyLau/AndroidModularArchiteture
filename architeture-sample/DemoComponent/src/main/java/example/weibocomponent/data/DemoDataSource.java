@@ -1,9 +1,9 @@
 package example.weibocomponent.data;
 
 
-import android.arch.lifecycle.LiveData;
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import example.basiclib.net.resource.Resource;
 import example.weibocomponent.data.local.db.entity.StatusEntity;
 import example.weibocomponent.data.local.db.entity.UserEntity;

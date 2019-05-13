@@ -2,12 +2,12 @@ package example.basiclib.net;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import example.basiclib.net.interceptor.CacheInterceptor;
 import example.basiclib.net.interceptor.LogInterceptor;
 import okhttp3.OkHttpClient;

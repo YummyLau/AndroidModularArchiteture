@@ -1,6 +1,7 @@
 package com.effective.android.imageloader
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.PointF
 import android.graphics.drawable.Drawable
@@ -10,13 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.effective.android.imageloader.GlideOptions.bitmapTransform
 import com.effective.android.imageloader.progress.DispatchingProgressManager
 import com.effective.android.imageloader.progress.lintener.UIonProgressListener
 import jp.wasabeef.example.glide.px
@@ -97,35 +103,48 @@ class MainAdapter(private val context: Context) : RecyclerView.Adapter<MainAdapt
         when (data.type) {
 
             mask -> {
-                holder.progress.visibility = View.VISIBLE
-                val requestListener = object : RequestListener<Drawable> {
+//                holder.progress.visibility = View.VISIBLE
+//                val requestListener = object : RequestListener<Drawable> {
+//
+//                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+//                        DispatchingProgressManager.forget(data.url)
+////                        holder.progress.visibility = View.GONE
+//                        return false
+//                    }
+//
+//                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+//                        DispatchingProgressManager.forget(data.url)
+////                        holder.progress.visibility = View.GONE
+//                        return false
+//                    }
+//                }
+//
+//                DispatchingProgressManager.expect(data.url, object : UIonProgressListener {
+//
+//                    override fun getGranualityPercentage(): Float = 1.toFloat()
+//
+//                    override fun onProgress(byteRead: Long, expectedLength: Long) {
+//                        val progress = byteRead * 100.toFloat() / expectedLength
+//                        Log.d("progress", progress.toString())
+//                        holder.progress.setProgress(progress)
+//                    }
+//                })
+//
+//                val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
+//                ImageLoader().mask(holder.image, data.url, R.drawable.mask_starfish, requestOptions, requestListener)
 
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        DispatchingProgressManager.forget(data.url)
-//                        holder.progress.visibility = View.GONE
-                        return false
-                    }
 
-                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                        DispatchingProgressManager.forget(data.url)
-//                        holder.progress.visibility = View.GONE
-                        return false
-                    }
+                val gifDrawable = ContextCompat.getDrawable(context, R.drawable.test)
+                var context = Utils.isValidContextForGlide(holder.image)
+                if (context != null) {
+                    Glide.with(holder.image.context)
+                            .asDrawable()
+
+                            .load(gifDrawable)    // does not take effect.
+//                            .load(R.drawable.test)  //  in effect
+                            .apply(bitmapTransform(MultiTransformation<Bitmap>(CenterCrop(), MaskTransformation(R.drawable.mask_starfish))))
+                            .into(holder.image)
                 }
-
-                DispatchingProgressManager.expect(data.url, object : UIonProgressListener {
-
-                    override fun getGranualityPercentage(): Float = 1.toFloat()
-
-                    override fun onProgress(byteRead: Long, expectedLength: Long) {
-                        val progress = byteRead * 100.toFloat() / expectedLength
-                        Log.d("progress", progress.toString())
-                        holder.progress.setProgress(progress)
-                    }
-                })
-
-                val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-                ImageLoader().mask(holder.image, data.url, R.drawable.mask_starfish, requestOptions, requestListener)
             }
 
             ninePatchMask ->

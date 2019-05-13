@@ -1,8 +1,9 @@
 package example.weibocomponent.data.local.db.entity;
 
-import android.arch.persistence.room.Entity;
 
 import com.google.gson.annotations.SerializedName;
+
+import androidx.room.Entity;
 
 /**
  * 地理信息
