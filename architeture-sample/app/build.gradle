@@ -41,13 +41,50 @@ android {
             keyAlias "android.keystore"
             keyPassword "android"
         }
+        release {
+            storeFile file("../../android.keystore")
+            storePassword "android"
+            keyAlias "android.keystore"
+            keyPassword "android"
+        }
     }
 
     buildTypes {
         debug {
             minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources true
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
+            useProguard true
+            shrinkResources true
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    //渠道定义，渠道太多的话建议使用美团方案
+    flavorDimensions 'default'
+    productFlavors {
+        YingYongBao {
+            manifestPlaceholders = [CHANNEL: "YingYongBao"]
+            //提供代码层获取渠道的能力
+            buildConfigField "String", "CHANNEL", "\"YingYongBao\""
+            //支持多包名
+            //applicationId "com.xxx.xxx"
+        }
+        XiaoMi {
+            manifestPlaceholders = [CHANNEL: "XiaoMi"]
+            buildConfigField "String", "CHANNEL", "\"XiaoMi\""
+        }
+        HuaWei {
+            manifestPlaceholders = [CHANNEL: "HuaWei"]
+            buildConfigField "String", "CHANNEL", "\"HuaWei\""
         }
     }
 

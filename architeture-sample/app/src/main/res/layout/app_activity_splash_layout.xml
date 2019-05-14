@@ -30,7 +30,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="45dp"
-                android:src="@mipmap/weibo_logo" />
+                android:src="@mipmap/app_weibo_logo" />
 
             <TextView
                 android:layout_width="wrap_content"
