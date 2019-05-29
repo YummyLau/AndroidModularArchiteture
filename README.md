@@ -19,8 +19,10 @@
 
 【参考/使用第三方库列表】
 
-[权限适配-easypermissions](https://github.com/googlesamples/easypermissions)
-[便捷UI-QMUI_Android](https://github.com/Tencent/QMUI_Android)
+* [权限适配-easypermissions](https://github.com/googlesamples/easypermissions)
+* [便捷UI-QMUI_Android](https://github.com/Tencent/QMUI_Android)
+* [美团Android自动化之旅-生成渠道包](https://tech.meituan.com/2014/06/13/mt-apk-packaging.html)
+* [Android targetSdkVersion 原理](https://www.race604.com/android-targetsdkversion/)
 
 
 ### About
