@@ -1,4 +1,4 @@
-package com.effective.android.video.interfaces;
+package com.effective.android.video.core;
 
 import com.effective.android.video.bean.VideoCache;
 

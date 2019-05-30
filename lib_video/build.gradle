@@ -23,6 +23,7 @@ android {
         }
     }
 
+    resourcePrefix "video_"
 }
 
 dependencies {

@@ -1,4 +1,4 @@
-package com.effective.android.video.interfaces;
+package com.effective.android.video.core;
 
 import com.effective.android.video.bean.VideoStatus;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -11,13 +11,13 @@ import androidx.annotation.Nullable;
  */
 public interface IReceivingLayer {
 
-    void initControler(IControlLayer controlLayer);
+    void attachedControlLayer(IControlLayer controlLayer);
 
     void attachPlayer(ExoPlayer player);
 
     void detachPlayer(ExoPlayer player);
 
-    void releaseControler();
+    void releaseControlLayer();
 
     void onVideoStatus(VideoStatus status, @Nullable String message);
 

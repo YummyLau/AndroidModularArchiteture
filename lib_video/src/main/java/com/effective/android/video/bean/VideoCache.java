@@ -1,5 +1,7 @@
 package com.effective.android.video.bean;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
 /**
@@ -28,6 +30,25 @@ public class VideoCache {
         this.id = System.currentTimeMillis();
     }
 
+    public VideoInfo getVideoInfo() {
+        return videoInfo;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public boolean isValid() {
+        return videoInfo != null;
+    }
+
+    public boolean isContinuePlaySame() {
+        return isContinuePlaySame;
+    }
+
+    public boolean isSameContent(VideoCache videoCache) {
+        return isValid() && videoCache != null && videoCache.isValid() && TextUtils.equals(videoCache.getVideoInfo().url, getVideoInfo().url);
+    }
 
     public static class Builder {
         private boolean isCache = true;               //是否缓存

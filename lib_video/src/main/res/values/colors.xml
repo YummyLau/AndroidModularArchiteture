@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="video_text_color">#131519</color>
+    <color name="video_control_progress_oval">#FFFFFF</color>
+    <color name="video_control_progress">#FFFFFF</color>
+    <color name="video_control_secondary_progress">#7FFFFFFF</color>
+    <color name="video_control_progress_background">#4CFFFFFF</color>
+    <color name="video_duration_bg_solid">#7F000000</color>
+</resources>
