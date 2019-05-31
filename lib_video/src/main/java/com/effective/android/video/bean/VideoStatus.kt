@@ -1,6 +1,6 @@
-package com.effective.android.video.bean;
+package com.effective.android.video.bean
 
-public enum VideoStatus {
+enum class VideoStatus {
     PREPARE,
     FIRST_FRAME,
     BUFFERING,

@@ -1,4 +1,6 @@
 apply plugin: 'com.effective.plugin.component'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
@@ -28,7 +30,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation deps.androidx.appCompat
+    implementation deps.kotlin.stdlib
     implementation deps.exoplayer
 }
 
