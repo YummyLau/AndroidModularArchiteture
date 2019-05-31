@@ -1,7 +1,6 @@
 package com.effective.android.video.ui.cover
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -63,8 +62,8 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
         private set
 
     private var videoStatus: VideoStatus? = null
-    private var controlListener: ICoverReceivingLayer? = null
-    private var coverControlLayer: ICoverControlLayer? = null
+    private var controlListener: CoverReceivingLayer? = null
+    private var coverControlLayer: CoverControlLayer? = null
     private var statusListener: VideoStatusListener? = null
     private var processListener: VideoProcessListener? = null
 
@@ -120,7 +119,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
 
     private fun initView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
         //顶部
-        val root = LayoutInflater.from(context).inflate(R.layout.video_default_cover_layout, this, true)
+        val root = LayoutInflater.from(context).inflate(R.layout.video_default_cover_view_layout, this, true)
         ltBack = root.findViewById(R.id.control_lt_back)
         rtVolume = root.findViewById(R.id.control_rt_volume)
 
@@ -222,11 +221,11 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
         playStatusIcon = ContextCompat.getDrawable(context, id)
     }
 
-    fun setCoverListener(controlListener: ICoverReceivingLayer) {
+    fun setCoverListener(controlListener: CoverReceivingLayer) {
         this.controlListener = controlListener
     }
 
-    fun initPlayerCover(coverControlLayer: ICoverControlLayer) {
+    fun initPlayerCover(coverControlLayer: CoverControlLayer) {
         this.coverControlLayer = coverControlLayer
     }
 

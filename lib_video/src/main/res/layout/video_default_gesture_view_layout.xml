@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/control_gesture"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/gesture_volume_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/gesture_volume_img"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/video_gesture_volume" />
+
+        <SeekBar
+            android:id="@+id/gesture_volume_progress"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gesture_volume_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:max="100"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/video_gesture_process_bg"
+            android:thumb="@null"
+            android:thumbOffset="0dip" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/gesture_bright_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/gesture_bright_img"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/video_gesture_bright" />
+
+        <SeekBar
+            android:id="@+id/gesture_bright_progress"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gesture_bright_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:max="100"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/video_gesture_process_bg"
+            android:thumb="@null"
+            android:thumbOffset="0dip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/gesture_progress_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/gesture_progress_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@color/video_text_color"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/gesture_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:max="100"
+            android:maxHeight="2dp"
+            android:minWidth="105dp"
+            android:minHeight="2dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/video_gesture_process_bg"
+            android:thumb="@null"
+            android:thumbOffset="0dip" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -7,9 +7,9 @@ import com.google.android.exoplayer2.ExoPlayer
  * 视图层通过该接口接受播放器信息
  * created by yummylau 2019/04/20
  */
-interface IReceivingLayer {
+interface VideoReceivingLayer {
 
-    fun attachedControlLayer(controlLayer: IControlLayer)
+    fun attachedControlLayer(controlLayer: VideoControlLayer)
 
     fun attachPlayer(player: ExoPlayer)
 

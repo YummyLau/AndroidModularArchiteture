@@ -6,4 +6,7 @@
     <color name="video_control_secondary_progress">#7FFFFFFF</color>
     <color name="video_control_progress_background">#4CFFFFFF</color>
     <color name="video_duration_bg_solid">#7F000000</color>
+    <color name="video_gesture_process">#FFFFFF</color>
+    <color name="video_gesture_process_bg">#7FFFFFFF</color>
+    <color name="video_gesture_progress">#04B3FD</color>
 </resources>

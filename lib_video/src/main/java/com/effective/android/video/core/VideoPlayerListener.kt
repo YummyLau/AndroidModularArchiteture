@@ -2,8 +2,7 @@ package com.effective.android.video.core
 
 import com.effective.android.video.bean.VideoStatus
 
-interface IPlayerListener {
-
+interface VideoPlayerListener {
 
     fun onLoadingChanged(isLoading: Boolean)
 

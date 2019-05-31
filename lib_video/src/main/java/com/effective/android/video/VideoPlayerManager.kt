@@ -3,14 +3,15 @@ package com.effective.android.video
 
 import android.app.Application
 import android.content.Context
+import android.text.TextUtils
 import android.util.Log
 
 import com.effective.android.video.bean.VideoCache
 import com.effective.android.video.bean.VideoStatus
-import com.effective.android.video.core.DefaultControlLayer
 import com.effective.android.video.core.DefaultVideoPlayer
-import com.effective.android.video.core.IControlLayer
-import com.effective.android.video.core.IPlayer
+import com.effective.android.video.core.VideoControlLayer
+import com.effective.android.video.core.VideoPlayer
+import com.google.android.exoplayer2.C
 
 import java.util.HashMap
 
@@ -36,8 +37,7 @@ import java.util.HashMap
  */
 class VideoPlayerManager private constructor(context: Context) {
 
-    private val player: IPlayer
-    private val controlLayer: IControlLayer
+    private val playerAction: VideoPlayer
     private val videoCacheMap: MutableMap<Long, VideoCache>
 
     private var lastCache: VideoCache? = null
@@ -46,8 +46,7 @@ class VideoPlayerManager private constructor(context: Context) {
 
 
     init {
-        player = DefaultVideoPlayer(context)
-        controlLayer = DefaultControlLayer(player)
+        playerAction = DefaultVideoPlayer(context)
         videoCacheMap = HashMap()
     }
 
@@ -80,18 +79,18 @@ class VideoPlayerManager private constructor(context: Context) {
 
         //如果支持续播上一个视频，则读取当前播放器的进度
         if (isContinuePlayLastCache(lastCache, newCache)) {
-            newCache.lastPosition = player.currentPosition
+            newCache.lastPosition = playerAction.currentPosition
         }
 
         //缓存当前正在处理的视频信息
         if (isValidCache(lastCache)) {
-            lastCache!!.isMute = (player.volume == 0f)
-            lastCache!!.lastPosition = player.currentPosition
+            lastCache!!.isMute = (playerAction.volume == 0f)
+            lastCache!!.lastPosition = playerAction.currentPosition
             if (lastStatus === VideoStatus.PAUSE && !pauseByUserAction) {
                 lastStatus = VideoStatus.PLAYING
             }
             lastCache!!.lastStatus = lastStatus
-            player.stop()
+            playerAction.stop()
         }
 
         //缓存并重制信息
@@ -100,11 +99,18 @@ class VideoPlayerManager private constructor(context: Context) {
         videoCacheMap[lastCache!!.id] = lastCache!!
 
         //启动视频
-        player.start(lastCache!!)
+        playerAction.start(lastCache!!)
+    }
+
+    private fun isContentSameCache(cache1: VideoCache?, cache2: VideoCache?): Boolean {
+        return cache1 != null && cache2 != null && cache1.isValid && cache2.isValid && TextUtils.equals(cache1.videoInfo!!.url, cache2.videoInfo!!.url)
+    }
+
+    private fun isSameCache(cache1: VideoCache?, cache2: VideoCache?): Boolean {
+        return cache1 != null && cache2 != null && cache1 === cache2
     }
 
     companion object {
-
         private var sInstance: VideoPlayerManager? = null
         private val inited = false
         private var context: Application? = null
@@ -131,5 +137,91 @@ class VideoPlayerManager private constructor(context: Context) {
                 }
                 return sInstance!!
             }
+    }
+
+    private val videoControlLayer: VideoControlLayer = object : VideoControlLayer {
+
+        override fun restore(videoCache: VideoCache) {
+            if (videoCache != null && videoCache.isValid) {
+                if (isSameCache(lastCache, videoCache)) {
+                    playerAction.setPlayWhenReady(true)
+                    currentVideo.getDefaultPlayerLogger().onPlay()
+                } else {
+                    startVideo(videoCache)
+                }
+            }
+        }
+
+        override fun replay(videoCache: VideoCache) {
+            if (videoCache != null && videoCache.isValid) {
+                if (isSameCache(lastCache, videoCache)) {
+                    currentVideo.getDefaultPlayerLogger().replay()
+                    playerAction.seekTo(C.TIME_UNSET)
+                }
+            }
+        }
+
+        override fun play(videoCache: VideoCache) {
+            if (videoCache != null && videoCache.isValid) {
+                videoCache.getPlayerReceiver().clickToPlay()
+                if (isSameCache(lastCache, videoCache)) {
+                    playerAction.play()
+                    currentVideo.getDefaultPlayerLogger().onPlay()
+                }
+            }
+        }
+
+        override fun pause(videoCache: VideoCache, userAction: Boolean) {
+            if (videoCache != null && videoCache.isValid) {
+                videoCache.getPlayerReceiver().clickToPause()
+                if (isSameCache(lastCache, videoCache)) {
+                    playerAction.pause()
+                    currentVideo.getDefaultPlayerLogger().onPause()
+                }
+            }
+            pauseByUserAction = userAction
+        }
+
+        override fun stop(videoCache: VideoCache) {
+            if (videoCache != null && videoCache.isValid) {
+                if (isSameCache(lastCache, videoCache)) {
+                    //这里还缺少缓存逻辑
+                    playerAction.stop()
+                    currentVideo.getDefaultPlayerLogger().onStop()
+                }
+            }
+        }
+
+        override fun release(videoCache: VideoCache) {
+            if (videoCache != null && videoCache.isValid) {
+                if (isSameCache(lastCache, videoCache)) {
+                    playerAction.stop()
+                }
+                videoCacheMap.remove(videoCache.id)
+                videoCache.getPlayerReceiver().releaseControler()
+                videoCache.getDefaultPlayerLogger().onRelease()
+            }
+        }
+
+        override fun seekTo(videoCache: VideoCache, position: Long) {
+            if (videoCache != null && videoCache.isValid) {
+                if (isSameCache(lastCache, videoCache)) {
+                    lastCache.getDefaultPlayerLogger().seekTo(position)
+                    playerAction.seekTo(position)
+                }
+            }
+        }
+
+        override fun isVideoLoaded() = playerAction.duration > 0
+
+        override fun isPlaying() = playerAction.isPlaying
+
+        override fun isPause() = playerAction.isPause
+
+        override fun getDuration() = playerAction.duration
+
+        override fun getContentPosition() = playerAction.contentPosition
+
+        override fun getCurrentPosition() = playerAction.currentPosition
     }
 }

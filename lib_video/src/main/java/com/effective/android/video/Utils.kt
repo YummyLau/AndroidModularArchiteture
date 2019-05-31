@@ -1,5 +1,12 @@
 package com.effective.android.video
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import android.util.DisplayMetrics
+import android.view.WindowManager
+import androidx.annotation.NonNull
+
 object Utils {
 
     /**
@@ -39,5 +46,33 @@ object Utils {
      */
     fun getRemainingVideoTimeStr(totalMc: Long, positionMc: Long): String {
         return getVideoTimeStr(totalMc - positionMc)
+    }
+
+
+    fun getWindowWidth(context: Context): Int {
+        val manager = context
+                .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val outMetrics = DisplayMetrics()
+        manager.defaultDisplay.getMetrics(outMetrics)
+        return outMetrics.widthPixels
+    }
+
+    fun getWindowHeight(context: Context): Int {
+        val manager = context
+                .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val outMetrics = DisplayMetrics()
+        manager.defaultDisplay.getMetrics(outMetrics)
+        return outMetrics.heightPixels
+    }
+
+    fun scanForActivity(@NonNull context: Context?): Activity? {
+        if (context == null) {
+            return null
+        } else if (context is Activity) {
+            return context
+        } else if (context is ContextWrapper) {
+            return scanForActivity(context.baseContext)
+        }
+        return null
     }
 }

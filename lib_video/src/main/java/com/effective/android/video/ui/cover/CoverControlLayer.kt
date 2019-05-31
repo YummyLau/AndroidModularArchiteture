@@ -6,9 +6,7 @@ import com.effective.android.video.bean.VideoInfo
  * 浮层ui层传递事件控制视频
  * Created by yummylau on 2019/04/20.
  */
-interface ICoverControlLayer {
-
-    val isFullScreen: Boolean
+interface CoverControlLayer {
 
     val isVideoLoaded: Boolean            //播放器是否加载了视频
 
@@ -17,8 +15,6 @@ interface ICoverControlLayer {
     val isPlaying: Boolean
 
     val isPause: Boolean
-
-    val isPrepare: Boolean
 
     val videoDuration: Long            //播放器加载之后返回的时长
 
@@ -31,6 +27,8 @@ interface ICoverControlLayer {
     val videoCurrentPosition: Long     //当前进度
 
     val videoInfo: VideoInfo?
+
+    fun isFullScreen(): Boolean
 
     fun pause()
 

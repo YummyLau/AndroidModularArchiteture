@@ -4,14 +4,12 @@ package com.effective.android.video.core
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
-import android.util.Log
 
 import com.effective.android.video.bean.VideoCache
 import com.effective.android.video.bean.VideoStatus
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.Timeline
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.LoopingMediaSource
 import com.google.android.exoplayer2.source.MediaSource
@@ -21,19 +19,17 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.upstream.cache.Cache
 import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory
-import com.google.android.exoplayer2.upstream.cache.CacheEvictor
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.Util
 
 import java.io.File
-import java.util.ArrayList
 
-class DefaultVideoPlayer(private val context: Context) : IPlayer {
+class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
 
     private val player: SimpleExoPlayer
     private val eventListener = InnerListener()
-    private val listeners: MutableList<IPlayerListener>
+    private val listeners: MutableList<VideoPlayerListener>
 
     override val currentPosition: Long
         get() = 0
@@ -47,13 +43,13 @@ class DefaultVideoPlayer(private val context: Context) : IPlayer {
         this.listeners = arrayListOf()
     }
 
-    fun addPlayerListener(listener: IPlayerListener) {
+    fun addPlayerListener(listener: VideoPlayerListener) {
         if (listener != null && !listeners.contains(listener)) {
             listeners.add(listener)
         }
     }
 
-    fun remotePlayerListener(listener: IPlayerListener) {
+    fun remotePlayerListener(listener: VideoPlayerListener) {
         if (listener != null && listeners.contains(listener)) {
             listeners.remove(listener)
         }
