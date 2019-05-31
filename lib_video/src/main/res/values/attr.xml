@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="video_DefaultCoverView">
-        <attr name="back" format="reference" />
-        <attr name="volume" format="reference" />
-        <attr name="play" format="reference" />
-        <attr name="pause" format="reference" />
-        <attr name="replay" format="reference" />
-        <attr name="loading" format="reference" />
-
-        <attr name="open_time_tip" format="boolean" />
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName,video_">
+    <declare-styleable  name="DefaultCoverView">
+        <attr name="ic_back" format="reference" />
+        <attr name="ic_volume" format="reference" />
+        <attr name="ic_play_state" format="reference" />
+        <attr name="ic_pause_state" format="reference" />
+        <attr name="ic_replay_state" format="reference" />
+        <attr name="ic_loading_state" format="reference" />
+        <attr name="open_time" format="boolean" />
         <attr name="open_back" format="boolean" />
         <attr name="open_volume" format="boolean" />
         <attr name="open_control" format="boolean" />
-        <attr name="mode" format="enum">
-            <enum name="only_bottom" value="1" />
-            <enum name="only_mid" value="2" />
-            <enum name="fix_bm" value="3" />
-        </attr>
     </declare-styleable>
 
 </resources>

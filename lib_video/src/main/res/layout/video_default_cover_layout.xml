@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/video_ic_video_loading" />
+            android:src="@drawable/video_ic_video_loading_state" />
 
         <TextView
             android:id="@+id/control_mid_video_status_tip"
