@@ -19,6 +19,9 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.util.Clock
 import com.google.android.exoplayer2.util.Util
 
+/**
+ * 解决播放器静音问题
+ */
 class SimpleExoPlayerFixMute : SimpleExoPlayer {
 
     protected constructor(context: Context, renderersFactory: RenderersFactory, trackSelector: TrackSelector, loadControl: LoadControl, bandwidthMeter: BandwidthMeter, drmSessionManager: DrmSessionManager<FrameworkMediaCrypto>?, looper: Looper) : super(context, renderersFactory, trackSelector, loadControl, bandwidthMeter, drmSessionManager, looper) {}

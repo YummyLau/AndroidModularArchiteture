@@ -18,14 +18,13 @@ import com.effective.android.video.core.SimplePlayerBaseView
 import com.effective.android.video.core.VideoControlLayer
 import com.effective.android.video.core.VideoReceivingLayer
 import com.effective.android.video.ui.cover.CoverControlLayer
-import com.effective.android.video.ui.cover.DefaultCoverView
-import com.effective.android.video.ui.gesture.DefaultGestureView
 import com.effective.android.video.ui.gesture.GestureControlLayer
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.video_player_view_layout.view.*
 
 class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
@@ -35,87 +34,83 @@ class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: At
     private var playerViewStub: ViewStub? = null
 
     private var videoControlLayer: VideoControlLayer? = null
-    var gestureView: DefaultGestureView? = null
-        private set
-    var coverView: DefaultCoverView? = null
-        private set
     private var videoCache: VideoCache? = null
 
     val playerViewIfNeed: SimplePlayerBaseView
         get() {
             if (playerView == null) {
-                playerView = playerViewStub!!.inflate() as SimplePlayerBaseView
+                playerView = view_stub_playerView.inflate() as SimplePlayerBaseView
             }
             return playerView!!
         }
 
     val isPause: Boolean
         get() = if (videoControlLayer != null) {
-            videoControlLayer!!.isPause()
+            videoControlLayer!!.isPause
         } else false
 
     val isPlaying: Boolean
         get() = if (videoControlLayer != null) {
-            videoControlLayer!!.isPlaying()
+            videoControlLayer!!.isPlaying
         } else false
 
 
     val currentPosition: Long
         get() = if (videoControlLayer != null) {
-            videoControlLayer!!.getCurrentPosition()
+            videoControlLayer!!.currentPosition
         } else 0
 
     val duration: Long
         get() = if (videoControlLayer != null) {
-            videoControlLayer!!.getDuration()
+            videoControlLayer!!.duration
         } else 0
 
     private val coverControlLayerImp = object : CoverControlLayer {
 
         override val isVideoLoaded: Boolean
             get() = if (videoControlLayer != null) {
-                videoControlLayer!!.isVideoLoaded()
+                videoControlLayer!!.isVideoLoaded
             } else false
 
         override val isMediaInfoLoaded: Boolean
-            get() = if (videoCache != null && videoCache!!.isValid) {
-                videoCache!!.videoInfo!!.duration > 0
+            get() = if (videoCache != null) {
+                videoCache!!.videoInfo.duration > 0
             } else false
 
         override val isPlaying: Boolean
             get() = if (videoControlLayer != null) {
-                videoControlLayer!!.isPlaying()
+                videoControlLayer!!.isPlaying
             } else false
 
         override val isPause: Boolean
             get() = if (videoControlLayer != null) {
-                videoControlLayer!!.isPause()
+                videoControlLayer!!.isPause
             } else false
 
 
         override val videoDuration: Long
             get() = if (videoControlLayer != null) {
-                videoControlLayer!!.getDuration()
+                videoControlLayer!!.duration
             } else 0L
 
         override val mediaDuration: Long
-            get() = if (videoCache != null && videoCache!!.isValid) {
-                videoCache!!.videoInfo!!.duration
+            get() = if (videoCache != null) {
+                videoCache!!.videoInfo.duration
             } else 0L
 
         override val contentPosition: Long
             get() = if (videoControlLayer != null) {
-                videoControlLayer!!.getContentPosition()
+                videoControlLayer!!.contentPosition
             } else 0L
 
         override val duration: Long
             get() = if (videoControlLayer != null) {
-                videoControlLayer!!.getDuration()
+                videoControlLayer!!.duration
             } else 0L
 
         override val videoCurrentPosition: Long
             get() = if (videoControlLayer != null) {
-                videoControlLayer!!.getCurrentPosition()
+                videoControlLayer!!.currentPosition
             } else 0L
 
         override fun isFullScreen(): Boolean {
@@ -123,18 +118,17 @@ class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: At
         }
 
         override val videoInfo: VideoInfo?
-            get() = if (videoCache != null && videoCache!!.isValid) {
+            get() = if (videoCache != null) {
                 videoCache!!.videoInfo
             } else null
 
         override fun enterFullScreen() {
-            isFullScreen = true
+            this@DefaultVideoReceiver.isFullScreen = true
         }
 
         override fun exitFullScreen() {
-            isFullScreen = false
+            this@DefaultVideoReceiver.isFullScreen = false
         }
-
 
         override fun pause() {
             if (videoControlLayer != null) {
@@ -159,7 +153,7 @@ class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: At
         }
     }
 
-    val gestureControlLayerImp: GestureControlLayer = object : GestureControlLayer {
+    private val gestureControlLayerImp: GestureControlLayer = object : GestureControlLayer {
 
         override fun handleSingleTapUp(event: MotionEvent): Boolean {
             return true
@@ -178,26 +172,25 @@ class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: At
 
         override fun getDuration(): Long {
             return if (videoControlLayer != null) {
-                videoControlLayer!!.getDuration()
+                videoControlLayer!!.duration
             } else 0L
         }
 
         override fun getPosition(): Long {
             return if (videoControlLayer != null) {
-                videoControlLayer!!.getContentPosition()
+                videoControlLayer!!.currentPosition
             } else 0L
         }
 
         override fun onContinueEvent() {
-            if (coverView!!
-                            .isControlVisible) {
-                coverView!!.hideControlView()
+            if (cover_view.isControlVisible) {
+                cover_view.hideControlView()
             }
         }
 
         override fun isVideoPrepare(): Boolean {
             return if (videoControlLayer != null) {
-                videoControlLayer!!.isVideoLoaded()
+                videoControlLayer!!.isVideoLoaded
             } else false
         }
     }
@@ -213,53 +206,52 @@ class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: At
 
         override fun releaseControlLayer() {
             this@DefaultVideoReceiver.videoControlLayer = null
-            coverView!!.resetCover()
-            coverView!!.removeControlRunnable()
-            coverView!!.removeTrackerProgressRunnable()
+            cover_view.resetCover()
+            cover_view.removeControlRunnable()
+            cover_view.removeTrackerProgressRunnable()
         }
 
         override fun onVideoStatus(status: VideoStatus, message: String?) {
-            coverView!!.onVideoStatus(status, message!!)
+            cover_view.onVideoStatus(status, message!!)
         }
 
         override fun attachPlayer(player: ExoPlayer) {
             playerViewIfNeed.player = player
-            coverView!!.postHideControlRunnable()
-            coverView!!.postTrackerProgressRunnable()
+            cover_view.postHideControlRunnable()
+            cover_view.postTrackerProgressRunnable()
         }
 
         override fun detachPlayer(player: ExoPlayer) {
-            coverView!!.resetCover()
+            cover_view.resetCover()
             playerViewIfNeed.player = null
-            coverView!!.removeControlRunnable()
-            coverView!!.removeTrackerProgressRunnable()
+            cover_view.removeControlRunnable()
+            cover_view.removeTrackerProgressRunnable()
         }
 
         override fun onBufferPosition(bufferedPosition: Long) {
-            coverView!!.notifyBufferProcess(bufferedPosition)
-            coverView!!.setBufferedProgress(coverView!!.timeToProgress(bufferedPosition))
+            cover_view.notifyBufferProcess(bufferedPosition)
+            cover_view.setBufferedProgress(cover_view.timeToProgress(bufferedPosition))
         }
 
         override fun onFirstInit() {
             //第一次初始化，显示视频信息，隐藏cover
-            coverView!!.setCoverVisible(false)
-            coverView!!.initControlView()
+            cover_view.setCoverVisible(false)
+            cover_view.initControlView()
         }
 
         override fun clickToPlay() {
-            coverView!!.setPlayImage(ContextCompat.getDrawable(getContext(), R.drawable.ic_video_pause)!!)
+            cover_view.setPlayImage(ContextCompat.getDrawable(getContext(), R.drawable.video_ic_pause)!!)
         }
 
         override fun clickToPause() {
-            coverView!!.setPlayImage(ContextCompat.getDrawable(getContext(), R.drawable.ic_video_play)!!)
+            cover_view.setPlayImage(ContextCompat.getDrawable(getContext(), R.drawable.video_ic_play)!!)
         }
     }
 
     init {
-        val root = LayoutInflater.from(context).inflate(R.layout.video_default_player_view_layout, this, true)
-        initView(root, context, attrs, defStyleAttr)
-        gestureView!!.initPlayerGesture(gestureControlLayerImp)
-        coverView!!.initPlayerCover(coverControlLayerImp)
+        LayoutInflater.from(context).inflate(R.layout.video_player_view_layout, this, true)
+        gesture_view.initPlayerGesture(gestureControlLayerImp)
+        cover_view.initPlayerCover(coverControlLayerImp)
     }
 
 
@@ -285,14 +277,9 @@ class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: At
      */
     @JvmOverloads
     fun initVideoInfo(videoInfo: VideoInfo, scaleType: ImageView.ScaleType? = null, fullScreen: Boolean = false) {
-        coverView!!.initCover(videoInfo, scaleType, fullScreen)
+        cover_view.initCover(videoInfo, scaleType, fullScreen)
     }
 
-    private fun initView(root: View, context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
-        gestureView = root.findViewById(R.id.gesture_view)
-        coverView = root.findViewById(R.id.cover_view)
-        playerViewStub = root.findViewById(R.id.view_stub_playerView)
-    }
 
     fun seekTo(position: Long) {
         if (videoControlLayer != null) {

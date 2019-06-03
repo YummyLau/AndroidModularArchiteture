@@ -19,29 +19,13 @@ import com.effective.android.video.bean.VideoStatus
 
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.video_default_cover_view_layout.view.*
 
 /**
  * 默认提供的浮层view
  * Created by yummylau on 2019/04/20.
  */
 class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr), View.OnClickListener {
-
-    private var controlView: RelativeLayout? = null
-    private var lbPlay: ImageView? = null                               //底部控制栏：左下播放按钮
-    private var lbPosition: TextView? = null                            //底部控制栏：左下播放时间
-    private var rbDuration: TextView? = null                            //底部控制栏：视频总时长
-    private var rbFullScreen: ImageView? = null                         //底部控制栏：右下全屏按钮
-    private var bProgress: SeekBar? = null                              //底部控制栏：底部进度条
-
-    private var ltBack: ImageView? = null
-    private var rtVolume: ImageView? = null                     //顶部栏：返回，音量
-
-    private var midStatusImg: ImageView? = null                         //中间：播放暂停按钮，loading，重播，中部提示
-    private var midStatusTip: TextView? = null
-
-    private var coverLayout: View? = null                               //封面：封面图片，时间提示
-    private var cover: ImageView? = null
-    private var videoTimeTip: TextView? = null                          //右下角视频事件提示（悬浮）
 
     private var playStatusIcon: Drawable? = null
     private var playIcon: Drawable? = null
@@ -70,23 +54,18 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
     private var innerHideControlRunnable: InnerHideControlRunnable? = null
     private var innerTrackerProgressRunnable: InnerTrackerProgressRunnable? = null
 
-    val isMidStatusImgVisible: Boolean
-        get() = midStatusImg!!.visibility == View.VISIBLE
+    private var scaleType: ImageView.ScaleType? = null
+    private var isFullScreenCover: Boolean = false
+    private var videoInfo: VideoInfo? = null
 
-    //    public void clearGlide() {
-    //        GLImageLoader.clearRequest(cover);
-    //    }
-    //
-    //    public void clearCover() {
-    //        if (cover != null) {
-    //            cover.setImageDrawable(null);
-    //        }
-    //    }
+    val isMidStatusImgVisible: Boolean
+        get() = control_mid_video_status_img.visibility == View.VISIBLE
+
 
     var isControlVisible: Boolean
-        get() = controlView!!.visibility == View.VISIBLE
+        get() = control_bottom_layout.visibility == View.VISIBLE
         set(visible) {
-            controlView!!.visibility = if (visible) View.VISIBLE else View.GONE
+            control_bottom_layout!!.visibility = if (visible) View.VISIBLE else View.GONE
             if (coverControlLayer != null && coverControlLayer!!.isPlaying) {
                 setMidStatusImg(VideoStatus.PLAYING, visible)
             } else if (coverControlLayer != null && coverControlLayer!!.isPause) {
@@ -97,7 +76,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
                 postHideControlRunnable()
             }
             if (controlListener != null) {
-                controlListener!!.onControlVisible(controlView!!.visibility == View.VISIBLE)
+                controlListener!!.onControlVisible(control_bottom_layout!!.visibility == View.VISIBLE)
             }
         }
 
@@ -109,36 +88,13 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
             return loadingAni
         }
 
-    private var scaleType: ImageView.ScaleType? = null
-    private var isFullScreenCover: Boolean = false
-    private var videoInfo: VideoInfo? = null
-
     init {
         initView(context, attrs, defStyleAttr)
     }
 
     private fun initView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
         //顶部
-        val root = LayoutInflater.from(context).inflate(R.layout.video_default_cover_view_layout, this, true)
-        ltBack = root.findViewById(R.id.control_lt_back)
-        rtVolume = root.findViewById(R.id.control_rt_volume)
-
-        //中部
-        midStatusImg = root.findViewById(R.id.control_mid_video_status_img)
-        midStatusTip = root.findViewById(R.id.control_mid_video_status_tip)
-
-        //底部控制栏
-        controlView = root.findViewById(R.id.control_bottom_layout)
-        rbFullScreen = root.findViewById(R.id.control_rb_full_screen)
-        lbPlay = root.findViewById(R.id.control_lb_play)
-        lbPosition = root.findViewById(R.id.control_lb_position)
-        rbDuration = root.findViewById(R.id.control_rb_duration)
-        bProgress = root.findViewById(R.id.control_b_progress)
-
-        //封面
-        coverLayout = root.findViewById(R.id.cover_layout)
-        cover = root.findViewById(R.id.cover)
-        videoTimeTip = root.findViewById(R.id.control_rb_video_time)
+        LayoutInflater.from(context).inflate(R.layout.video_default_cover_view_layout, this, true)
 
         val typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.DefaultCoverView, defStyleAttr, 0)
         if (typedArray != null) {
@@ -154,20 +110,20 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
             enableControl = typedArray.getBoolean(R.styleable.DefaultCoverView_open_control, false)
             typedArray.recycle()
         }
-        playIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_video_play)
-        pauseIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_video_pause)
+        playIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_play)
+        pauseIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_pause)
 
         if (playStatusIcon == null) {
-            playStatusIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_video_play_state)
+            playStatusIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_play_state)
         }
         if (pauseStatusIcon == null) {
-            pauseStatusIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_video_pause_state)
+            pauseStatusIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_pause_state)
         }
         if (replayIcon == null) {
-            replayIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_video_replay_state)
+            replayIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_replay_state)
         }
         if (loadingStatusIcon == null) {
-            loadingStatusIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_video_loading_state)
+            loadingStatusIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_loading_state)
         }
         if (backIcon == null) {
             backIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_top_left_back)
@@ -176,21 +132,21 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
             volumeIcon = ContextCompat.getDrawable(getContext(), R.drawable.video_ic_top_right_volume)
         }
 
-        midStatusImg!!.setImageDrawable(loadingStatusIcon)
-        ltBack!!.setImageDrawable(backIcon)
-        rtVolume!!.setImageDrawable(volumeIcon)
+        control_mid_video_status_img.setImageDrawable(loadingStatusIcon)
+        control_lt_back.setImageDrawable(backIcon)
+        control_rt_volume.setImageDrawable(volumeIcon)
 
-        rtVolume!!.visibility = if (enableVolume) View.VISIBLE else View.GONE
-        ltBack!!.visibility = if (enableBack) View.VISIBLE else View.GONE
+        control_rt_volume.visibility = if (enableVolume) View.VISIBLE else View.GONE
+        control_lt_back.visibility = if (enableBack) View.VISIBLE else View.GONE
 
-        coverLayout!!.visibility = View.GONE
+        cover_layout.visibility = View.GONE
 
-        ltBack!!.setOnClickListener(this)
-        rtVolume!!.setOnClickListener(this)
-        rbFullScreen!!.setOnClickListener(this)
-        lbPlay!!.setOnClickListener(this)
-        midStatusTip!!.setOnClickListener(this)
-        midStatusImg!!.setOnClickListener(this)
+        control_lt_back.setOnClickListener(this)
+        control_rt_volume.setOnClickListener(this)
+        control_rb_full_screen.setOnClickListener(this)
+        control_lb_play.setOnClickListener(this)
+        control_mid_video_status_tip.setOnClickListener(this)
+        control_mid_video_status_img.setOnClickListener(this)
 
         if (innerHideControlRunnable == null) {
             innerHideControlRunnable = InnerHideControlRunnable()
@@ -210,7 +166,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
 
     fun setLoadingStatusIcon(@DrawableRes id: Int) {
         loadingStatusIcon = ContextCompat.getDrawable(context, id)
-        midStatusImg!!.setImageDrawable(loadingStatusIcon)
+        control_mid_video_status_img.setImageDrawable(loadingStatusIcon)
     }
 
     fun setPauseStatusIcon(@DrawableRes id: Int) {
@@ -277,7 +233,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
                 }
             }
             R.id.control_rb_full_screen -> {
-                if (coverControlLayer != null && coverControlLayer!!.isFullScreen) {
+                if (coverControlLayer != null && coverControlLayer!!.isFullScreen()) {
                     exitFullScreen()
                 } else {
                     enterFullScreen()
@@ -290,7 +246,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
         if (controlListener != null && controlListener!!.onFullScreen(true)) {
             if (coverControlLayer != null) {
                 coverControlLayer!!.enterFullScreen()
-                rbFullScreen!!.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.video_ic_collapse))
+                control_rb_full_screen!!.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.video_ic_collapse))
             }
         }
     }
@@ -299,46 +255,44 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
         if (controlListener != null && controlListener!!.onFullScreen(false)) {
             if (coverControlLayer != null) {
                 coverControlLayer!!.exitFullScreen()
-                rbFullScreen!!.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.video_ic_unfold))
+                control_rb_full_screen!!.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.video_ic_unfold))
             }
         }
     }
 
     private fun coverVisible(): Boolean {
-        return coverLayout!!.visibility == View.VISIBLE
+        return cover_layout!!.visibility == View.VISIBLE
     }
 
     fun setCoverVisible(visible: Boolean) {
-        coverLayout!!.visibility = if (visible) View.VISIBLE else View.GONE
+        cover_layout!!.visibility = if (visible) View.VISIBLE else View.GONE
         if (visible) {
             if (coverControlLayer != null && coverControlLayer!!.isVideoLoaded) {
-                setVideoTimeTip(coverControlLayer!!.videoDuration, 0)
+                setVideoTimeTip(coverControlLayer!!.duration, 0)
             } else if (coverControlLayer != null && coverControlLayer!!.isMediaInfoLoaded) {
                 setVideoTimeTip(coverControlLayer!!.mediaDuration, 0)
             } else if (videoInfo != null) {
                 setVideoTimeTip(videoInfo!!.duration, 0)
             } else {
-                videoTimeTip!!.visibility = View.GONE
+                control_rb_video_time!!.visibility = View.GONE
             }
         }
     }
 
     fun setCoverColor(@DrawableRes resId: Int) {
-        if (cover != null) {
-            cover!!.setImageResource(resId)
-        }
+        cover!!.setImageResource(resId)
     }
 
     fun setVideoTimeTip(duration: Long, position: Long) {
         if (enableVideoTime) {
             if (duration > position) {
-                videoTimeTip!!.visibility = View.VISIBLE
-                videoTimeTip!!.text = Utils.getRemainingVideoTimeStr(duration, position)
+                control_rb_video_time.visibility = View.VISIBLE
+                control_rb_video_time.text = Utils.getRemainingVideoTimeStr(duration, position)
             } else {
-                videoTimeTip!!.visibility = View.GONE
+                control_rb_video_time.visibility = View.GONE
             }
         } else {
-            videoTimeTip!!.visibility = View.GONE
+            control_rb_video_time.visibility = View.GONE
         }
     }
 
@@ -346,44 +300,44 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
         when (videoStatus) {
             VideoStatus.PREPARE -> {
                 if (isVisible) {
-                    midStatusImg!!.clearAnimation()
-                    midStatusImg!!.visibility = View.VISIBLE
-                    midStatusImg!!.setImageDrawable(loadingStatusIcon)
-                    midStatusImg!!.startAnimation(loadingAnimation)
+                    control_mid_video_status_img!!.clearAnimation()
+                    control_mid_video_status_img!!.visibility = View.VISIBLE
+                    control_mid_video_status_img!!.setImageDrawable(loadingStatusIcon)
+                    control_mid_video_status_img!!.startAnimation(loadingAnimation)
                 } else {
-                    midStatusImg!!.clearAnimation()
-                    midStatusImg!!.visibility = View.GONE
+                    control_mid_video_status_img!!.clearAnimation()
+                    control_mid_video_status_img!!.visibility = View.GONE
                 }
             }
             VideoStatus.BUFFERING -> {
                 if (isVisible) {
-                    midStatusImg!!.clearAnimation()
-                    midStatusImg!!.visibility = View.VISIBLE
-                    midStatusImg!!.setImageDrawable(loadingStatusIcon)
-                    midStatusImg!!.startAnimation(loadingAnimation)
+                    control_mid_video_status_img!!.clearAnimation()
+                    control_mid_video_status_img!!.visibility = View.VISIBLE
+                    control_mid_video_status_img!!.setImageDrawable(loadingStatusIcon)
+                    control_mid_video_status_img!!.startAnimation(loadingAnimation)
                 } else {
-                    midStatusImg!!.clearAnimation()
-                    midStatusImg!!.visibility = View.GONE
+                    control_mid_video_status_img!!.clearAnimation()
+                    control_mid_video_status_img!!.visibility = View.GONE
                 }
             }
 
             VideoStatus.PLAYING -> {
-                midStatusImg!!.clearAnimation()
-                midStatusImg!!.setImageDrawable(pauseStatusIcon)
-                lbPlay!!.setImageDrawable(pauseIcon)
-                midStatusImg!!.visibility = if (isVisible) View.VISIBLE else View.GONE
+                control_mid_video_status_img!!.clearAnimation()
+                control_mid_video_status_img!!.setImageDrawable(pauseStatusIcon)
+                control_lb_play!!.setImageDrawable(pauseIcon)
+                control_mid_video_status_img!!.visibility = if (isVisible) View.VISIBLE else View.GONE
             }
 
             VideoStatus.PAUSE -> {
-                midStatusImg!!.clearAnimation()
-                midStatusImg!!.setImageDrawable(playStatusIcon)
-                lbPlay!!.setImageDrawable(playIcon)
-                midStatusImg!!.visibility = if (isVisible) View.VISIBLE else View.GONE
+                control_mid_video_status_img!!.clearAnimation()
+                control_mid_video_status_img!!.setImageDrawable(playStatusIcon)
+                control_lb_play!!.setImageDrawable(playIcon)
+                control_mid_video_status_img!!.visibility = if (isVisible) View.VISIBLE else View.GONE
             }
 
             else -> {
-                midStatusImg!!.clearAnimation()
-                midStatusImg!!.visibility = View.GONE
+                control_mid_video_status_img!!.clearAnimation()
+                control_mid_video_status_img!!.visibility = View.GONE
             }
         }
     }
@@ -425,7 +379,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
                 setMidStatusImg(status, false)
                 setMidStatusTip(false)
             }//                setMidStatusTip(true);
-            //                midStatusTip.setText(R.string.video_load_error);
+            //                control_mid_video_status_tip.setText(R.string.video_load_error);
         }
         if (statusListener != null) {
             statusListener!!.onStatus(status, msg)
@@ -435,7 +389,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
 
 
     fun setMidStatusTip(visible: Boolean) {
-        midStatusTip!!.visibility = if (visible) View.VISIBLE else View.GONE
+        control_mid_video_status_tip!!.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     fun hideControlView() {
@@ -445,14 +399,14 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
     fun initCover(videoInfo: VideoInfo?, scaleType: ImageView.ScaleType?, fullScreen: Boolean) {
         if (videoInfo == null) {
             setCoverVisible(false)
-            midStatusImg!!.visibility = View.GONE
+            control_mid_video_status_img!!.visibility = View.GONE
             return
         }
         this.videoInfo = videoInfo
         setCoverVisible(true)
-        midStatusImg!!.clearAnimation()
-        midStatusImg!!.visibility = View.VISIBLE
-        midStatusImg!!.setImageDrawable(playStatusIcon)
+        control_mid_video_status_img!!.clearAnimation()
+        control_mid_video_status_img!!.visibility = View.VISIBLE
+        control_mid_video_status_img!!.setImageDrawable(playStatusIcon)
         this.scaleType = scaleType
         if (this.scaleType == null) {
             cover!!.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -473,15 +427,15 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
 
     fun initControlView() {
         if (coverControlLayer == null) return
-        rbDuration!!.text = Utils.getVideoTimeStr(coverControlLayer!!.videoDuration)
+        control_rb_duration!!.text = Utils.getVideoTimeStr(coverControlLayer!!.videoDuration)
         //单位精确到 0.1 秒
-        bProgress!!.max = timeToProgress(coverControlLayer!!.videoDuration)
+        control_b_progress!!.max = timeToProgress(coverControlLayer!!.videoDuration)
 
         if (processListener != null) {
             processListener!!.onDuration(coverControlLayer!!.videoDuration)
         }
 
-        bProgress!!.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        control_b_progress!!.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             private var videoPosition: Long = 0
 
@@ -490,7 +444,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
                 if (processListener != null) {
                     processListener!!.onCurrentPosition(videoPosition)
                 }
-                lbPosition!!.text = Utils.getVideoTimeStr(videoPosition)
+                control_lb_position!!.text = Utils.getVideoTimeStr(videoPosition)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -498,13 +452,13 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                videoPosition = progressToTime(bProgress!!.progress)
+                videoPosition = progressToTime(control_b_progress!!.progress)
                 coverControlLayer!!.makeSurePlay()
                 coverControlLayer!!.seekTo(videoPosition)
                 if (processListener != null) {
                     processListener!!.onCurrentPosition(videoPosition)
                 }
-                lbPosition!!.text = Utils.getVideoTimeStr(videoPosition)
+                control_lb_position!!.text = Utils.getVideoTimeStr(videoPosition)
                 isTouchProgress = false
             }
         })
@@ -520,7 +474,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
     }
 
     fun setPlayImage(drawable: Drawable) {
-        lbPlay!!.setImageDrawable(drawable)
+        control_lb_play!!.setImageDrawable(drawable)
     }
 
 
@@ -533,7 +487,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
     }
 
     fun setProgress(progress: Int) {
-        bProgress!!.progress = progress
+        control_b_progress!!.progress = progress
     }
 
     fun notifyBufferProcess(bufferedPosition: Long) {
@@ -543,7 +497,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
     }
 
     fun setBufferedProgress(bufferedProgress: Int) {
-        bProgress!!.secondaryProgress = bufferedProgress
+        control_b_progress!!.secondaryProgress = bufferedProgress
     }
 
     fun postHideControlRunnable() {

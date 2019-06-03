@@ -13,7 +13,7 @@ import com.google.android.exoplayer2.util.Util
 
 /**
  * created by yummylau on 2019/04/20
- * 大神
+ * 播放器缓存控制器
  */
 class SimpleExoLoadControl @JvmOverloads constructor(
         private val allocator: DefaultAllocator = DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE),

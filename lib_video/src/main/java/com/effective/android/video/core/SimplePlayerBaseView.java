@@ -50,6 +50,9 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+/**
+ * 播放绘制层，surfaceView相关
+ */
 public class SimplePlayerBaseView extends FrameLayout {
 
     // LINT.IfChange

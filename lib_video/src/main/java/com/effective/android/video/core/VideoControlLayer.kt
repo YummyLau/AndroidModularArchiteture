@@ -22,15 +22,15 @@ interface VideoControlLayer {
 
     fun seekTo(videoCache: VideoCache, position: Long)
 
-    fun isVideoLoaded(): Boolean             //播放器是否加载了视频
+    val isVideoLoaded : Boolean
 
-    fun isPlaying(): Boolean
+    val isPlaying : Boolean
 
-    fun isPause(): Boolean
+    val isPause : Boolean
 
-    fun getDuration(): Long
+    val duration : Long
 
-    fun getContentPosition(): Long           //含广告
+    val contentPosition : Long
 
-    fun getCurrentPosition(): Long      //当前进度
+    val currentPosition : Long
 }

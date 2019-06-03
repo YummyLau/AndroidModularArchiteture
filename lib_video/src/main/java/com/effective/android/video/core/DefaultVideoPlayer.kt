@@ -25,17 +25,16 @@ import com.google.android.exoplayer2.util.Util
 
 import java.io.File
 
+/**
+ * 默认实现的播放器
+ * 可自主实现ViewoPlayer接口完成播放器行为的实现，这里使用ExoPlayer进行实现
+ * created by yummylau 2019/06/03
+ */
 class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
 
     private val player: SimpleExoPlayer
     private val eventListener = InnerListener()
     private val listeners: MutableList<VideoPlayerListener>
-
-    override val currentPosition: Long
-        get() = 0
-
-    override val volume: Float
-        get() = 0f
 
     init {
         this.player = SimpleExoPlayerFixMute.make(context, SimpleExoLoadControl())
@@ -43,12 +42,18 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
         this.listeners = arrayListOf()
     }
 
+    /**
+     * 添加监听播放器行为
+     */
     fun addPlayerListener(listener: VideoPlayerListener) {
         if (listener != null && !listeners.contains(listener)) {
             listeners.add(listener)
         }
     }
 
+    /**
+     * 移除播放器行为监听
+     */
     fun remotePlayerListener(listener: VideoPlayerListener) {
         if (listener != null && listeners.contains(listener)) {
             listeners.remove(listener)
@@ -56,14 +61,12 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
     }
 
     override fun start(cache: VideoCache) {
-        if (cache.isValid) {
-            val mediaSource = MediaSourceFactory.create(context, cache.videoInfo!!.url, cache.isCache, cache.isLoop)
-            player.setVolume(if (cache.isMute) 0f else 0.5f)
-            eventListener.hasInit = false
-            player.prepare(mediaSource)
-            player.seekTo(cache.lastPosition)
-            player.playWhenReady = if (cache.lastStatus !== VideoStatus.PAUSE) true else false
-        }
+        val mediaSource = MediaSourceFactory.create(context, cache.videoInfo!!.url, cache.isCache, cache.isLoop)
+        player.setVolume(if (cache.isMute) 0f else 0.5f)
+        eventListener.hasInit = false
+        player.prepare(mediaSource)
+        player.seekTo(cache.lastPosition)
+        player.playWhenReady = if (cache.lastStatus !== VideoStatus.PAUSE) true else false
     }
 
     override fun play() {
@@ -79,7 +82,7 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
     }
 
     override fun seekTo(position: Long) {
-
+        player.seekTo(position)
     }
 
     override fun release() {
@@ -88,7 +91,27 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
         listeners.clear()
     }
 
+    override val volume: Float
+        get() = player.volume
 
+    override val duration: Long
+        get() = player.duration
+
+    override val currentPosition: Long
+        get() = player.currentPosition
+
+    override val contentPosition: Long
+        get() = player.contentPosition
+
+    override val isPlaying: Boolean
+        get() = player.playWhenReady
+
+    override val isPause: Boolean
+        get() = player.playWhenReady
+
+    /**
+     * ExoPlayer播放器监听播放事件
+     */
     private inner class InnerListener : Player.EventListener {
 
         internal var hasInit = false
@@ -135,7 +158,7 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
     }
 
     /**
-     * 构建mediasource的工厂
+     * 构建 mediasource 对象入口
      */
     private object MediaSourceFactory {
 

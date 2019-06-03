@@ -18,6 +18,7 @@ import com.effective.android.video.Utils
 import com.effective.android.video.bean.GestureType
 import com.effective.android.video.setting.AudioSetting
 import com.effective.android.video.setting.BrightnessSetting
+import kotlinx.android.synthetic.main.video_default_gesture_view_layout.view.*
 
 
 /**
@@ -25,14 +26,7 @@ import com.effective.android.video.setting.BrightnessSetting
  * created by yummylau 2019/04/20
  */
 class DefaultGestureView : RelativeLayout, View.OnTouchListener {
-    private var gesVolumeLayout: RelativeLayout? = null                 //手势：音量
-    private var gesVolumeImg: ImageView? = null
-    private var gesVolumePercentage: SeekBar? = null
-    private var gesBrightLayout: RelativeLayout? = null                 //：亮度
-    private var gesBrightPercentage: SeekBar? = null
-    private var gesProgressLayout: LinearLayout? = null                 //：进度
-    private var gesProgressTime: TextView? = null
-    private var gesProgress: SeekBar? = null
+
     private var lessUnitModifyVolume: Int = 0
     private var modifyProgress: Long = 0
     private var currentProgress: Long = 0
@@ -64,20 +58,7 @@ class DefaultGestureView : RelativeLayout, View.OnTouchListener {
     }
 
     private fun initView(context: Context) {
-        val root = LayoutInflater.from(context).inflate(R.layout.video_default_gesture_view_layout, this, true)
-        //音量
-        gesVolumeLayout = root.findViewById(R.id.gesture_volume_layout)
-        gesVolumeImg = root.findViewById(R.id.gesture_volume_img)
-        gesVolumePercentage = root.findViewById(R.id.gesture_volume_progress)
-
-        //亮度
-        gesBrightLayout = root.findViewById(R.id.gesture_bright_layout)
-        gesBrightPercentage = root.findViewById(R.id.gesture_bright_progress)
-
-        //进度条
-        gesProgressLayout = root.findViewById(R.id.gesture_progress_layout)
-        gesProgressTime = root.findViewById(R.id.gesture_progress_time)
-        gesProgress = root.findViewById(R.id.gesture_progress)
+        LayoutInflater.from(context).inflate(R.layout.video_default_gesture_view_layout, this, true)
         setOnTouchListener(this)
         isLongClickable = true
     }
@@ -133,9 +114,9 @@ class DefaultGestureView : RelativeLayout, View.OnTouchListener {
                 lessUnitModifyVolume = 0
                 currentProgress = 0
                 startModifyProgress = false
-                if (gesVolumeLayout != null) gesVolumeLayout!!.visibility = View.GONE
-                if (gesBrightLayout != null) gesBrightLayout!!.visibility = View.GONE
-                if (gesProgressLayout != null) gesProgressLayout!!.visibility = View.GONE
+                gesture_volume_layout!!.visibility = View.GONE
+                gesture_bright_layout!!.visibility = View.GONE
+                gesture_progress_layout!!.visibility = View.GONE
             }
             MotionEvent.ACTION_CANCEL -> {
                 if (gestureStatusListener != null && gestureType != GestureType.ACTION_NONE) {
@@ -146,9 +127,9 @@ class DefaultGestureView : RelativeLayout, View.OnTouchListener {
                 lessUnitModifyVolume = 0
                 currentProgress = 0
                 startModifyProgress = false
-                if (gesVolumeLayout != null) gesVolumeLayout!!.visibility = View.GONE
-                if (gesBrightLayout != null) gesBrightLayout!!.visibility = View.GONE
-                if (gesProgressLayout != null) gesProgressLayout!!.visibility = View.GONE
+                gesture_volume_layout!!.visibility = View.GONE
+                gesture_bright_layout!!.visibility = View.GONE
+                gesture_progress_layout!!.visibility = View.GONE
             }
         }
         return gestureDetector.onTouchEvent(event)
@@ -216,18 +197,18 @@ class DefaultGestureView : RelativeLayout, View.OnTouchListener {
                     if (startX > areaWidth * 1 / 2) {                  // 音量
                         if (enableModifyVolume) {
                             gestureType = GestureType.MODIFY_VOLUME
-                            gesVolumeLayout!!.visibility = View.VISIBLE
-                            gesBrightLayout!!.visibility = View.GONE
-                            gesProgressLayout!!.visibility = View.GONE
+                            gesture_volume_layout!!.visibility = View.VISIBLE
+                            gesture_bright_layout!!.visibility = View.GONE
+                            gesture_progress_layout!!.visibility = View.GONE
                         } else {
                             return false
                         }
                     } else if (startX < areaWidth * 1 / 2) {           // 亮度
                         if (enableModifyBright) {
                             gestureType = GestureType.MODIFY_BRIGHT
-                            gesVolumeLayout!!.visibility = View.GONE
-                            gesBrightLayout!!.visibility = View.VISIBLE
-                            gesProgressLayout!!.visibility = View.GONE
+                            gesture_volume_layout!!.visibility = View.GONE
+                            gesture_bright_layout!!.visibility = View.VISIBLE
+                            gesture_progress_layout!!.visibility = View.GONE
                         } else {
                             return false
                         }
@@ -291,8 +272,8 @@ class DefaultGestureView : RelativeLayout, View.OnTouchListener {
 
                         lessUnitModifyVolume = largeCurrentVolume % MODIFY_LARGE_UNIT
                         val realVolume = largeCurrentVolume / MODIFY_LARGE_UNIT
-                        gesVolumePercentage!!.progress = largeCurrentVolume * 100 / largeMaxVolume
-                        gesVolumeImg!!.setImageResource(if (gesVolumePercentage!!.progress == 0) R.drawable.video_ic_volum_zero else R.drawable.video_ic_volume)
+                        gesture_volume_progress!!.progress = largeCurrentVolume * 100 / largeMaxVolume
+                        gesture_volume_img!!.setImageResource(if (gesture_volume_progress!!.progress == 0) R.drawable.video_ic_volum_zero else R.drawable.video_ic_volume)
                         AudioSetting.setCurrentVolume(context, AudioSetting.AudioType.MUSIC, realVolume, 0)
                     }
                 }
@@ -314,7 +295,7 @@ class DefaultGestureView : RelativeLayout, View.OnTouchListener {
                             brightness = 0.00f
                         }
                         Log.d(TAG, "volume: distanceY($distanceY)  brightness($brightness)")
-                        gesBrightPercentage!!.progress = (brightness * 100).toInt()
+                        gesture_bright_progress!!.progress = (brightness * 100).toInt()
                         BrightnessSetting.setWindowBrightness(activity, brightness)
                     }
                 }
@@ -330,7 +311,7 @@ class DefaultGestureView : RelativeLayout, View.OnTouchListener {
         if (gestureControlLayer != null) {
             val durationMs = gestureControlLayer!!.getDuration()
             if (isDone) {
-                gesProgressLayout!!.visibility = View.GONE
+                gesture_progress_layout!!.visibility = View.GONE
             } else {
                 updateVideoProgress(currentProgressInMs, durationMs)
             }
@@ -338,17 +319,17 @@ class DefaultGestureView : RelativeLayout, View.OnTouchListener {
     }
 
     fun updateVideoProgress(currentProgressInMs: Long, durationInMs: Long) {
-        if (gesProgressLayout!!.visibility != View.VISIBLE) {
+        if (gesture_progress_layout.visibility != View.VISIBLE) {
             showVideoProgressLayout()
         }
-        gesProgressTime!!.text = Utils.getVideoTimeStr(currentProgressInMs) + " / " + Utils.getVideoTimeStr(durationInMs)
-        gesProgress!!.progress = (currentProgressInMs * 100 / durationInMs).toInt()
+        gesture_progress_time.text = Utils.getVideoTimeStr(currentProgressInMs) + " / " + Utils.getVideoTimeStr(durationInMs)
+        gesture_progress.progress = (currentProgressInMs * 100 / durationInMs).toInt()
     }
 
     fun showVideoProgressLayout() {
-        gesVolumeLayout!!.visibility = View.GONE
-        gesBrightLayout!!.visibility = View.GONE
-        gesProgressLayout!!.visibility = View.VISIBLE
+        gesture_volume_layout!!.visibility = View.GONE
+        gesture_bright_layout!!.visibility = View.GONE
+        gesture_progress_layout!!.visibility = View.VISIBLE
     }
 
     companion object {

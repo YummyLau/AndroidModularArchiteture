@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
+import androidx.annotation.NonNull
 
 import com.effective.android.video.bean.VideoCache
 import com.effective.android.video.bean.VideoStatus
@@ -50,13 +51,38 @@ class VideoPlayerManager private constructor(context: Context) {
         videoCacheMap = HashMap()
     }
 
-    private fun isValidCache(newCache: VideoCache?): Boolean {
-        return newCache != null && newCache.isValid
+    companion object {
+        private var sInstance: VideoPlayerManager? = null
+        private var context: Context? = null
+
+        fun init(application: Application) {
+            context = application
+        }
+
+        fun release() {
+            context = null
+        }
+
+
+        val instance: VideoPlayerManager
+            get() {
+                if (context == null) {
+                    throw RuntimeException("you should invoke init() before invoking getInstance() ! ")
+                }
+                if (sInstance == null) {
+                    synchronized(VideoPlayerManager::class.java) {
+                        if (sInstance == null) {
+                            sInstance = VideoPlayerManager(context!!)
+                        }
+                    }
+                }
+                return sInstance!!
+            }
     }
 
+
     private fun isContinuePlayLastCache(lastCache: VideoCache?, newCache: VideoCache): Boolean {
-        return (isValidCache(lastCache) && isValidCache(newCache)
-                && newCache.isContinuePlaySame && newCache.isSameContent(lastCache))
+        return newCache.isContinuePlaySame && newCache.isSameContent(lastCache)
     }
 
     /**
@@ -65,11 +91,6 @@ class VideoPlayerManager private constructor(context: Context) {
      * @param newCache
      */
     fun start(newCache: VideoCache) {
-        if (!isValidCache(newCache)) {
-            Log.d(Contants.TAG, "start a newCache that isn't valid!")
-            return
-        }
-
         //重复启动，则需要读取缓存配置
         val cacheItem = videoCacheMap[newCache.id]
         if (cacheItem != null) {
@@ -78,12 +99,12 @@ class VideoPlayerManager private constructor(context: Context) {
         }
 
         //如果支持续播上一个视频，则读取当前播放器的进度
-        if (isContinuePlayLastCache(lastCache, newCache)) {
+        if (lastCache != null && isContinuePlayLastCache(lastCache, newCache)) {
             newCache.lastPosition = playerAction.currentPosition
         }
 
         //缓存当前正在处理的视频信息
-        if (isValidCache(lastCache)) {
+        if (lastCache != null) {
             lastCache!!.isMute = (playerAction.volume == 0f)
             lastCache!!.lastPosition = playerAction.currentPosition
             if (lastStatus === VideoStatus.PAUSE && !pauseByUserAction) {
@@ -103,125 +124,82 @@ class VideoPlayerManager private constructor(context: Context) {
     }
 
     private fun isContentSameCache(cache1: VideoCache?, cache2: VideoCache?): Boolean {
-        return cache1 != null && cache2 != null && cache1.isValid && cache2.isValid && TextUtils.equals(cache1.videoInfo!!.url, cache2.videoInfo!!.url)
+        return cache1 != null && cache2 != null && TextUtils.equals(cache1.videoInfo!!.url, cache2.videoInfo!!.url)
     }
 
     private fun isSameCache(cache1: VideoCache?, cache2: VideoCache?): Boolean {
-        return cache1 != null && cache2 != null && cache1 === cache2
-    }
-
-    companion object {
-        private var sInstance: VideoPlayerManager? = null
-        private val inited = false
-        private var context: Application? = null
-
-        fun init(application: Application) {
-            if (inited) {
-                return
-            }
-            context = application
-        }
-
-
-        val instance: VideoPlayerManager
-            get() {
-                if (!inited) {
-                    throw RuntimeException("you should invoke init() before invoking getInstance() ! ")
-                }
-                if (sInstance == null) {
-                    synchronized(VideoPlayerManager::class.java) {
-                        if (sInstance == null) {
-                            sInstance = VideoPlayerManager(context!!)
-                        }
-                    }
-                }
-                return sInstance!!
-            }
+        return cache1 != null && cache1 === cache2
     }
 
     private val videoControlLayer: VideoControlLayer = object : VideoControlLayer {
 
+        override val isVideoLoaded: Boolean
+            get() = playerAction.duration > 0
+
+        override val isPlaying: Boolean
+            get() = playerAction.isPlaying
+
+        override val isPause: Boolean
+            get() = playerAction.isPause
+
+        override val duration: Long
+            get() = playerAction.duration
+
+        override val contentPosition: Long
+            get() = playerAction.contentPosition
+
+        override val currentPosition: Long
+            get() = playerAction.currentPosition
+
         override fun restore(videoCache: VideoCache) {
-            if (videoCache != null && videoCache.isValid) {
-                if (isSameCache(lastCache, videoCache)) {
-                    playerAction.setPlayWhenReady(true)
-                    currentVideo.getDefaultPlayerLogger().onPlay()
-                } else {
-                    startVideo(videoCache)
-                }
+            if (isSameCache(lastCache, videoCache)) {
+                playerAction.play()
+            } else {
+                start(videoCache)
             }
         }
 
         override fun replay(videoCache: VideoCache) {
-            if (videoCache != null && videoCache.isValid) {
-                if (isSameCache(lastCache, videoCache)) {
-                    currentVideo.getDefaultPlayerLogger().replay()
-                    playerAction.seekTo(C.TIME_UNSET)
-                }
+            if (isSameCache(lastCache, videoCache)) {
+                playerAction.seekTo(C.TIME_UNSET)
             }
         }
 
         override fun play(videoCache: VideoCache) {
-            if (videoCache != null && videoCache.isValid) {
-                videoCache.getPlayerReceiver().clickToPlay()
-                if (isSameCache(lastCache, videoCache)) {
-                    playerAction.play()
-                    currentVideo.getDefaultPlayerLogger().onPlay()
-                }
+            videoCache.receivingLayer.clickToPlay()
+            if (isSameCache(lastCache, videoCache)) {
+                playerAction.play()
             }
         }
 
         override fun pause(videoCache: VideoCache, userAction: Boolean) {
-            if (videoCache != null && videoCache.isValid) {
-                videoCache.getPlayerReceiver().clickToPause()
-                if (isSameCache(lastCache, videoCache)) {
-                    playerAction.pause()
-                    currentVideo.getDefaultPlayerLogger().onPause()
-                }
+            videoCache.receivingLayer.clickToPause()
+            if (isSameCache(lastCache, videoCache)) {
+                playerAction.pause()
             }
             pauseByUserAction = userAction
         }
 
         override fun stop(videoCache: VideoCache) {
-            if (videoCache != null && videoCache.isValid) {
-                if (isSameCache(lastCache, videoCache)) {
-                    //这里还缺少缓存逻辑
-                    playerAction.stop()
-                    currentVideo.getDefaultPlayerLogger().onStop()
-                }
+            if (isSameCache(lastCache, videoCache)) {
+                //这里还缺少缓存逻辑
+                playerAction.stop()
             }
         }
 
         override fun release(videoCache: VideoCache) {
-            if (videoCache != null && videoCache.isValid) {
-                if (isSameCache(lastCache, videoCache)) {
-                    playerAction.stop()
-                }
-                videoCacheMap.remove(videoCache.id)
-                videoCache.getPlayerReceiver().releaseControler()
-                videoCache.getDefaultPlayerLogger().onRelease()
+            if (isSameCache(lastCache, videoCache)) {
+                playerAction.stop()
             }
+            videoCacheMap.remove(videoCache.id)
+            videoCache.receivingLayer.releaseControlLayer()
         }
 
         override fun seekTo(videoCache: VideoCache, position: Long) {
-            if (videoCache != null && videoCache.isValid) {
-                if (isSameCache(lastCache, videoCache)) {
-                    lastCache.getDefaultPlayerLogger().seekTo(position)
-                    playerAction.seekTo(position)
-                }
+            if (isSameCache(lastCache, videoCache)) {
+                playerAction.seekTo(position)
             }
         }
 
-        override fun isVideoLoaded() = playerAction.duration > 0
-
-        override fun isPlaying() = playerAction.isPlaying
-
-        override fun isPause() = playerAction.isPause
-
-        override fun getDuration() = playerAction.duration
-
-        override fun getContentPosition() = playerAction.contentPosition
-
-        override fun getCurrentPosition() = playerAction.currentPosition
     }
 }

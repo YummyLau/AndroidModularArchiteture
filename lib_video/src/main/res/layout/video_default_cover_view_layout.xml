@@ -24,7 +24,7 @@
             android:paddingTop="15dp"
             android:paddingRight="15dp"
             android:paddingBottom="15dp"
-            android:src="@drawable/video_ic_video_play" />
+            android:src="@drawable/video_ic_play" />
 
         <TextView
             android:id="@+id/control_lb_position"
@@ -115,7 +115,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <skin.support.widget.SkinCompatImageView
+        <ImageView
             android:id="@+id/cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/video_ic_video_loading_state" />
+            android:src="@drawable/video_ic_loading_state" />
 
         <TextView
             android:id="@+id/control_mid_video_status_tip"

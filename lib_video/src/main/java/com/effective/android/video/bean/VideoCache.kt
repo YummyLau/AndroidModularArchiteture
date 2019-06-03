@@ -1,6 +1,7 @@
 package com.effective.android.video.bean
 
 import android.text.TextUtils
+import com.effective.android.video.core.VideoReceivingLayer
 
 /**
  * 定义单例加载的视频信息及缓存信息
@@ -17,22 +18,22 @@ class VideoCache(builder: Builder) {
     var lastPosition: Long = 0
     var lastStatus: VideoStatus? = null
 
-    var videoInfo: VideoInfo? = null
+    val videoInfo: VideoInfo
+    val receivingLayer: VideoReceivingLayer
 
-    val isValid: Boolean
-        get() = videoInfo != null
 
     init {
         this.isCache = builder.isCache
         this.isLoop = builder.isLoop
         this.isMute = builder.isMute
         this.isContinuePlaySame = builder.isContinuePlaySame
-        this.videoInfo = builder.videoInfo
+        this.videoInfo = builder.videoInfo!!
+        this.receivingLayer = builder.receivingLayer!!
         this.id = System.currentTimeMillis()
     }
 
     fun isSameContent(videoCache: VideoCache?): Boolean {
-        return isValid && videoCache != null && videoCache.isValid && TextUtils.equals(videoCache.videoInfo!!.url, videoInfo!!.url)
+        return videoCache != null && TextUtils.equals(videoCache.videoInfo!!.url, videoInfo!!.url)
     }
 
     class Builder {
@@ -41,6 +42,7 @@ class VideoCache(builder: Builder) {
         var isLoop = true                 //是否循环播放
         var isContinuePlaySame = true     //是否继续播放，两个页面相同视频
         var videoInfo: VideoInfo? = null
+        var receivingLayer: VideoReceivingLayer? = null
 
         fun cache(cache: Boolean): Builder {
             this.isCache = cache
@@ -62,8 +64,9 @@ class VideoCache(builder: Builder) {
             return this
         }
 
-        fun build(videoInfo: VideoInfo): VideoCache {
+        fun build(videoInfo: VideoInfo, receivingLayer: VideoReceivingLayer): VideoCache {
             this.videoInfo = videoInfo
+            this.receivingLayer = receivingLayer
             return VideoCache(this)
         }
     }

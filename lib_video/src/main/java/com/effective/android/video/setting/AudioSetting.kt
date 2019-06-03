@@ -3,9 +3,6 @@ package com.effective.android.video.setting
 import android.content.Context
 import android.media.AudioManager
 
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy
-
 import androidx.annotation.IntDef
 
 /**
@@ -16,15 +13,15 @@ import androidx.annotation.IntDef
 object AudioSetting {
 
     @IntDef(AudioType.MUSIC, AudioType.CALL, AudioType.SYSTEM, AudioType.RING, AudioType.ALARM, AudioType.NOTIFICATION)
-    @Retention(RetentionPolicy.SOURCE)
+    @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
     annotation class AudioType {
         companion object {
-            val MUSIC = AudioManager.STREAM_MUSIC
-            val CALL = AudioManager.STREAM_VOICE_CALL
-            val SYSTEM = AudioManager.STREAM_SYSTEM
-            val RING = AudioManager.STREAM_RING
-            val ALARM = AudioManager.STREAM_ALARM
-            val NOTIFICATION = AudioManager.STREAM_NOTIFICATION
+            const val MUSIC = AudioManager.STREAM_MUSIC
+            const val CALL = AudioManager.STREAM_VOICE_CALL
+            const val SYSTEM = AudioManager.STREAM_SYSTEM
+            const val RING = AudioManager.STREAM_RING
+            const val ALARM = AudioManager.STREAM_ALARM
+            const val NOTIFICATION = AudioManager.STREAM_NOTIFICATION
         }
     }
 

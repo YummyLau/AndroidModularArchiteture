@@ -8,17 +8,17 @@ import com.effective.android.video.bean.VideoCache
  */
 interface VideoPlayer {
 
-    val contentPosition: Long
+    val volume : Float
 
-    val currentPosition: Long
+    val duration : Long
 
-    val duration: Long
+    val currentPosition : Long
 
-    val volume: Float
+    val contentPosition : Long
 
-    val isPause: Boolean
+    val isPlaying : Boolean
 
-    val isPlaying: Boolean
+    val isPause : Boolean
 
     fun start(cache: VideoCache)
 

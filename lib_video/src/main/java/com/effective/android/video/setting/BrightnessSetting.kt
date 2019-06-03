@@ -18,17 +18,18 @@ import androidx.annotation.IntRange
  * [WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE]  默认使用System，当前window未覆盖
  * [WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF]   黑
  * [WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_FULL]  亮
- * Created by g8931 on 2018/3/24.
+ * Created by yummylau on 2018/3/24.
  */
 
 object BrightnessSetting {
 
 
     @IntDef(Mode.AUTOMATIC, Mode.MANUAL)
+    @kotlin.annotation.Retention(AnnotationRetention.SOURCE)
     annotation class Mode {
         companion object {
-            val AUTOMATIC = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
-            val MANUAL = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
+            const  val AUTOMATIC = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
+            const val MANUAL = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
         }
     }
 

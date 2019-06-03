@@ -10,13 +10,13 @@
         android:inflatedId="@+id/just_playerview_root_id"
         android:layout="@layout/video_exo_player_view" />
 
-    <com.netease.gl.exoplayer.core.cover.DefaultCoverView
+    <com.effective.android.video.ui.cover.DefaultCoverView
         android:id="@+id/cover_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <!-- 手势层 -->
-    <com.netease.gl.exoplayer.core.guesture.DefaultGestureView
+    <com.effective.android.video.ui.gesture.DefaultGestureView
         android:id="@+id/gesture_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
