@@ -25,14 +25,20 @@ android {
         }
     }
 
+
+    androidExtensions {
+        experimental = true
+    }
     resourcePrefix "video_"
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.androidx.appCompat
+    implementation deps.androidx.recyclerview
     implementation deps.kotlin.stdlib
     implementation deps.exoplayer
+    implementation deps.glide.core
 }
 
 componentBuild {

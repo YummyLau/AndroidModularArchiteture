@@ -36,6 +36,7 @@ dependencies {
     implementation deps.androidx.appCompat
     implementation deps.kotlin.stdlib
     implementation deps.gson
+    implementation deps.glide.core
 }
 
 componentBuild {

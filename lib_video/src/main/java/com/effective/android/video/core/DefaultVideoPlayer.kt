@@ -32,7 +32,7 @@ import java.io.File
  */
 class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
 
-    private val player: SimpleExoPlayer
+    val player: SimpleExoPlayer
     private val eventListener = InnerListener()
     private val listeners: MutableList<VideoPlayerListener>
 
@@ -46,7 +46,7 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
      * 添加监听播放器行为
      */
     fun addPlayerListener(listener: VideoPlayerListener) {
-        if (listener != null && !listeners.contains(listener)) {
+        if (!listeners.contains(listener)) {
             listeners.add(listener)
         }
     }
@@ -55,13 +55,13 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
      * 移除播放器行为监听
      */
     fun remotePlayerListener(listener: VideoPlayerListener) {
-        if (listener != null && listeners.contains(listener)) {
+        if (listeners.contains(listener)) {
             listeners.remove(listener)
         }
     }
 
     override fun start(cache: VideoCache) {
-        val mediaSource = MediaSourceFactory.create(context, cache.videoInfo!!.url, cache.isCache, cache.isLoop)
+        val mediaSource = MediaSourceFactory.create(context, cache.videoInfo.url, cache.isCache, cache.isLoop)
         player.setVolume(if (cache.isMute) 0f else 0.5f)
         eventListener.hasInit = false
         player.prepare(mediaSource)

@@ -6,7 +6,6 @@ import android.util.Pair
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewStub
 import android.widget.FrameLayout
 import android.widget.ImageView
 
@@ -24,14 +23,14 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import com.google.android.exoplayer2.Player
 import kotlinx.android.synthetic.main.video_player_view_layout.view.*
 
-class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
+class DefaultPlayerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var isFullScreen: Boolean = false
     private var autoAdjustLayout = true
     private var playerView: SimplePlayerBaseView? = null
-    private var playerViewStub: ViewStub? = null
 
     private var videoControlLayer: VideoControlLayer? = null
     private var videoCache: VideoCache? = null
@@ -123,11 +122,11 @@ class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: At
             } else null
 
         override fun enterFullScreen() {
-            this@DefaultVideoReceiver.isFullScreen = true
+            this@DefaultPlayerView.isFullScreen = true
         }
 
         override fun exitFullScreen() {
-            this@DefaultVideoReceiver.isFullScreen = false
+            this@DefaultPlayerView.isFullScreen = false
         }
 
         override fun pause() {
@@ -198,30 +197,30 @@ class DefaultVideoReceiver @JvmOverloads constructor(context: Context, attrs: At
     /**
      * 相应播放器的事件
      */
-    private val videoReceivingLayer = object : VideoReceivingLayer {
+    val videoReceivingLayer = object : VideoReceivingLayer {
 
         override fun attachedControlLayer(controlLayer: VideoControlLayer) {
-            this@DefaultVideoReceiver.videoControlLayer = videoControlLayer
+            this@DefaultPlayerView.videoControlLayer = videoControlLayer
         }
 
         override fun releaseControlLayer() {
-            this@DefaultVideoReceiver.videoControlLayer = null
+            this@DefaultPlayerView.videoControlLayer = null
             cover_view.resetCover()
             cover_view.removeControlRunnable()
             cover_view.removeTrackerProgressRunnable()
         }
 
-        override fun onVideoStatus(status: VideoStatus, message: String?) {
+        override fun onVideoStatus(status: VideoStatus?, message: String?) {
             cover_view.onVideoStatus(status, message!!)
         }
 
-        override fun attachPlayer(player: ExoPlayer) {
+        override fun attachPlayer(player: Player) {
             playerViewIfNeed.player = player
             cover_view.postHideControlRunnable()
             cover_view.postTrackerProgressRunnable()
         }
 
-        override fun detachPlayer(player: ExoPlayer) {
+        override fun detachPlayer(player: Player) {
             cover_view.resetCover()
             playerViewIfNeed.player = null
             cover_view.removeControlRunnable()

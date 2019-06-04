@@ -113,8 +113,7 @@ class SimpleExoLoadControl @JvmOverloads constructor(
     }
 
     override fun shouldStartPlayback(bufferedDurationUs: Long, playbackSpeed: Float, rebuffering: Boolean): Boolean {
-        var bufferedDurationUs = bufferedDurationUs
-        bufferedDurationUs = Util.getPlayoutDurationForMediaDuration(bufferedDurationUs, playbackSpeed)
+        var bufferedDurationUs  = Util.getPlayoutDurationForMediaDuration(bufferedDurationUs, playbackSpeed)
         val minBufferDurationUs = if (rebuffering) bufferForPlaybackAfterRebufferUs else bufferForPlaybackUs
         return (minBufferDurationUs <= 0
                 || bufferedDurationUs >= minBufferDurationUs

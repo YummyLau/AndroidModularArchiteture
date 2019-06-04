@@ -16,7 +16,7 @@ class VideoCache(builder: Builder) {
     var isContinuePlaySame: Boolean = false
 
     var lastPosition: Long = 0
-    var lastStatus: VideoStatus? = null
+    var lastStatus: VideoStatus? = VideoStatus.PREPARE
 
     val videoInfo: VideoInfo
     val receivingLayer: VideoReceivingLayer
@@ -33,7 +33,7 @@ class VideoCache(builder: Builder) {
     }
 
     fun isSameContent(videoCache: VideoCache?): Boolean {
-        return videoCache != null && TextUtils.equals(videoCache.videoInfo!!.url, videoInfo!!.url)
+        return videoCache != null && TextUtils.equals(videoCache.videoInfo.url, videoInfo.url)
     }
 
     class Builder {

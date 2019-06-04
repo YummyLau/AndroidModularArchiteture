@@ -1,7 +1,11 @@
 package com.effective.android.video.ui.cover
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +23,7 @@ import com.effective.android.video.bean.VideoStatus
 
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.video_default_cover_view_layout.view.*
 
 /**
@@ -342,7 +347,7 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
         }
     }
 
-    fun onVideoStatus(status: VideoStatus, msg: String) {
+    fun onVideoStatus(status: VideoStatus?, msg: String) {
         when (status) {
             VideoStatus.PREPARE -> {
                 setMidStatusImg(VideoStatus.PREPARE, true)                                                  //视频信息加载完成之前，loading显示，界面点击无效
@@ -380,6 +385,9 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
                 setMidStatusTip(false)
             }//                setMidStatusTip(true);
             //                control_mid_video_status_tip.setText(R.string.video_load_error);
+            else -> {
+
+            }
         }
         if (statusListener != null) {
             statusListener!!.onStatus(status, msg)
@@ -414,8 +422,11 @@ class DefaultCoverView @JvmOverloads constructor(context: Context, attrs: Attrib
             cover!!.scaleType = ImageView.ScaleType.FIT_CENTER
         }
         isFullScreenCover = fullScreen
-        //        GLImageLoader.disMediaCover(cover, videoInfo.cover, isFullScreenCover);
+        Glide.with(context)
+                .load(videoInfo.cover)
+                .into(cover)
     }
+
 
     fun resetCover() {
         initCover(videoInfo, scaleType, isFullScreenCover)

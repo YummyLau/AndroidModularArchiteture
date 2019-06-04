@@ -1,4 +1,4 @@
-package jp.wasabeef.example.glide
+package com.effective.android.imageloader
 
 /**
  * Copyright (C) 2018 Wasabeef

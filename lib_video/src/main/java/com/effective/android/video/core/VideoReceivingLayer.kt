@@ -2,6 +2,7 @@ package com.effective.android.video.core
 
 import com.effective.android.video.bean.VideoStatus
 import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.Player
 
 /**
  * 视图层通过该接口接受播放器信息
@@ -11,13 +12,13 @@ interface VideoReceivingLayer {
 
     fun attachedControlLayer(controlLayer: VideoControlLayer)
 
-    fun attachPlayer(player: ExoPlayer)
+    fun attachPlayer(player: Player)
 
-    fun detachPlayer(player: ExoPlayer)
+    fun detachPlayer(player: Player)
 
     fun releaseControlLayer()
 
-    fun onVideoStatus(status: VideoStatus, message: String?)
+    fun onVideoStatus(status: VideoStatus?, message: String?)
 
     fun onBufferPosition(bufferedPosition: Long)
 

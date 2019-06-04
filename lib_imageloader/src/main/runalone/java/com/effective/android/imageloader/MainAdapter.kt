@@ -21,11 +21,10 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.bumptech.glide.request.target.Target
-import com.effective.android.imageloader.GlideOptions.bitmapTransform
 import com.effective.android.imageloader.progress.DispatchingProgressManager
 import com.effective.android.imageloader.progress.lintener.UIonProgressListener
-import jp.wasabeef.example.glide.px
 import jp.wasabeef.glide.transformations.*
 import jp.wasabeef.glide.transformations.CropTransformation.CropType
 

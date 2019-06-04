@@ -63,7 +63,6 @@ class VideoPlayerManager private constructor(context: Context) {
             context = null
         }
 
-
         val instance: VideoPlayerManager
             get() {
                 if (context == null) {
@@ -111,6 +110,7 @@ class VideoPlayerManager private constructor(context: Context) {
                 lastStatus = VideoStatus.PLAYING
             }
             lastCache!!.lastStatus = lastStatus
+            lastCache!!.receivingLayer.detachPlayer((playerAction as DefaultVideoPlayer).player)
             playerAction.stop()
         }
 
@@ -120,11 +120,11 @@ class VideoPlayerManager private constructor(context: Context) {
         videoCacheMap[lastCache!!.id] = lastCache!!
 
         //启动视频
+        lastCache!!.receivingLayer.attachedControlLayer(videoControlLayer)
+        lastCache!!.receivingLayer.attachPlayer((playerAction as DefaultVideoPlayer).player)
+        lastCache!!.receivingLayer.onVideoStatus(lastCache!!.lastStatus, "")
+        lastCache!!.receivingLayer.onFirstInit()
         playerAction.start(lastCache!!)
-    }
-
-    private fun isContentSameCache(cache1: VideoCache?, cache2: VideoCache?): Boolean {
-        return cache1 != null && cache2 != null && TextUtils.equals(cache1.videoInfo!!.url, cache2.videoInfo!!.url)
     }
 
     private fun isSameCache(cache1: VideoCache?, cache2: VideoCache?): Boolean {
