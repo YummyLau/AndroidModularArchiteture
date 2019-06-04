@@ -12,6 +12,7 @@ import com.effective.android.video.bean.VideoStatus
 import com.effective.android.video.core.DefaultVideoPlayer
 import com.effective.android.video.core.VideoControlLayer
 import com.effective.android.video.core.VideoPlayer
+import com.effective.android.video.core.VideoPlayerListener
 import com.google.android.exoplayer2.C
 
 import java.util.HashMap
@@ -48,6 +49,19 @@ class VideoPlayerManager private constructor(context: Context) {
 
     init {
         playerAction = DefaultVideoPlayer(context)
+        val videoPlayerListener = object : VideoPlayerListener {
+            override fun onLoadingChanged(isLoading: Boolean) {
+                if (lastCache != null) {
+                    lastCache!!.receivingLayer.onBufferPosition(playerAction!!.bufferedPostion)
+                }
+            }
+            override fun onPlayerStateChanged(videoStatus: VideoStatus?) {
+                if (lastCache != null) {
+                    lastCache!!.receivingLayer.onVideoStatus(videoStatus, "")
+                }
+            }
+        }
+        playerAction.addPlayerListener(videoPlayerListener)
         videoCacheMap = HashMap()
     }
 

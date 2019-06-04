@@ -29,7 +29,7 @@ class MediaScrollListener(list: MediaList) : RecyclerView.OnScrollListener() {
                     if (selectedItem != null) {
                         val selectedPosition = selectedItem!!.itemPosition()
                         unselectedItem(selectedItem)
-                        var diffPosition = 0
+                        var diffPosition = Int.MAX_VALUE
                         for (data in validItems.second) {
                             if (Math.abs(data.itemPosition() - selectedPosition) <= diffPosition) {
                                 selectedItem = data

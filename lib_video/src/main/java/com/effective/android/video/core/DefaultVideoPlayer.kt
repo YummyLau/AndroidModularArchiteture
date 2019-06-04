@@ -45,7 +45,7 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
     /**
      * 添加监听播放器行为
      */
-    fun addPlayerListener(listener: VideoPlayerListener) {
+    override fun addPlayerListener(listener: VideoPlayerListener) {
         if (!listeners.contains(listener)) {
             listeners.add(listener)
         }
@@ -54,7 +54,7 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
     /**
      * 移除播放器行为监听
      */
-    fun remotePlayerListener(listener: VideoPlayerListener) {
+    override fun remotePlayerListener(listener: VideoPlayerListener) {
         if (listeners.contains(listener)) {
             listeners.remove(listener)
         }
@@ -109,6 +109,8 @@ class DefaultVideoPlayer(private val context: Context) : VideoPlayer {
     override val isPause: Boolean
         get() = player.playWhenReady
 
+    override val bufferedPostion: Long
+        get() = player.bufferedPosition
     /**
      * ExoPlayer播放器监听播放事件
      */

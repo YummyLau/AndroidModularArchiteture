@@ -47,8 +47,8 @@ class VideoListActivity : Activity() {
             if (data.videoInfo != null) {
                 itemView.video_detail.visibility = View.VISIBLE
                 itemView.video_detail.gesture_view.visibility = View.GONE
-                itemView.video_detail.cover_view.setEnableVideoTime(true)
-                itemView.video_detail.cover_view.setCoverColor(R.drawable.shape_player_cover_bg)
+                itemView.video_detail.cover_view.enableVideoTime = true
+                itemView.video_detail.cover_view.setCoverImage(R.drawable.shape_player_cover_bg)
                 itemView.video_detail.cover_view.setLoadingStatusIcon(R.drawable.ic_common_loading_small)
                 itemView.video_detail.cover_view.setPauseStatusIcon(R.drawable.video_pause)
                 itemView.video_detail.cover_view.setPlayStatusIcon(R.drawable.video_play)
