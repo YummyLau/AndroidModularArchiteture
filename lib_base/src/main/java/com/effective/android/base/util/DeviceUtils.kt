@@ -21,7 +21,7 @@ import java.util.regex.Pattern
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2019/06/16.
  */
-class DeviceUtils {
+object DeviceUtils {
 
     var mTotalMemory = -1L
 

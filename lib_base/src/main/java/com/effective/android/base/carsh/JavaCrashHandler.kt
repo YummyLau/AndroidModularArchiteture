@@ -126,7 +126,7 @@ class JavaCrashHandler(context: Context) : Thread.UncaughtExceptionHandler {
         try {
             val time = mDateFormat.format(Date())
             val fileName = "$time.txt"
-            val crashCachePath = StorageUtils.storagePath(StorageUtils.APP_STORAGE_CRASH)
+            val crashCachePath = StorageUtils.getCrashDir(mContext)
             val fos = FileOutputStream("$crashCachePath/$fileName")
             fos.write(sb.toString().toByteArray())
             fos.close()

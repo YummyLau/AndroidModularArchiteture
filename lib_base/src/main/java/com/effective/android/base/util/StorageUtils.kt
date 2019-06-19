@@ -1,95 +1,147 @@
 package com.effective.android.base.util
 
 import android.content.Context
-import android.os.Build
 import android.os.Environment
+import android.os.Environment.*
 import android.text.TextUtils
 import java.io.File
 
 /**
  * 目录管理，一般每个app都需要一些目录用于存放特定内容，比如缓存，data，下载内容，图片等
  * 需要新增哪些目录直接在这里添加就可以了。
+ * 应用管理中存在两个按钮
+ * CLEAR DATA 会清除 data/data 数据
+ * CLEAR CACHE 会清除 data/data/projectName/cache 和 mnt/sdcard/Android/projectName/cache
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2019/06/16.
  */
 object StorageUtils {
 
-    private const val DATA_DATA = "/data/data"
-    private const val DATA_CACHE = "cache"
-    private const val CACHE = "cache"
-    private const val LIB = "lib"
-    private const val DEX = "dex"
-
-    private const val TEMP_DIR = "temp"     //临时目录
-    private const val APP_STORAGE_DIR = "/myApp/"  //根据不同的项目修改 myApp的命名
-
-    const val APP_STORAGE_CRASH = "crash"     //crash 目录
-
-    /**
-     * sd卡是否挂载
-     */
-    fun sdcardEnable(): Boolean {
-        return Environment.MEDIA_MOUNTED == Environment.getExternalStorageState() || !Environment.isExternalStorageRemovable()
+    enum class StorageType(var dirName: String = "temp") {
+        // 放在私有内部，比如uuid文件等等
+        IMPORTANT_FILE("important"),
+        // 直接放在外部方便导入
+        CRASH("crash"),
+        // 放在私有内部
+        CHANNEL("channel"),
     }
 
-    fun storagePath(path: String = ""): String {
-        var path = path
-        if (TextUtils.isEmpty(path)) {
-            path = TEMP_DIR
+    private fun storage(context: Context, type: StorageType): String {
+        var root = when (type) {
+            StorageType.CRASH -> {
+
+                getExternalFiles(context)
+            }
+            StorageType.CHANNEL -> {
+
+                getCache(context)
+            }
+            else -> {
+                getFiles(context)
+            }
         }
-        val root = if (sdcardEnable())
-            Environment.getExternalStorageDirectory().absolutePath + APP_STORAGE_DIR
-        else
-            Environment.getDataDirectory().absolutePath
-        val dir = File("$root/$path")
+        val dir = File(root + "/" + type.dirName)
         if (!dir.exists()) {
             dir.mkdirs()
         }
         return dir.absolutePath + "/"
     }
 
-    fun storageFile(path: String = ""): File = File(storagePath(path))
+    fun getCrashDir(context: Context) = storage(context, StorageType.CRASH)
 
-    fun dataDir(context: Context): String {
-        var dataDir = context.applicationInfo.dataDir
-        if (TextUtils.isEmpty(dataDir)) {
-            dataDir = DATA_DATA + "/" + context.packageName
-        }
-        return dataDir!!
-    }
+    fun getChannelDir(context: Context) = storage(context, StorageType.CHANNEL)
 
-    fun libDir(context: Context): String {
-        var libDir = ""
-        if (Build.VERSION.SDK_INT >= 9) {
-            libDir = context.applicationInfo.nativeLibraryDir
+    fun getImportantDir(context: Context) = storage(context, StorageType.IMPORTANT_FILE)
+
+
+    private fun getCache(context: Context): String {
+        return if (MEDIA_MOUNTED == getExternalStorageState() || !isExternalStorageRemovable()) {
+            getExternalCache(context)!!
         } else {
-            try {
-                libDir = context.applicationInfo.dataDir + "/lib"
-            } catch (ex: Exception) {
-                ex.printStackTrace()
-            }
+            getInternalCache(context)
         }
-        return libDir!!
     }
 
-    fun cacheDir(context: Context): String {
-        var cacheDir = ""
-        if (context.cacheDir == null) {
-            cacheDir = DATA_DATA + "/" + context.packageName + "/" + DATA_CACHE
-            // ENSURE
-            val file = File(cacheDir)
-            if (!file.exists()) {
-                file.mkdir()
-            }
+    private fun getFiles(context: Context): String {
+        return if (MEDIA_MOUNTED == getExternalStorageState() || !isExternalStorageRemovable()) {
+            getExternalFiles(context)!!
         } else {
-            cacheDir = context.cacheDir.absolutePath
+            getInternalFiles(context)
         }
-        return cacheDir!!
     }
 
-    fun appLibDir(context: Context): String = context.getDir(LIB, Context.MODE_PRIVATE).absolutePath
+    /**
+     * 获取 app 内部私有cache
+     */
+    fun getInternalCache(context: Context): String = context.cacheDir.absolutePath
 
-    fun appCacheDir(context: Context): String = context.getDir(CACHE, Context.MODE_PRIVATE).absolutePath
+    /**
+     * 获取 app 外部私有cache
+     */
+    fun getExternalCache(context: Context): String? = context.externalCacheDir?.absolutePath
 
-    fun appDexDir(context: Context): String = context.getDir(DEX, Context.MODE_PRIVATE).absolutePath
+    /**
+     * 获取 app 内部私有文件
+     */
+    fun getInternalFiles(context: Context): String = context.filesDir.absolutePath
+
+    /**
+     * 获取 app 外部私有文件
+     */
+    fun getExternalFiles(context: Context): String? = context.getExternalFilesDir(null)?.absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/Alarms
+     */
+    fun getExternalAlarms(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_ALARMS).absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/DCIM
+     */
+    fun getExternalDcim(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_DCIM).absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/Download
+     */
+    fun getExternalDownload(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS).absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/Movies
+     */
+    fun getExternalMovies(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_MOVIES).absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/Music
+     */
+    fun getExternalMusic(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC).absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/Notifications
+     */
+    fun getExternalNotifications(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_NOTIFICATIONS).absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/Pictures
+     */
+    fun getExternalPictures(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES).absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/Podcasts
+     */
+    fun getExternalPodcasts(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_PODCASTS).absolutePath
+
+    /**
+     * 外部存储
+     * /storage/sdcard0/Ringtones
+     */
+    fun getExternalRingtones(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_RINGTONES).absolutePath
+
 }
