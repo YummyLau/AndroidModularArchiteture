@@ -30,6 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.androidx.appCompat
     implementation deps.kotlin.stdlib
+    implementation deps.multiDex
     api deps.qmui
 }
 

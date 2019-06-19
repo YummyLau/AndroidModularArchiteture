@@ -2,6 +2,7 @@ package com.effective.android.base.util
 
 import android.content.Context
 import android.os.Build
+import android.os.Environment
 import android.text.TextUtils
 import java.io.File
 
@@ -11,7 +12,7 @@ import java.io.File
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2019/06/16.
  */
-object DirUtils {
+object StorageUtils {
 
     private const val DATA_DATA = "/data/data"
     private const val DATA_CACHE = "cache"
@@ -19,6 +20,35 @@ object DirUtils {
     private const val LIB = "lib"
     private const val DEX = "dex"
 
+    private const val TEMP_DIR = "temp"     //临时目录
+    private const val APP_STORAGE_DIR = "/myApp/"  //根据不同的项目修改 myApp的命名
+
+    const val APP_STORAGE_CRASH = "crash"     //crash 目录
+
+    /**
+     * sd卡是否挂载
+     */
+    fun sdcardEnable(): Boolean {
+        return Environment.MEDIA_MOUNTED == Environment.getExternalStorageState() || !Environment.isExternalStorageRemovable()
+    }
+
+    fun storagePath(path: String = ""): String {
+        var path = path
+        if (TextUtils.isEmpty(path)) {
+            path = TEMP_DIR
+        }
+        val root = if (sdcardEnable())
+            Environment.getExternalStorageDirectory().absolutePath + APP_STORAGE_DIR
+        else
+            Environment.getDataDirectory().absolutePath
+        val dir = File("$root/$path")
+        if (!dir.exists()) {
+            dir.mkdirs()
+        }
+        return dir.absolutePath + "/"
+    }
+
+    fun storageFile(path: String = ""): File = File(storagePath(path))
 
     fun dataDir(context: Context): String {
         var dataDir = context.applicationInfo.dataDir

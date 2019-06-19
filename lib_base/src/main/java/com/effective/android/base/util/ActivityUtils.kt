@@ -1,4 +1,4 @@
-package com.effective.android.base.util.view
+package com.effective.android.base.util
 
 import android.app.Activity
 import android.content.Context
@@ -13,13 +13,10 @@ import android.content.ContextWrapper
 object ActivityUtils {
 
     fun scanForActivity(context: Context?): Activity? {
-        if (context == null)
-            return null
-        else if (context is Activity)
-            return context
-        else if (context is ContextWrapper)
-            return scanForActivity(context.baseContext)
-
-        return null
+        return when (context) {
+            is Activity -> context
+            is ContextWrapper -> scanForActivity(context)
+            else -> null
+        }
     }
 }

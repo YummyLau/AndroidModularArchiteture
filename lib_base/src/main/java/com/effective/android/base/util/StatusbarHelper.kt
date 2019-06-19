@@ -1,12 +1,12 @@
-package com.effective.android.base.util.statusbar
+package com.effective.android.base.util
 
 import android.annotation.TargetApi
 import android.app.Activity
 import android.graphics.Color
 import android.os.Build
-import android.support.annotation.ColorInt
 import android.view.View
 import android.view.WindowManager
+import androidx.annotation.ColorInt
 
 import com.qmuiteam.qmui.util.QMUIDeviceHelper
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
