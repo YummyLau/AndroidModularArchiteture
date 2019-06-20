@@ -1,9 +1,11 @@
 package com.effective.android.base.util
 
+import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Context
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.text.TextUtils
+import androidx.annotation.RequiresPermission
 import java.io.*
 import java.util.*
 
@@ -73,6 +75,7 @@ object AppUtils {
         }
     }
 
+    @RequiresPermission(allOf = [READ_PHONE_STATE])
     fun getDeviceId(ctx: Context): String? {
         if (imei == null) {
             val telman = ctx.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager

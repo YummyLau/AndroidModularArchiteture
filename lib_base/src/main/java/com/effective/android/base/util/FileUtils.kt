@@ -12,7 +12,9 @@ import android.os.Environment
 import android.os.StatFs
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.util.Log
+import androidx.annotation.StringDef
 
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
@@ -31,6 +33,7 @@ import java.text.DecimalFormat
 import java.util.Enumeration
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
+import kotlin.experimental.and
 
 
 /**
@@ -39,11 +42,105 @@ import java.util.zip.ZipFile
  */
 object FileUtils {
 
-    val SIZE_TYPE_B = 1
-    val SIZE_TYPE_KB = 2
-    val SIZE_TYPE_MB = 3
-    val SIZE_TYPE_GB = 4
+    private const val SIZE_TYPE_B = 1
+    private const val SIZE_TYPE_KB = 2
+    private const val SIZE_TYPE_MB = 3
+    private const val SIZE_TYPE_GB = 4
+    private const val JPEG_HEADER = "FFD8FF"
+    private const val PNG_HEADER = "89504E47"
+    private const val GIF_HEADER = "47494638"
+    private const val BMP_HEADER = "424D"
     private val TAG = FileUtils::class.java.simpleName
+
+    @StringDef(JPEG_HEADER, PNG_HEADER, GIF_HEADER, BMP_HEADER)
+    annotation class TypeHeader
+
+    //获取文件头信息
+    fun getFileHeader(filePath: String): String? {
+        var `is`: FileInputStream? = null
+        var value: String? = null
+        try {
+            `is` = FileInputStream(filePath)
+            val b = ByteArray(4)
+            `is`.read(b, 0, b.size)
+            value = bytesToHexString(b)
+        } catch (e: Exception) {
+        } finally {
+            if (null != `is`) {
+                try {
+                    `is`.close()
+                } catch (e: Exception) {
+                }
+
+            }
+        }
+        return value
+    }
+
+    fun getFileHeader(file: File): String? {
+        var `is`: FileInputStream? = null
+        var value: String? = null
+        try {
+            `is` = FileInputStream(file)
+            val b = ByteArray(4)
+            `is`.read(b, 0, b.size)
+            value = bytesToHexString(b)
+        } catch (e: Exception) {
+        } finally {
+            if (null != `is`) {
+                try {
+                    `is`.close()
+                } catch (e: Exception) {
+                }
+
+            }
+        }
+        return value
+    }
+
+    fun isSomeTypeByFilePath(path: String, @TypeHeader typeHeader: String): Boolean {
+        try {
+            if (TextUtils.isEmpty(path) || TextUtils.isEmpty(typeHeader)) {
+                return false
+            }
+            val fileHeader = getFileHeader(path)
+            return if (TextUtils.isEmpty(fileHeader)) {
+                false
+            } else fileHeader!!.startsWith(typeHeader)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+
+    }
+
+    fun isSomeTypeByFileHead(fileHeader: String, @TypeHeader typeHeader: String): Boolean {
+        return if (TextUtils.isEmpty(fileHeader) || TextUtils.isEmpty(typeHeader)) {
+            false
+        } else fileHeader.startsWith(typeHeader)
+    }
+
+    private fun bytesToHexString(src: ByteArray?): String? {
+        try {
+            val builder = StringBuilder()
+            if (src == null || src.size <= 0) {
+                return null
+            }
+            var hv: String
+            for (i in src.indices) {
+                hv = Integer.toHexString((src[i] and 0xFF.toByte()).toInt()).toUpperCase()
+                if (hv.length < 2) {
+                    builder.append(0)
+                }
+                builder.append(hv)
+            }
+            return builder.toString()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return ""
+        }
+
+    }
 
     val isSDCardExist: Boolean
         get() = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED

@@ -1,5 +1,6 @@
 apply plugin: 'com.effective.plugin.component'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
@@ -31,6 +32,8 @@ dependencies {
     implementation deps.androidx.appCompat
     implementation deps.kotlin.stdlib
     implementation deps.multiDex
+    implementation deps.rx.rxjava2
+    implementation deps.rx.rxAndroid
     api deps.qmui
 }
 

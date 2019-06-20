@@ -1,7 +1,7 @@
 package com.effective.android.base.activity
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import com.effective.android.base.fragment.BaseFragment
 import com.effective.android.lib_imageloader.R
 

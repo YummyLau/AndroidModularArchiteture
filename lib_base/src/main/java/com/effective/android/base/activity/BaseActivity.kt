@@ -1,9 +1,9 @@
 package com.effective.android.base.activity
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * Created by yummyLau on 2018/4/26.
@@ -20,6 +20,5 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutRes())
-
     }
 }

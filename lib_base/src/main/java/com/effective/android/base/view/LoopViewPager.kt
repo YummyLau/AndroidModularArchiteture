@@ -16,7 +16,7 @@ import java.util.ArrayList
 
 class LoopViewPager @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : ViewPager(context, attrs) {
 
-    var adapter: BannerPageAdapter？ = null
+    var adapter: BannerPageAdapter? = null
 
     private val mOnPageChangeListeners = ArrayList<OnPageChangeListener>()
     private var manualTurning = true
@@ -30,7 +30,7 @@ class LoopViewPager @JvmOverloads constructor(context: Context, attrs: Attribute
 
 
     override fun setCurrentItem(item: Int) {
-        super.setCurrentItem(adapter.toPosition(item))
+        super.setCurrentItem(adapter!!.toPosition(item))
     }
 
     override fun setCurrentItem(item: Int, smoothScroll: Boolean) {
@@ -38,14 +38,14 @@ class LoopViewPager @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     override fun getCurrentItem(): Int {
-        return adapter.toRealPosition(super.getCurrentItem())
+        return adapter!!.toRealPosition(super.getCurrentItem())
     }
 
 
     /**
      * dispatch all PageChange events
      */
-    private val proxyRootListener = object : OnPageChangeListener{
+    private val proxyRootListener = object : OnPageChangeListener {
 
         private var mPreviousPosition = -1
 
@@ -60,7 +60,7 @@ class LoopViewPager @JvmOverloads constructor(context: Context, attrs: Attribute
         }
 
         override fun onPageScrolled(position: Int, positionOffset: Float,
-                           positionOffsetPixels: Int) {
+                                    positionOffsetPixels: Int) {
             val realPosition = adapter!!.toRealPosition(position)
             for (listener in mOnPageChangeListeners) {
                 listener.onPageScrolled(realPosition, positionOffset, positionOffsetPixels)
@@ -124,7 +124,7 @@ class LoopViewPager @JvmOverloads constructor(context: Context, attrs: Attribute
 
 
     fun <T> setViewHolder(holder: BannerPageAdapter.ViewHolder<T>) {
-        adapter = BannerPageAdapter(holder)
+        adapter = BannerPageAdapter<T>(holder)
         super.setAdapter(adapter)
     }
 
