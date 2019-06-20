@@ -14,4 +14,14 @@
     </declare-styleable>
 
     <attr name="SwipeBackLayoutStyle" format="reference"/>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="collapse_line" format="integer" />
+        <attr name="expand_line" format="integer" />
+        <attr name="collapse_text" format="string" />
+        <attr name="expand_text" format="string" />
+        <attr name="expand_color" format="reference"/>
+        <attr name="collapse_color" format="reference"/>
+        <attr name="open_checkout" format="boolean" />
+    </declare-styleable>
 </resources>

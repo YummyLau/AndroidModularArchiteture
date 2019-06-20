@@ -7,16 +7,23 @@ import android.os.Message
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.Interpolator
 import android.widget.Scroller
 import androidx.annotation.NonNull
+import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 
 import java.util.ArrayList
 
-class LoopViewPager @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : ViewPager(context, attrs) {
+/**
+ * 可循环滑动的viewpager
+ * Created by yummyLau on 2018/7/02.
+ * Email: yummyl.lau@gmail.com
+ */
+class LoopViewPager<T> @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : ViewPager(context, attrs) {
 
-    var adapter: BannerPageAdapter? = null
+    var adapter: BannerPageAdapter<T>? = null
 
     private val mOnPageChangeListeners = ArrayList<OnPageChangeListener>()
     private var manualTurning = true
@@ -34,7 +41,7 @@ class LoopViewPager @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     override fun setCurrentItem(item: Int, smoothScroll: Boolean) {
-        super@LoopViewPager.setCurrentItem(adapter.toPosition(item), smoothScroll)
+        super@LoopViewPager.setCurrentItem(adapter!!.toPosition(item), smoothScroll)
     }
 
     override fun getCurrentItem(): Int {
@@ -123,12 +130,12 @@ class LoopViewPager @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
 
-    fun <T> setViewHolder(holder: BannerPageAdapter.ViewHolder<T>) {
-        adapter = BannerPageAdapter<T>(holder)
+    fun setViewHolder(holder: ViewHolder<T>) {
+        adapter = BannerPageAdapter(holder)
         super.setAdapter(adapter)
     }
 
-    fun <T> setData(data: List<T>?) {
+    fun setData(data: List<T>?) {
         if (adapter == null) {
             throw IllegalStateException("setViewHolder must be called first")
         }
@@ -223,7 +230,7 @@ class LoopViewPager @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     @JvmOverloads
-    override fun setPageTransformer(reverseDrawingOrder: Boolean, transformer: PageTransformer?, pageLayerType: Int = View.LAYER_TYPE_HARDWARE) {
+    override fun setPageTransformer(reverseDrawingOrder: Boolean, transformer: PageTransformer?, pageLayerType: Int) {
         super.setPageTransformer(reverseDrawingOrder, transformer, pageLayerType)
         if (transformer == null) {
             offscreenPageLimit = 1
@@ -282,4 +289,81 @@ class LoopViewPager @JvmOverloads constructor(context: Context, attrs: Attribute
         private val MSG_AUTO_TURNING = 0X520
     }
 
+}
+
+
+class BannerPageAdapter<R>(var viewHolder: ViewHolder<R>) : PagerAdapter() {
+
+    var mData: MutableList<R> = ArrayList()
+    private var once: Boolean = false
+
+    override fun getCount(): Int {
+        return mData.size
+    }
+
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        val view = viewHolder.getView(container.context, toRealPosition(position), mData[position])
+        container.addView(view)
+        return view
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        val view = `object` as View
+        container.removeView(view)
+    }
+
+
+    override fun isViewFromObject(view: View, `object`: Any): Boolean {
+        return view === `object`
+    }
+
+    fun setData(data: List<R>) {
+        mData.clear()
+        mData.addAll(data)
+        once = data.size == 1
+        if (!once) {
+            val first = data[0]
+            val last = data[data.size - 1]
+            mData.add(first)
+            mData.add(0, last)
+        }
+        notifyDataSetChanged()
+    }
+
+
+    /**
+     * switch from the position in ViewPager to
+     * the position in user's eyes
+     */
+    fun toRealPosition(position: Int): Int {
+        if (once || mData.size == 0)
+            return 0
+        return if (position == count - 1) {
+            0
+        } else if (position == 0) {
+            count - 3
+        } else {
+            position - 1
+        }
+    }
+
+    /**
+     * switch from the position in user's eyes to
+     * the position in ViewPager
+     */
+    fun toPosition(realPosition: Int): Int {
+        //only one or never set data
+        return if (once || mData.size == 0) {
+            0
+        } else realPosition + 1
+    }
+
+    override fun getItemPosition(`object`: Any): Int {
+        return PagerAdapter.POSITION_NONE
+    }
+}
+
+
+interface ViewHolder<T> {
+    fun getView(context: Context, position: Int, data: T): View
 }
