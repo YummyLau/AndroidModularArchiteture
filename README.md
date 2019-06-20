@@ -2,12 +2,20 @@
 
 ### 更新技术栈（进行中）
 * 基础库提供
-    * androidx逐步迁移（进行中）
+    * androidx逐步迁移（2019-05-03完成）
     * 权限模块基于 easyPermisson进行适配
     * 系统UI适配（沉浸式,状态栏+导航栏）参考 QMUIStatusBarHelper 源码进行封装处理
+
 * 模块化及插件构建
+    * lib_base (持续更新）
     * lib_webview(2019-03-20完成)
-    * lib_imageloader(进行中)
+    * lib_imageloader(2019-04-07完成)
+    * lib_net(进行中)
+    * lib_share(进行中)
+    * lib_video(进行中)
+    * lib_skin(进行中)
+    * lib_geo(进行中)
+
 * 模块通讯重构
 * 性能优化方案
 * java字节码及android持续集成技术
