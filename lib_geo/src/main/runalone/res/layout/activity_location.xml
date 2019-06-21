@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:screenOrientation="portrait"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName,geo_"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="结合室内地图用于展示定位SDK室内定位效果"
+        android:textSize="15sp"
+        android:id="@+id/textView" />
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_below="@id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:screenOrientation="portrait"
+        android:clickable="true" />
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="25dp"
+        android:visibility="gone"
+        android:layout_marginTop="10dip" />
+
+</RelativeLayout>

@@ -24,6 +24,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    resourcePrefix "geo_"
 }
 
 
@@ -31,6 +33,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.androidx.appCompat
     implementation deps.kotlin.stdlib
+    implementation files('libs/BaiduLBS_Android.jar')
 }
 
 componentBuild {

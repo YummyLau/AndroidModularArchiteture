@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-  <string name="hello_world">Hello world!</string>
-  <string name="action_settings">Settings</string>
+<resources >
+    <string name="geo_app_name">lib_geo</string>
+    <string name="geo_hello_world">Hello world!</string>
+    <string name="geo_action_settings">Settings</string>
+    <string name="geo_startlocation">开始定位</string>
+    <string name="geo_stoplocation">停止定位</string>
+    <string name="geo_startforeground">开始后台定位</string>
+    <string name="geo_stopforeground">停止后台定位</string>
+    <string name="geo_error_code_desc">错误码说明</string>
+    <string name="geo_diy_call_back">自定义回调</string>
+    <string name="geo_diy_call_back_ps">ps:网络定位由于精度低于gps，计算距离会有部分偏差</string>
+    <string name="geo_qa_title">常见问题</string>
+    <string name="geo_hight_accuracy_desc">高精度定位模式下，会同时使用GPS、Wifi和基站定位，返回的是当前条件下精度最好的定位结果</string>
+    <string name="geo_saving_battery_desc">低功耗定位模式下，仅使用网络定位即Wifi和基站定位，返回的是当前条件下精度最好的网络定位结果</string>
+    <string name="geo_device_sensor_desc">仅用设备定位模式下，只使用用户的GPS进行定位。这个模式下，由于GPS芯片锁定需要时间，首次定位速度会需要一定的时间</string>
+    <string name="geo_error_code_detail">61 ： GPS定位结果\n
+		62 ： 扫描整合定位依据失败。此时定位结果无效。\n
+		63 ： 网络异常，没有成功向服务器发起请求。此时定位结果无效。\n
+		65 ： 定位缓存的结果。\n
+		66 ： 离线定位结果。通过requestOfflineLocaiton调用时对应的返回结果\n
+		67 ： 离线定位失败。通过requestOfflineLocaiton调用时对应的返回结果\n
+		68 ： 网络连接失败时，查找本地离线定位时对应的返回结果\n
+		161： 表示网络定位结果\n
+		162~167： 服务端定位失败\n
+		502：key参数错误\n
+		505：key不存在或者非法\n
+		601：key服务被开发者自己禁用\n
+		602：key mcode不匹配\n
+		501～700：key验证失败\n</string>
+    <string name="geo_qa_callback">问题反馈</string>
+    <string name="geo_qa_format">邮件格式格式：\n
+		1、手机标识（移动联通IMEI，电信MEID）\n
+		2、问题发生时间\n
+		3、定位类型：失败（给出返回码），或者不准（给出真实位置）等\n
+		4、具体描述：细节描述，可以给出问题发生的频率或者APP名称，sdk版本等，也可以加上附件如日志，贴图等\n
+        </string>
+    <string name="geo_qa_callback_mail">反馈邮箱:loc-bugs@baidu.com</string>
 
 </resources>

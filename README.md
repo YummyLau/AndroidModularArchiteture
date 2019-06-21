@@ -6,16 +6,45 @@
     * 权限模块基于 easyPermisson进行适配
     * 系统UI适配（沉浸式,状态栏+导航栏）参考 QMUIStatusBarHelper 源码进行封装处理
 
-* 模块化及插件构建
-    * lib_base (持续更新）
-    * lib_webview(2019-03-20完成)
-    * lib_imageloader(2019-04-07完成)
-    * lib_net(进行中)
-    * lib_share(进行中)
-    * lib_video(进行中)
-    * lib_skin(进行中)
-    * lib_geo(进行中)
 
+#### 模块集成
+
+目前项目的所有模块都能单独运行调试,为了更大程度聚合某类功能，基于线上项目及自身经验进行划分。（文档正在逐步完成...）
+
+* lib_base (持续更新）
+* lib_webview(2019-03-20完成)
+* lib_imageloader(2019-04-07完成)
+* lib_net(进行中)
+* lib_share(进行中)
+* lib_video(进行中)
+* lib_skin(进行中)
+* lib_geo(进行中)
+
+
+##### 共有基础库（lib_base）
+
+##### WebView及Js库（lib_webview）
+
+##### 图片加载库（lib_imageloader）
+
+##### 网络库（lib_net）
+
+##### 分享库（lib_share）
+
+##### 视频播放库（lib_video）
+
+##### 皮肤功能库（lib_skin）
+
+##### 地图功能库（lib_geo）
+
+使用 [百度地图 SDK ](http://lbsyun.baidu.com/index.php?title=androidsdk/guide/create-project/attention) 做为基础功能支持
+> 支持5种CPU架构： armeabi、armeabi-v7a、arm64-v8a、x86、x86_64. 
+> 支持Android v4.0以上系统. 
+> 默认http协议，支持https协议，Android P需要设置 https协议.
+
+
+
+#### 方向方案
 * 模块通讯重构
 * 性能优化方案
 * java字节码及android持续集成技术
