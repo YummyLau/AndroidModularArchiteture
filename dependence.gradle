@@ -1,6 +1,9 @@
 ext.deps = [:]
 def versions = [:]
 
+//框架
+versions.jimu = "1.3.3"
+
 //kotlin
 versions.kotlin = "1.3.11"
 
@@ -88,6 +91,12 @@ versions.gpuImage = "2.0.3"
 
 //permissoion
 versions.permission = "3.0.0"
+
+
+def jimu = [:]
+jimu.classpath = "com.github.jimu:build-gradle:$versions.jimu"
+jimu.lib = "com.github.jimu:componentlib:$versions.jimu"
+deps.jimu = jimu
 
 def androidx = [:]
 androidx.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"

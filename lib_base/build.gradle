@@ -1,6 +1,8 @@
-apply plugin: 'com.effective.plugin.component'
+//apply plugin: 'com.effective.plugin.component'
+apply plugin: 'com.dd.comgradle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
@@ -34,10 +36,11 @@ dependencies {
     implementation deps.multiDex
     implementation deps.rx.rxjava2
     implementation deps.rx.rxAndroid
+    api deps.jimu.lib
     api deps.qmui
 }
 
-componentBuild {
+combuild {
     applicationName = 'com.effective.android.runalone.application.ImageLoaderApplication'
-    isRegisterComponentAuto = true
+    isRegisterCompoAuto = true
 }

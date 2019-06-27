@@ -1,4 +1,4 @@
-apply plugin: 'com.effective.plugin.component'
+apply plugin: 'com.dd.comgradle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -36,7 +36,7 @@ dependencies {
     implementation files('libs/BaiduLBS_Android.jar')
 }
 
-componentBuild {
+combuild {
     applicationName = 'com.effective.android.geo.GeoApplication'
-    isRegisterComponentAuto = true
+    isRegisterCompoAuto = true
 }

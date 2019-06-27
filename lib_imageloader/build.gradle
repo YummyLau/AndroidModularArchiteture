@@ -1,4 +1,4 @@
-apply plugin: 'com.effective.plugin.component'
+apply plugin: 'com.dd.comgradle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -50,7 +50,7 @@ dependencies {
     implementation deps.kotlin.stdlib
 }
 
-componentBuild {
+combuild {
     applicationName = 'com.effective.android.imageloader.ImageLoaderApplication'
-    isRegisterComponentAuto = true
+    isRegisterCompoAuto = true
 }

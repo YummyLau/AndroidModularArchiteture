@@ -1,4 +1,4 @@
-apply plugin: 'com.effective.plugin.component'
+apply plugin: 'com.dd.comgradle'
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
@@ -32,7 +32,7 @@ dependencies {
     api deps.skin.design
 }
 
-componentBuild {
+combuild {
     applicationName = 'com.effective.android.runalone.application.ImageLoaderApplication'
-    isRegisterComponentAuto = true
+    isRegisterCompoAuto = true
 }
