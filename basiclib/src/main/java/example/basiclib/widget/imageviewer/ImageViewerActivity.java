@@ -2,18 +2,18 @@ package example.basiclib.widget.imageviewer;
 
 
 import android.annotation.TargetApi;
+import android.app.SharedElementCallback;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.SharedElementCallback;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 import example.basiclib.R;
 import example.basiclib.activity.BaseBindingActivity;
 import example.basiclib.databinding.ActivityImageviewerLayoutBinding;

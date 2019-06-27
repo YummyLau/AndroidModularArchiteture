@@ -1,0 +1,115 @@
+apply plugin: 'com.dd.comgradle'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+android {
+
+    compileSdkVersion configs.android.compileSdkVersion
+
+    compileOptions {
+        sourceCompatibility configs.compile.sourceCompatibility
+        targetCompatibility configs.compile.targetCompatibility
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+
+        //multi dex
+        multiDexEnabled true
+
+        applicationId "example.androidmodulararchiteture"
+        minSdkVersion configs.android.minSdkVersion
+        targetSdkVersion configs.android.targetSdkVersion
+        versionCode configs.android.versionCode
+        versionName configs.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //arouter request
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../../android.keystore")
+            storePassword "android"
+            keyAlias "android.keystore"
+            keyPassword "android"
+        }
+        release {
+            storeFile file("../../android.keystore")
+            storePassword "android"
+            keyAlias "android.keystore"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
+            useProguard true
+            shrinkResources true
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    //渠道定义，渠道太多的话建议使用美团方案
+    flavorDimensions 'version'
+    productFlavors {
+        YingYongBao {
+            manifestPlaceholders = [CHANNEL: "YingYongBao"]
+            //提供代码层获取渠道的能力
+            buildConfigField "String", "CHANNEL", "\"YingYongBao\""
+            //支持多包名
+            //applicationId "com.xxx.xxx"
+        }
+        XiaoMi {
+            manifestPlaceholders = [CHANNEL: "XiaoMi"]
+            buildConfigField "String", "CHANNEL", "\"XiaoMi\""
+        }
+        HuaWei {
+            manifestPlaceholders = [CHANNEL: "HuaWei"]
+            buildConfigField "String", "CHANNEL", "\"HuaWei\""
+        }
+    }
+
+    resourcePrefix "app_"
+    buildToolsVersion '28.0.3'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //int config.gradle
+//    implementation project(':DemoAccountService')
+//    implementation project(':DemoSkinService')
+//    implementation project(':DemoComponent')
+//
+//    //component basic lib
+//    implementation project(':componentlib')
+
+//    implementation project(':lib_base')
+
+    //annotation
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}
+
+
+

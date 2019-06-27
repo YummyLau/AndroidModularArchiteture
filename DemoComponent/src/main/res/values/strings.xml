@@ -1,0 +1,22 @@
+<resources>
+    <string name="demo_app_name">weiboDemo</string>
+
+    <!-- 首页 -->
+    <string name="demo_menu_home">首页</string>
+    <string name="demo_menu_skin_peeling">换肤</string>
+    <string name="demo_menu_logout">退出登录</string>
+
+    <!-- 抽屉 -->
+    <string name="demo_main_fragment_tab_hot">热门推荐</string>
+    <string name="demo_main_fragment_tab_follow">关注的人</string>
+    <string name="demo_weibo_count_tip">微博(%1$d)</string>
+    <string name="demo_follows_count_tip">关注(%1$d)</string>
+    <string name="demo_fans_count_tip">粉丝(%1$d)</string>
+
+    <!-- 换肤 -->
+    <string name="demo_skin_no_registe">当前没有注册换肤服务</string>
+    <string name="demo_skin_no_content">未定义可替换皮肤</string>
+
+    <string name="demo_navigation_drawer_open">navigation_drawer_open</string>
+    <string name="demo_navigation_drawer_close">navigation_drawer_close</string>
+</resources>

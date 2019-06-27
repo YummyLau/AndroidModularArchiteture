@@ -8,8 +8,6 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import example.demoaccountservice.Constants;
 
@@ -19,12 +17,10 @@ import example.demoaccountservice.Constants;
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2018/01/25.
  */
-@Singleton
 public class AccountRepository implements AccountDataSource {
 
     private Application mApplication;
 
-    @Inject
     public AccountRepository(Application application) {
         this.mApplication = application;
     }

@@ -61,10 +61,6 @@ dependencies {
     //arouter
     annotationProcessor deps.arouter.compiler
 
-    //dagger2
-    annotationProcessor deps.dagger.compiler
-    annotationProcessor deps.dagger.androidProcessor
-
     //componentlib
     implementation project(':componentlib')
 }

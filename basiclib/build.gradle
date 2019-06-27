@@ -33,11 +33,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //android support
-    api deps.support.v4
-    api deps.support.app_compat
-    api deps.support.design
-    api deps.support.recyclerview
-    api deps.support.cardview
+
+
+    api deps.androidx.design
+    api deps.androidx.cardview
+    api deps.androidx.v4
+    api deps.androidx.recyclerview
+    api deps.androidx.constraintlayout
+    api deps.androidx.appCompat
 
     //rx
     api deps.rx.rxjava2
@@ -61,11 +64,6 @@ dependencies {
     api deps.room.runtime
     api deps.room.rxjava2
 
-    //dagger
-    api deps.dagger.runtime
-    api deps.dagger.android
-    api deps.dagger.androidSupport
-
     //skin
     api deps.skin.support
     api deps.skin.design
@@ -79,20 +77,17 @@ dependencies {
     api deps.gson
     api deps.stetho
     api deps.stethoOkhttp3
-    api deps.glide
     api deps.guaua
-    api deps.constraintLayout
+
     api deps.baseRecyclerViewAdapterHelper
-    api deps.matisse
     api deps.ucrop
     api deps.photoview
     api deps.pageindicatorview
     api deps.flexbox
     api deps.qmui
 
-    annotationProcessor deps.glideCompiler
-    annotationProcessor deps.dagger.compiler
-    annotationProcessor deps.dagger.androidProcessor
+    api deps.glide.core
+    annotationProcessor deps.glide.compiler
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

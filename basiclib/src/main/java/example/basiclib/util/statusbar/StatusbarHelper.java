@@ -4,13 +4,14 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.ColorInt;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.qmuiteam.qmui.util.QMUIDeviceHelper;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
+
+import androidx.annotation.ColorInt;
 
 /**
  * 状态栏 统一处理入口
@@ -23,7 +24,7 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
  * Created by yummylau on 2018/01/25.
  */
 
-public class StatusbarHelper {
+public class StatusBarHelper {
 
     public static void translucentStatusBar(Activity activity) {
         QMUIStatusBarHelper.translucent(activity);
