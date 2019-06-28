@@ -434,7 +434,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
 
         capturedView = childView
         this.activePointerId = activePointerId
-        mCallback.onViewCaptured(childView, activePointerId)
+        mCallback?.onViewCaptured(childView, activePointerId)
         setDragState(STATE_DRAGGING)
     }
 
@@ -465,7 +465,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
             mScroller.abortAnimation()
             val newX = mScroller.currX
             val newY = mScroller.currY
-            mCallback.onViewPositionChanged(capturedView, newX, newY, newX - oldX, newY - oldY)
+            mCallback?.onViewPositionChanged(capturedView, newX, newY, newX - oldX, newY - oldY)
         }
         setDragState(STATE_IDLE)
     }
@@ -542,7 +542,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
             return false
         }
 
-        val duration = computeSettleDuration(capturedView, dx, dy, xvel, yvel)
+        val duration = computeSettleDuration(capturedView!!, dx, dy, xvel, yvel)
         mScroller.startScroll(startLeft, startTop, dx, dy, duration)
 
         setDragState(STATE_SETTLING)
@@ -570,8 +570,8 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
         else
             absDy.toFloat() / addedDistance
 
-        val xduration = computeAxisDuration(dx, xvel, mCallback.getViewHorizontalDragRange(child))
-        val yduration = computeAxisDuration(dy, yvel, mCallback.getViewVerticalDragRange(child))
+        val xduration = computeAxisDuration(dx, xvel, mCallback!!.getViewHorizontalDragRange(child))
+        val yduration = computeAxisDuration(dy, yvel, mCallback!!.getViewVerticalDragRange(child))
 
         return (xduration * xweight + yduration * yweight).toInt()
     }
@@ -582,9 +582,9 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
             return 0
         }
 
-        val width = mParentView.getWidth()
-        val halfWidth = width / 2
-        val distanceRatio = Math.min(1f, Math.abs(delta).toFloat() / width)
+        val width = mParentView!!.getWidth()
+        val halfWidth = width?.div(2)
+        val distanceRatio = Math.min(1f, Math.abs(delta).toFloat().div(width!!))
         val distance = halfWidth + halfWidth * distanceInfluenceForSnapDuration(distanceRatio)
 
         val duration: Int
@@ -689,7 +689,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
             }
 
             if (dx != 0 || dy != 0) {
-                mCallback.onViewPositionChanged(capturedView, x, y, dx, dy)
+                mCallback?.onViewPositionChanged(capturedView, x, y, dx, dy)
             }
 
             if (keepGoing && x == mScroller.finalX && y == mScroller.finalY) {
@@ -702,7 +702,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
 
             if (!keepGoing) {
                 if (deferCallbacks) {
-                    mParentView.post(mSetIdleRunnable)
+                    mParentView?.post(mSetIdleRunnable)
                 } else {
                     setDragState(STATE_IDLE)
                 }
@@ -720,7 +720,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
      */
     private fun dispatchViewReleased(xvel: Float, yvel: Float) {
         mReleaseInProgress = true
-        mCallback.onViewReleased(capturedView, xvel, yvel)
+        mCallback!!.onViewReleased(capturedView, xvel, yvel)
         mReleaseInProgress = false
 
         if (viewDragState == STATE_DRAGGING) {
@@ -749,13 +749,13 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
             return
         }
         try {
-            mInitialMotionX[pointerId] = 0f
-            mInitialMotionY[pointerId] = 0f
-            mLastMotionX[pointerId] = 0f
-            mLastMotionY[pointerId] = 0f
-            mInitialEdgeTouched[pointerId] = 0
-            mEdgeDragsInProgress[pointerId] = 0
-            mEdgeDragsLocked[pointerId] = 0
+            mInitialMotionX!![pointerId] = 0f
+            mInitialMotionY!![pointerId] = 0f
+            mLastMotionX!![pointerId] = 0f
+            mLastMotionY!![pointerId] = 0f
+            mInitialEdgeTouched!![pointerId] = 0
+            mEdgeDragsInProgress!![pointerId] = 0
+            mEdgeDragsLocked!![pointerId] = 0
             mPointersDown = mPointersDown and (1 shl pointerId).inv()
         } catch (pE: ArrayIndexOutOfBoundsException) {
             pE.printStackTrace()
@@ -795,11 +795,11 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
 
     private fun saveInitialMotion(x: Float, y: Float, pointerId: Int) {
         ensureMotionHistorySizeForId(pointerId)
-        mLastMotionX[pointerId] = x
-        mInitialMotionX[pointerId] = mLastMotionX[pointerId]
-        mLastMotionY[pointerId] = y
-        mInitialMotionY[pointerId] = mLastMotionY[pointerId]
-        mInitialEdgeTouched[pointerId] = getEdgeTouched(x.toInt(), y.toInt())
+        mLastMotionX!![pointerId] = x
+        mInitialMotionX!![pointerId] = mLastMotionX!![pointerId]
+        mLastMotionY!![pointerId] = y
+        mInitialMotionY!![pointerId] = mLastMotionY!![pointerId]
+        mInitialEdgeTouched!![pointerId] = getEdgeTouched(x.toInt(), y.toInt())
         mPointersDown = mPointersDown or (1 shl pointerId)
     }
 
@@ -810,8 +810,8 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
             val x = MotionEventCompat.getX(ev, i)
             val y = MotionEventCompat.getY(ev, i)
             try {
-                mLastMotionX[pointerId] = x
-                mLastMotionY[pointerId] = y
+                mLastMotionX!![pointerId] = x
+                mLastMotionY!![pointerId] = y
             } catch (pE: ArrayIndexOutOfBoundsException) {
                 pE.printStackTrace()
             }
@@ -842,7 +842,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
     internal fun setDragState(state: Int) {
         if (viewDragState != state) {
             viewDragState = state
-            mCallback.onViewDragStateChanged(state)
+            mCallback!!.onViewDragStateChanged(state)
             if (state == STATE_IDLE) {
                 capturedView = null
             }
@@ -864,7 +864,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
             // Already done!
             return true
         }
-        if (toCapture != null && mCallback.tryCaptureView(toCapture, pointerId)) {
+        if (toCapture != null && mCallback!!.tryCaptureView(toCapture, pointerId)) {
             activePointerId = pointerId
             captureChildView(toCapture, pointerId)
             return true
@@ -949,7 +949,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
 
                 val edgesTouched = mInitialEdgeTouched!![pointerId]
                 if (edgesTouched and mTrackingEdges != 0) {
-                    mCallback.onEdgeTouched(edgesTouched and mTrackingEdges, pointerId)
+                    mCallback?.onEdgeTouched(edgesTouched and mTrackingEdges, pointerId)
                 }
             }
 
@@ -964,7 +964,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
                 if (viewDragState == STATE_IDLE) {
                     val edgesTouched = mInitialEdgeTouched!![pointerId]
                     if (edgesTouched and mTrackingEdges != 0) {
-                        mCallback.onEdgeTouched(edgesTouched and mTrackingEdges, pointerId)
+                        mCallback!!.onEdgeTouched(edgesTouched and mTrackingEdges, pointerId)
                     }
                 } else if (viewDragState == STATE_SETTLING) {
                     // Catch a settling view if possible.
@@ -1053,7 +1053,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
 
                 val edgesTouched = mInitialEdgeTouched!![pointerId]
                 if (edgesTouched and mTrackingEdges != 0) {
-                    mCallback.onEdgeTouched(edgesTouched and mTrackingEdges, pointerId)
+                    mCallback!!.onEdgeTouched(edgesTouched and mTrackingEdges, pointerId)
                 }
             }
 
@@ -1074,7 +1074,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
 
                     val edgesTouched = mInitialEdgeTouched!![pointerId]
                     if (edgesTouched and mTrackingEdges != 0) {
-                        mCallback.onEdgeTouched(edgesTouched and mTrackingEdges, pointerId)
+                        mCallback!!.onEdgeTouched(edgesTouched and mTrackingEdges, pointerId)
                     }
                 } else if (isCapturedViewUnder(x.toInt(), y.toInt())) {
                     // We're still tracking a captured view. If the same view is
@@ -1093,25 +1093,28 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
                     val index = MotionEventCompat.findPointerIndex(ev, activePointerId)
                     var x = 0f
                     var y = 0f
+                    var boolean = false
                     try {
                         x = MotionEventCompat.getX(ev, index)
                         y = MotionEventCompat.getY(ev, index)
                     } catch (pE: IllegalArgumentException) {
                         pE.printStackTrace()
-                        break
+                        boolean = true
                     }
 
-                    try {
-                        val idx = (x - mLastMotionX!![activePointerId]).toInt()
-                        val idy = (y - mLastMotionY!![activePointerId]).toInt()
+                    if(!boolean){
+                        try {
+                            val idx = (x - mLastMotionX!![activePointerId]).toInt()
+                            val idy = (y - mLastMotionY!![activePointerId]).toInt()
 
-                        dragTo(capturedView!!.left + idx, capturedView!!.top + idy, idx, idy)
+                            dragTo(capturedView!!.left + idx, capturedView!!.top + idy, idx, idy)
 
-                    } catch (pE: ArrayIndexOutOfBoundsException) {
-                        pE.printStackTrace()
+                        } catch (pE: ArrayIndexOutOfBoundsException) {
+                            pE.printStackTrace()
+                        }
+
+                        saveLastMotion(ev)
                     }
-
-                    saveLastMotion(ev)
 
                 } else {
                     // Check to see if any pointer is now over a draggable view.
@@ -1216,8 +1219,8 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
         }
 
         if (dragsStarted != 0) {
-            mEdgeDragsInProgress[pointerId] = mEdgeDragsInProgress[pointerId] or dragsStarted
-            mCallback.onEdgeDragStarted(dragsStarted, pointerId)
+            mEdgeDragsInProgress!![pointerId] = mEdgeDragsInProgress!![pointerId] or dragsStarted
+            mCallback?.onEdgeDragStarted(dragsStarted, pointerId)
         }
     }
 
@@ -1231,8 +1234,8 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
                 || absDelta <= touchSlop && absODelta <= touchSlop) {
             return false
         }
-        if (absDelta < absODelta * 0.5f && mCallback.onEdgeLock(edge)) {
-            mEdgeDragsLocked[pointerId] = mEdgeDragsLocked[pointerId] or edge
+        if (absDelta < absODelta * 0.5f && mCallback!!.onEdgeLock(edge)) {
+            mEdgeDragsLocked!![pointerId] = mEdgeDragsLocked!![pointerId] or edge
             return false
         }
         return mEdgeDragsInProgress!![pointerId] and edge == 0 && absDelta > touchSlop
@@ -1252,8 +1255,8 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
         if (child == null) {
             return false
         }
-        val checkHorizontal = mCallback.getViewHorizontalDragRange(child) > 0
-        val checkVertical = mCallback.getViewVerticalDragRange(child) > 0
+        val checkHorizontal = mCallback!!.getViewHorizontalDragRange(child) > 0
+        val checkVertical = mCallback!!.getViewVerticalDragRange(child) > 0
 
         if (checkHorizontal && checkVertical) {
             return dx * dx + dy * dy > touchSlop * touchSlop
@@ -1386,11 +1389,11 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
         val oldLeft = capturedView!!.left
         val oldTop = capturedView!!.top
         if (dx != 0) {
-            clampedX = mCallback.clampViewPositionHorizontal(capturedView, left, dx)
+            clampedX = mCallback!!.clampViewPositionHorizontal(capturedView!!, left, dx)
             capturedView!!.offsetLeftAndRight(clampedX - oldLeft)
         }
         if (dy != 0) {
-            clampedY = mCallback.clampViewPositionVertical(capturedView, top, dy)
+            clampedY = mCallback!!.clampViewPositionVertical(capturedView!!, top, dy)
             capturedView!!.offsetTopAndBottom(clampedY - oldTop)
         }
 
@@ -1398,7 +1401,7 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
             val clampedDx = clampedX - oldLeft
             val clampedDy = clampedY - oldTop
             mCallback
-                    .onViewPositionChanged(capturedView, clampedX, clampedY, clampedDx, clampedDy)
+                    ?.onViewPositionChanged(capturedView, clampedX, clampedY, clampedDx, clampedDy)
         }
     }
 
@@ -1444,9 +1447,9 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
      * @return The topmost child view under (x, y) or null if none found.
      */
     fun findTopChildUnder(x: Int, y: Int): View? {
-        val childCount = mParentView.getChildCount()
+        val childCount = mParentView!!.getChildCount()
         for (i in childCount - 1 downTo 0) {
-            val child = mParentView.getChildAt(mCallback.getOrderedChildIndex(i))
+            val child = mParentView!!.getChildAt(mCallback!!.getOrderedChildIndex(i))
             if (x >= child.left && x < child.right && y >= child.top
                     && y < child.bottom) {
                 return child
@@ -1458,13 +1461,13 @@ private constructor(context: Context, private val mParentView: ViewGroup?, priva
     private fun getEdgeTouched(x: Int, y: Int): Int {
         var result = 0
 
-        if (x < mParentView.getLeft() + edgeSize)
+        if (x < mParentView!!.getLeft() + edgeSize)
             result = EDGE_LEFT
-        if (y < mParentView.getTop() + edgeSize)
+        if (y < mParentView!!.getTop() + edgeSize)
             result = EDGE_TOP
-        if (x > mParentView.getRight() - edgeSize)
+        if (x > mParentView!!.getRight() - edgeSize)
             result = EDGE_RIGHT
-        if (y > mParentView.getBottom() - edgeSize)
+        if (y > mParentView!!.getBottom() - edgeSize)
             result = EDGE_BOTTOM
 
         return result

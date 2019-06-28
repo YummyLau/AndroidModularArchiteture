@@ -13,7 +13,7 @@ import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.effective.android.lib_imageloader.R;
+import com.effective.android.lib_base.R;
 
 
 /**

@@ -1,5 +1,5 @@
 //apply plugin: 'com.effective.plugin.component'
-apply plugin: 'com.dd.comgradle'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
@@ -40,7 +40,3 @@ dependencies {
     api deps.qmui
 }
 
-combuild {
-    applicationName = 'com.effective.android.runalone.application.ImageLoaderApplication'
-    isRegisterCompoAuto = true
-}

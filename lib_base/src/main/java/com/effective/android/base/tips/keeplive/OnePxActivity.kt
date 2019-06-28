@@ -1,9 +1,9 @@
 package com.effective.android.base.tips.keeplive
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Gravity
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * 方案三，qq方案

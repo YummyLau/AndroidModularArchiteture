@@ -3,7 +3,7 @@ package com.effective.android.base.activity
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.effective.android.base.fragment.BaseFragment
-import com.effective.android.lib_imageloader.R
+import com.effective.android.lib_base.R
 
 /**
  * Created by yummyLau on 2018/4/26.

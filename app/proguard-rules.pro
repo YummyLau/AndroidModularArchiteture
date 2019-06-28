@@ -19,3 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+-keep interface * {
+  <methods>;
+}
+-keep class com.luojilab.component.componentlib.** {*;}
+-keep class com.luojilab.gen.router.** {*;}
+-keep class * implements com.luojilab.component.componentlib.router.ISyringe {*;}
+-keep class * implements com.luojilab.component.componentlib.applicationlike.IApplicationLike {*;}
+
+-dontwarn javax.lang.model.element.Element

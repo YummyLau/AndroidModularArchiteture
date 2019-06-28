@@ -1,6 +1,7 @@
 apply plugin: 'com.dd.comgradle'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+
 android {
 
     compileSdkVersion configs.android.compileSdkVersion
@@ -8,10 +9,6 @@ android {
     compileOptions {
         sourceCompatibility configs.compile.sourceCompatibility
         targetCompatibility configs.compile.targetCompatibility
-    }
-
-    dataBinding {
-        enabled = true
     }
 
     defaultConfig {
@@ -36,15 +33,15 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("../../android.keystore")
+            storeFile file("../app.keystore")
             storePassword "android"
-            keyAlias "android.keystore"
+            keyAlias "key0"
             keyPassword "android"
         }
         release {
-            storeFile file("../../android.keystore")
+            storeFile file("../app.keystore")
             storePassword "android"
-            keyAlias "android.keystore"
+            keyAlias "key0"
             keyPassword "android"
         }
     }
@@ -94,21 +91,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //int config.gradle
-//    implementation project(':DemoAccountService')
-//    implementation project(':DemoSkinService')
-//    implementation project(':DemoComponent')
-//
-//    //component basic lib
-//    implementation project(':componentlib')
-
-//    implementation project(':lib_base')
-
-    //annotation
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(':lib_base')
+    annotationProcessor 'com.github.jimu:router-anno-compiler:1.0.1'
+    implementation 'com.github.jimu:router-annotation:1.0.1'
 }
 repositories {
     mavenCentral()
+}
+
+combuild {
+    applicationName = 'com.luojilab.componentdemo.application.AppApplication'
+    isRegisterCompoAuto = true
 }
 
 

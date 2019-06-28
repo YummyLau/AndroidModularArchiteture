@@ -14,8 +14,8 @@ import android.widget.FrameLayout
 
 
 import androidx.core.view.ViewCompat
+import com.effective.android.lib_base.R
 
-import com.effective.android.lib_imageloader.R
 
 import java.util.ArrayList
 
@@ -303,7 +303,7 @@ class SwipeBackLayout @JvmOverloads constructor(context: Context, attrs: Attribu
             mTrackingEdge = EDGE_BOTTOM
         }
 
-        mDragHelper.smoothSlideViewTo(mContentView, left, top)
+        mDragHelper.smoothSlideViewTo(mContentView!!, left, top)
         invalidate()
     }
 
@@ -519,11 +519,12 @@ class SwipeBackLayout @JvmOverloads constructor(context: Context, attrs: Attribu
             var left = 0
             var top = 0
             if (mTrackingEdge and EDGE_LEFT != 0) {
-                left = if (xvel > 0 || xvel == 0f && mScrollPercent > mScrollThreshold)
+                left = if (xvel > 0 || xvel == 0f && mScrollPercent > mScrollThreshold) {
                     childWidth
-                            + mShadowLeft!!.intrinsicWidth + OVERSCROLL_DISTANCE
-                else
+                    +mShadowLeft!!.intrinsicWidth + OVERSCROLL_DISTANCE
+                } else {
                     0
+                }
             } else if (mTrackingEdge and EDGE_RIGHT != 0) {
                 left = if (xvel < 0 || xvel == 0f && mScrollPercent > mScrollThreshold)
                     -(childWidth

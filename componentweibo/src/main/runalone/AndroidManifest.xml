@@ -17,8 +17,7 @@
     <application
         android:name=".WeiboApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/app_ic_launcher"
-        android:roundIcon="@mipmap/app_ic_launcher_round"
+        android:icon="@mipmap/app_weibo_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         tools:replace="android:label">

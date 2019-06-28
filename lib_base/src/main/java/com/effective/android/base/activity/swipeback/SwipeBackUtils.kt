@@ -75,7 +75,7 @@ object SwipeBackUtils {
             val method = Activity::class.java.getDeclaredMethod("convertToTranslucent",
                     translucentConversionListenerClazz!!)
             method.isAccessible = true
-            method.invoke(activity, *arrayOf<Any>(null))
+            method.invoke(activity)
         } catch (t: Throwable) {
             Log.e("convertToTranslucent", t.toString())
         }

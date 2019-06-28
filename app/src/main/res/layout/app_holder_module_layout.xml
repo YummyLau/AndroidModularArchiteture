@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/app_sh_holder_module"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:padding="5dp"
+        android:background="@drawable/app_sh_enter_module"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+
+    <RadioGroup
+        android:id="@+id/inject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="注册"
+            android:textColor="@android:color/black" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="解绑"
+            android:textColor="@android:color/black" />
+
+    </RadioGroup>
+
+</RelativeLayout>
