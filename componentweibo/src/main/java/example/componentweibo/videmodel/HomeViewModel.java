@@ -13,8 +13,8 @@ import java.util.List;
 
 import example.basiclib.AbsentLiveData;
 import example.basiclib.net.resource.Resource;
-import example.weibocomponent.App;
-import example.weibocomponent.data.local.db.entity.StatusEntity;
+import example.componentweibo.App;
+import example.componentweibo.data.local.db.entity.StatusEntity;
 
 /**
  * Email yummyl.lau@gmail.com

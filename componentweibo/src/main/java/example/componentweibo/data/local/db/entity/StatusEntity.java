@@ -1,7 +1,18 @@
 package example.componentweibo.data.local.db.entity;
 
 
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.TypeConverters;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+import example.componentweibo.bean.Pic;
+import example.componentweibo.data.local.db.converter.PicConverters;
 
 /**
  * 微博实体

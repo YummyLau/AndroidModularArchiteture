@@ -2,6 +2,9 @@ package example.componentweibo.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import example.componentweibo.data.local.db.entity.StatusEntity;
+import example.componentweibo.data.local.db.entity.UserEntity;
+import example.componentweibo.data.remote.result.ApiResult;
 
 
 /**

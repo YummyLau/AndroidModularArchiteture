@@ -24,11 +24,11 @@ import example.basiclib.util.imageloader.ImageLoader;
 import example.basiclib.widget.imageviewer.ImageViewer;
 import example.basiclib.widget.nineimage.NineImageView;
 import example.basiclib.widget.nineimage.NineImageViewAdapter;
-import example.weibocomponent.R;
-import example.weibocomponent.TimeRransformer;
-import example.weibocomponent.bean.Pic;
-import example.weibocomponent.data.local.db.entity.StatusEntity;
-import example.weibocomponent.data.local.db.entity.UserEntity;
+import example.componentweibo.R;
+import example.componentweibo.TimeRransformer;
+import example.componentweibo.bean.Pic;
+import example.componentweibo.data.local.db.entity.StatusEntity;
+import example.componentweibo.data.local.db.entity.UserEntity;
 
 /**
  * 微博adapter

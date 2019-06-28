@@ -3,6 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
+
+    dataBinding {
+        enabled = true
+    }
+
     compileSdkVersion configs.android.compileSdkVersion
     buildToolsVersion configs.android.buildToolsVersion
 
@@ -12,6 +17,8 @@ android {
     }
 
     defaultConfig {
+        //multi dex
+        multiDexEnabled true
         minSdkVersion configs.android.minSdkVersion
         targetSdkVersion configs.android.targetSdkVersion
         versionCode 1
@@ -31,6 +38,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.androidx.appCompat
     implementation project(':componentlib')
+    implementation project(':DemoAccountService')
+    implementation project(':DemoSkinService')
     annotationProcessor deps.arouter.compiler
     annotationProcessor deps.lifecycle.compiler
     annotationProcessor deps.glide.compiler

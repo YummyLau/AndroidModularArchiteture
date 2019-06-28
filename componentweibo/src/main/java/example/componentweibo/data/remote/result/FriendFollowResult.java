@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import example.weibocomponent.data.local.db.entity.UserEntity;
+import example.componentweibo.data.local.db.entity.UserEntity;
 
 /**
  * Email yummyl.lau@gmail.com

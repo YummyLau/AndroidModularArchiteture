@@ -16,11 +16,11 @@ import example.basiclib.net.resource.Resource;
 import example.componentlib.service.ServiceManager;
 import example.componentlib.service.account.Account;
 import example.componentlib.service.account.IAccountService;
-import example.weibocomponent.data.local.db.AppDataBase;
-import example.weibocomponent.data.local.db.entity.StatusEntity;
-import example.weibocomponent.data.local.db.entity.UserEntity;
-import example.weibocomponent.data.remote.api.WeiboApis;
-import example.weibocomponent.data.remote.result.StatusResult;
+import example.componentweibo.data.local.db.AppDataBase;
+import example.componentweibo.data.local.db.entity.StatusEntity;
+import example.componentweibo.data.local.db.entity.UserEntity;
+import example.componentweibo.data.remote.api.WeiboApis;
+import example.componentweibo.data.remote.result.StatusResult;
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 

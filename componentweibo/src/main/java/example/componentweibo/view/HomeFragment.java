@@ -20,11 +20,11 @@ import example.basiclib.activity.BaseFragment;
 import example.basiclib.event.RefreshSkinEvent;
 import example.basiclib.net.resource.Resource;
 import example.basiclib.util.EventBusUtils;
-import example.weibocomponent.R;
-import example.weibocomponent.data.local.db.entity.StatusEntity;
-import example.weibocomponent.databinding.DemoFragmentHomeLayoutBinding;
-import example.weibocomponent.videmodel.HomeViewModel;
-import example.weibocomponent.view.adapter.StatusListAdapter;
+import example.componentweibo.R;
+import example.componentweibo.data.local.db.entity.StatusEntity;
+import example.componentweibo.databinding.DemoFragmentHomeLayoutBinding;
+import example.componentweibo.videmodel.HomeViewModel;
+import example.componentweibo.view.adapter.StatusListAdapter;
 import skin.support.SkinCompatManager;
 import skin.support.content.res.SkinCompatResources;
 

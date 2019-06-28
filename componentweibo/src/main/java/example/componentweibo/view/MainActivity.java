@@ -33,11 +33,11 @@ import example.basiclib.net.resource.Resource;
 import example.basiclib.widget.imageviewer.ImageViewer;
 import example.componentlib.service.ServiceManager;
 import example.componentlib.service.account.IAccountService;
-import example.weibocomponent.Constants;
-import example.weibocomponent.R;
-import example.weibocomponent.data.local.db.entity.UserEntity;
-import example.weibocomponent.databinding.DemoActivityMainLayoutBinding;
-import example.weibocomponent.videmodel.MainViewModel;
+import example.componentweibo.Constants;
+import example.componentweibo.R;
+import example.componentweibo.data.local.db.entity.UserEntity;
+import example.componentweibo.databinding.DemoActivityMainLayoutBinding;
+import example.componentweibo.videmodel.MainViewModel;
 
 
 /**

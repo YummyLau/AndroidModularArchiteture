@@ -5,12 +5,12 @@ import androidx.annotation.Nullable;
 
 import java.util.Map;
 
-import example.weibocomponent.bean.Comment;
-import example.weibocomponent.data.local.db.entity.UserEntity;
-import example.weibocomponent.data.remote.result.CommentListResult;
-import example.weibocomponent.data.remote.result.FriendFollowResult;
-import example.weibocomponent.data.remote.result.StatusResult;
-import example.weibocomponent.data.remote.result.UrlResult;
+import example.componentweibo.bean.Comment;
+import example.componentweibo.data.local.db.entity.UserEntity;
+import example.componentweibo.data.remote.result.CommentListResult;
+import example.componentweibo.data.remote.result.FriendFollowResult;
+import example.componentweibo.data.remote.result.StatusResult;
+import example.componentweibo.data.remote.result.UrlResult;
 import io.reactivex.Flowable;
 import retrofit2.http.Field;
 import retrofit2.http.GET;

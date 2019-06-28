@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import example.weibocomponent.bean.Comment;
+import example.componentweibo.bean.Comment;
+
 
 /**
  * Email yummyl.lau@gmail.com

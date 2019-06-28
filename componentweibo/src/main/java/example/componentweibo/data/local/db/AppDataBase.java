@@ -7,11 +7,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import example.weibocomponent.data.local.db.dao.StatusDao;
-import example.weibocomponent.data.local.db.dao.UserDao;
-import example.weibocomponent.data.local.db.entity.StatusEntity;
-import example.weibocomponent.data.local.db.entity.TimeZoneEntity;
-import example.weibocomponent.data.local.db.entity.UserEntity;
+import example.componentweibo.data.local.db.dao.StatusDao;
+import example.componentweibo.data.local.db.dao.UserDao;
+import example.componentweibo.data.local.db.entity.StatusEntity;
+import example.componentweibo.data.local.db.entity.TimeZoneEntity;
+import example.componentweibo.data.local.db.entity.UserEntity;
 
 /**
  * Email yummyl.lau@gmail.com

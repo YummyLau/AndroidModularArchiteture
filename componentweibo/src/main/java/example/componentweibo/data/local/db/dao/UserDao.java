@@ -9,7 +9,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import example.weibocomponent.data.local.db.entity.UserEntity;
+import example.componentweibo.data.local.db.entity.UserEntity;
 import io.reactivex.Flowable;
 
 

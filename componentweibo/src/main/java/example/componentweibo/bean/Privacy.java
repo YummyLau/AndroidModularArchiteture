@@ -1,6 +1,8 @@
 package example.componentweibo.bean;
 
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 隐私设置
  Email yummyl.lau@gmail.com

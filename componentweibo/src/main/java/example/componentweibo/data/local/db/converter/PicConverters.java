@@ -10,7 +10,8 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-import example.weibocomponent.bean.Pic;
+import example.componentweibo.bean.Pic;
+
 
 /**
  * Email yummyl.lau@gmail.com

@@ -13,8 +13,8 @@ import example.basiclib.widget.roundimage.RoundedImageView;
 import example.componentlib.service.ServiceManager;
 import example.componentlib.service.skin.ISkinService;
 import example.componentlib.service.skin.Skin;
-import example.weibocomponent.R;
-import example.weibocomponent.databinding.DemoFragmentSkinLayoutBinding;
+import example.componentweibo.R;
+import example.componentweibo.databinding.DemoFragmentSkinLayoutBinding;
 
 /**
  * Email yummyl.lau@gmail.com

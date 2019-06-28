@@ -1,6 +1,5 @@
 
 include ':app', ':basiclib', ':componentlib', ':SkinBlueGreyProvider', ':SkinPickProvider', ':lib_imageloader', ':lib_webview', ':lib_video', ':lib_share', ':lib_net', ':lib_base', ':lib_skin', ':tunning', ':lib_geo', ':componentweibo'
-include ':DemoComponent'
 include ':DemoAccountService', ':DemoSkinService'
 include ':SkinGreenProvider'
 include ':gradle_build'

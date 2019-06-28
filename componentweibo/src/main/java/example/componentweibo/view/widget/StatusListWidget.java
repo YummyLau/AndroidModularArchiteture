@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import example.weibocomponent.view.adapter.StatusListAdapter;
+import example.componentweibo.view.adapter.StatusListAdapter;
 
 
 /**

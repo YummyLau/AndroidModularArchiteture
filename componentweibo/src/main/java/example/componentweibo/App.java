@@ -7,9 +7,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import example.basiclib.net.HttpClient;
 import example.basiclib.net.HttpParam;
-import example.weibocomponent.data.DemoRepository;
-import example.weibocomponent.data.local.db.AppDataBase;
-import example.weibocomponent.data.remote.api.WeiboApis;
+import example.componentweibo.data.DemoRepository;
+import example.componentweibo.data.local.db.AppDataBase;
+import example.componentweibo.data.remote.api.WeiboApis;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
