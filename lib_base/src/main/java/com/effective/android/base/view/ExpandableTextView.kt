@@ -13,7 +13,7 @@ import android.util.AttributeSet
 import android.view.View
 
 import androidx.appcompat.widget.AppCompatTextView
-import com.effective.android.lib_base.R
+import com.effective.android.base.R
 
 
 /**

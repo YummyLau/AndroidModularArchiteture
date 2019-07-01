@@ -1,4 +1,4 @@
-apply plugin: 'com.dd.comgradle'
+apply plugin: 'com.android.component'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -39,7 +39,8 @@ dependencies {
     implementation deps.glide.core
 }
 
-combuild {
+componentBuild {
     applicationName = 'com.effective.android.webview.TestWebViewActivity'
-    isRegisterCompoAuto = true
+    isRegisterComponentAuto = true
 }
+

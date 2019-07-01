@@ -12,14 +12,14 @@ import java.util.jar.JarFile
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class Utils{
+class Utils {
 
-    public static void buildOutput(String log) {
-        System.out.println(Constants.TAG + log);
+    static void buildOutput(String log) {
+        System.out.println(Constants.TAG + " " + log);
     }
 
     @Nonnull
-    public static <T> T getExtensionsProject(Project project, String tag, Class<T> tClass) {
+    static <T> T getExtensionsProject(Project project, String tag, Class<T> tClass) {
         return project.getExtensions().create(tag, tClass);
     }
 
@@ -34,7 +34,7 @@ class Utils{
      * @param assembleTask
      * @return
      */
-    public static String parseMainModuleName(@Nonnull Project project, @Nonnull AssembleTask assembleTask) {
+    static String parseMainModuleName(@Nonnull Project project, @Nonnull AssembleTask assembleTask) {
         String compileModule = "app";
         //需要在根目录 gradle.properties 中设置 mainmodulename
         if (!project.getRootProject().hasProperty(Constants.PROPERTIES_MAIN_MODULE_NAME)) {
@@ -43,18 +43,17 @@ class Utils{
         if (assembleTask.modules.size() > 0 && assembleTask.modules.get(0) != null
                 && assembleTask.modules.get(0).trim().length() > 0
                 && !assembleTask.modules.get(0).equals("all")) {
-            compileModule = assembleTask.modules.get(0);
+            compileModule = assembleTask.modules.get(0)
         } else {
             compileModule = (String) project.getRootProject().findProperty(Constants.PROPERTIES_MAIN_MODULE_NAME);
         }
         if (compileModule == null || compileModule.trim().length() <= 0) {
             compileModule = "app";
         }
-        buildOutput("compile module is : " + compileModule);
         return compileModule;
     }
 
-    public static AssembleTask parseTaskInfo(@Nonnull List<String> taskNames) {
+    static AssembleTask parseTaskInfo(@Nonnull List<String> taskNames) {
         AssembleTask assembleTask = new AssembleTask()
         if (!taskNames.isEmpty()) {
             for (String task : taskNames) {
@@ -87,17 +86,19 @@ class Utils{
      * @param assembleTask
      * @param project
      */
-    public static void compileComponents(@Nonnull Project project, @Nonnull AssembleTask assembleTask) {
+    static void compileComponents(@Nonnull Project project, @Nonnull AssembleTask assembleTask) {
         String components;
         if (assembleTask.isDebug) {
             components = (String) project.getProperties().get("debugCompileComponent");
         } else {
             components = (String) project.getProperties().get("releaseCompileComponent");
         }
+
         if (components == null || components.length() == 0) {
             System.out.println("there is no add dependencies ");
             return;
         }
+
         String[] compileComponents = components.split(",");
         if (compileComponents == null || compileComponents.length == 0) {
             System.out.println("there is no add dependencies ");

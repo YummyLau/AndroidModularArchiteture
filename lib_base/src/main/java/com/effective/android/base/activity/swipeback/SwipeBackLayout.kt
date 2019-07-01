@@ -14,7 +14,7 @@ import android.widget.FrameLayout
 
 
 import androidx.core.view.ViewCompat
-import com.effective.android.lib_base.R
+import com.effective.android.base.R
 
 
 import java.util.ArrayList

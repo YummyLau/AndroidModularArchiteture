@@ -1,4 +1,4 @@
-apply plugin: 'com.dd.comgradle'
+apply plugin: 'com.android.component'
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
@@ -30,7 +30,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 }
 
-combuild {
+componentBuild {
     applicationName = 'com.effective.android.share.TestShareApplication'
-    isRegisterCompoAuto = true
+    isRegisterComponentAuto = true
 }

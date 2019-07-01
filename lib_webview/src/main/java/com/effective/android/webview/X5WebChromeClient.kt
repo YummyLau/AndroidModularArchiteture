@@ -3,9 +3,9 @@ package com.effective.android.webview
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Message
-import android.support.annotation.RequiresApi
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 
 import com.tencent.smtt.export.external.interfaces.ConsoleMessage
 import com.tencent.smtt.export.external.interfaces.GeolocationPermissionsCallback

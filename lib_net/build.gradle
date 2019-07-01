@@ -1,4 +1,4 @@
-apply plugin: 'com.dd.comgradle'
+apply plugin: 'com.android.component'
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
@@ -38,7 +38,7 @@ dependencies {
     api deps.gson
 }
 
-combuild {
+componentBuild {
     applicationName = 'com.effective.android.runalone.application.ImageLoaderApplication'
-    isRegisterCompoAuto = true
+    isRegisterComponentAuto = true
 }

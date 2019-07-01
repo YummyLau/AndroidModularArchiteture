@@ -1,8 +1,6 @@
-//apply plugin: 'com.effective.plugin.component'
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.component'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
@@ -21,12 +19,11 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        debug {
+        }
+        debug {
         }
     }
-
 }
 
 dependencies {
@@ -38,5 +35,10 @@ dependencies {
     implementation deps.rx.rxAndroid
     api deps.jimu.lib
     api deps.qmui
+}
+
+componentBuild {
+    applicationName = 'com.effective.android.base.TestApplication'
+    isRegisterComponentAuto = true
 }
 

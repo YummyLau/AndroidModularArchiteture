@@ -1,4 +1,4 @@
-apply plugin: 'com.dd.comgradle'
+apply plugin: 'com.android.component'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
@@ -49,7 +49,7 @@ dependencies {
 }
 
 
-combuild {
+componentBuild {
     applicationName = 'example.componentweibo.WeiboApplication'
-    isRegisterCompoAuto = true
+    isRegisterComponentAuto = true
 }

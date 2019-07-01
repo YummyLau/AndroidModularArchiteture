@@ -2,10 +2,10 @@ package com.effective.android.webview.jsbridge
 
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
+import androidx.annotation.RequiresApi
 import com.effective.android.webview.interfaces.OnFinishCallback
 
 import com.tencent.smtt.export.external.interfaces.ClientCertRequest

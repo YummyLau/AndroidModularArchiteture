@@ -1,7 +1,7 @@
 package com.effective.android.webview.jsbridge
 
-import android.support.annotation.NonNull
 import android.text.TextUtils
+import androidx.annotation.NonNull
 
 import org.json.JSONArray
 import org.json.JSONException

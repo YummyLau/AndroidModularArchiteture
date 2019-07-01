@@ -1,6 +1,7 @@
 package com.effective.android.skin.listener;
 
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import com.effective.android.skin.bean.SkinItem;
 

@@ -1,6 +1,6 @@
 package com.effective.plugin
 
-
+import com.android.build.gradle.BaseExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -25,9 +25,11 @@ class ComponentPlugin implements Plugin<Project> {
         Utils.buildOutput("current module is " + module)
 
         //解析AssembleTask
+        Utils.buildOutput("startParameter.taskNames is " + project.gradle.startParameter.taskNames)
         AssembleTask assembleTask = Utils.parseTaskInfo(project.gradle.startParameter.taskNames)
         if (assembleTask.isAssemble) {
             compileModule = Utils.parseMainModuleName(project, assembleTask)
+            Utils.buildOutput("compile module is : " + compileModule);
         }
 
         //需要在特定的模块中声明 isRunAlone，用于判断是否单独运行
@@ -70,7 +72,9 @@ class ComponentPlugin implements Plugin<Project> {
             }
             if (assembleTask.isAssemble && module.equals(compileModule)) {
                 Utils.compileComponents(project, assembleTask)
-                project.android.registerTransform(new CodeTransform(project))
+                //参考https://github.com/luojilab/DDComponentForAndroid/issues/122
+                project.extensions.findByType(BaseExtension.class).registerTransform(new CodeTransform(project));
+//                project.android.registerTransform(new CodeTransform(project))
             }
         } else {
             project.apply plugin: Constants.PLUGIN_LIBRARY

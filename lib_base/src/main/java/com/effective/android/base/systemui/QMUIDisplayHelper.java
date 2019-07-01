@@ -1,5 +1,6 @@
 package com.effective.android.base.systemui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -17,6 +18,8 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
+
+import androidx.annotation.RequiresPermission;
 
 import java.lang.reflect.Field;
 import java.util.Locale;
@@ -283,6 +286,7 @@ public class QMUIDisplayHelper {
      * @param context
      * @return
      */
+    @RequiresPermission(allOf = Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean hasInternet(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;

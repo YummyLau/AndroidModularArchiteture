@@ -1,8 +1,9 @@
 package com.effective.android.skin;
 
 import android.app.Application;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.effective.android.skin.bean.SkinItem;
 import com.effective.android.skin.listener.OnSkinChangeListener;

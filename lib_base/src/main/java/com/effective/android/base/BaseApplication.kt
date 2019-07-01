@@ -19,7 +19,7 @@ import androidx.multidex.MultiDex
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2019/06/16.
  */
-class BaseApplication() : Application() {
+open class BaseApplication() : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
