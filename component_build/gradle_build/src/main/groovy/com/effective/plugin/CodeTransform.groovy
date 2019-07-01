@@ -28,7 +28,7 @@ class CodeTransform extends Transform {
         project.android.bootClasspath.each {
             classPool.appendClassPath((String) it.absolutePath)
         }
-        def box = ConvertUtils.toCtClasses(transformInvocation.getInputs(), classPool)
+        def box = Utils.toCtClasses(transformInvocation.getInputs(), classPool)
 
         //要收集的application，一般情况下只有一个
         List<CtClass> applications = new ArrayList<>()

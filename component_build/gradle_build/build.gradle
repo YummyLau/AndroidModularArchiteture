@@ -2,19 +2,19 @@ apply plugin: 'groovy'
 //apply maven 发布插件
 apply plugin: 'maven'
 
-group = 'com.effective.plugin.component'
+group = 'com.effective.plugins'
+archivesBaseName = 'component'
 version = '1.0.0'
 
 //设置本地发布路径
 uploadArchives {
     repositories {
         mavenDeployer {
-            //指定发布到本地的版本信息
+            /**配置Maven部署器，将工件上传到本地目录，这里是放到与该项目同级目录的repo目录下*/
             repository(url: uri('../repo'))
         }
     }
 }
-
 
 dependencies {
     compile 'com.android.tools.build:gradle:3.2.1'
