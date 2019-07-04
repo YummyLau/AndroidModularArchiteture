@@ -19,7 +19,8 @@ buildscript {
     }
     dependencies {
         //使用的是gradle Plugin 3.4.1 -> Gradle 5.1.1
-        classpath 'com.effective.plugins:component:1.0.0'
+//        classpath 'com.effective.plugins:component:1.0.0'
+        classpath 'com.effective.plugins:plugin-component'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependence here; they belong
@@ -37,7 +38,7 @@ allprojects {
 
         //自己构建的仓库，用于存放gradle脚本
         maven {
-            url uri('./component_build/repo')
+            url uri('./plugin-repo')
             name 'repo'
         }
 

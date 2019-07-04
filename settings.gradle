@@ -2,6 +2,10 @@
 include ':app', ':basiclib', ':componentlib', ':SkinBlueGreyProvider', ':SkinPickProvider', ':lib_imageloader', ':lib_webview', ':lib_video', ':lib_share', ':lib_net', ':lib_base', ':lib_skin', ':tunning', ':lib_geo', ':componentweibo'
 include ':DemoAccountService', ':DemoSkinService'
 include ':SkinGreenProvider'
-include ':gradle_build'
 
-project(':gradle_build').projectDir = new File('component_build/gradle_build')
+//include ':gradle_build'
+//project(':gradle_build').projectDir = new File('component_build/gradle_build')
+
+
+//调试插件使用
+includeBuild './plugin-component'
