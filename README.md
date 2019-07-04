@@ -72,7 +72,7 @@
 由于Android项目架构多样化，技术迭代更新很快，该项目会持续集成优化主流技术，并在线上App校验可行的情况下更新项目。希望有经验的开发者能指出不足，一起学习 :relaxed: :relaxed:
 
 
-### Project Architeture  
+### Project Architeture (旧方案)
 项目采用模块化结构设计，基于[Google Architecture Components](https://developer.android.com/arch)方案和MVVM设计模式完成模块开发完成
 
 - basiclib 分装实现开源库及私有库，存放公用基础类（如*BaseActivity*）
