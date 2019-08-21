@@ -12,18 +12,12 @@ import androidx.fragment.app.Fragment
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : VisibleFragment() {
 
     @LayoutRes
     abstract fun getLayoutRes(): Int
 
-    var isFragmentVisible: Boolean = false
     var contentView: View? = null
-
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        isFragmentVisible = isVisibleToUser
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (inflater != null) {
