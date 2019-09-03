@@ -1,0 +1,9 @@
+component {
+    debug {
+        applicationName 'com.effective.android.webview.runalone.TestWebViewApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'libVideo'
+    }
+}

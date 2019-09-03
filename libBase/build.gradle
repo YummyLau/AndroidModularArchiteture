@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion configs.android.compileSdkVersion
+    buildToolsVersion configs.android.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility configs.compile.sourceCompatibility
+        targetCompatibility configs.compile.targetCompatibility
+    }
+
+    defaultConfig {
+        minSdkVersion configs.android.minSdkVersion
+        targetSdkVersion configs.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+        }
+        debug {
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.androidx.appCompat
+    implementation deps.kotlin.stdlib
+    implementation deps.multiDex
+    implementation deps.rx.rxjava2
+    implementation deps.rx.rxAndroid
+    api deps.jimu.lib
+    api deps.qmui
+}
+
+

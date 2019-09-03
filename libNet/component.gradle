@@ -1,0 +1,9 @@
+component {
+    debug {
+        applicationName 'com.effective.android.net.ImageLoaderApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'libNet'
+    }
+}

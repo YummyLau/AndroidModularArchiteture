@@ -1,0 +1,9 @@
+component {
+    debug {
+        applicationName 'com.effective.android.geo.GeoApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'libGeo'
+    }
+}

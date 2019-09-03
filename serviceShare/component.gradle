@@ -1,0 +1,9 @@
+component {
+    debug {
+        applicationName 'com.effective.android.share.TestShareApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'libShare'
+    }
+}

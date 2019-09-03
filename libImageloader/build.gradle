@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+kapt {
+    arguments {
+        arg("host", "kotlin")
+    }
+}
+
+android {
+    compileSdkVersion configs.android.compileSdkVersion
+    buildToolsVersion configs.android.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility configs.compile.sourceCompatibility
+        targetCompatibility configs.compile.targetCompatibility
+    }
+
+    defaultConfig {
+        minSdkVersion configs.android.minSdkVersion
+        targetSdkVersion configs.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.androidx.appCompat
+    implementation deps.kotlin.stdlib
+
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.constraintlayout
+
+    implementation deps.glide.core
+    implementation deps.glide.okhttp3
+    implementation deps.glide.transformations
+    implementation deps.glide.gpuImage
+    kapt deps.glide.compiler
+    implementation deps.multiDex
+    //https://github.com/dialogflow/dialogflow-android-client/issues/57
+    implementation project(configuration: 'default', path: ':libBase')
+}
+
+
