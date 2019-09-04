@@ -14,15 +14,15 @@ class SwipeBackActivityHelper(private var mActivity: Activity?) {
         private set
 
     fun onActivityCreate() {
-        mActivity!!.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        mActivity!!.window.decorView.setBackgroundDrawable(null)
+        mActivity?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        mActivity?.window?.decorView?.background = null
         swipeBackLayout = LayoutInflater.from(mActivity).inflate(
                 R.layout.widget_swipeback_layout, null) as SwipeBackLayout
     }
 
     fun onPostCreate() {
-        if(mActivity!= null){
-            swipeBackLayout!!.attachToActivity(mActivity!!)
+        if (mActivity != null) {
+            swipeBackLayout?.attachToActivity(mActivity!!)
         }
     }
 

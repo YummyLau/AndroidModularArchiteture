@@ -1,27 +1,21 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: "dependence.gradle"
-apply from: "config.gradle"
+apply from: "./gradleScript/dependence.gradle"
+apply from: "./gradleScript/config.gradle"
 
 buildscript {
-    ext.kotlin_version = '1.3.21'
-
-    ext.kotlin_version = '1.3.11'
+    ext.kotlin_version = '1.3.50'
+    ext.component_version = '0.0.1'
 
     repositories {
-        maven {
-            url uri('./component_build/repo')
-            name 'repo'
-        }
         google()
         jcenter()
 
+        maven { url 'https://dl.bintray.com/yummylau/maven' }
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
     dependencies {
-        //使用的是gradle Plugin 3.4.1 -> Gradle 5.1.1
-//        classpath 'com.effective.plugins:component:1.0.0'
-        classpath 'com.effective.plugins:plugin-component'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.effective.plugins:component:$component_version"
+        classpath "com.effective.plugins:component-support:$component_version"
 
         // NOTE: Do not place your application dependence here; they belong
         // in the individual module build.gradle files
@@ -32,16 +26,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url "http://dl.bintray.com/kotlin/kotlin-eap"
-        }
-
-        //自己构建的仓库，用于存放gradle脚本
-        maven {
-            url uri('./plugin-repo')
-            name 'repo'
-        }
-
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
         maven { url "https://jitpack.io" }
     }
@@ -50,3 +35,6 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+apply from: "./gradleScript/component.gradle"

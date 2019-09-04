@@ -50,7 +50,7 @@ public class LocationFilter extends Activity {
 		mBaiduMap = mMapView.getMap();
 		mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
 		mBaiduMap.setMapStatus(MapStatusUpdateFactory.zoomTo(15));
-		locService = ((GeoApplication) getApplication()).locationService;
+		locService = ((GeoApplication) getApplication()).getLocationService();
 		LocationClientOption mOption = locService.getDefaultLocationClientOption();
 		mOption.setLocationMode(LocationClientOption.LocationMode.Battery_Saving);
 		mOption.setCoorType("bd09ll");

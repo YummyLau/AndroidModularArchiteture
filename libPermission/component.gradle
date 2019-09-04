@@ -1,0 +1,9 @@
+component {
+    debug {
+        applicationName 'com.effective.android.permission.TestApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'libPermission'
+    }
+}

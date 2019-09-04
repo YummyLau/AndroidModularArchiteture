@@ -1,11 +1,19 @@
+//library 层
+include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission'
 
-include ':app', ':basiclib', ':componentlib', ':SkinBlueGreyProvider', ':SkinPickProvider', ':lib_imageloader', ':lib_webview', ':lib_video', ':lib_share', ':lib_net', ':lib_base', ':lib_skin', ':tunning', ':lib_geo', ':componentweibo'
-include ':DemoAccountService', ':DemoSkinService'
-include ':SkinGreenProvider'
+//service 层
+include ':serviceShare', ':serviceSkin'
 
-//include ':gradle_build'
-//project(':gradle_build').projectDir = new File('component_build/gradle_build')
+//component 层
+include ':componentlib', ':componentweibo'
+
+//demo  todo
+include ':app', ':basiclib', ':DemoAccountService', ':DemoSkinService'
 
 
-//调试插件使用
-includeBuild './plugin-component'
+//皮肤包
+//include ':SkinBlueGreyProvider', ':SkinPickProvider',':SkinGreenProvider'
+
+
+//include ':tunning'
+

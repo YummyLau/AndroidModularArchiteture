@@ -280,7 +280,7 @@ class SwipeBackLayout @JvmOverloads constructor(context: Context, attrs: Attribu
      * @see .EDGE_BOTTOM
      */
     fun setShadow(resId: Int, edgeFlag: Int) {
-        setShadow(resources.getDrawable(resId), edgeFlag)
+        setShadow(resources.getDrawable(resId, null), edgeFlag)
     }
 
     /**
@@ -433,14 +433,14 @@ class SwipeBackLayout @JvmOverloads constructor(context: Context, attrs: Attribu
     private inner class ViewDragCallback : ViewDragHelper.Callback() {
         private var mIsScrollOverValid: Boolean = false
 
-        override fun tryCaptureView(view: View, i: Int): Boolean {
-            val ret = mDragHelper.isEdgeTouched(mEdgeFlag, i)
+        override fun tryCaptureView(child: View, pointerId: Int): Boolean {
+            val ret = mDragHelper.isEdgeTouched(mEdgeFlag, pointerId)
             if (ret) {
-                if (mDragHelper.isEdgeTouched(EDGE_LEFT, i)) {
+                if (mDragHelper.isEdgeTouched(EDGE_LEFT, pointerId)) {
                     mTrackingEdge = EDGE_LEFT
-                } else if (mDragHelper.isEdgeTouched(EDGE_RIGHT, i)) {
+                } else if (mDragHelper.isEdgeTouched(EDGE_RIGHT, pointerId)) {
                     mTrackingEdge = EDGE_RIGHT
-                } else if (mDragHelper.isEdgeTouched(EDGE_BOTTOM, i)) {
+                } else if (mDragHelper.isEdgeTouched(EDGE_BOTTOM, pointerId)) {
                     mTrackingEdge = EDGE_BOTTOM
                 }
                 if (mListeners != null && !mListeners!!.isEmpty()) {
@@ -452,10 +452,10 @@ class SwipeBackLayout @JvmOverloads constructor(context: Context, attrs: Attribu
             }
             var directionCheck = false
             if (mEdgeFlag == EDGE_LEFT || mEdgeFlag == EDGE_RIGHT) {
-                directionCheck = !mDragHelper.checkTouchSlop(ViewDragHelper.DIRECTION_VERTICAL, i)
+                directionCheck = !mDragHelper.checkTouchSlop(ViewDragHelper.DIRECTION_VERTICAL, pointerId)
             } else if (mEdgeFlag == EDGE_BOTTOM) {
                 directionCheck = !mDragHelper
-                        .checkTouchSlop(ViewDragHelper.DIRECTION_HORIZONTAL, i)
+                        .checkTouchSlop(ViewDragHelper.DIRECTION_HORIZONTAL, pointerId)
             } else if (mEdgeFlag == EDGE_ALL) {
                 directionCheck = true
             }
@@ -520,15 +520,13 @@ class SwipeBackLayout @JvmOverloads constructor(context: Context, attrs: Attribu
             var top = 0
             if (mTrackingEdge and EDGE_LEFT != 0) {
                 left = if (xvel > 0 || xvel == 0f && mScrollPercent > mScrollThreshold) {
-                    childWidth
-                    +mShadowLeft!!.intrinsicWidth + OVERSCROLL_DISTANCE
+                    childWidth + mShadowLeft!!.intrinsicWidth + OVERSCROLL_DISTANCE
                 } else {
                     0
                 }
             } else if (mTrackingEdge and EDGE_RIGHT != 0) {
                 left = if (xvel < 0 || xvel == 0f && mScrollPercent > mScrollThreshold)
-                    -(childWidth
-                            + mShadowLeft!!.intrinsicWidth + OVERSCROLL_DISTANCE)
+                    -(childWidth + mShadowLeft!!.intrinsicWidth + OVERSCROLL_DISTANCE)
                 else
                     0
             } else if (mTrackingEdge and EDGE_BOTTOM != 0) {

@@ -1,4 +1,4 @@
-apply plugin: 'com.android.component'
+apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
@@ -93,17 +93,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    implementation project(':lib_base')
-    annotationProcessor 'com.github.jimu:router-anno-compiler:1.0.1'
-    implementation 'com.github.jimu:router-annotation:1.0.1'
 }
 repositories {
     mavenCentral()
 }
 
-componentBuild {
-    applicationName = 'com.luojilab.componentdemo.application.AppApplication'
-    isRegisterComponentAuto = true
-}
 
 
 

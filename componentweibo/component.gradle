@@ -1,9 +1,9 @@
 component {
     debug {
-        applicationName 'com.effective.android.geo.GeoApplication'
+        applicationName 'example.componentweibo.WeiboApplication'
     }
     sdk {
         groupId 'com.effective.android'
-        artifactId 'libGeo'
+        artifactId 'componentWeibo'
     }
 }

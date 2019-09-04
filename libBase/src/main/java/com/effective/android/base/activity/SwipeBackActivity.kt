@@ -12,7 +12,7 @@ import com.effective.android.base.activity.swipeback.SwipeBackUtils
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
  */
-abstract class SwipeBackActivity : BaseActivity() ,SwipeBackActivityBase{
+abstract class SwipeBackActivity : BaseActivity(), SwipeBackActivityBase {
 
     private var mHelper: SwipeBackActivityHelper? = null
     private var isResume: Boolean = false
@@ -23,9 +23,7 @@ abstract class SwipeBackActivity : BaseActivity() ,SwipeBackActivityBase{
         if (supportSwipeBack()) {
             mHelper = SwipeBackActivityHelper(this)
             mHelper?.onActivityCreate()
-            if (getSwipeBackLayout() != null) {
-                getSwipeBackLayout().setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
-            }
+            getSwipeBackLayout().setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
         }
     }
 

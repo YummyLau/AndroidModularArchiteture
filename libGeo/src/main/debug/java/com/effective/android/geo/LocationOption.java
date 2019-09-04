@@ -42,7 +42,7 @@ public class LocationOption extends Activity {
 		describe = (CheckBox)findViewById(R.id.Describe);
 		director = (CheckBox)findViewById(R.id.Director);
 		startLoc = (Button)findViewById(R.id.start);
-		locService =  ((GeoApplication)getApplication()).locationService;
+		locService =  ((GeoApplication)getApplication()).getLocationService();
 		option = new LocationClientOption();
 		locService.stop();
 	}

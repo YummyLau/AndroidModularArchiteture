@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -20,21 +21,22 @@ android {
     }
 
     buildTypes {
-        debug {
-        }
-        debug {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    resourcePrefix "permission_"
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.androidx.appCompat
-    implementation deps.kotlin.stdlib
-    implementation deps.multiDex
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
     implementation deps.rx.rxjava2
     implementation deps.rx.rxAndroid
-    api deps.qmui
 }
-
-
