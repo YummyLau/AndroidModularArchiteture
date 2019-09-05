@@ -11,7 +11,7 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import androidx.lifecycle.ViewModel;
 import example.basiclib.util.EventBusUtils;
 import example.componentlib.service.account.AccountEvent;
-import com.effective.android.service.account.App;
+import com.effective.android.service.account.AccountComponent;
 
 import static com.effective.android.service.account.Constants.LOG_TAG;
 
@@ -26,9 +26,10 @@ public class LoginViewModel extends ViewModel {
 
     public void onClickToLogin(SsoHandler ssoHandler) {
         ssoHandler.authorize(new WbAuthListener() {
+
             @Override
             public void onSuccess(Oauth2AccessToken oauth2AccessToken) {
-                App.accountRepository.saveAccount(oauth2AccessToken);
+                AccountComponent.accountRepository.saveAccount(oauth2AccessToken);
                 EventBusUtils.post(new AccountEvent(AccountEvent.LOGIN_TYPE));
                 Log.d(LOG_TAG, "login success!");
             }

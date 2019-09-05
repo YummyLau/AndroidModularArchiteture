@@ -1,4 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdkVersion configs.android.compileSdkVersion
     buildToolsVersion configs.android.buildToolsVersion
@@ -35,10 +39,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    annotationProcessor deps.arouter.compiler
-    annotationProcessor deps.lifecycle.compiler
-    annotationProcessor deps.room.compiler
+    implementation deps.androidx.appCompat
+    implementation deps.kotlin.stdlib
+    implementation deps.rx.rxjava2
+    implementation deps.rx.rxAndroid
     implementation 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
-    implementation project(':componentlib')
+    implementation project(':libBase')
 }

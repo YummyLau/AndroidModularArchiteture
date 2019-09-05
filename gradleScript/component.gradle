@@ -6,7 +6,7 @@ component {
 
     mainModuleName 'app'
 
-    include 'app,serviceSkin'
+    include 'app,serviceAccount'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

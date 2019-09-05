@@ -8,7 +8,7 @@
 
 
     <application
-        android:name="com.effective.android.service.account.App"
+        android:name="com.effective.android.service.account.AccountComponent"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">

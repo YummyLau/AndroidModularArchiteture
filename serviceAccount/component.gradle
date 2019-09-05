@@ -5,5 +5,9 @@ component {
     sdk {
         groupId 'com.effective.android'
         artifactId 'serviceAccount'
+        dependencies {
+            implementation deps.rx.rxjava2
+            implementation deps.rx.rxAndroid
+        }
     }
 }
