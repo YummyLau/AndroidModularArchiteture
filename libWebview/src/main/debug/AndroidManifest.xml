@@ -10,13 +10,13 @@
 
 
     <application
-        android:name="com.effective.android.webview.runalone.TestWebViewApplication"
+        android:name="com.effective.android.webview.TestWebViewApplication"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
         tools:replace="android:label">
-        <activity android:name="com.effective.android.webview.runalone.TestWebViewActivity">
+        <activity android:name="com.effective.android.webview.TestWebViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

@@ -13,10 +13,6 @@ android {
     }
 
     defaultConfig {
-
-        //multi dex
-        multiDexEnabled true
-
         minSdkVersion configs.android.minSdkVersion
         targetSdkVersion configs.android.targetSdkVersion
         versionCode 1

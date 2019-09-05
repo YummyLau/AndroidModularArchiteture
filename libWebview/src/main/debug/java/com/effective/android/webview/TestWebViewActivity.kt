@@ -1,20 +1,15 @@
-package com.effective.android.webview.runalone
+package com.effective.android.webview
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import com.effective.android.webview.R
-import com.effective.android.webview.X5JsWebView
-import com.effective.android.webview.Utils
-import com.effective.android.webview.X5WebChromeClient
 import com.effective.android.webview.bean.Request
 import com.effective.android.webview.bean.Result
 import com.effective.android.webview.interfaces.BridgeHandler
@@ -23,6 +18,7 @@ import com.google.gson.reflect.TypeToken
 import com.tencent.smtt.sdk.WebView
 import android.annotation.TargetApi
 import android.os.Build
+import androidx.annotation.RequiresApi
 
 
 class TestWebViewActivity : Activity() {

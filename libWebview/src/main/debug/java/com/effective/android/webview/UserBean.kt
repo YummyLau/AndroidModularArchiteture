@@ -1,4 +1,4 @@
-package com.effective.android.webview.runalone
+package com.effective.android.webview
 
 import com.google.gson.annotations.SerializedName
 

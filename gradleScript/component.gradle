@@ -6,7 +6,7 @@ component {
 
     mainModuleName 'app'
 
-    include 'libPermission'
+    include 'libBase,libWebview'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

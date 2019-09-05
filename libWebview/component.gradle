@@ -1,6 +1,6 @@
 component {
     debug {
-        applicationName 'com.effective.android.webview.runalone.TestWebViewApplication'
+        applicationName 'com.effective.android.webview.TestWebViewApplication'
     }
     sdk {
         groupId 'com.effective.android'

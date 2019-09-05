@@ -31,7 +31,7 @@
 
 * **Base层**
 
-    目前提供 `lib_base`,`lib_webview`,`lib_imageloader`,`lib_net`,共有基础库
+    目前提供 `libPermission(done)`,`lib_webview`,`lib_imageloader`,`lib_net`,共有基础库
 
 * **Service层**
 

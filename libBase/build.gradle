@@ -19,12 +19,7 @@ android {
         versionName "1.0"
     }
 
-    buildTypes {
-        debug {
-        }
-        debug {
-        }
-    }
+    resourcePrefix "base_"
 }
 
 dependencies {
