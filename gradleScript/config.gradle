@@ -14,12 +14,3 @@ android.targetSdkVersion = 28
 android.versionCode = 1
 android.versionName = "1.0"
 configs.android = android
-
-def service = [:]
-service.accountService = "true"
-service.skinService = "true"
-configs.service = service
-
-def component = [:]
-component.demo = "true"
-configs.component = component

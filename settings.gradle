@@ -1,14 +1,15 @@
 //library 层
-include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission'
+include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':libSkin'
 
 //service 层
-include ':serviceShare', ':serviceSkin'
+include ':serviceShare', ':serviceSkin', ':serviceAccount'
 
 //component 层
-include ':componentlib', ':componentweibo'
+include ':componentlib', ':basiclib'
 
 //demo  todo
-include ':app', ':basiclib', ':DemoAccountService', ':DemoSkinService'
+//include ':app',':componentlib', ':componentweibo'
+
 
 
 //皮肤包

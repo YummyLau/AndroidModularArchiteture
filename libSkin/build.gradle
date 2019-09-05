@@ -1,21 +1,19 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion configs.android.compileSdkVersion
     buildToolsVersion configs.android.buildToolsVersion
 
-    dataBinding {
-        enabled = true
+    compileOptions {
+        sourceCompatibility configs.compile.sourceCompatibility
+        targetCompatibility configs.compile.targetCompatibility
     }
 
     defaultConfig {
         minSdkVersion configs.android.minSdkVersion
         targetSdkVersion configs.android.targetSdkVersion
-        versionCode configs.android.versionCode
-        versionName configs.android.versionName
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -25,15 +23,12 @@ android {
         }
     }
 
-    resourcePrefix "skin_"
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.androidx.appCompat
-    implementation deps.kotlin.stdlib
     api deps.skin.support
     api deps.skin.design
-    api deps.skin.cardview
 }
+

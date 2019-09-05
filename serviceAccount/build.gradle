@@ -1,8 +1,4 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'com.android.library'
 android {
     compileSdkVersion configs.android.compileSdkVersion
     buildToolsVersion configs.android.buildToolsVersion
@@ -16,6 +12,14 @@ android {
         targetSdkVersion configs.android.targetSdkVersion
         versionCode configs.android.versionCode
         versionName configs.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //arouter request
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -25,15 +29,16 @@ android {
         }
     }
 
-    resourcePrefix "skin_"
+    resourcePrefix "account_"
 
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.androidx.appCompat
-    implementation deps.kotlin.stdlib
-    api deps.skin.support
-    api deps.skin.design
-    api deps.skin.cardview
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    annotationProcessor deps.arouter.compiler
+    annotationProcessor deps.lifecycle.compiler
+    annotationProcessor deps.room.compiler
+    implementation 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
+    implementation project(':componentlib')
 }

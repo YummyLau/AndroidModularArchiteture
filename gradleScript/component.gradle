@@ -6,7 +6,7 @@ component {
 
     mainModuleName 'app'
 
-    include 'libBase,libWebview'
+    include 'app,serviceSkin'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

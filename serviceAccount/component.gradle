@@ -1,0 +1,9 @@
+component {
+    debug {
+        applicationName 'com.effective.android.service.account.TestApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'serviceAccount'
+    }
+}

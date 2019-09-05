@@ -1,9 +1,14 @@
 component {
     debug {
-        applicationName 'com.effective.android.lib_imageloader.ImageLoaderApplication'
+        applicationName 'com.effective.android.service.skin.TestApplication'
     }
     sdk {
         groupId 'com.effective.android'
         artifactId 'serviceSkin'
+
+        dependencies {
+            implementation deps.androidx.appCompat
+            implementation deps.kotlin.stdlib
+        }
     }
 }
