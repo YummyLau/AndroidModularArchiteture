@@ -2,7 +2,6 @@ package com.effective.android.base.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 import com.effective.android.base.fragment.BaseFragment
 import com.effective.android.base.R
 
@@ -18,7 +17,7 @@ abstract class SingleFragmentActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_single_fragment_layout)
+        setContentView(R.layout.base_activity_single_fragment_layout)
         val fm = supportFragmentManager
         var fragment: BaseFragment? = fm.findFragmentById(R.id.id_fragment_container) as BaseFragment
         if (fragment == null) {

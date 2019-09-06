@@ -5,12 +5,10 @@ include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImage
 include ':serviceShare', ':serviceSkin', ':serviceAccount'
 
 //component 层
-include ':componentlib', ':basiclib'
-
-//demo  todo
-//include ':app',':componentlib', ':componentweibo'
 include ':componentweibo'
 
+//壳层
+include ':app'
 
 
 //皮肤包

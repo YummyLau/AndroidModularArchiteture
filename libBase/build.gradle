@@ -26,6 +26,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    api deps.androidx.design
     api deps.androidx.appCompat
     api deps.kotlin.stdlib
     api deps.multiDex

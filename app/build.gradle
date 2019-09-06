@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android'
 android {
 
     compileSdkVersion configs.android.compileSdkVersion
+    buildToolsVersion configs.android.buildToolsVersion
 
     compileOptions {
         sourceCompatibility configs.compile.sourceCompatibility
@@ -86,13 +87,12 @@ android {
     }
 
     resourcePrefix "app_"
-    buildToolsVersion '28.0.3'
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-//    implementation project(':lib_base')
+    implementation project(':libBase')
 }
 repositories {
     mavenCentral()

@@ -1,4 +1,4 @@
-package example.androidmodulararchiteture
+package com.effective.android.example
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
@@ -8,7 +8,7 @@ import androidx.multidex.MultiDex
  * Created by yummylau on 2018/01/25.
  */
 
-class App : Application() {
+class ModuleApplication : Application() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
