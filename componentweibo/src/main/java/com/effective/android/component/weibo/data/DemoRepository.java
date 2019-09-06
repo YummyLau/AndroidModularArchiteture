@@ -5,22 +5,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 
 import org.reactivestreams.Publisher;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
-import example.basiclib.net.resource.NetworkBoundResource;
-import example.basiclib.net.resource.Resource;
-import example.componentlib.service.ServiceManager;
-import example.componentlib.service.account.Account;
-import example.componentlib.service.account.IAccountService;
+import com.effective.android.base.rxjava.Rx2Creator;
 import com.effective.android.component.weibo.data.local.db.AppDataBase;
 import com.effective.android.component.weibo.data.local.db.entity.StatusEntity;
 import com.effective.android.component.weibo.data.local.db.entity.UserEntity;
 import com.effective.android.component.weibo.data.remote.api.WeiboApis;
 import com.effective.android.component.weibo.data.remote.result.StatusResult;
+import com.effective.android.component.weibo.net.resource.NetworkBoundResource;
+import com.effective.android.component.weibo.net.resource.Resource;
+
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 
@@ -36,7 +35,6 @@ public class DemoRepository implements DemoDataSource {
     public DemoRepository(AppDataBase appDataBase, WeiboApis weiboApis) {
         this.mAppDataBase = appDataBase;
         this.mWeiboApis = weiboApis;
-        ARouter.getInstance().inject(this);
     }
 
 
@@ -46,24 +44,32 @@ public class DemoRepository implements DemoDataSource {
             @NonNull
             @Override
             protected Flowable<List<StatusEntity>> createApi() {
-                return ServiceManager.getService(IAccountService.class).getAccount()
-                        .flatMap(new Function<Account, Publisher<List<StatusEntity>>>() {
+                // TODO: 2019-09-06
+                return Rx2Creator.createFlowable(new Callable<List<StatusEntity>>() {
+                    @Override
+                    public List<StatusEntity> call() throws Exception {
+                        return null;
+                    }
+                });
 
-                            @Override
-                            public Publisher<List<StatusEntity>> apply(Account account) throws Exception {
-                                return mWeiboApis
-                                        .getAllStatus(account.token)
-                                        .map(new Function<StatusResult, List<StatusEntity>>() {
-                                            @Override
-                                            public List<StatusEntity> apply(StatusResult statusResult) throws Exception {
-                                                if (statusResult != null && statusResult.statusList != null) {
-                                                    return statusResult.statusList;
-                                                }
-                                                return null;
-                                            }
-                                        });
-                            }
-                        });
+//                return ServiceManager.getService(IAccountService.class).getAccount()
+//                        .flatMap(new Function<Account, Publisher<List<StatusEntity>>>() {
+//
+//                            @Override
+//                            public Publisher<List<StatusEntity>> apply(Account account) throws Exception {
+//                                return mWeiboApis
+//                                        .getAllStatus(account.token)
+//                                        .map(new Function<StatusResult, List<StatusEntity>>() {
+//                                            @Override
+//                                            public List<StatusEntity> apply(StatusResult statusResult) throws Exception {
+//                                                if (statusResult != null && statusResult.statusList != null) {
+//                                                    return statusResult.statusList;
+//                                                }
+//                                                return null;
+//                                            }
+//                                        });
+//                            }
+//                        });
             }
 
             @Override
@@ -91,13 +97,20 @@ public class DemoRepository implements DemoDataSource {
             @NonNull
             @Override
             protected Flowable<UserEntity> createApi() {
-                return ServiceManager.getService(IAccountService.class).getAccount()
-                        .flatMap(new Function<Account, Publisher<UserEntity>>() {
-                            @Override
-                            public Publisher<UserEntity> apply(Account account) throws Exception {
-                                return mWeiboApis.getUser(account.token, account.uid);
-                            }
-                        });
+                // TODO: 2019-09-06
+                return Rx2Creator.createFlowable(new Callable<UserEntity>() {
+                    @Override
+                    public UserEntity call() throws Exception {
+                        return null;
+                    }
+                });
+//                return ServiceManager.getService(IAccountService.class).getAccount()
+//                        .flatMap(new Function<Account, Publisher<UserEntity>>() {
+//                            @Override
+//                            public Publisher<UserEntity> apply(Account account) throws Exception {
+//                                return mWeiboApis.getUser(account.token, account.uid);
+//                            }
+//                        });
             }
 
             @Override

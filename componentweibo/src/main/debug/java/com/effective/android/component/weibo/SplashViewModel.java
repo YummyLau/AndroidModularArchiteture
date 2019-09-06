@@ -1,10 +1,9 @@
 package com.effective.android.component.weibo;
 
+import android.accounts.Account;
+
 import androidx.lifecycle.ViewModel;
 
-import example.componentlib.service.ServiceManager;
-import example.componentlib.service.account.Account;
-import example.componentlib.service.account.IAccountService;
 import io.reactivex.Flowable;
 
 /**
@@ -14,9 +13,9 @@ import io.reactivex.Flowable;
 public class SplashViewModel extends ViewModel {
 
 
-    public Flowable<Account> checkLoginStatus() {
-        return ServiceManager.getService(IAccountService.class)
-                .getAccount();
-    }
+//    public Flowable<Account> checkLoginStatus() {
+////        return ServiceManager.getService(IAccountService.class)
+////                .getAccount();
+//    }
 
 }

@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <example.basiclib.widget.CircleTextProgressbar
+        <com.effective.android.component.weibo.CircleTextProgressbar
             android:id="@+id/loading_progress"
             android:layout_width="40dp"
             android:layout_height="40dp"

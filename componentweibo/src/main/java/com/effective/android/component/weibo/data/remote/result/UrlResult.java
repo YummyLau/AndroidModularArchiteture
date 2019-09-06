@@ -1,10 +1,10 @@
 package com.effective.android.component.weibo.data.remote.result;
 
+import com.effective.android.component.weibo.bean.ShortUrl;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import com.effective.android.component.weibo.bean.UrlShort;
 
 /**
  * Email yummyl.lau@gmail.com
@@ -14,5 +14,5 @@ import com.effective.android.component.weibo.bean.UrlShort;
 public class UrlResult extends ApiResult{
 
     @SerializedName("urls")
-    public List<UrlShort> urls;
+    public List<ShortUrl> urls;
 }

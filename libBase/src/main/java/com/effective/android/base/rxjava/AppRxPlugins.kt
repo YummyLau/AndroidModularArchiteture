@@ -14,6 +14,7 @@ object AppRxPlugins {
 
     private val TAG = AppRxPlugins::class.java.simpleName
 
+    @JvmStatic
     fun init() {
         RxJavaPlugins.setErrorHandler {
             Log.e(TAG, "error :" + it.message)

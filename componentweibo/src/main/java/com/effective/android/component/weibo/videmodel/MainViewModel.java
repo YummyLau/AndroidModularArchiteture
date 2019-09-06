@@ -6,12 +6,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-
-import example.basiclib.AbsentLiveData;
-import example.basiclib.net.resource.Resource;
-
+import com.effective.android.component.weibo.AbsentLiveData;
+import com.effective.android.component.weibo.WeiboComponent;
 import com.effective.android.component.weibo.data.local.db.entity.UserEntity;
+import com.effective.android.component.weibo.net.resource.Resource;
 
 
 /**
@@ -24,12 +22,11 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<Boolean> commandInitInfo = new MutableLiveData<>();
 
     public MainViewModel() {
-        ARouter.getInstance().inject(this);
         ownUserInfo = Transformations.switchMap(commandInitInfo, new Function<Boolean, LiveData<Resource<UserEntity>>>() {
             @Override
             public LiveData<Resource<UserEntity>> apply(Boolean commandInitInfo) {
                 if (commandInitInfo) {
-                    return App.demoRepository.getUserInfo(11l);
+                    return WeiboComponent.demoRepository.getUserInfo(11l);
                 } else {
                     return AbsentLiveData.create();
                 }

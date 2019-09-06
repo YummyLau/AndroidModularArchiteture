@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import example.componentweibo.R;
 
 public class WeiboActivity extends Activity{
 

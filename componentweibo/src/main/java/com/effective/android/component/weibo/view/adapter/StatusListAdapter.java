@@ -10,25 +10,25 @@ import androidx.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.jaeger.ninegridimageview.GridImageView;
-
-import org.jsoup.Jsoup;
-import org.jsoup.select.Elements;
+import com.effective.android.base.util.ActivityUtils;
+import com.effective.android.component.weibo.R;
+import com.effective.android.component.weibo.imageviewer.ImageViewer;
+import com.effective.android.component.weibo.nineimage.NineImageView;
+import com.effective.android.component.weibo.nineimage.NineImageViewAdapter;
+import com.effective.android.component.weibo.util.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import example.basiclib.util.ActivityUtils;
-import example.basiclib.util.imageloader.ImageLoader;
-import example.basiclib.widget.imageviewer.ImageViewer;
-import example.basiclib.widget.nineimage.NineImageView;
-import example.basiclib.widget.nineimage.NineImageViewAdapter;
-import example.componentweibo.R;
-import com.effective.android.component.weibo.TimeRransformer;
+
 import com.effective.android.component.weibo.bean.Pic;
 import com.effective.android.component.weibo.data.local.db.entity.StatusEntity;
 import com.effective.android.component.weibo.data.local.db.entity.UserEntity;
+import com.jaeger.ninegridimageview.GridImageView;
+
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 
 /**
  * 微博adapter
@@ -52,10 +52,11 @@ public class StatusListAdapter extends BaseQuickAdapter<StatusEntity, BaseViewHo
     @Override
     protected void convert(BaseViewHolder helper, StatusEntity item) {
         UserEntity userEntity = item.user;
-        ImageLoader.getInstance().load(mContext, userEntity.avatarLarge, (ImageView) helper.getView(R.id.avatar));
+        // TODO: 2019-09-06
+//        ImageLoader.getInstance().load(mContext, userEntity.avatarLarge, (ImageView) helper.getView(R.id.avatar));
         helper.setText(R.id.nick, userEntity.name);
         //创建时间
-        helper.setText(R.id.create_time, TimeRransformer.transformTime(item.created_at));
+        helper.setText(R.id.create_time, TimeUtils.transformTime(item.created_at));
         //来源
         Elements aTag = Jsoup.parse(item.source).select("a");
         if (aTag != null) {
@@ -86,7 +87,7 @@ public class StatusListAdapter extends BaseQuickAdapter<StatusEntity, BaseViewHo
 
         @Override
         protected void onDisplayImage(Context context, ImageView imageView, Pic pic) {
-            ImageLoader.getInstance().load(context, pic.getLargePic(), imageView);
+//            ImageLoader.getInstance().load(context, pic.getLargePic(), imageView);
         }
 
         @Override

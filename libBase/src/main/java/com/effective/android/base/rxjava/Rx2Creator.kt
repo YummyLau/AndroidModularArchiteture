@@ -37,6 +37,7 @@ object Rx2Creator {
     val EMPTY_THROWABLE_CONSUMER: Consumer<Throwable> = EmptyThrowable("default")
 
 
+    @JvmStatic
     fun <T> createObservable(callable: Callable<T>): Observable<T> =
             Observable.create(ObservableOnSubscribe { e ->
                 val t = callable.call()
@@ -48,6 +49,7 @@ object Rx2Creator {
                 e.onComplete()
             })
 
+    @JvmStatic
     fun <T> createFlowable(callable: Callable<T>, backpressureStrategy: BackpressureStrategy): Flowable<T> =
             Flowable.create(FlowableOnSubscribe { e ->
                 val t = callable.call()
@@ -60,10 +62,12 @@ object Rx2Creator {
             }, backpressureStrategy)
 
 
+    @JvmStatic
     fun <T> createFlowable(callable: Callable<T>): Flowable<T> {
         return createFlowable(callable, BackpressureStrategy.BUFFER)
     }
 
+    @JvmStatic
     fun <T> createObservableDelayed(@NonNull callable: Callable<T>, delay: Long): Observable<T> {
         return Observable.timer(delay, TimeUnit.MILLISECONDS)
                 .flatMap {
@@ -71,6 +75,7 @@ object Rx2Creator {
                 }
     }
 
+    @JvmStatic
     fun <T> createFlowableDelayed(@NonNull callable: Callable<T>, delay: Long): Flowable<T> {
         return Flowable.timer(delay, TimeUnit.MILLISECONDS)
                 .flatMap {
@@ -78,14 +83,17 @@ object Rx2Creator {
                 }
     }
 
+    @JvmStatic
     fun emptyThrowable(): Consumer<Throwable> {
         return EMPTY_THROWABLE_CONSUMER
     }
 
+    @JvmStatic
     fun emptyThrowable(clazz: Class<*>, method: String): Consumer<Throwable> {
         return EmptyThrowable(clazz.simpleName + "." + method)
     }
 
+    @JvmStatic
     fun <T> emptyConsumer(): Consumer<T> {
         return EMPTY_CONSUMER as Consumer<T>
     }
@@ -108,11 +116,13 @@ object Rx2Creator {
     }
 
 
+    @JvmStatic
     fun <T> createObservableTask(callable: Callable<T>, pScheduler: Scheduler) =
             createObservable(callable)
                     .subscribeOn(pScheduler)
                     .subscribe(emptyConsumer(), emptyThrowable())
 
+    @JvmStatic
     fun <T> createFlowableTask(callable: Callable<T>, pScheduler: Scheduler) =
             createFlowable(callable)
                     .subscribeOn(pScheduler)

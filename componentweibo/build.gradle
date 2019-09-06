@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -24,7 +25,6 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -34,6 +34,8 @@ android {
 
 }
 
+kapt { generateStubs = true }
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     annotationProcessor deps.arouter.compiler
@@ -41,7 +43,26 @@ dependencies {
     annotationProcessor deps.glide.compiler
     annotationProcessor deps.room.compiler
     implementation deps.room.runtime
+    implementation deps.gson
 
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.converterGson
+    implementation deps.retrofit.converterScalars
+    implementation deps.retrofit.rxJava2Adapter
+
+    implementation deps.ninegridimageview
+    implementation deps.baseRecyclerViewAdapterHelper
+    implementation deps.androidx.recyclerview
+    implementation deps.pageindicatorview
+    implementation deps.photoview
+    implementation deps.flexbox
+    implementation deps.ucrop
+    implementation deps.jsoup
+    implementation deps.androidx.design
+
+    
     implementation project(':libBase')
 }
 

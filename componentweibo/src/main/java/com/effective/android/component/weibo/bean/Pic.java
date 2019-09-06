@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 
+
 /**
  * weibo pic
  * Email yummyl.lau@gmail.com

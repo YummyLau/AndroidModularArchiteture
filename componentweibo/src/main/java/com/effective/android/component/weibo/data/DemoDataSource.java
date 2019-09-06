@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import example.basiclib.net.resource.Resource;
 import com.effective.android.component.weibo.data.local.db.entity.StatusEntity;
 import com.effective.android.component.weibo.data.local.db.entity.UserEntity;
+import com.effective.android.component.weibo.net.resource.Resource;
 
 /**
  * Email yummyl.lau@gmail.com

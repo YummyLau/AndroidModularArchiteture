@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by yummylau on 2018/01/25.
  */
 
-public class UrlShort {
+public class ShortUrl {
 
     //短链接
     @SerializedName("url_short")

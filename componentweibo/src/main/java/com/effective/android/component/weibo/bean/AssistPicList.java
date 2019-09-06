@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.effective.android.component.weibo.bean.Pic;
 
 /**
  * 辅助处理List<T> room Converters

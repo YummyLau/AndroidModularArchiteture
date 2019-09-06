@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <example.basiclib.widget.roundimage.RoundedImageView
+            <com.effective.android.base.view.roundimage.RoundedImageView
                 android:id="@+id/avatar"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
@@ -91,7 +91,7 @@
                 android:text="TextView"
                 android:textColor="@color/colorTextPrimary" />
 
-            <example.basiclib.widget.nineimage.NineImageView
+            <com.effective.android.component.weibo.nineimage.NineImageView
                 android:id="@+id/image_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

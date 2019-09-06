@@ -5,5 +5,10 @@ component {
     sdk {
         groupId 'com.effective.android'
         artifactId 'componentWeibo'
+
+        dependencies {
+            implementation deps.androidx.appCompat
+            implementation deps.kotlin.stdlib
+        }
     }
 }

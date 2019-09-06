@@ -1,10 +1,9 @@
 package com.effective.android.component.weibo.bean;
 
-import com.google.gson.annotations.SerializedName;
-
 import com.effective.android.component.weibo.data.local.db.entity.StatusEntity;
 import com.effective.android.component.weibo.data.local.db.entity.UserEntity;
 import com.effective.android.component.weibo.data.remote.result.ApiResult;
+import com.google.gson.annotations.SerializedName;
 
 
 /**

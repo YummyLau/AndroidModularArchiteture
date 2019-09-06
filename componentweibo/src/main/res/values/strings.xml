@@ -19,4 +19,5 @@
 
     <string name="demo_navigation_drawer_open">navigation_drawer_open</string>
     <string name="demo_navigation_drawer_close">navigation_drawer_close</string>
+    <string name="transition_name">name:%1$d</string>
 </resources>
