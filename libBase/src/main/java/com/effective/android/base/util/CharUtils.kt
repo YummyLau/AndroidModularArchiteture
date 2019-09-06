@@ -15,6 +15,7 @@ object CharUtils {
      * @param value 需要计算的文字内容
      * @return 文字长度
      */
+    @JvmStatic
     fun getLength(value: String): Int {
         if (TextUtils.isEmpty(value)) {
             return 0
@@ -36,6 +37,7 @@ object CharUtils {
         return chineseCount * 2 + chinesePunctuationCount * 2 + otherCount
     }
 
+    @JvmStatic
     fun getLength(value: CharSequence): Int {
         return if (TextUtils.isEmpty(value)) {
             0
@@ -45,6 +47,7 @@ object CharUtils {
     /**
      * 根据UnicodeBlock方法判断中文标点符号
      */
+    @JvmStatic
     fun isChinesePunctuation(c: Char): Boolean {
         val ub = Character.UnicodeBlock.of(c)
         return (ub === Character.UnicodeBlock.GENERAL_PUNCTUATION
@@ -53,6 +56,7 @@ object CharUtils {
                 || ub === Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS)
     }
 
+    @JvmStatic
     fun isChinese(c: Char): Boolean {
         try {
             val string = Character.toString(c)
@@ -67,6 +71,7 @@ object CharUtils {
         }
     }
 
+    @JvmStatic
     fun getChinese(text: String): String {
         if (TextUtils.isEmpty(text)) {
             return ""
@@ -82,6 +87,7 @@ object CharUtils {
     /**
      * 是否为英文标点符号
      */
+    @JvmStatic
     fun isEnglishPuncPunctuation(ch: Char): Boolean {
         if (0x21 <= ch.toInt() && ch.toInt() <= 0x22) return true
         if (ch.toInt() == 0x27 || ch.toInt() == 0x2C) return true
@@ -92,6 +98,7 @@ object CharUtils {
     /**
      * 是否为emoji
      */
+    @JvmStatic
     fun isEmojiCharacter(codePoint: Char): Boolean {
         return !(codePoint.toInt() == 0x0 ||
                 codePoint.toInt() == 0x9 ||
@@ -105,6 +112,7 @@ object CharUtils {
     /**
      * 是否非中文、英文、数字
      */
+    @JvmStatic
     private fun isNotChineseAndNumAndLetter(ch: Char): Boolean {
         val matcher = NOT_CHINESE_NUM_LETTER_PATTERN.matcher(ch.toString())
         return matcher.find()
@@ -114,6 +122,7 @@ object CharUtils {
      * 是否为特殊符号（非中文、非数字、非英文标点、非中文标点、非字母、非emoji）
      * @return
      */
+    @JvmStatic
     private fun isSpecialChar(ch: Char): Boolean {
         return (!isChinesePunctuation(ch)
                 && !isEnglishPuncPunctuation(ch)
@@ -124,6 +133,7 @@ object CharUtils {
     /**
      * 获取有emoji的时候的长度，中文及中文符号占两个，英文及emoji还有其他占一个
      */
+    @JvmStatic
     fun getLengthWithEmoji(value: String): Int {
         return getLength(value) + EmojiUtils.getEmojiCount(value) - EmojiUtils.getEmojiLength(value) - EmojiUtils.getEmojiLinkCount(value)
     }

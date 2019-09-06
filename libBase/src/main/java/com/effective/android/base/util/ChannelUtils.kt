@@ -21,6 +21,7 @@ object ChannelUtils {
     private const val CHANNEL_FILE = "channel_data"
     private var channel: String? = null
 
+    @JvmStatic
     fun fromMeta(context: Context): String? {
         try {
             return context.packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA).metaData.getString("CHANNEL")
@@ -30,6 +31,7 @@ object ChannelUtils {
         return null
     }
 
+    @JvmStatic
     fun fromMetaInf(context: Context?): String {
         if (context == null) return ""
         val appinfo = context.applicationInfo
@@ -67,6 +69,7 @@ object ChannelUtils {
         }
     }
 
+    @JvmStatic
     fun getChannel(context: Context): String {
         if (TextUtils.isEmpty(channel)) {
             channel = channelFromFile(context)
@@ -81,7 +84,7 @@ object ChannelUtils {
         return channel!!
     }
 
-
+    @JvmStatic
     private fun channelFromFile(context: Context): String? {
         val path = StorageUtils.getChannelDir(context) + '/' + CHANNEL_FILE
         if (TextUtils.isEmpty(path)) {
@@ -107,6 +110,7 @@ object ChannelUtils {
         return null
     }
 
+    @JvmStatic
     private fun saveChannelToFile(context: Context, channel: String): Boolean {
         val path = StorageUtils.getChannelDir(context)  + '/' + CHANNEL_FILE
         if (TextUtils.isEmpty(path)) {

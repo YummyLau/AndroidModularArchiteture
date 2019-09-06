@@ -8,6 +8,7 @@ component {
         dependencies {
             implementation deps.rx.rxjava2
             implementation deps.rx.rxAndroid
+            implementation deps.kotlin.stdlib
         }
     }
 }

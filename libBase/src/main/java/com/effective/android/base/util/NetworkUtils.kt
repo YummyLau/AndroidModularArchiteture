@@ -22,6 +22,7 @@ object NetworkUtils {
 
 
     @RequiresPermission(allOf =[ACCESS_NETWORK_STATE])
+    @JvmStatic
     fun getNetworkType(context: Context?): Int {
         var type = NETWORKTYPE_INVALID
         try {

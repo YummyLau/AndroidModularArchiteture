@@ -31,27 +31,35 @@ object RomUtil {
     private var sName: String? = null
     private var sVersion: String? = null
 
+    @JvmStatic
     val isEmui: Boolean
         get() = check(ROM_EMUI)
 
+    @JvmStatic
     val isMiui: Boolean
         get() = check(ROM_MIUI)
 
+    @JvmStatic
     val isVivo: Boolean
         get() = check(ROM_VIVO)
 
+    @JvmStatic
     val isOppo: Boolean
         get() = check(ROM_OPPO)
 
+    @JvmStatic
     val isFlyme: Boolean
         get() = check(ROM_FLYME)
 
+    @JvmStatic
     val is360: Boolean
         get() = check(ROM_QIKU) || check("360")
 
+    @JvmStatic
     val isSmartisan: Boolean
         get() = check(ROM_SMARTISAN)
 
+    @JvmStatic
     val name: String?
         get() {
             if (sName == null) {
@@ -60,6 +68,7 @@ object RomUtil {
             return sName
         }
 
+    @JvmStatic
     val version: String?
         get() {
             if (sVersion == null) {
@@ -68,6 +77,7 @@ object RomUtil {
             return sVersion
         }
 
+    @JvmStatic
     fun check(rom: String): Boolean {
         if (sName != null) {
             return sName == rom
@@ -113,7 +123,7 @@ object RomUtil {
         return sName == rom
     }
 
-
+    @JvmStatic
     fun getProp(name: String): String? {
         var line: String? = null
         var input: BufferedReader? = null

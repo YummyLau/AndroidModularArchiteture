@@ -11,6 +11,7 @@ object EmojiUtils {
     /**
      * 有多少个emoji符号
      */
+    @JvmStatic
     fun getEmojiCount(value: String): Int {
         if (TextUtils.isEmpty(value)) {
             return 0
@@ -28,6 +29,7 @@ object EmojiUtils {
     /**
      * 👪 像这种就是多个emoji连接起来的
      */
+    @JvmStatic
     fun getEmojiLinkCount(value: String): Int {
         if (TextUtils.isEmpty(value)) {
             return 0
@@ -45,6 +47,7 @@ object EmojiUtils {
     /**
      * emoji占了多少长度
      */
+    @JvmStatic
     fun getEmojiLength(value: String): Int {
         return getEmojiLengthNoLink(value) + getEmojiLinkCount(value)
     }
@@ -52,6 +55,7 @@ object EmojiUtils {
     /**
      * emoji占了多少长度，不计算emoji连接符
      */
+    @JvmStatic
     fun getEmojiLengthNoLink(value: String): Int {
         if (TextUtils.isEmpty(value)) {
             return 0
@@ -66,6 +70,7 @@ object EmojiUtils {
     }
 
 
+    @JvmStatic
     fun hasEmoji(value: String): Boolean {
         if (TextUtils.isEmpty(value)) {
             return false
@@ -78,6 +83,7 @@ object EmojiUtils {
     /**
      * 返回的int[]可能为空，可能为长度为2的数组，位置0为start，位置1为end
      */
+    @JvmStatic
     fun getFirstEmoji(content: String): IntArray? {
         if (TextUtils.isEmpty(content)) {
             return null

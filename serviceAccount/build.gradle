@@ -17,13 +17,6 @@ android {
         versionCode configs.android.versionCode
         versionName configs.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        //arouter request
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-            }
-        }
     }
 
     buildTypes {
@@ -39,10 +32,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.androidx.appCompat
-    implementation deps.kotlin.stdlib
-    implementation deps.rx.rxjava2
-    implementation deps.rx.rxAndroid
     implementation 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
     implementation project(':libBase')
 }

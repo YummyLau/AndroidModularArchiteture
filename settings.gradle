@@ -9,6 +9,7 @@ include ':componentlib', ':basiclib'
 
 //demo  todo
 //include ':app',':componentlib', ':componentweibo'
+include ':componentweibo'
 
 
 

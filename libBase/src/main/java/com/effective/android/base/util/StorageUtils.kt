@@ -26,6 +26,7 @@ object StorageUtils {
         CHANNEL("channel"),
     }
 
+    @JvmStatic
     private fun storage(context: Context, type: StorageType): String {
         var root = when (type) {
             StorageType.CRASH -> {
@@ -47,13 +48,17 @@ object StorageUtils {
         return dir.absolutePath + "/"
     }
 
+    @JvmStatic
     fun getCrashDir(context: Context) = storage(context, StorageType.CRASH)
 
+    @JvmStatic
     fun getChannelDir(context: Context) = storage(context, StorageType.CHANNEL)
 
+    @JvmStatic
     fun getImportantDir(context: Context) = storage(context, StorageType.IMPORTANT_FILE)
 
 
+    @JvmStatic
     private fun getCache(context: Context): String {
         return if (MEDIA_MOUNTED == getExternalStorageState() || !isExternalStorageRemovable()) {
             getExternalCache(context)!!
@@ -62,6 +67,7 @@ object StorageUtils {
         }
     }
 
+    @JvmStatic
     private fun getFiles(context: Context): String {
         return if (MEDIA_MOUNTED == getExternalStorageState() || !isExternalStorageRemovable()) {
             getExternalFiles(context)!!
@@ -73,75 +79,88 @@ object StorageUtils {
     /**
      * 获取 app 内部私有cache
      */
+    @JvmStatic
     fun getInternalCache(context: Context): String = context.cacheDir.absolutePath
 
     /**
      * 获取 app 外部私有cache
      */
+    @JvmStatic
     fun getExternalCache(context: Context): String? = context.externalCacheDir?.absolutePath
 
     /**
      * 获取 app 内部私有文件
      */
+    @JvmStatic
     fun getInternalFiles(context: Context): String = context.filesDir.absolutePath
 
     /**
      * 获取 app 外部私有文件
      */
+    @JvmStatic
     fun getExternalFiles(context: Context): String? = context.getExternalFilesDir(null)?.absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/Alarms
      */
+    @JvmStatic
     fun getExternalAlarms(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_ALARMS).absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/DCIM
      */
+    @JvmStatic
     fun getExternalDcim(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_DCIM).absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/Download
      */
+    @JvmStatic
     fun getExternalDownload(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS).absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/Movies
      */
+    @JvmStatic
     fun getExternalMovies(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_MOVIES).absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/Music
      */
+    @JvmStatic
     fun getExternalMusic(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_MUSIC).absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/Notifications
      */
+    @JvmStatic
     fun getExternalNotifications(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_NOTIFICATIONS).absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/Pictures
      */
+    @JvmStatic
     fun getExternalPictures(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES).absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/Podcasts
      */
+    @JvmStatic
     fun getExternalPodcasts(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_PODCASTS).absolutePath
 
     /**
      * 外部存储
      * /storage/sdcard0/Ringtones
      */
+    @JvmStatic
     fun getExternalRingtones(): String = Environment.getExternalStoragePublicDirectory(DIRECTORY_RINGTONES).absolutePath
 
 }

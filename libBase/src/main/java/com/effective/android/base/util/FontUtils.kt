@@ -21,6 +21,7 @@ object FontUtils {
      * @param root     The root view.
      * @param fontPath font file path relative to 'assets' directory.
      */
+    @JvmStatic
     fun replaceFontFromAsset(root: View, fontPath: String) {
         replaceFont(root, createTypefaceFromAsset(root.context, fontPath))
     }
@@ -33,6 +34,7 @@ object FontUtils {
      * @param fontPath font file path relative to 'assets' directory.
      * @param style    One of [Typeface.NORMAL], [Typeface.BOLD], [Typeface.ITALIC], [Typeface.BOLD_ITALIC]
      */
+    @JvmStatic
     fun replaceFontFromAsset(root: View, fontPath: String, style: Int) {
         replaceFont(root, createTypefaceFromAsset(root.context, fontPath), style)
     }
@@ -44,6 +46,7 @@ object FontUtils {
      * @param root     The root view.
      * @param fontPath The full path to the font data.
      */
+    @JvmStatic
     fun replaceFontFromFile(root: View, fontPath: String) {
         replaceFont(root, createTypefaceFromFile(fontPath))
     }
@@ -56,6 +59,7 @@ object FontUtils {
      * @param fontPath The full path to the font data.
      * @param style    One of [Typeface.NORMAL], [Typeface.BOLD], [Typeface.ITALIC], [Typeface.BOLD_ITALIC]
      */
+    @JvmStatic
     fun replaceFontFromFile(root: View, fontPath: String, style: Int) {
         replaceFont(root, createTypefaceFromFile(fontPath), style)
     }
@@ -64,6 +68,7 @@ object FontUtils {
      *
      * Replace the font of specified view and it's children with specified typeface
      */
+    @JvmStatic
     private fun replaceFont(root: View?, typeface: Typeface?) {
         if (root == null || typeface == null) {
             return
@@ -91,6 +96,7 @@ object FontUtils {
      *
      * @param style One of [Typeface.NORMAL], [Typeface.BOLD], [Typeface.ITALIC], [Typeface.BOLD_ITALIC]
      */
+    @JvmStatic
     private fun replaceFont(root: View?, typeface: Typeface?, style: Int) {
         var style = style
         if (root == null || typeface == null) {
@@ -118,6 +124,7 @@ object FontUtils {
      * @param fontPath font file path relative to 'assets' directory.
      * @return Return created typeface instance.
      */
+    @JvmStatic
     private fun createTypefaceFromAsset(context: Context, fontPath: String): Typeface? {
         var typefaceRef = mCache[fontPath]
         var typeface: Typeface? = null
@@ -133,6 +140,7 @@ object FontUtils {
         return typeface
     }
 
+    @JvmStatic
     private fun createTypefaceFromFile(fontPath: String): Typeface? {
         var typefaceRef = mCache[fontPath]
         var typeface: Typeface? = null
@@ -159,6 +167,7 @@ object FontUtils {
      * @param context  [Context]
      * @param fontPath font file path relative to 'assets' directory.
      */
+    @JvmStatic
     fun replaceSystemDefaultFontFromAsset(context: Context, fontPath: String) {
         replaceSystemDefaultFont(createTypefaceFromAsset(context, fontPath))
     }
@@ -174,6 +183,7 @@ object FontUtils {
      * @param context  [Context]
      * @param fontPath The full path to the font data.
      */
+    @JvmStatic
     fun replaceSystemDefaultFontFromFile(context: Context, fontPath: String) {
         replaceSystemDefaultFont(createTypefaceFromFile(fontPath))
     }
@@ -186,10 +196,12 @@ object FontUtils {
      * The best place to call this method is [Application.onCreate], it will affect
      * whole app font.If you call this method after view is visible, you need to invalid the view to make it effective.
      */
+    @JvmStatic
     private fun replaceSystemDefaultFont(typeface: Typeface?) {
         modifyObjectField(null, "MONOSPACE", typeface)
     }
 
+    @JvmStatic
     private fun modifyObjectField(obj: Any?, fieldName: String, value: Any?) {
         try {
             val defaultField = Typeface::class.java.getDeclaredField(fieldName)

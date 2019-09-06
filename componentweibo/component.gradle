@@ -1,6 +1,6 @@
 component {
     debug {
-        applicationName 'example.componentweibo.WeiboApplication'
+        applicationName 'com.effective.android.component.weibo.WeiboApplication'
     }
     sdk {
         groupId 'com.effective.android'

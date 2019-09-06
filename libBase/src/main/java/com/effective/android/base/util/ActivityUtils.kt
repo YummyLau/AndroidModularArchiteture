@@ -15,6 +15,7 @@ import android.text.TextUtils
 
 object ActivityUtils {
 
+    @JvmStatic
     fun scanForActivity(context: Context?): Activity? {
         return when (context) {
             is Activity -> context
@@ -23,6 +24,7 @@ object ActivityUtils {
         }
     }
 
+    @JvmStatic
     fun isForeground(context: Context?, className: String): Boolean {
         if (context == null || TextUtils.isEmpty(className)) {
             return false
@@ -38,6 +40,7 @@ object ActivityUtils {
         return false
     }
 
+    @JvmStatic
     fun isPortrait(context: Context?): Boolean {
         return if (context == null) false else context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
     }

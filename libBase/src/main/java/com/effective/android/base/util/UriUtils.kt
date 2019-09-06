@@ -5,6 +5,7 @@ import android.net.Uri
 
 object UriUtils {
 
+    @JvmStatic
     fun getIntQueryParameter(uri: Uri, key: String, defaultValue: Int): Int {
         try {
             val value = uri.getQueryParameter(key) ?: return defaultValue
@@ -15,6 +16,7 @@ object UriUtils {
 
     }
 
+    @JvmStatic
     fun getLongQueryParameter(uri: Uri, key: String, defaultValue: Long): Long {
         try {
             val value = uri.getQueryParameter(key) ?: return defaultValue
@@ -25,6 +27,7 @@ object UriUtils {
 
     }
 
+    @JvmStatic
     fun getBooleanQueryParameter(uri: Uri, key: String, defaultValue: Boolean): Boolean {
         try {
             val value = uri.getQueryParameter(key) ?: return defaultValue
@@ -35,6 +38,7 @@ object UriUtils {
 
     }
 
+    @JvmStatic
     fun getShortQueryParameter(uri: Uri, key: String, defaultValue: Short): Short {
         try {
             val value = uri.getQueryParameter(key) ?: return defaultValue
@@ -45,6 +49,7 @@ object UriUtils {
 
     }
 
+    @JvmStatic
     fun getFloatQueryParameter(uri: Uri, key: String, defaultValue: Float): Float {
         try {
             val value = uri.getQueryParameter(key) ?: return defaultValue
@@ -55,6 +60,7 @@ object UriUtils {
 
     }
 
+    @JvmStatic
     fun getDoubleQueryParameter(uri: Uri, key: String, defaultValue: Double): Double {
         try {
             val value = uri.getQueryParameter(key) ?: return defaultValue
@@ -65,13 +71,13 @@ object UriUtils {
 
     }
 
+    @JvmStatic
     fun getStringQueryParameter(uri: Uri, key: String): String? {
         try {
             return uri.getQueryParameter(key)
         } catch (e: Exception) {
             return null
         }
-
     }
 
 }

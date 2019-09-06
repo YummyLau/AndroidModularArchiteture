@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 
@@ -24,12 +25,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.androidx.appCompat
-    implementation deps.kotlin.stdlib
-    implementation deps.multiDex
-    implementation deps.rx.rxjava2
-    implementation deps.rx.rxAndroid
-    api deps.qmui
+
+    api deps.androidx.appCompat
+    api deps.kotlin.stdlib
+    api deps.multiDex
+
+    api deps.rx.rxjava2
+    api deps.rx.rxAndroid
+
+    api deps.lifecycle.runtime
+    api deps.lifecycle.java8
+    api deps.lifecycle.extensions
+
+    implementation deps.qmui
 }
 
 

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 object RecyclerViewUtil {
 
+    @JvmStatic
     fun disableDefaultAnimations(recyclerView: RecyclerView) {
         val itemAnimator = recyclerView.getItemAnimator()
         if (itemAnimator is DefaultItemAnimator) {

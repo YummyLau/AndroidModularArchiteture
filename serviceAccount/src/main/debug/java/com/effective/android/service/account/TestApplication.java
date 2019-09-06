@@ -1,6 +1,6 @@
-package com.effective.android.service.skin;
+package com.effective.android.service.account;
 
 import android.app.Application;
 
-public class TestApplication extends BaseApplication{
+public class TestApplication extends Application{
 }

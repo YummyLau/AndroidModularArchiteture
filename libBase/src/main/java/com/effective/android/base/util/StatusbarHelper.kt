@@ -25,10 +25,12 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 
 object StatusbarHelper {
 
+    @JvmStatic
     fun translucentStatusBar(activity: Activity) {
         QMUIStatusBarHelper.translucent(activity)
     }
 
+    @JvmStatic
     fun setStatusBarColor(activity: Activity, @ColorInt statusBarColor: Int) {
         if (statusColorNearWhite(statusBarColor)) {
             if (QMUIStatusBarHelper.setStatusBarLightMode(activity)) {
@@ -41,6 +43,7 @@ object StatusbarHelper {
         }
     }
 
+    @JvmStatic
     @TargetApi(19)
     private fun colorStatusBar(activity: Activity, @ColorInt statusBarColor: Int) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
@@ -73,6 +76,7 @@ object StatusbarHelper {
     }
 
 
+    @JvmStatic
     fun statusColorNearWhite(@ColorInt color: Int): Boolean {
         val alpha = Color.alpha(color)
         val red = Color.red(color)

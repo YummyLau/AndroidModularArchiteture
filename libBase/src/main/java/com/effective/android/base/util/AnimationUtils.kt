@@ -21,6 +21,7 @@ object AnimationUtils {
     /**
      * 缩放且Y轴位移的组合属性动画
      */
+    @JvmStatic
     fun createAnimator(target: View, scaleFrom: Float, scaleTo: Float,
                        translationYFrom: Float, translationYTo: Float,
                        duration: Long): ObjectAnimator {

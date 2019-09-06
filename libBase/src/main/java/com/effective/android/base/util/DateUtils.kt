@@ -23,9 +23,11 @@ object DateUtils {
     private val TIME_HOURSES = 24
     private val FORMAT = "yyyy-MM-dd HH:mm:ss"
 
+    @JvmStatic
     val timeZone: TimeZone
         get() = TimeZone.getDefault()
 
+    @JvmStatic
     val gmtUnixTimeByCalendar: Long
         get() {
             val calendar = Calendar.getInstance()
@@ -33,6 +35,7 @@ object DateUtils {
             return unixTime - TimeZone.getDefault().rawOffset
         }
 
+    @JvmStatic
     val unixTimeByCalendar: Long
         get() {
             val calendar = Calendar.getInstance()
@@ -44,10 +47,12 @@ object DateUtils {
      * @param date
      * @return
      */
+    @JvmStatic
     fun parseDate(date: String): Date? {
         return parseDate(date, FORMAT)
     }
 
+    @JvmStatic
     fun parseDate(date: String, format: String): Date? {
         var dt: Date? = null
         val dateFormat = SimpleDateFormat(format)
@@ -61,13 +66,13 @@ object DateUtils {
     }
 
 
-    @JvmOverloads
+    @JvmStatic
     fun formatDate(date: Date, format: String = FORMAT): String {
         val dateFormat = SimpleDateFormat(format)
         return dateFormat.format(date)
     }
 
-    @JvmOverloads
+    @JvmStatic
     fun formatUnixTime(unixTime: Long, format: String = FORMAT): String {
         val dateFormat = SimpleDateFormat(format)
         return dateFormat.format(unixTime)
@@ -79,14 +84,17 @@ object DateUtils {
         return dateFormat.format(gmtUnixTime + TimeZone.getDefault().rawOffset)
     }
 
+    @JvmStatic
     fun getDate(unixTime: Long): Date {
         return Date(unixTime)
     }
 
+    @JvmStatic
     fun getGMTDate(gmtUnixTime: Long): Date {
         return Date(gmtUnixTime + TimeZone.getDefault().rawOffset)
     }
 
+    @JvmStatic
     fun getGMTUnixTime(unixTime: Long): Long {
         return unixTime - TimeZone.getDefault().rawOffset
     }
@@ -97,10 +105,12 @@ object DateUtils {
      * @param gmtUnixTime
      * @return
      */
+    @JvmStatic
     fun getCurrentTimeZoneUnixTime(gmtUnixTime: Long): Long {
         return gmtUnixTime + TimeZone.getDefault().rawOffset
     }
 
+    @JvmStatic
     fun changeTimeZone(date: Date?, oldZone: TimeZone, newZone: TimeZone): Date? {
         var dateTmp: Date? = null
         if (date != null) {
@@ -110,6 +120,7 @@ object DateUtils {
         return dateTmp
     }
 
+    @JvmStatic
     fun formatTime(seconds: Long): String {
         val hh = seconds / TIME_NUMBERS.toLong() / TIME_NUMBERS.toLong()
         val mm = if (seconds - hh * TIME_NUMBERS.toLong() * TIME_NUMBERS.toLong() > 0) (seconds - hh * TIME_NUMBERS.toLong() * TIME_NUMBERS.toLong()) / TIME_NUMBERS else 0
@@ -119,6 +130,7 @@ object DateUtils {
                 + if (ss == 0L) "" else (if (ss < 10) "0$ss" else ss).toString() + "秒")
     }
 
+    @JvmStatic
     fun getDiffTime(date: Long): String {
         var strTime = "很久很久以前"
         val time = Math.abs(Date().time - date)
@@ -155,6 +167,7 @@ object DateUtils {
         return strTime
     }
 
+    @JvmStatic
     fun daysBetween(date1: Date, date2: Date): Int {
         val cal1 = Calendar.getInstance()
         cal1.time = date1
@@ -183,6 +196,7 @@ object DateUtils {
         }//不同年
     }
 
+    @JvmStatic
     fun daysBetweenInSecond(date1: Date, date2: Date): Double {
         val beginDateLong = date1.time    // Date型转换成Long型毫秒数，用于计算
         val endDateLong = date2.time
@@ -199,6 +213,7 @@ object DateUtils {
      * @param endTime
      * @return
      */
+    @JvmStatic
     fun belongTime(nowTime: Date, beginTime: Date, endTime: Date): Boolean {
         val date = Calendar.getInstance()
         date.time = nowTime

@@ -10,7 +10,7 @@ import android.graphics.drawable.Drawable
 
 object ImageUtil {
 
-
+    @JvmStatic
     fun zoomDrawable(drawable: Drawable, w: Int, h: Int): Drawable {
         val width = drawable.intrinsicWidth
         val height = drawable.intrinsicHeight
@@ -24,6 +24,7 @@ object ImageUtil {
         return BitmapDrawable(null, newbmp)
     }
 
+    @JvmStatic
     fun drawableToBitmap(drawable: Drawable): Bitmap {
         val bitmap = Bitmap.createBitmap(
                 drawable.intrinsicWidth,

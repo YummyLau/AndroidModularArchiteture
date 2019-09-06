@@ -1,6 +1,7 @@
 package com.effective.android.base.activity
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.effective.android.base.fragment.BaseFragment
 import com.effective.android.base.R
@@ -10,7 +11,7 @@ import com.effective.android.base.R
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
  */
-abstract class SingleFragmentActivity : FragmentActivity(){
+abstract class SingleFragmentActivity : AppCompatActivity(){
 
     abstract fun createFragment(): BaseFragment
 

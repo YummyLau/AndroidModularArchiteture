@@ -56,6 +56,7 @@ object FileUtils {
     annotation class TypeHeader
 
     //获取文件头信息
+    @JvmStatic
     fun getFileHeader(filePath: String): String? {
         var `is`: FileInputStream? = null
         var value: String? = null
@@ -77,6 +78,7 @@ object FileUtils {
         return value
     }
 
+    @JvmStatic
     fun getFileHeader(file: File): String? {
         var `is`: FileInputStream? = null
         var value: String? = null
@@ -98,6 +100,7 @@ object FileUtils {
         return value
     }
 
+    @JvmStatic
     fun isSomeTypeByFilePath(path: String, @TypeHeader typeHeader: String): Boolean {
         try {
             if (TextUtils.isEmpty(path) || TextUtils.isEmpty(typeHeader)) {
@@ -114,12 +117,14 @@ object FileUtils {
 
     }
 
+    @JvmStatic
     fun isSomeTypeByFileHead(fileHeader: String, @TypeHeader typeHeader: String): Boolean {
         return if (TextUtils.isEmpty(fileHeader) || TextUtils.isEmpty(typeHeader)) {
             false
         } else fileHeader.startsWith(typeHeader)
     }
 
+    @JvmStatic
     private fun bytesToHexString(src: ByteArray?): String? {
         try {
             val builder = StringBuilder()
@@ -142,6 +147,7 @@ object FileUtils {
 
     }
 
+    @JvmStatic
     val isSDCardExist: Boolean
         get() = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
 
@@ -152,6 +158,7 @@ object FileUtils {
     // return freeBlocks * blockSize; //单位Byte
     // return (freeBlocks * blockSize)/1024; //单位KB
     // 单位MB
+    @JvmStatic
     val freeSize: Long
         get() {
             val path = Environment.getExternalStorageDirectory()
@@ -168,6 +175,7 @@ object FileUtils {
     // return allBlocks * blockSize; //单位Byte
     // return (allBlocks * blockSize)/1024; //单位KB
     // 单位MB
+    @JvmStatic
     val totalSize: Long
         get() {
             val path = Environment.getExternalStorageDirectory()
@@ -178,25 +186,30 @@ object FileUtils {
         }
 
     //崩溃log目录
+    @JvmStatic
     val crashLogDir: String
         get() = Environment.getExternalStorageDirectory().toString() + "/CrashLog"
 
     //下载插件安装包目录
+    @JvmStatic
     val downloadDir: String
         get() = Environment.getExternalStorageDirectory().toString() + "/Download"
 
 
     //图片缓存目录
+    @JvmStatic
     fun getImageCacheDir(context: Context): String {
         return context.cacheDir.toString() + "/image"
     }
 
     //递归删除文件
+    @JvmStatic
     fun delete(path: String) {
         val file = File(path)
         delete(file)
     }
 
+    @JvmStatic
     //递归删除文件
     fun delete(file: File?) {
         if (file == null || !file.exists()) {
@@ -221,6 +234,7 @@ object FileUtils {
         }
     }
 
+    @JvmStatic
     @Throws(IOException::class)
     fun saveBitmapToFile(bm: Bitmap, fileName: String): String {
         val path = FileUtils.downloadDir + "/picture/"
@@ -236,6 +250,7 @@ object FileUtils {
         return myCaptureFile.toString()
     }
 
+    @JvmStatic
     //获取文件夹大小,返回大小为Bit
     fun getFolderSizeBit(file: File): Long {
         var size: Long = 0
@@ -256,6 +271,7 @@ object FileUtils {
      * @param filePath
      * @return
      */
+    @JvmStatic
     fun getFileSize(filePath: String): String {
         val file = File(filePath)
         var blockSize: Long = 0
@@ -284,6 +300,7 @@ object FileUtils {
      * @param sizeType
      * @return
      */
+    @JvmStatic
     fun getFileSizeForType(filePath: String, sizeType: Int): Double {
         val file = File(filePath)
         var blockSize: Long = 0
@@ -306,6 +323,7 @@ object FileUtils {
      * @throws Exception
      */
     @Throws(Exception::class)
+    @JvmStatic
     fun getFileSize(file: File): Long {
         var size: Long = 0
         if (file.exists()) {
@@ -326,6 +344,7 @@ object FileUtils {
      * @param sizeType
      * @return
      */
+    @JvmStatic
     private fun FormatFileSize(fileS: Long, sizeType: Int): Double {
         val df = DecimalFormat("#.00")
         var fileSizeLong = 0.0
@@ -342,11 +361,13 @@ object FileUtils {
 
 
     //获取文件夹大小,返回大小为KB
+    @JvmStatic
     fun getFolderSizeKB(file: File): Long {
         return getFolderSizeBit(file) / 1024
     }
 
     //获取文件夹大小,返回大小为MB
+    @JvmStatic
     fun getFolderSizeMB(file: File): Long {
         return getFolderSizeBit(file) / 1048576
     }
@@ -354,6 +375,7 @@ object FileUtils {
 
     //通过uri获取path
     @SuppressLint("NewApi")
+    @JvmStatic
     fun getPath(context: Context?, uri: Uri?): String? {
 
         if (context == null || uri == null) {
@@ -418,6 +440,7 @@ object FileUtils {
         return null
     }
 
+    @JvmStatic
     fun getDataColumn(context: Context, uri: Uri?,
                       selection: String?, selectionArgs: Array<String>?): String? {
 
@@ -439,18 +462,22 @@ object FileUtils {
     }
 
 
+    @JvmStatic
     fun isExternalStorageDocument(uri: Uri): Boolean {
         return "com.android.externalstorage.documents" == uri.authority
     }
 
+    @JvmStatic
     fun isDownloadsDocument(uri: Uri): Boolean {
         return "com.android.providers.downloads.documents" == uri.authority
     }
 
+    @JvmStatic
     fun isMediaDocument(uri: Uri): Boolean {
         return "com.android.providers.media.documents" == uri.authority
     }
 
+    @JvmStatic
     fun isGooglePhotosUri(uri: Uri): Boolean {
         return "com.google.android.apps.photos.content" == uri.authority
     }
@@ -462,6 +489,7 @@ object FileUtils {
      * @throws Exception
      */
     @Throws(IOException::class)
+    @JvmStatic
     fun upZipFile(zipFile: File, folderPath: String): Int {
         // public static void upZipFile() throws Exception{
         val zfile = ZipFile(zipFile)
@@ -503,6 +531,7 @@ object FileUtils {
      * @param absFileName 相对路径名，来自于ZipEntry中的name
      * @return java.io.File 实际的文件
      */
+    @JvmStatic
     fun getRealFileName(baseDir: String, absFileName: String): File {
         val dirs = absFileName.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         var ret = File(baseDir)
@@ -549,6 +578,7 @@ object FileUtils {
      * @param destFile The file to save
      * @return Return false if fail
      */
+    @JvmStatic
     fun copyFile(srcFile: File, destFile: File): Boolean {
         var result = false
         try {
@@ -573,6 +603,7 @@ object FileUtils {
      * @param destFile    The file to save.
      * @return Return false if failed
      */
+    @JvmStatic
     fun copyToFile(inputStream: InputStream, destFile: File): Boolean {
         try {
             if (destFile.exists()) {
@@ -609,6 +640,7 @@ object FileUtils {
      * @param str
      * @param filename
      */
+    @JvmStatic
     fun writeToFile(str: String, filename: String): String? {
         try {
             val file = File(filename)
@@ -632,6 +664,7 @@ object FileUtils {
         return null
     }
 
+    @JvmStatic
     fun getContent(assetManager: AssetManager, fileName: String?): String? {
         var content: String? = null
         if (fileName == null) {

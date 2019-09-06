@@ -39,6 +39,7 @@ object DeviceUtils {
     /**
      * 是否已经 root 过
      */
+    @JvmStatic
     fun isRooted(context: Context): Boolean {
         val isSdk = isGoogleSdk(context)
         val tags = Build.TAGS
@@ -59,6 +60,7 @@ object DeviceUtils {
         return false
     }
 
+    @JvmStatic
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     fun isAdbEnabled(context: Context): Boolean {
         return Settings.Secure.getInt(
@@ -67,6 +69,7 @@ object DeviceUtils {
         ) > 0
     }
 
+    @JvmStatic
     private fun isGoogleSdk(context: Context): Boolean {
         val str = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
         return "sdk" == Build.PRODUCT ||
@@ -79,6 +82,7 @@ object DeviceUtils {
      *
      * @return the version name of device's system
      */
+    @JvmStatic
     fun getSDKVersionName(): String {
         return android.os.Build.VERSION.RELEASE
     }
@@ -88,6 +92,7 @@ object DeviceUtils {
      *
      * @return version code of device's system
      */
+    @JvmStatic
     fun getSDKVersionCode(): Int {
         return android.os.Build.VERSION.SDK_INT
     }
@@ -101,6 +106,7 @@ object DeviceUtils {
      *
      * @return the MAC address
      */
+    @JvmStatic
     @RequiresPermission(allOf = [ACCESS_WIFI_STATE, INTERNET])
     fun getMacAddress(context: Context): String {
         return getMacAddress(context)
@@ -115,6 +121,7 @@ object DeviceUtils {
      *
      * @return the MAC address
      */
+    @JvmStatic
     @RequiresPermission(allOf = [ACCESS_WIFI_STATE, INTERNET])
     fun getMacAddress(vararg excepts: String, context: Context): String {
         var macAddress = getMacAddressByNetworkInterface()
@@ -135,6 +142,7 @@ object DeviceUtils {
         } else ""
     }
 
+    @JvmStatic
     private fun isAddressNotInExcepts(address: String, vararg excepts: String): Boolean {
         if (excepts == null || excepts.size == 0) {
             return "02:00:00:00:00:00" != address
@@ -147,6 +155,7 @@ object DeviceUtils {
         return true
     }
 
+    @JvmStatic
     @SuppressLint("MissingPermission", "HardwareIds")
     private fun getMacAddressByWifiInfo(context: Context): String {
         try {
@@ -163,6 +172,7 @@ object DeviceUtils {
         return "02:00:00:00:00:00"
     }
 
+    @JvmStatic
     private fun getMacAddressByNetworkInterface(): String {
         try {
             val nis = NetworkInterface.getNetworkInterfaces()
@@ -185,6 +195,7 @@ object DeviceUtils {
         return "02:00:00:00:00:00"
     }
 
+    @JvmStatic
     private fun getMacAddressByInetAddress(): String {
         try {
             val inetAddress = getInetAddress()
@@ -208,6 +219,7 @@ object DeviceUtils {
         return "02:00:00:00:00:00"
     }
 
+    @JvmStatic
     private fun getInetAddress(): InetAddress? {
         try {
             val nis = NetworkInterface.getNetworkInterfaces()
@@ -231,6 +243,7 @@ object DeviceUtils {
         return null
     }
 
+    @JvmStatic
     private fun getMacAddressByFile(): String {
         var result = ShellUtils.execCmd("getprop wifi.interface", false)
         if (result.result === 0) {
@@ -255,6 +268,7 @@ object DeviceUtils {
      *
      * @return the manufacturer of the product/hardware
      */
+    @JvmStatic
     fun getManufacturer(): String {
         return Build.MANUFACTURER
     }
@@ -266,6 +280,7 @@ object DeviceUtils {
      *
      * @return the model of device
      */
+    @JvmStatic
     fun getModel(): String {
         var model: String? = Build.MODEL
         if (model != null) {
@@ -282,6 +297,7 @@ object DeviceUtils {
      *
      * @return an ordered list of ABIs supported by this device
      */
+    @JvmStatic
     fun getABIs(): Array<String> {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Build.SUPPORTED_ABIS
@@ -301,6 +317,7 @@ object DeviceUtils {
      * `<uses-permission android:name="android.permission.SHUTDOWN/>`
      * in manifest.
      */
+    @JvmStatic
     fun shutdown(context: Context) {
         ShellUtils.execCmd("reboot -p", true)
         val intent = Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN")
@@ -314,6 +331,7 @@ object DeviceUtils {
      * Requires root permission
      * or hold `android:sharedUserId="android.uid.system"` in manifest.
      */
+    @JvmStatic
     fun reboot(context: Context) {
         ShellUtils.execCmd("reboot", true)
         val intent = Intent(Intent.ACTION_REBOOT)
@@ -333,6 +351,7 @@ object DeviceUtils {
      * @param reason code to pass to the kernel (e.g., "recovery") to
      * request special boot modes, or null.
      */
+    @JvmStatic
     fun reboot(reason: String, context: Context) {
         val pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
 
@@ -344,6 +363,7 @@ object DeviceUtils {
      *
      * Requires root permission.
      */
+    @JvmStatic
     fun reboot2Recovery() {
         ShellUtils.execCmd("reboot recovery", true)
     }
@@ -353,10 +373,12 @@ object DeviceUtils {
      *
      * Requires root permission.
      */
+    @JvmStatic
     fun reboot2Bootloader() {
         ShellUtils.execCmd("reboot bootloader", true)
     }
 
+    @JvmStatic
     @RequiresPermission(allOf = [ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE])
     fun getIpAddress(context: Context): String? {
         val info = (context
@@ -393,6 +415,7 @@ object DeviceUtils {
         return null
     }
 
+    @JvmStatic
     private fun intIP2StringIP(ip: Int): String {
         return (ip and 0xFF).toString() + "." +
                 (ip shr 8 and 0xFF) + "." +
@@ -402,6 +425,7 @@ object DeviceUtils {
 
 
     // 获取有限网IP
+    @JvmStatic
     private fun getLocalIp(): String {
         try {
             val en = NetworkInterface
@@ -428,6 +452,7 @@ object DeviceUtils {
     /**
      * 获取电量信息
      */
+    @JvmStatic
     fun battery(context: Context): String {
         val filter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
         val intent = context.registerReceiver(null, filter)
@@ -443,6 +468,7 @@ object DeviceUtils {
     /**
      * 获取磁盘信息
      */
+    @JvmStatic
     fun disk(): String {
         val info = getSdCardMemory()
         val total = info[0]
@@ -458,6 +484,7 @@ object DeviceUtils {
     /**
      * 获取内存信息
      */
+    @JvmStatic
     private fun ram(context: Context): String {
         val total = getTotalMemory()
         val avail = getAvailableMemory(context)
@@ -469,7 +496,7 @@ object DeviceUtils {
         }
     }
 
-
+    @JvmStatic
     private fun getSdCardMemory(): LongArray {
         val sdCardInfo = LongArray(2)
         val state = Environment.getExternalStorageState()
@@ -493,6 +520,7 @@ object DeviceUtils {
         return sdCardInfo
     }
 
+    @JvmStatic
     private fun getSizeWithUnit(size: Long): String {
         return when (size) {
             in 1048576..1073741824 -> {
@@ -514,6 +542,7 @@ object DeviceUtils {
     /**
      * 获取可使用的内存
      */
+    @JvmStatic
     fun getAvailableMemory(context: Context): Long {
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val mi = ActivityManager.MemoryInfo()
@@ -525,6 +554,7 @@ object DeviceUtils {
      * 获取设备总内存
      */
     @Synchronized
+    @JvmStatic
     fun getTotalMemory(): Long {
         if (mTotalMemory == -1L) {
             var total = 0L
@@ -552,6 +582,7 @@ object DeviceUtils {
         return mTotalMemory
     }
 
+    @JvmStatic
     private fun filterStringFromFile(file: File, filter: String): String? {
         var str: String? = null
         if (file.exists()) {
@@ -581,6 +612,7 @@ object DeviceUtils {
         return str
     }
 
+    @JvmStatic
     private fun getSize(size: String, uint: String, factor: Int): Long {
         return java.lang.Long.parseLong(size.split(uint.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0].trim { it <= ' ' }) * factor
     }

@@ -24,11 +24,13 @@ object AppUtils {
      * 获取渠道信息
      * 先从 MetaInf 读取之后写入缓存文件
      */
+    @JvmStatic
     fun getChannel(context: Context): String = ChannelUtils.getChannel(context)
 
     /**
      * 自定义全局唯一 ID (GUID)
      */
+    @JvmStatic
     fun getUuid(context: Context): String {
         var uuid: UUID? = null
         val path = StorageUtils.getImportantDir(context) + "/uuid"
@@ -76,6 +78,7 @@ object AppUtils {
     }
 
     @RequiresPermission(allOf = [READ_PHONE_STATE])
+    @JvmStatic
     fun getDeviceId(ctx: Context): String? {
         if (imei == null) {
             val telman = ctx.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -89,5 +92,6 @@ object AppUtils {
         return imei
     }
 
+    @JvmStatic
     fun getAndroidId(context: Context) = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
 }
