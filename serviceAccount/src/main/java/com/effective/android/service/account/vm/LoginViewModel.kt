@@ -8,8 +8,10 @@ import com.sina.weibo.sdk.auth.WbConnectErrorMessage
 import com.sina.weibo.sdk.auth.sso.SsoHandler
 import androidx.lifecycle.ViewModel
 import com.effective.android.service.account.AccountComponent
+import com.effective.android.service.account.AccountResult
 
 import com.effective.android.service.account.Constants.LOG_TAG
+import com.effective.android.service.account.Utils
 
 
 /**
@@ -20,21 +22,20 @@ import com.effective.android.service.account.Constants.LOG_TAG
 
 class LoginViewModel : ViewModel() {
 
-    fun onClickToLogin(ssoHandler: SsoHandler) {
+    fun onClickToLogin(ssoHandler: SsoHandler, accountResult: AccountResult) {
         ssoHandler.authorize(object : WbAuthListener {
 
             override fun onSuccess(oauth2AccessToken: Oauth2AccessToken) {
                 AccountComponent.accountRepository.saveAccount(oauth2AccessToken)
-//                EventBusUtils.post(AccountEvent(AccountEvent.LOGIN_TYPE))
-                Log.d(LOG_TAG, "login success!")
+                accountResult.onResult(Utils.transformAccount(oauth2AccessToken))
             }
 
             override fun cancel() {
-                Log.d(LOG_TAG, "login cancel!")
+                accountResult.onResult(null)
             }
 
             override fun onFailure(wbConnectErrorMessage: WbConnectErrorMessage) {
-                Log.d(LOG_TAG, "login fail: " + wbConnectErrorMessage.errorMessage)
+                accountResult.onResult(null)
             }
         })
     }

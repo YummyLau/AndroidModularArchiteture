@@ -1,15 +1,19 @@
 package com.effective.android.service.account.view
 
 import android.content.Intent
+import android.database.DatabaseUtils
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 
 import com.effective.android.base.activity.BaseVmActivity
 import com.effective.android.base.util.FontUtils
+import com.effective.android.service.account.Account
+import com.effective.android.service.account.AccountComponent
+import com.effective.android.service.account.AccountResult
 import com.effective.android.service.account.R
-import com.effective.android.service.account.databinding.AccountActivityLoginLayoutBinding
 import com.sina.weibo.sdk.auth.sso.SsoHandler
 
-import com.effective.android.service.account.Constants
+import com.effective.android.service.account.databinding.AccountActivityLoginLayoutBinding
 import com.effective.android.service.account.vm.LoginViewModel
 
 /**
@@ -19,9 +23,8 @@ import com.effective.android.service.account.vm.LoginViewModel
  */
 class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
-    private var returnPath: String? = null
     private var mSsoHandler: SsoHandler? = null
-    private val dataBinding: AccountActivityLoginLayoutBinding? = null
+    private lateinit var dataBinding: AccountActivityLoginLayoutBinding
 
     override fun getViewModel(): Class<LoginViewModel> {
         return LoginViewModel::class.java
@@ -33,10 +36,16 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        returnPath = intent.getStringExtra(Constants.RETURN_ACTIVITY_PATH)
+        dataBinding = DataBindingUtil.bind<AccountActivityLoginLayoutBinding>(contentView())!!
         mSsoHandler = SsoHandler(this)
-        dataBinding!!.viewmodel = viewModel
+        dataBinding.viewmodel = viewModel
         dataBinding.ssohandler = mSsoHandler
+        dataBinding.accountResult = object : AccountResult {
+            override fun onResult(account: Account?) {
+                AccountComponent.syncLoginResult(account)
+                finish()
+            }
+        }
         initView()
     }
 
@@ -51,14 +60,4 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
             mSsoHandler!!.authorizeCallBack(requestCode, resultCode, data)
         }
     }
-
-    //    @Subscribe(threadMode = ThreadMode.MAIN)
-    //    public void onEvent(AccountEvent event) {
-    //        if (event.type == AccountEvent.LOGIN_TYPE) {
-    //            if (!TextUtils.isEmpty(returnPath)) {
-    //                ARouter.getInstance().build(returnPath).navigation();
-    //            }
-    //            finish();
-    //        }
-    //    }
 }

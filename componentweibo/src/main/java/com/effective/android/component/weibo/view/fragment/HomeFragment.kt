@@ -1,6 +1,5 @@
-package com.effective.android.component.weibo.view
+package com.effective.android.component.weibo.view.fragment
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.component.weibo.R

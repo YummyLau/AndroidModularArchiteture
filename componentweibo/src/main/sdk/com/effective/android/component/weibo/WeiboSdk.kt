@@ -6,4 +6,5 @@ interface WeiboSdk {
 
     fun gotoMainActivity()
 
+    fun getWeiboMainFragment() : androidx.fragment.app.Fragment
 }

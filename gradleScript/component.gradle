@@ -6,7 +6,7 @@ component {
 
     mainModuleName 'app'
 
-    include 'app'
+    include 'app,componentweibo,serviceAccount'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

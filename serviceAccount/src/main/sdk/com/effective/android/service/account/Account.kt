@@ -13,5 +13,4 @@ class Account {
     var refreshToken: String? = null
     var expiresTime: Long = 0
     var phoneNum: String? = null
-
 }

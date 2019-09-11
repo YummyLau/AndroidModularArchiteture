@@ -1,22 +1,18 @@
-package com.effective.android.component.weibo.view
+package com.effective.android.component.weibo.view.activity
 
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.Window
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 
 
@@ -30,7 +26,8 @@ import com.effective.android.component.weibo.databinding.DemoActivityMainLayoutB
 import com.effective.android.component.weibo.imageviewer.ImageViewer
 import com.effective.android.component.weibo.net.resource.Resource
 import com.effective.android.component.weibo.videmodel.MainViewModel
-import com.google.android.material.navigation.NavigationView
+import com.effective.android.component.weibo.view.fragment.HomeFragment
+import com.effective.android.component.weibo.view.fragment.SkinFragment
 
 
 /**

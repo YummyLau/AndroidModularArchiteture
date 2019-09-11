@@ -1,52 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-        <variable
-            name="viewmodel"
-            type="com.effective.android.service.account.vm.LoginViewModel" />
-
-        <variable
-            name="returnPath"
-            type="String" />
-
-        <variable
-            name="ssohandler"
-            type="com.sina.weibo.sdk.auth.sso.SsoHandler" />
-    </data>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/account_login_title"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="50sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:gravity="center"
-            android:lineSpacingMultiplier="1.2"
-            android:text="@string/account_login_info"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="18sp" />
-
 
         <LinearLayout
             android:id="@+id/login_weibo"
@@ -54,12 +12,12 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="80dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
+            android:layout_marginBottom="80dp"
             android:background="@drawable/account_login_btn_bg"
             android:gravity="center_vertical"
-            android:onClick="@{() -> viewmodel.onClickToLogin(ssohandler)}"
+            android:onClick="@{() -> viewmodel.onClickToLogin(ssohandler,accountResult)}"
             android:orientation="horizontal"
             android:paddingLeft="25dp"
             android:paddingRight="25dp">
@@ -83,6 +41,33 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/account_login_info"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/account_login_title"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -94,5 +79,20 @@
             android:textSize="10sp" />
 
     </RelativeLayout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.effective.android.service.account.vm.LoginViewModel" />
+
+        <variable
+            name="ssohandler"
+            type="com.sina.weibo.sdk.auth.sso.SsoHandler" />
+
+        <variable
+            name="accountResult"
+            type="com.effective.android.service.account.AccountResult" />
+    </data>
 
 </layout>
