@@ -10,18 +10,13 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.effective.android.base.fragment.BaseVmFragment
-import com.effective.android.base.rxjava.Rx2Schedulers
 import com.effective.android.component.weibo.CircleTextProgressbar
 import com.effective.android.component.weibo.R
 import com.effective.android.component.weibo.videmodel.SplashViewModel
 import com.effective.android.component.weibo.databinding.CweiboFragmentSplashLayoutBinding
-import com.plugin.component.ComponentManager
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
 
-class SplashFragment : BaseVmFragment<SplashViewModel>() {
+class SplashFragment(weiboMainFragment: WeiboMainFragment) : BaseVmFragment<SplashViewModel>() {
 
-    private var mDisposable: Disposable? = null
     private val PROGRESS_DEFAULT_WHAT = 0x01
     private lateinit var dataBinding: CweiboFragmentSplashLayoutBinding
 
@@ -49,7 +44,8 @@ class SplashFragment : BaseVmFragment<SplashViewModel>() {
         dataBinding.loadingProgress.setInCircleColor(Color.WHITE)
         dataBinding.loadingProgress.setCountdownProgressListener(PROGRESS_DEFAULT_WHAT) { what, progress ->
             if (what == PROGRESS_DEFAULT_WHAT && progress == 100) {
-                mDisposable = checkLoginStatus()
+
+                checkLoginStatus()
             }
         }
         dataBinding.loadingProgress.start()
@@ -58,36 +54,15 @@ class SplashFragment : BaseVmFragment<SplashViewModel>() {
         }
     }
 
-    private fun checkLoginStatus(): Disposable {
-        return viewModel.checkLoginStatus()
-                .compose(Rx2Schedulers.flowableIoToMain())
-                .subscribe(object : Consumer<Account>() {
-                    @Throws(Exception::class)
-                    fun accept(account: Account?) {
-                        if (account == null) {
-                            ServiceManager.getService(IAccountService::class.java).login(
-                                    ComponentManager.getComponent(IDemoComponent::class.java).getMainPath())
-                        } else {
-                            //go to democomponent main activity
-                            ComponentManager.getComponent(IDemoComponent::class.java).gotoMainActivity()
-                        }
-                        finish()
-                    }
-                }, object : Consumer<Throwable>() {
-                    @Throws(Exception::class)
-                    fun accept(throwable: Throwable) {
-                        Log.e("", "check login status fail :" + throwable.message)
-                        ServiceManager.getService(IAccountService::class.java).login(
-                                ComponentManager.getComponent(IDemoComponent::class.java).getMainPath())
-                        finish()
-                    }
-                })
+    private fun checkLoginStatus() {
+        if (viewModel.isLogin) {
+
+        }else{
+
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mDisposable != null && mDisposable!!.isDisposed) {
-            mDisposable!!.dispose()
-        }
     }
 }

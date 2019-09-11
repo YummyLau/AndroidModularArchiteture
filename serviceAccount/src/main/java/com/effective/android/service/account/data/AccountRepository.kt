@@ -28,7 +28,7 @@ class AccountRepository(private val mApplication: Application) : AccountDataSour
 
     override fun refreshAccount() {
         var account = getAccount()
-        if (account != null && !TextUtils.isEmpty(account!!.refreshToken)) {
+        if (account != null && !TextUtils.isEmpty(account.refreshToken)) {
             AccessTokenKeeper.refreshToken(Constants.APP_KEY, mApplication, object : RequestListener {
                 override fun onComplete(s: String) {
                     //暂不需要处理

@@ -23,6 +23,7 @@ public class WeiboComponent implements IComponent {
 
     @Override
     public void attachComponent(Application application) {
+        HttpClient.init(application);
         HttpParam httpParam = new HttpParam.Builder()
                 .baseUrl(WeiboApis.BASE_URL)
                 .callAdatperFactory(RxJava2CallAdapterFactory.create())
@@ -36,5 +37,6 @@ public class WeiboComponent implements IComponent {
     public void detachComponent() {
         demoRepository = null;
         accountSdk = null;
+
     }
 }

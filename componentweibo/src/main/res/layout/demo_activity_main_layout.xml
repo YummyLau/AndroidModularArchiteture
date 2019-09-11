@@ -2,53 +2,66 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
         <FrameLayout
+            android:id="@+id/splash_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
 
-            <RelativeLayout
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:visibility="gone">
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="?attr/colorPrimary"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-                <View
-                    android:id="@+id/divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_alignBottom="@+id/toolbar"
-                    android:background="@color/colorDivider" />
+                android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:id="@+id/content_frame"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@+id/toolbar" />
+                    android:orientation="vertical">
 
-            </RelativeLayout>
-        </FrameLayout>
+                    <!--                <androidx.appcompat.widget.Toolbar-->
+                    <!--                    android:id="@+id/toolbar"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="?attr/actionBarSize"-->
+                    <!--                    android:background="?attr/colorPrimary"-->
+                    <!--                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+                    <!--                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+                    <RelativeLayout
+                        android:id="@+id/content_frame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/colorDivider" />
+                    <!--                android:layout_below="@+id/toolbar"-->
+
+                </RelativeLayout>
+            </FrameLayout>
 
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_layout"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@android:color/white"
-            app:headerLayout="@layout/demo_activity_main_navigation_header_layout"
-            app:menu="@menu/demo_activity_main_navigation_menu" />
-    </androidx.drawerlayout.widget.DrawerLayout>
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigation_layout"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@android:color/white"
+                app:headerLayout="@layout/demo_activity_main_navigation_header_layout"
+                app:menu="@menu/demo_activity_main_navigation_menu" />
+        </androidx.drawerlayout.widget.DrawerLayout>
+
+    </FrameLayout>
+
+
 </layout>

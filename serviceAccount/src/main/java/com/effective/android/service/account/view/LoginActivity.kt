@@ -1,7 +1,6 @@
 package com.effective.android.service.account.view
 
 import android.content.Intent
-import android.database.DatabaseUtils
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 
@@ -11,9 +10,9 @@ import com.effective.android.service.account.Account
 import com.effective.android.service.account.AccountComponent
 import com.effective.android.service.account.AccountResult
 import com.effective.android.service.account.R
+import com.effective.android.service.account.databinding.AccountActivityLoginLayoutBinding
 import com.sina.weibo.sdk.auth.sso.SsoHandler
 
-import com.effective.android.service.account.databinding.AccountActivityLoginLayoutBinding
 import com.effective.android.service.account.vm.LoginViewModel
 
 /**
@@ -50,7 +49,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
     }
 
     private fun initView() {
-        FontUtils.replaceFontFromAsset(dataBinding!!.title, "fonts/DIN-Condensed-Bold-2.ttf")
+        FontUtils.replaceFontFromAsset(dataBinding.title, "fonts/DIN-Condensed-Bold-2.ttf")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

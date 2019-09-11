@@ -6,10 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
-
-
 import java.util.List;
-
 import com.effective.android.component.weibo.AbsentLiveData;
 import com.effective.android.component.weibo.WeiboComponent;
 import com.effective.android.component.weibo.data.local.db.entity.StatusEntity;

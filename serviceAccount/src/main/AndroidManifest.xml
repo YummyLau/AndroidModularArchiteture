@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="example.demoaccountservice">
+    package="com.effective.android.service.account">
 
     <application
         android:allowBackup="true"

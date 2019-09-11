@@ -1,14 +1,10 @@
 package com.effective.android.component.weibo.videmodel;
 
-import android.accounts.Account;
-
 import androidx.lifecycle.ViewModel;
 
-import com.effective.android.base.rxjava.Rx2Creator;
+import com.effective.android.component.weibo.WeiboComponent;
+import com.effective.android.service.account.AccountResult;
 
-import java.util.concurrent.Callable;
-
-import io.reactivex.Flowable;
 
 /**
  * Email yummyl.lau@gmail.com
@@ -16,15 +12,11 @@ import io.reactivex.Flowable;
  */
 public class SplashViewModel extends ViewModel {
 
-    public Flowable<Account> checkLoginStatus() {
-        return Rx2Creator.createFlowable(new Callable<Account>() {
-            @Override
-            public Account call() throws Exception {
-                return null;
-            }
-        });
-//        return ServiceManager.getService(IAccountService.class)
-//                .getAccount();
+    public boolean isLogin() {
+        return WeiboComponent.accountSdk.isLogin();
     }
 
+    public void login(AccountResult accountResult) {
+        WeiboComponent.accountSdk.login(accountResult);
+    }
 }

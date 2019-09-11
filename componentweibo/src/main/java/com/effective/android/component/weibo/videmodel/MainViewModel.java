@@ -26,7 +26,7 @@ public class MainViewModel extends ViewModel {
             @Override
             public LiveData<Resource<UserEntity>> apply(Boolean commandInitInfo) {
                 if (commandInitInfo) {
-                    return WeiboComponent.demoRepository.getUserInfo(11l);
+                    return WeiboComponent.demoRepository.getUserInfo(11L);
                 } else {
                     return AbsentLiveData.create();
                 }

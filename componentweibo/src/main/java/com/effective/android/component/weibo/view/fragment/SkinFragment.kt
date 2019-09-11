@@ -16,7 +16,7 @@ import com.effective.android.component.weibo.databinding.DemoFragmentSkinLayoutB
  * Created by yummylau on 2018/01/25.
  */
 
-class SkinFragment : BaseFragment() {
+class SkinFragment(weiboMainFragment: WeiboMainFragment) : BaseFragment() {
 
 
     private val dataBinding: DemoFragmentSkinLayoutBinding? = null

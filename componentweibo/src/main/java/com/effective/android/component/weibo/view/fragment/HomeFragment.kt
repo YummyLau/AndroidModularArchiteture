@@ -24,7 +24,7 @@ import com.effective.android.component.weibo.view.adapter.StatusListAdapter
  * Created by yummylau on 2018/01/25.
  */
 
-class HomeFragment : BaseVmFragment<HomeViewModel>() {
+class HomeFragment(weiboMainFragment: WeiboMainFragment) : BaseVmFragment<HomeViewModel>() {
 
     private var mLinearLayoutManager: LinearLayoutManager? = null
 

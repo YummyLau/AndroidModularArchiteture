@@ -38,15 +38,14 @@ kapt { generateStubs = true }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    annotationProcessor deps.arouter.compiler
-    annotationProcessor deps.lifecycle.compiler
-    annotationProcessor deps.glide.compiler
-    annotationProcessor deps.room.compiler
+    kapt deps.lifecycle.compiler
+    kapt deps.room.compiler
     implementation deps.room.runtime
     implementation deps.gson
 
     implementation deps.room.runtime
     implementation deps.room.rxjava2
+
     implementation deps.retrofit.runtime
     implementation deps.retrofit.converterGson
     implementation deps.retrofit.converterScalars
