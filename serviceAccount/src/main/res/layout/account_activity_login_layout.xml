@@ -17,7 +17,6 @@
             android:layout_marginBottom="80dp"
             android:background="@drawable/account_login_btn_bg"
             android:gravity="center_vertical"
-            android:onClick="@{() -> viewmodel.onClickToLogin(ssohandler,accountResult)}"
             android:orientation="horizontal"
             android:paddingLeft="25dp"
             android:paddingRight="25dp">
@@ -80,19 +79,19 @@
 
     </RelativeLayout>
 
-    <data>
+<!--    <data>-->
 
-        <variable
-            name="viewmodel"
-            type="com.effective.android.service.account.vm.LoginViewModel" />
+<!--        <variable-->
+<!--            name="viewmodel"-->
+<!--            type="com.effective.android.service.account.vm.LoginViewModel" />-->
 
-        <variable
-            name="ssohandler"
-            type="com.sina.weibo.sdk.auth.sso.SsoHandler" />
+<!--        <variable-->
+<!--            name="ssohandler"-->
+<!--            type="com.sina.weibo.sdk.auth.sso.SsoHandler" />-->
 
-        <variable
-            name="accountResult"
-            type="com.effective.android.service.account.AccountResult" />
-    </data>
+<!--        <variable-->
+<!--            name="accountResult"-->
+<!--            type="com.effective.android.service.account.AccountResult" />-->
+<!--    </data>-->
 
 </layout>

@@ -15,7 +15,6 @@ abstract class BaseVmActivity<VM : ViewModel> : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutRes())
         viewModel = ViewModelProviders.of(this).get(getViewModel())
     }
 }

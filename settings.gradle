@@ -2,10 +2,10 @@
 include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':libSkin'
 
 //service 层
-include ':serviceShare', ':serviceSkin', ':serviceAccount'
+include ':serviceShare', ':serviceSkin', ':serviceAccount',':serviceNet'
 
-//component 层
-include ':componentweibo'
+//component 层   //废弃微博场景，由于api太过于限制
+//include ':componentweibo'
 
 //壳层
 include ':app'

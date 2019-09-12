@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.fragment.app.Fragment
 
 /**
  * Created by yummyLau on 2018/4/26.
@@ -17,12 +16,10 @@ abstract class BaseFragment : VisibleFragment() {
     @LayoutRes
     abstract fun getLayoutRes(): Int
 
-    var contentView: View? = null
+    lateinit var rootView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (inflater != null) {
-            contentView = inflater.inflate(getLayoutRes(), container, false)
-        }
-        return contentView
+        rootView = inflater.inflate(getLayoutRes(), container, false)
+        return rootView
     }
 }

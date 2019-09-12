@@ -24,14 +24,13 @@ import com.effective.android.component.weibo.view.adapter.StatusListAdapter
  * Created by yummylau on 2018/01/25.
  */
 
-class HomeFragment(weiboMainFragment: WeiboMainFragment) : BaseVmFragment<HomeViewModel>() {
+class FeedFragment(weiboMainFragment: WeiboMainFragment) : BaseVmFragment<HomeViewModel>() {
+
+    val title: String = "首页"
 
     private var mLinearLayoutManager: LinearLayoutManager? = null
-
     lateinit var statusListAdapter: StatusListAdapter
-
     private var dataBinding: DemoFragmentHomeLayoutBinding? = null
-
 
     override fun getViewModel(): Class<HomeViewModel> {
         return HomeViewModel::class.java
@@ -39,14 +38,6 @@ class HomeFragment(weiboMainFragment: WeiboMainFragment) : BaseVmFragment<HomeVi
 
     override fun getLayoutRes(): Int {
         return R.layout.demo_fragment_home_layout
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
 
@@ -59,7 +50,7 @@ class HomeFragment(weiboMainFragment: WeiboMainFragment) : BaseVmFragment<HomeVi
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        dataBinding = DataBindingUtil.bind(contentView!!)
+        dataBinding = DataBindingUtil.bind(rootView!!)
         dataBinding!!.setViewmodel(viewModel)
         initView()
         viewModel.getAllStatus().observe(this, Observer<Resource<List<StatusEntity>>> { listResource ->

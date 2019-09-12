@@ -1,10 +1,11 @@
 package com.effective.android.net;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
-public class ImageLoaderTestActivity extends Activity{
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class TestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

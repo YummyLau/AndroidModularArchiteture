@@ -8,7 +8,6 @@ import com.effective.android.base.activity.BaseVmActivity
 import com.effective.android.base.util.FontUtils
 import com.effective.android.service.account.Account
 import com.effective.android.service.account.AccountComponent
-import com.effective.android.service.account.AccountResult
 import com.effective.android.service.account.R
 import com.effective.android.service.account.databinding.AccountActivityLoginLayoutBinding
 import com.sina.weibo.sdk.auth.sso.SsoHandler
@@ -35,16 +34,14 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding = DataBindingUtil.bind<AccountActivityLoginLayoutBinding>(contentView())!!
+        dataBinding = DataBindingUtil.bind<AccountActivityLoginLayoutBinding>(rootView)!!
         mSsoHandler = SsoHandler(this)
-        dataBinding.viewmodel = viewModel
-        dataBinding.ssohandler = mSsoHandler
-        dataBinding.accountResult = object : AccountResult {
-            override fun onResult(account: Account?) {
-                AccountComponent.syncLoginResult(account)
-                finish()
-            }
-        }
+//        dataBinding.accountResult = object : AccountResult {
+//            override fun onResult(account: Account?) {
+//                AccountComponent.syncLoginResult(account)
+//                finish()
+//            }
+//        }
         initView()
     }
 

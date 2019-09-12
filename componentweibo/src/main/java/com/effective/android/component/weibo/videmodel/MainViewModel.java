@@ -10,6 +10,7 @@ import com.effective.android.component.weibo.AbsentLiveData;
 import com.effective.android.component.weibo.WeiboComponent;
 import com.effective.android.component.weibo.data.local.db.entity.UserEntity;
 import com.effective.android.component.weibo.net.resource.Resource;
+import com.effective.android.service.account.AccountResult;
 
 
 /**
@@ -34,12 +35,23 @@ public class MainViewModel extends ViewModel {
         });
     }
 
+
+    public void loadUserInfo(){
+        if(WeiboComponent.accountSdk.isLogin()){
+
+        }
+    }
+
     public LiveData<Resource<UserEntity>> getUser() {
         return ownUserInfo;
     }
 
     public void initInfo() {
         commandInitInfo.setValue(true);
+    }
+
+    public boolean isLogin() {
+        return WeiboComponent.accountSdk.isLogin();
     }
 
 }

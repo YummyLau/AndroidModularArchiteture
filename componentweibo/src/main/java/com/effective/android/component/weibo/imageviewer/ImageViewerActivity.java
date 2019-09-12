@@ -52,7 +52,7 @@ public class ImageViewerActivity extends BaseActivity {
         mUrls = mIntent.getStringArrayListExtra(INTENT_URLS);
         startIndex = mIntent.getIntExtra(INTENT_START, 0);
         mPagerAdapter = new ImageViewerAdapter(this, mUrls, startIndex);
-        dataBinding = DataBindingUtil.bind(contentView());
+        dataBinding = DataBindingUtil.bind(rootView);
         dataBinding.viewpager.setAdapter(mPagerAdapter);
         dataBinding.viewpager.setCurrentItem(startIndex);
         dataBinding.viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

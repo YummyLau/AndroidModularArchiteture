@@ -18,11 +18,6 @@ class AccountComponent : IComponent {
 
     companion object {
         lateinit var accountRepository: AccountRepository
-        var loginResult: AccountResult? = null
-
-        fun syncLoginResult(account: Account?) {
-            loginResult?.onResult(account)
-        }
     }
 
     override fun attachComponent(application: Application) {
@@ -31,7 +26,7 @@ class AccountComponent : IComponent {
     }
 
     override fun detachComponent() {
-        loginResult = null
+
 
     }
 

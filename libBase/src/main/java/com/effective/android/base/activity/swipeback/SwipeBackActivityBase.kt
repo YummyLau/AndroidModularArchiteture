@@ -9,7 +9,7 @@ interface SwipeBackActivityBase {
     fun setSwipeBackEnable(enable: Boolean)
 
     /**
-     * Scroll out contentView and finish the activity
+     * Scroll out rootView and finish the activity
      */
     fun scrollToFinishActivity()
 }

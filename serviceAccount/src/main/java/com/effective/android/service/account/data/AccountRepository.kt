@@ -20,28 +20,9 @@ import com.effective.android.service.account.Constants
 class AccountRepository(private val mApplication: Application) : AccountDataSource {
 
 
-    override fun saveAccount(oauth2AccessToken: Oauth2AccessToken) {
-        if (oauth2AccessToken.isSessionValid) {
-            AccessTokenKeeper.writeAccessToken(mApplication, oauth2AccessToken)
-        }
-    }
-
-    override fun refreshAccount() {
-        var account = getAccount()
-        if (account != null && !TextUtils.isEmpty(account.refreshToken)) {
-            AccessTokenKeeper.refreshToken(Constants.APP_KEY, mApplication, object : RequestListener {
-                override fun onComplete(s: String) {
-                    //暂不需要处理
-                }
-
-                override fun onWeiboException(e: WeiboException) {
-                    //暂不需要处理
-                }
-            })
-        }
-    }
-
-    override fun getAccount(): Oauth2AccessToken? {
-        return AccessTokenKeeper.readAccessToken(mApplication)
-    }
+//    override fun saveAccount(oauth2AccessToken: Oauth2AccessToken) {
+//        if (oauth2AccessToken.isSessionValid) {
+//            AccessTokenKeeper.writeAccessToken(mApplication, oauth2AccessToken)
+//        }
+//    }
 }

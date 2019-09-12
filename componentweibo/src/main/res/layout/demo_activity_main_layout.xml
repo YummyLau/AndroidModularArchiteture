@@ -11,57 +11,59 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <androidx.drawerlayout.widget.DrawerLayout
-            android:id="@+id/drawer_layout"
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/content_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:visibility="gone">
+            android:layout_height="match_parent">
 
-            <FrameLayout
+            <RelativeLayout
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="50dp">
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="标题"
+                    android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/divider"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <!--                <androidx.appcompat.widget.Toolbar-->
-                    <!--                    android:id="@+id/toolbar"-->
-                    <!--                    android:layout_width="match_parent"-->
-                    <!--                    android:layout_height="?attr/actionBarSize"-->
-                    <!--                    android:background="?attr/colorPrimary"-->
-                    <!--                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
-                    <!--                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
-
-                    <RelativeLayout
-                        android:id="@+id/content_frame"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <View
-                        android:id="@+id/divider"
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="@color/colorDivider" />
-                    <!--                android:layout_below="@+id/toolbar"-->
-
-                </RelativeLayout>
-            </FrameLayout>
+                    android:layout_height="1px"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorDivider" />
 
 
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/navigation_layout"
-                android:layout_width="300dp"
+                <View
+                    android:id="@+id/more"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/cweibo_ic_more" />
+
+                <com.effective.android.base.view.roundimage.RoundedImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/cweibo_ic_default_avatar"
+                    app:oval="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:background="@android:color/white"
-                app:headerLayout="@layout/demo_activity_main_navigation_header_layout"
-                app:menu="@menu/demo_activity_main_navigation_menu" />
-        </androidx.drawerlayout.widget.DrawerLayout>
+                android:layout_below="@+id/toolbar" />
 
+        </RelativeLayout>
     </FrameLayout>
-
-
 </layout>

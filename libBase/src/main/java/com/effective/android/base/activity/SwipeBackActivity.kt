@@ -19,7 +19,6 @@ abstract class SwipeBackActivity : BaseActivity(), SwipeBackActivityBase {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutRes())
         if (supportSwipeBack()) {
             mHelper = SwipeBackActivityHelper(this)
             mHelper?.onActivityCreate()

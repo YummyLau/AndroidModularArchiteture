@@ -9,10 +9,5 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken
  */
 
 interface AccountDataSource {
-
-    fun getAccount(): Oauth2AccessToken?
-
-    fun saveAccount(oauth2AccessToken: Oauth2AccessToken)
-
-    fun refreshAccount()
+    
 }

@@ -1,37 +1,34 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion configs.android.compileSdkVersion
-    buildToolsVersion configs.android.buildToolsVersion
 
     dataBinding {
         enabled = true
     }
 
+    compileSdkVersion configs.android.compileSdkVersion
+    buildToolsVersion configs.android.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility configs.compile.sourceCompatibility
+        targetCompatibility configs.compile.targetCompatibility
+    }
+
     defaultConfig {
         minSdkVersion configs.android.minSdkVersion
         targetSdkVersion configs.android.targetSdkVersion
-        versionCode configs.android.versionCode
-        versionName configs.android.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        versionCode 1
+        versionName "1.0"
     }
 
     resourcePrefix "account_"
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
     implementation project(':libBase')
+    implementation project(':libNet')
 }

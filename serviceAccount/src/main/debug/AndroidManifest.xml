@@ -8,14 +8,14 @@
 
 
     <application
-        android:name="com.effective.android.service.account.AccountComponent"
+        android:name=".TestApplication"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
 
         <activity
             android:theme="@style/FullScreenTheme"
-            android:name="com.effective.android.service.account.view.LoginActivity"
+            android:name=".TestActivity"
             android:label="@string/account_app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

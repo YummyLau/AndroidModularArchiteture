@@ -107,7 +107,7 @@ class SwipeBackLayout @JvmOverloads constructor(context: Context, attrs: Attribu
     }
 
     /**
-     * Set up contentView which will be moved by user gesture
+     * Set up rootView which will be moved by user gesture
      *
      * @param view
      */
@@ -284,7 +284,7 @@ class SwipeBackLayout @JvmOverloads constructor(context: Context, attrs: Attribu
     }
 
     /**
-     * Scroll out contentView and finish the activity
+     * Scroll out rootView and finish the activity
      */
     fun scrollToFinishActivity() {
         val childWidth = mContentView!!.width

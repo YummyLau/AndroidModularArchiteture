@@ -7,9 +7,14 @@
         android:theme="@style/BaseAppTheme">
 
         <activity
-            android:theme="@style/FullScreenTheme"
-            android:name="com.effective.android.service.account.view.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:name=".view.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenTheme">
+            <intent-filter>
+                <action android:name="com.effective.android.service.account.view.LoginActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
     </application>
 </manifest>

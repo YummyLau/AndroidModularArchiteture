@@ -17,9 +17,4 @@ abstract class BaseVmFragment<VM : ViewModel> : BaseFragment() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(getViewModel())
     }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        contentView = inflater.inflate(getLayoutRes(), container, false)
-        return contentView
-    }
 }

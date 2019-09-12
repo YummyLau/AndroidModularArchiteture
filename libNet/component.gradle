@@ -1,6 +1,6 @@
 component {
     debug {
-        applicationName 'com.effective.android.net.ImageLoaderApplication'
+        applicationName 'com.effective.android.net.TestApplication'
     }
     sdk {
         groupId 'com.effective.android'

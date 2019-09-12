@@ -7,11 +7,8 @@ package com.effective.android.service.account
 
 object Constants {
 
-    const val LOG_TAG = "DemoAccountService"
+    const val LOG_TAG = "serviceAccount"
 
-    const val RETURN_ACTIVITY_PATH = "returnActivityPath"
-
-    const val ROUTER_LOGIN = "/account/loginActivity/"
 
     /**
      * 当前 DEMO 应用的 APP_KEY，第三方应用应该使用自己的 APP_KEY 替换该 APP_KEY

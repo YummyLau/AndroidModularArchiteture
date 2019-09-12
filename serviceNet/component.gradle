@@ -1,0 +1,15 @@
+component {
+    debug {
+        applicationName 'com.effective.android.service.net.TestApplication'
+    }
+
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'serviceNet'
+        dependencies {
+            implementation deps.kotlin.stdlib
+            implementation deps.gson
+            implementation deps.retrofit.runtime
+        }
+    }
+}

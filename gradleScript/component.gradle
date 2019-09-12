@@ -6,13 +6,12 @@ component {
 
     mainModuleName 'app'
 
-    include 'app,componentweibo,serviceAccount'
+    include 'app,serviceAccount,serviceNet'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
 
 
