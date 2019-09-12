@@ -9,6 +9,7 @@ component {
         dependencies {
             implementation deps.androidx.appCompat
             implementation deps.kotlin.stdlib
+            implementation deps.skin.support
         }
     }
 }

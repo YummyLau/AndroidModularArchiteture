@@ -1,9 +1,0 @@
-component {
-    debug {
-        applicationName 'com.effective.android.lib_imageloader.ImageLoaderApplication'
-    }
-    sdk {
-        groupId 'com.effective.android'
-        artifactId 'serviceSkin'
-    }
-}

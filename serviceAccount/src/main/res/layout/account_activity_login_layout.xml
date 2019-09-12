@@ -79,19 +79,5 @@
 
     </RelativeLayout>
 
-<!--    <data>-->
-
-<!--        <variable-->
-<!--            name="viewmodel"-->
-<!--            type="com.effective.android.service.account.vm.LoginViewModel" />-->
-
-<!--        <variable-->
-<!--            name="ssohandler"-->
-<!--            type="com.sina.weibo.sdk.auth.sso.SsoHandler" />-->
-
-<!--        <variable-->
-<!--            name="accountResult"-->
-<!--            type="com.effective.android.service.account.AccountResult" />-->
-<!--    </data>-->
 
 </layout>

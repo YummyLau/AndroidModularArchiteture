@@ -21,7 +21,6 @@ class AccountComponent : IComponent {
     }
 
     override fun attachComponent(application: Application) {
-        WbSdk.install(application, AuthInfo(application, Constants.APP_KEY, Constants.REDIRECT_URL, Constants.SCOPE))
         accountRepository = AccountRepository(application)
     }
 

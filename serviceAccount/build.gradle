@@ -27,8 +27,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
     implementation project(':libBase')
-    implementation project(':libNet')
+    implementation component(':serviceNet')
 }
