@@ -10,8 +10,8 @@ import skin.support.SkinCompatManager
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2018/01/25.
  */
-@AutoInjectImpl(sdk = [SkinSdk::class])
-class SkinSdkImpl : SkinSdk {
+@AutoInjectImpl(sdk = [ServiceSkin::class])
+class SkinSdkImpl : ServiceSkin {
 
     private val listeners = mutableListOf<SkinChangeListener>()
 

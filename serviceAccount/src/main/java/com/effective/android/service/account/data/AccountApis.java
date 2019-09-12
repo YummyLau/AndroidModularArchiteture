@@ -1,10 +1,8 @@
 package com.effective.android.service.account.data;
 
-import com.effective.android.service.account.Account;
-import io.reactivex.Flowable;
-import retrofit2.http.Field;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
+//import retrofit2.http.Field;
+//import retrofit2.http.GET;
+//import retrofit2.http.POST;
 
 /**
  * Email yummyl.lau@gmail.com
@@ -13,17 +11,17 @@ import retrofit2.http.POST;
 
 public interface AccountApis {
 
-    String BASE_URL = "https://www.wanandroid.com/user/";
-
-    @POST("login")
-    Flowable<Account> login(@Field("username") String username,
-                            @Field("password") String password);
-
-    @POST("register")
-    Flowable<Account> register(@Field("username") String username,
-                               @Field("password") String password,
-                               @Field("repassword") String repassword);
-    @GET("logout/json")
-    Flowable<Boolean> logout();
+//    String BASE_URL = "https://www.wanandroid.com/user/";
+//
+//    @POST("login")
+//    Flowable<UserInfo> login(@Field("username") String username,
+//                            @Field("password") String password);
+//
+//    @POST("register")
+//    Flowable<UserInfo> register(@Field("username") String username,
+//                               @Field("password") String password,
+//                               @Field("repassword") String repassword);
+//    @GET("logout/json")
+//    Flowable<Boolean> logout();
 }
 

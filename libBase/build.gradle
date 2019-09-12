@@ -38,6 +38,8 @@ dependencies {
     api deps.lifecycle.java8
     api deps.lifecycle.extensions
 
+    api deps.gson
+
     implementation deps.qmui
 }
 

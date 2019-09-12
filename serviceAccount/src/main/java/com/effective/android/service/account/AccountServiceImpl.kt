@@ -1,11 +1,8 @@
 package com.effective.android.service.account
 
-import android.content.Context
-import android.content.Intent
-import android.util.Log
 import com.plugin.component.anno.AutoInjectImpl
-import com.sina.weibo.sdk.auth.AccessTokenKeeper
 import io.reactivex.Flowable
+
 
 /**
  * Email yummyl.lau@gmail.com
@@ -14,8 +11,20 @@ import io.reactivex.Flowable
 @AutoInjectImpl(sdk = [AccountSdk::class])
 class AccountServiceImpl : AccountSdk {
 
-    var mApplication: Context? = null
-//
+
+    override fun isLogin(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun logout(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun login(): Flowable<UserInfo> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    //
 //    override fun isLogin(): Boolean {
 //        return AccessTokenKeeper.readAccessToken(mApplication) != null
 //    }
@@ -30,7 +39,7 @@ class AccountServiceImpl : AccountSdk {
 //        accountResult?.onResult(null)
 //    }
 //
-//    override fun getAccount(): Flowable<Account> {
+//    override fun getAccount(): Flowable<UserInfo> {
 //        return Flowable.just(AccessTokenKeeper.readAccessToken(mApplication))
 //                .map { oauth2AccessToken ->
 //                    Utils.transformAccount(oauth2AccessToken)

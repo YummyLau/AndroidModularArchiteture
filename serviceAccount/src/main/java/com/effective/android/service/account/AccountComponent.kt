@@ -1,12 +1,12 @@
 package com.effective.android.service.account
 
 import android.app.Application
-
 import com.effective.android.service.account.data.AccountRepository
+import com.effective.android.service.net.ServiceNet
+import com.effective.android.service.skin.ServiceSkin
 import com.plugin.component.IComponent
+import com.plugin.component.SdkManager
 import com.plugin.component.anno.AutoInjectComponent
-import com.sina.weibo.sdk.WbSdk
-import com.sina.weibo.sdk.auth.AuthInfo
 
 
 /**
@@ -18,15 +18,17 @@ class AccountComponent : IComponent {
 
     companion object {
         lateinit var accountRepository: AccountRepository
+        lateinit var serviceSkin: ServiceSkin
+        lateinit var serviceNet: ServiceNet
     }
 
     override fun attachComponent(application: Application) {
         accountRepository = AccountRepository(application)
+        serviceSkin = SdkManager.getSdk(ServiceSkin::class.java)!!
+        serviceNet = SdkManager.getSdk(ServiceNet::class.java)!!
     }
 
     override fun detachComponent() {
 
-
     }
-
 }

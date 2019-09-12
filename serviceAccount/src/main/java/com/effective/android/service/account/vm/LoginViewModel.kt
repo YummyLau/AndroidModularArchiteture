@@ -1,9 +1,5 @@
 package com.effective.android.service.account.vm
 
-import com.sina.weibo.sdk.auth.Oauth2AccessToken
-import com.sina.weibo.sdk.auth.WbAuthListener
-import com.sina.weibo.sdk.auth.WbConnectErrorMessage
-import com.sina.weibo.sdk.auth.sso.SsoHandler
 import androidx.lifecycle.ViewModel
 import com.effective.android.service.account.AccountComponent
 

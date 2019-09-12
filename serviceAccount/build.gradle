@@ -4,10 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    dataBinding {
-        enabled = true
-    }
-
     compileSdkVersion configs.android.compileSdkVersion
     buildToolsVersion configs.android.buildToolsVersion
 
@@ -23,10 +19,11 @@ android {
         versionName "1.0"
     }
 
-    resourcePrefix "account_"
+    resourcePrefix "saccount_"
 }
 
 dependencies {
     implementation project(':libBase')
     implementation component(':serviceNet')
+    implementation component(':serviceSkin')
 }

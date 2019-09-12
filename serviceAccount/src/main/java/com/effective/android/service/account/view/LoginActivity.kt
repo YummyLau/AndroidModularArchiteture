@@ -1,18 +1,10 @@
 package com.effective.android.service.account.view
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-
 import com.effective.android.base.activity.BaseVmActivity
-import com.effective.android.base.util.FontUtils
-import com.effective.android.service.account.Account
-import com.effective.android.service.account.AccountComponent
 import com.effective.android.service.account.R
-import com.effective.android.service.account.databinding.AccountActivityLoginLayoutBinding
-import com.sina.weibo.sdk.auth.sso.SsoHandler
-
 import com.effective.android.service.account.vm.LoginViewModel
+import kotlinx.android.synthetic.main.account_activity_login_layout.*
 
 /**
  * login activity
@@ -21,8 +13,8 @@ import com.effective.android.service.account.vm.LoginViewModel
  */
 class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
-    private var mSsoHandler: SsoHandler? = null
-    private lateinit var dataBinding: AccountActivityLoginLayoutBinding
+    var isSelectLogin: Boolean = true
+
 
     override fun getViewModel(): Class<LoginViewModel> {
         return LoginViewModel::class.java
@@ -34,26 +26,17 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding = DataBindingUtil.bind<AccountActivityLoginLayoutBinding>(rootView)!!
-        mSsoHandler = SsoHandler(this)
-//        dataBinding.accountResult = object : AccountResult {
-//            override fun onResult(account: Account?) {
-//                AccountComponent.syncLoginResult(account)
-//                finish()
-//            }
-//        }
-        initView()
-    }
-
-    private fun initView() {
-        FontUtils.replaceFontFromAsset(dataBinding.title, "fonts/DIN-Condensed-Bold-2.ttf")
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        //如果发起sso授权回调
-        if (mSsoHandler != null) {
-            mSsoHandler!!.authorizeCallBack(requestCode, resultCode, data)
+        initView(isSelectLogin)
+        actionTip.setOnClickListener {
+            isSelectLogin != isSelectLogin
+            initView(isSelectLogin)
         }
     }
+
+    private fun initView(isSelectLogin: Boolean) {
+        pageTitle.text = getString(if (isSelectLogin) R.string.saccount_login else R.string.saccount_register)
+        action.text = getString(if (isSelectLogin) R.string.saccount_login else R.string.saccount_register_and_login)
+        actionTip.text = getString(if (isSelectLogin) R.string.saccount_login_tip else R.string.saccount_register_tip)
+    }
+
 }

@@ -1,83 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/action"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/password"
+        android:layout_alignStart="@+id/userName"
+        android:layout_alignEnd="@+id/userName"
+        android:layout_marginTop="100dp"
+        android:text="登陆" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/userName"
+        android:layout_alignStart="@+id/userName"
+        android:layout_alignEnd="@+id/userName"
+        android:layout_marginTop="100dp"
+        android:hint="密码" />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/titleLayout"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:hint="用户名" />
 
     <RelativeLayout
+        android:id="@+id/titleLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
-
-        <LinearLayout
-            android:id="@+id/login_weibo"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginBottom="80dp"
-            android:background="@drawable/account_login_btn_bg"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp">
-
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/weibo_logo" />
-
-            <TextView
-                android:id="@+id/login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:includeFontPadding="false"
-                android:text="@string/account_login_with_weibo"
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="15sp" />
-
-        </LinearLayout>
+        android:background="@color/blue_50"
+        android:layout_height="@dimen/base_title_bar_height">
 
         <TextView
-            android:id="@+id/info"
+            android:id="@+id/pageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:gravity="center"
-            android:lineSpacingMultiplier="1.2"
-            android:text="@string/account_login_info"
+            android:layout_centerInParent="true"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="18sp" />
-
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:text="@string/account_login_title"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="50sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp"
-            android:includeFontPadding="false"
-            android:text="@string/account_login_with_weibo_top"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="10sp" />
+            android:text="登陆" />
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/actionTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/action"
+        android:layout_alignEnd="@+id/userName"
+        android:text="直接登陆"
+        android:layout_marginTop="50dp" />
 
-</layout>
+
+</RelativeLayout>

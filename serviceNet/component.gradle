@@ -10,6 +10,7 @@ component {
             implementation deps.kotlin.stdlib
             implementation deps.gson
             implementation deps.retrofit.runtime
+            implementation deps.androidx.appCompat
         }
     }
 }

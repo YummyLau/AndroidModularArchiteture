@@ -15,10 +15,11 @@
 
         <activity
             android:theme="@style/FullScreenTheme"
-            android:name=".TestActivity"
-            android:label="@string/account_app_name">
+            android:name=".view.LoginActivity"
+            android:label="@string/saccount_app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

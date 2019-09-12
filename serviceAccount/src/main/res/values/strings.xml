@@ -1,11 +1,12 @@
 <resources>
 
-    <string name="account_app_name">serviceAccount</string>
-
-    <!-- login -->
-    <string name="account_login_title">Architeture</string>
-    <string name="account_login_info">Sample for Android Modular Architecture</string>
-    <string name="account_login_with_weibo">Sign up with Weibo</string>
-    <string name="account_login_with_weibo_top">Demo only test on Weibo platform</string>
+    <string name="saccount_app_name">serviceAccount</string>
+    <string name="saccount_username">用户名</string>
+    <string name="saccount_password">密码</string>
+    <string name="saccount_register_and_login">注册并登陆</string>
+    <string name="saccount_login">登陆</string>
+    <string name="saccount_register">注册</string>
+    <string name="saccount_register_tip">注册新账号</string>
+    <string name="saccount_login_tip">直接登陆</string>
 
 </resources>

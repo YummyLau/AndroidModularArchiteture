@@ -1,7 +1,7 @@
 package com.effective.android.service.skin
 
 
-interface SkinSdk {
+interface ServiceSkin {
 
     fun getSkins(): List<Skin>
 

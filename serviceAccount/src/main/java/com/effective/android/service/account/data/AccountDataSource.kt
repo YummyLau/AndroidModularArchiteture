@@ -1,6 +1,5 @@
 package com.effective.android.service.account.data
 
-import com.sina.weibo.sdk.auth.Oauth2AccessToken
 
 /**
  * account 模块数据接口
@@ -9,5 +8,11 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken
  */
 
 interface AccountDataSource {
-    
+
+    fun isLogin(): Boolean
+
+    fun login(username: String, password: String)
+
+    fun login(): Boolean
+
 }
