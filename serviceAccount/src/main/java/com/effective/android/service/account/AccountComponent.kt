@@ -18,6 +18,7 @@ class AccountComponent : IComponent {
 
     companion object {
         lateinit var accountRepository: AccountRepository
+        lateinit var accountServiceImpl: AccountServiceImpl
         lateinit var serviceSkin: ServiceSkin
         lateinit var serviceNet: ServiceNet
     }

@@ -6,15 +6,18 @@ import androidx.annotation.StringRes
 
 object ToastUtils {
 
+    @JvmStatic
     fun show(context: Context, text: String, duration: Int) {
         BaseToast.makeText(context, text, duration).show()
     }
 
+    @JvmStatic
     fun show(context: Context, text: String) {
-        BaseToast.makeText(context, text, Toast.LENGTH_SHORT)
+        show(context, text, Toast.LENGTH_SHORT)
     }
 
+    @JvmStatic
     fun show(context: Context, @StringRes resId: Int) {
-        BaseToast.makeText(context, resId, Toast.LENGTH_SHORT)
+        show(context, context.getString(resId), Toast.LENGTH_SHORT)
     }
 }

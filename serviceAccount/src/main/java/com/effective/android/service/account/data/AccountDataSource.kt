@@ -1,5 +1,8 @@
 package com.effective.android.service.account.data
 
+import com.effective.android.service.account.UserInfo
+import io.reactivex.Flowable
+
 
 /**
  * account 模块数据接口
@@ -11,8 +14,10 @@ interface AccountDataSource {
 
     fun isLogin(): Boolean
 
-    fun login(username: String, password: String)
+    fun login(username: String, password: String): Flowable<UserInfo>
 
-    fun login(): Boolean
+    fun register(username: String, password: String): Flowable<UserInfo>
+
+    fun logout():  Flowable<Boolean>
 
 }

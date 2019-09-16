@@ -15,7 +15,7 @@
 
         <activity
             android:theme="@style/FullScreenTheme"
-            android:name=".view.LoginActivity"
+            android:name=".TestActivity"
             android:label="@string/saccount_app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +23,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".view.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenTheme">
         </activity>
     </application>
 

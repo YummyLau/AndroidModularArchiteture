@@ -1,6 +1,7 @@
 package com.effective.android.service.net
 
 import android.app.Application
+import com.effective.android.net.okhttp.HttpClient
 import com.plugin.component.IComponent
 import com.plugin.component.anno.AutoInjectComponent
 
@@ -13,6 +14,6 @@ class ServiceNetComponent : IComponent {
     }
 
     override fun attachComponent(application: Application?) {
-        //暂时不处理
+        HttpClient.init(application!!, false)
     }
 }

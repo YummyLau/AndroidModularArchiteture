@@ -10,5 +10,12 @@ package com.effective.android.service.account
 
 data class UserInfo(var admin: Boolean = false, var email: String = "", var icon: String = "",
                     var id: Long = 0L, var nickname: String = "", var password: String = "", val token: String = "",
-                    var type: Int = 0, var username: String = "")
+                    var type: Int = 0, var username: String = "") {
+
+    fun isValid() = id != 0L
+
+    companion object {
+        fun createEmpty(): UserInfo = UserInfo()
+    }
+}
 

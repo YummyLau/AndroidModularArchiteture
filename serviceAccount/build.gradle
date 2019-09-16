@@ -26,4 +26,7 @@ dependencies {
     implementation project(':libBase')
     implementation component(':serviceNet')
     implementation component(':serviceSkin')
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.converterGson
+    implementation deps.retrofit.rxJava2Adapter
 }

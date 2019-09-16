@@ -8,5 +8,11 @@
     <string name="saccount_register">注册</string>
     <string name="saccount_register_tip">注册新账号</string>
     <string name="saccount_login_tip">直接登陆</string>
+    <string name="saccount_input_invalid">账号和密码不能为空</string>
+
+    <string name="saccount_login_success">登陆成功</string>
+    <string name="saccount_login_fail">登陆失败</string>
+    <string name="saccount_register_success">注册成功</string>
+    <string name="saccount_register_fail">注册失败</string>
 
 </resources>

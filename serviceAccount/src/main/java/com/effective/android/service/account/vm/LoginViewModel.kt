@@ -1,9 +1,10 @@
 package com.effective.android.service.account.vm
 
 import androidx.lifecycle.ViewModel
+import com.effective.android.base.rxjava.Rx2Schedulers
 import com.effective.android.service.account.AccountComponent
-
-import com.effective.android.service.account.Utils
+import com.effective.android.service.account.UserInfo
+import io.reactivex.Flowable
 
 
 /**
@@ -14,21 +15,13 @@ import com.effective.android.service.account.Utils
 
 class LoginViewModel : ViewModel() {
 
-//    fun onClickToLogin(ssoHandler: SsoHandler, accountResult: AccountResult) {
-//        ssoHandler.authorize(object : WbAuthListener {
-//
-//            override fun onSuccess(oauth2AccessToken: Oauth2AccessToken) {
-//                AccountComponent.accountRepository.saveAccount(oauth2AccessToken)
-//                accountResult.onResult(Utils.transformAccount(oauth2AccessToken))
-//            }
-//
-//            override fun cancel() {
-//                accountResult.onResult(null)
-//            }
-//
-//            override fun onFailure(wbConnectErrorMessage: WbConnectErrorMessage) {
-//                accountResult.onResult(null)
-//            }
-//        })
-//    }
+    fun login(username: String, password: String): Flowable<UserInfo> {
+        return AccountComponent.accountRepository.login(username, password)
+                .compose(Rx2Schedulers.flowableIoToMain())
+    }
+
+    fun register(username: String, password: String): Flowable<UserInfo> {
+        return AccountComponent.accountRepository.register(username, password)
+                .compose(Rx2Schedulers.flowableIoToMain())
+    }
 }

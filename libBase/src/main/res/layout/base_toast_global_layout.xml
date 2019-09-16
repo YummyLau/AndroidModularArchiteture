@@ -8,11 +8,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/base_sh_toast_tx"
-        android:paddingTop="@dimen/dp_size_12"
-        android:paddingBottom="@dimen/dp_size_12"
-        android:paddingLeft="@dimen/dp_size_15"
-        android:paddingRight="@dimen/dp_size_15"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/sp_size_15" />
+        android:textSize="15sp" />
 </RelativeLayout>

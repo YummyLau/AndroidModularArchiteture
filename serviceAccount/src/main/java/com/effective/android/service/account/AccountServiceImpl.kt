@@ -1,5 +1,8 @@
 package com.effective.android.service.account
 
+import android.content.Context
+import android.content.Intent
+import com.effective.android.service.account.view.LoginActivity
 import com.plugin.component.anno.AutoInjectImpl
 import io.reactivex.Flowable
 
@@ -11,40 +14,37 @@ import io.reactivex.Flowable
 @AutoInjectImpl(sdk = [AccountSdk::class])
 class AccountServiceImpl : AccountSdk {
 
-
-    override fun isLogin(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    init {
+        AccountComponent.accountServiceImpl = this
     }
 
-    override fun logout(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private val listeners = mutableListOf<AccountChangeListener>()
+
+    override fun isLogin(): Boolean = AccountComponent.accountRepository.isLogin()
+
+    override fun logout(): Flowable<Boolean> = AccountComponent.accountRepository.logout()
+
+    override fun login(context: Context) {
+        context.startActivity(Intent(context, LoginActivity::class.java))
     }
 
-    override fun login(): Flowable<UserInfo> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getAccount(): UserInfo? = AccountComponent.accountRepository.userInfo
+
+    override fun addAccountChangeListener(accountChangeListener: AccountChangeListener) {
+        if (!listeners.contains(accountChangeListener)) {
+            listeners.add(accountChangeListener)
+        }
     }
 
-    //
-//    override fun isLogin(): Boolean {
-//        return AccessTokenKeeper.readAccessToken(mApplication) != null
-//    }
-//
-//    override fun login(context: Context, accountResult: AccountResult?) {
-//        AccountComponent.loginResult = accountResult
-//        context.startActivity(Intent("com.effective.android.service.account.view.LoginActivity"))
-//    }
-//
-//    override fun logout(accountResult: AccountResult?) {
-//        AccessTokenKeeper.clear(mApplication)
-//        accountResult?.onResult(null)
-//    }
-//
-//    override fun getAccount(): Flowable<UserInfo> {
-//        return Flowable.just(AccessTokenKeeper.readAccessToken(mApplication))
-//                .map { oauth2AccessToken ->
-//                    Utils.transformAccount(oauth2AccessToken)
-//                }
-//    }
+    override fun removeAccountChangeListener(accountChangeListener: AccountChangeListener) {
+        if (listeners.contains(accountChangeListener)) {
+            listeners.remove(accountChangeListener)
+        }
+    }
 
-
+    fun notifyListener(userInfo: UserInfo? = null, login: Boolean, success: Boolean, message: String? = null) {
+        for (listener in listeners) {
+            listener.onAccountChange(userInfo, login, success, message)
+        }
+    }
 }
