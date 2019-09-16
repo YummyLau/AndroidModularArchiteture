@@ -20,6 +20,7 @@ public class TestActivity extends AppCompatActivity implements AccountChangeList
 
     private UserInfo userInfo;
     private Disposable disposable;
+    private AccountSdk accountSdk;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,8 +31,9 @@ public class TestActivity extends AppCompatActivity implements AccountChangeList
 
     private void init() {
         ComponentManager.init(getApplication());
-        AccountSdk accountSdk = SdkManager.getSdk(AccountSdk.class);
+        accountSdk = SdkManager.getSdk(AccountSdk.class);
         userInfo = accountSdk.getAccount();
+        accountSdk.addAccountChangeListener(this);
         checkoutStatus(userInfo != null, userInfo);
         findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,19 +44,22 @@ public class TestActivity extends AppCompatActivity implements AccountChangeList
         findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                disposable = accountSdk.logout()
-                        .compose(Rx2Schedulers.flowableIoToMain())
-                        .subscribe(aBoolean -> ToastUtils.show(TestActivity.this, aBoolean ? "已退出登陆了！" : "退出登陆失败！"),
-                                throwable -> ToastUtils.show(TestActivity.this, "退出登陆失败！"));
+                accountSdk.logout();
             }
         });
     }
 
     @Override
     public void onAccountChange(@org.jetbrains.annotations.Nullable UserInfo userInfo, boolean login, boolean success, @org.jetbrains.annotations.Nullable String message) {
-        if (success) {
-            checkoutStatus(login, userInfo);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (success) {
+                    checkoutStatus(login, userInfo);
+                }
+                ToastUtils.show(TestActivity.this, message);
+            }
+        });
     }
 
     private void checkoutStatus(boolean login, UserInfo userInfo) {
@@ -66,6 +71,9 @@ public class TestActivity extends AppCompatActivity implements AccountChangeList
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (accountSdk != null) {
+            accountSdk.removeAccountChangeListener(this);
+        }
         if (disposable != null && !disposable.isDisposed()) {
             disposable.dispose();
         }

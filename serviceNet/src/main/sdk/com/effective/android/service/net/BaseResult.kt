@@ -11,10 +11,10 @@ import com.google.gson.annotations.SerializedName
  */
 class BaseResult<T> {
 
-    @SerializedName("code")
+    @SerializedName("errorCode")
     val errorCode: Int = 0
 
-    @SerializedName("message")
+    @SerializedName("errorMsg")
     val errorMsg: String? = null
 
     @SerializedName("data")

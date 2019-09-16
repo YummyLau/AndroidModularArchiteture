@@ -14,6 +14,6 @@ class ServiceNetComponent : IComponent {
     }
 
     override fun attachComponent(application: Application?) {
-        HttpClient.init(application!!, false)
+        HttpClient.init(application!!, true)
     }
 }

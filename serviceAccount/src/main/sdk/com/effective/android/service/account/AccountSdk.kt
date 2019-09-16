@@ -1,14 +1,13 @@
 package com.effective.android.service.account
 
 import android.content.Context
-import io.reactivex.Flowable
 
 
 interface AccountSdk {
 
     fun isLogin(): Boolean
 
-    fun logout(): Flowable<Boolean>
+    fun logout()
 
     fun login(context: Context)
 

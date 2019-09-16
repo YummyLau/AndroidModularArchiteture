@@ -129,7 +129,7 @@ class PersistentCookieStore(context: Context) {
         //将cookies缓存到内存中 如果缓存过期 就重置此cookie
         if (cookie.persistent()) {
             if (!cookies.containsKey(getUrlHostID(url))) {
-                cookies[HOST_PRE + getUrlHostID(url)] = ConcurrentHashMap()
+                cookies[getUrlHostID(url)] = ConcurrentHashMap()
             }
             cookies[getUrlHostID(url)]!![name] = cookie
         } else {
@@ -144,7 +144,8 @@ class PersistentCookieStore(context: Context) {
         val prefsWriter = cookiePrefs.edit()
         // 如 请求www.baidu.com，www.baidu.com 为 url.host()
         // 存在多个cookie，映射到 BAIDUID@.baidu.com ，BAIDUID@.baidu.com ， BAIDUID@.baidu.com ,...多个cookieToken
-        prefsWriter.putString(getUrlHostID(url), TextUtils.join(",", cookies[getUrlHostID(url)]!!.keys))
+        var data = if (cookies.containsKey(getUrlHostID(url))) TextUtils.join(",", cookies[getUrlHostID(url)]!!.keys) else ""
+        prefsWriter.putString(getUrlHostID(url), data)
         //在单独存储对应的cookie
         prefsWriter.putString(name, encodeCookie(SerializableOkHttpCookie(cookie)))
         prefsWriter.apply()
@@ -220,7 +221,7 @@ class PersistentCookieStore(context: Context) {
             return null
         }
 
-        return byteArrayToHexString(os.toByteArray())
+        return bytesToHexString(os.toByteArray())
     }
 
     /**
@@ -230,7 +231,7 @@ class PersistentCookieStore(context: Context) {
      * @return cookie object
      */
     protected fun decodeCookie(cookieString: String): Cookie? {
-        val bytes = hexStringToByteArray(cookieString)
+        var bytes = hexStringToBytes(cookieString)
         val byteArrayInputStream = ByteArrayInputStream(bytes)
         var cookie: Cookie? = null
         try {
@@ -245,22 +246,27 @@ class PersistentCookieStore(context: Context) {
         return cookie
     }
 
+
     /**
      * 二进制数组转十六进制字符串
      *
      * @param bytes byte array to be converted
      * @return string containing hex values
      */
-    private fun byteArrayToHexString(bytes: ByteArray): String {
-        val sb = StringBuilder(bytes.size * 2)
-        for (element in bytes) {
-            val v = element and 0xFF.toByte()
-            if (v < 16) {
-                sb.append('0')
-            }
-            sb.append(Integer.toHexString(v.toInt()))
+    private fun bytesToHexString(src: ByteArray?): String? {
+        val stringBuilder = StringBuilder("")
+        if (src == null || src.isEmpty()) {
+            return null
         }
-        return sb.toString().toUpperCase(Locale.US)
+        for (element in src) {
+            val v = element.toInt() and 0xFF
+            val hv = Integer.toHexString(v)
+            if (hv.length < 2) {
+                stringBuilder.append(0)
+            }
+            stringBuilder.append(hv)
+        }
+        return stringBuilder.toString()
     }
 
     /**
@@ -269,16 +275,32 @@ class PersistentCookieStore(context: Context) {
      * @param hexString string of hex-encoded values
      * @return decoded byte array
      */
-    protected fun hexStringToByteArray(hexString: String): ByteArray {
-        val len = hexString.length
-        val data = ByteArray(len / 2)
-        var i = 0
-        while (i < len) {
-            data[i / 2] = ((Character.digit(hexString[i], 16) shl 4) + Character.digit(hexString[i + 1], 16)).toByte()
-            i += 2
+    private fun hexStringToBytes(hexString: String?): ByteArray? {
+        var hexString = hexString
+        if (hexString == null || hexString == "") {
+            return null
         }
-        return data
+        hexString = hexString.toUpperCase()
+        val length = hexString.length / 2
+        val hexChars = hexString.toCharArray()
+        val d = ByteArray(length)
+        for (i in 0 until length) {
+            val pos = i * 2
+            d[i] = (charToByte(hexChars[pos]).toInt() shl 4 or charToByte(hexChars[pos + 1]).toInt()).toByte()
+        }
+        return d
     }
+
+    /**
+     * Convert char to byte
+     * @param c char
+     * *
+     * @return byte
+     */
+    private fun charToByte(c: Char): Byte {
+        return "0123456789ABCDEF".indexOf(c).toByte()
+    }
+
 
     companion object {
 
