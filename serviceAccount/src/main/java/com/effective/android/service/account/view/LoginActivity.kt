@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.account_activity_login_layout.*
 /**
  * login activity
  * Email yummyl.lau@gmail.com
+ * 登陆页面
  * Created by yummylau on 2018/01/25.
  */
 class LoginActivity : BaseVmActivity<LoginViewModel>() {
@@ -27,9 +28,18 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView(isSelectLogin)
+        initListener()
+    }
+
+    private fun initListener() {
         actionTip.setOnClickListener {
-            isSelectLogin != isSelectLogin
+            isSelectLogin = !isSelectLogin
             initView(isSelectLogin)
+        }
+        action.setOnClickListener {
+            var userName = userName.editableText.toString()
+            var password = password.editableText.toString()
+
         }
     }
 

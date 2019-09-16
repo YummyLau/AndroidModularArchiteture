@@ -50,7 +50,7 @@ class PermissionManager(private val rxPermissions: RxPermissions) {
      * 传递单一权限判断
      *
      * @param resultCall
-     * @param permission example Manifest.permission.CAMERA
+     * @param permissions example Manifest.permission.CAMERA
      */
     fun request(resultCall: ResultCall, permission: String) {
         disposables.add(rxPermissions.requestEach(permission)
