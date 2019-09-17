@@ -1,4 +1,5 @@
 package com.effective.android.example
+
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
@@ -9,6 +10,11 @@ import androidx.multidex.MultiDex
  */
 
 class ModuleApplication : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        Sdks.init(this)
+    }
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)

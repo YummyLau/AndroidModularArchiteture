@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -18,6 +17,13 @@ android {
         targetSdkVersion configs.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+        }
+        release {
+        }
     }
 
     resourcePrefix "base_"

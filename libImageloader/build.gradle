@@ -42,7 +42,7 @@ dependencies {
     kapt deps.glide.compiler
     implementation deps.multiDex
     //https://github.com/dialogflow/dialogflow-android-client/issues/57
-    implementation project(configuration: 'default', path: ':libBase')
+    implementation project(':libBase')
 }
 
 

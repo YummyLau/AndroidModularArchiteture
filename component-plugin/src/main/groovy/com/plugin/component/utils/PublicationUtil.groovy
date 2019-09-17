@@ -44,11 +44,11 @@ class PublicationUtil {
         if (publication != null) {
             if (projectInfo.aloneEnableAndNoSync()) {
 
-                Map<String,Object> map = new HashMap<>()
-                map.put("path",value)
-                map.put("configuration",'default')
-                return projectInfo.project.getDependencies().project(map)
-//                return projectInfo.project.project(':' + value)
+//                Map<String,Object> map = new HashMap<>()
+//                map.put("path",value)
+//                map.put("configuration",'default')
+//                return projectInfo.project.getDependencies().project(map)
+                return projectInfo.project.project(':' + value)
 //                return projectInfo.project.project('path: ' +  value + ', configuration: default')
             } else {
                 return getPublication(publication)

@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -24,6 +24,14 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    buildTypes {
+        debug {
+        }
+        release {
+        }
+    }
+
     resourcePrefix "cmine_"
 }
 

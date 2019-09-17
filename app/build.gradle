@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 
@@ -22,19 +22,6 @@ android {
         targetSdkVersion configs.android.targetSdkVersion
         versionCode configs.android.versionCode
         versionName configs.android.versionName
-
-        //arouter request
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-            }
-        }
-
-//        missingDimensionStrategy 'compBlog', 'HuaWei'
-//        missingDimensionStrategy 'compMine', 'HuaWei'
-//        missingDimensionStrategy 'compProject', 'HuaWei'
-//        missingDimensionStrategy 'compPaccounts', 'HuaWei'
-//        missingDimensionStrategy 'compSystem', 'HuaWei'
     }
 
     signingConfigs {
@@ -57,36 +44,38 @@ android {
             minifyEnabled false
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ['default']    // instead use this
         }
         release {
-            useProguard true
             minifyEnabled true
             zipAlignEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ['default']    // instead use this
         }
     }
+    
 
 
-    //渠道定义，渠道太多的话建议使用美团方案
-    flavorDimensions 'version'
-    productFlavors {
-        YingYongBao {
-            manifestPlaceholders = [CHANNEL: "YingYongBao"]
-            //提供代码层获取渠道的能力
-            buildConfigField "String", "CHANNEL", "\"YingYongBao\""
-            //支持多包名
-            //applicationId "com.xxx.xxx"
-        }
-        XiaoMi {
-            manifestPlaceholders = [CHANNEL: "XiaoMi"]
-            buildConfigField "String", "CHANNEL", "\"XiaoMi\""
-        }
-        HuaWei {
-            manifestPlaceholders = [CHANNEL: "HuaWei"]
-            buildConfigField "String", "CHANNEL", "\"HuaWei\""
-        }
-    }
+//    //渠道定义，渠道太多的话建议使用美团方案
+//    flavorDimensions 'version'
+//    productFlavors {
+//        YingYongBao {
+//            manifestPlaceholders = [CHANNEL: "YingYongBao"]
+//            //提供代码层获取渠道的能力
+//            buildConfigField "String", "CHANNEL", "\"YingYongBao\""
+//            //支持多包名
+//            //applicationId "com.xxx.xxx"
+//        }
+//        XiaoMi {
+//            manifestPlaceholders = [CHANNEL: "XiaoMi"]
+//            buildConfigField "String", "CHANNEL", "\"XiaoMi\""
+//        }
+//        HuaWei {
+//            manifestPlaceholders = [CHANNEL: "HuaWei"]
+//            buildConfigField "String", "CHANNEL", "\"HuaWei\""
+//        }
+//    }
 
     resourcePrefix "app_"
 

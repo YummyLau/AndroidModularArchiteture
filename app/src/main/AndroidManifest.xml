@@ -11,9 +11,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 渠道标识 -->
-    <meta-data
-        android:name="CHANNEL"
-        android:value="${CHANNEL}" />
+<!--    <meta-data-->
+<!--        android:name="CHANNEL"-->
+<!--        android:value="${CHANNEL}" />-->
 
     <application
         android:name="com.effective.android.example.ModuleApplication"
