@@ -14,8 +14,12 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.effective.plugins:component:$component_version"
-        classpath "com.effective.plugins:component-support:$component_version"
+//        classpath "com.effective.plugins:component:$component_version"
+//        classpath "com.effective.plugins:component-support:$component_version"
+
+        //dev plugin
+        classpath "com.effective.plugins:component-plugin"
+        classpath "com.effective.plugins:component-support-plugin"
 
         // NOTE: Do not place your application dependence here; they belong
         // in the individual module build.gradle files

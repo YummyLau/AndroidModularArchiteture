@@ -22,7 +22,6 @@ android {
         targetSdkVersion configs.android.targetSdkVersion
         versionCode configs.android.versionCode
         versionName configs.android.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         //arouter request
         javaCompileOptions {
@@ -30,6 +29,12 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+
+//        missingDimensionStrategy 'compBlog', 'HuaWei'
+//        missingDimensionStrategy 'compMine', 'HuaWei'
+//        missingDimensionStrategy 'compProject', 'HuaWei'
+//        missingDimensionStrategy 'compPaccounts', 'HuaWei'
+//        missingDimensionStrategy 'compSystem', 'HuaWei'
     }
 
     signingConfigs {
@@ -50,15 +55,12 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            zipAlignEnabled true
-            shrinkResources true
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug {
-            minifyEnabled true
+        release {
             useProguard true
-            shrinkResources true
+            minifyEnabled true
             zipAlignEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -93,6 +95,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
+    implementation component(':compMine')
+    implementation component(':compBlog')
+    implementation component(':compProject')
+    implementation component(':compPaccounts')
+    implementation component(':compSystem')
 }
 repositories {
     mavenCentral()

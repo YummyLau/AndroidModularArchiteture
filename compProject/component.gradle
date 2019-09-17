@@ -1,0 +1,15 @@
+component {
+    debug {
+        applicationName 'com.effective.android.component.project.TestApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'compProject'
+
+        dependencies {
+            implementation deps.androidx.appCompat
+            implementation deps.kotlin.stdlib
+        }
+    }
+}
+

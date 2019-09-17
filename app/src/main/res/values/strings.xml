@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">模块化app</string>
+
+    <string name="app_comp_blog">博文</string>
+    <string name="app_comp_project">项目</string>
+    <string name="app_comp_paccounts">公众号</string>
+    <string name="app_comp_system">体系</string>
+    <string name="app_comp_mine">我</string>
 </resources>

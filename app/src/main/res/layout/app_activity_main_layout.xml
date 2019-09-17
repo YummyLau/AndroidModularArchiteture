@@ -2,17 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_50"
+    android:fitsSystemWindows="false"
     android:orientation="vertical">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pageView"
+    <FrameLayout
+        android:id="@+id/content_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/bottom_tab"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/blog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/app_comp_blog"
+            android:textSize="@dimen/app_bottom_item_text" />
+
+        <TextView
+            android:id="@+id/project"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/app_comp_project"
+            android:textSize="@dimen/app_bottom_item_text" />
+
+        <TextView
+            android:id="@+id/paccounts"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/app_comp_paccounts"
+            android:textSize="@dimen/app_bottom_item_text" />
+
+        <TextView
+            android:id="@+id/system"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/app_comp_system"
+            android:textSize="@dimen/app_bottom_item_text" />
+
+        <TextView
+            android:id="@+id/mine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/app_comp_mine"
+            android:textSize="@dimen/app_bottom_item_text" />
+
+    </LinearLayout>
 
 </LinearLayout>

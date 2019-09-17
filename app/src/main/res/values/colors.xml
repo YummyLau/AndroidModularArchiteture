@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="app_colorPrimary">#FFCD4646</color>
+    <color name="app_textColorPrimary">#131519</color>
+    <color name="app_textColorSecondary">#647686</color>
+    <color name="app_textColorThird">#FFFFFF</color>
+
+</resources>

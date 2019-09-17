@@ -1,0 +1,15 @@
+component {
+    debug {
+        applicationName 'com.effective.android.component.paccounts.TestApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'compPaccounts'
+
+        dependencies {
+            implementation deps.androidx.appCompat
+            implementation deps.kotlin.stdlib
+        }
+    }
+}
+

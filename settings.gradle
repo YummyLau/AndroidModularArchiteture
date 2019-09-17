@@ -1,11 +1,11 @@
 //library 层
-include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission'
+include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':compSystem', ':compBlog', ':compPaccounts', ':compProject', ':compMine'
 
 //service 层
 include ':serviceShare', ':serviceSkin', ':serviceAccount',':serviceNet'
 
 //component 层   //废弃微博场景，由于api太过于限制
-//include ':componentweibo'
+//include ':compBlog',':compMine'
 
 //壳层
 include ':app'
@@ -16,4 +16,9 @@ include ':app'
 
 
 //include ':tunning'
+
+
+//调试插件
+includeBuild './component-plugin'
+includeBuild './component-support-plugin'
 

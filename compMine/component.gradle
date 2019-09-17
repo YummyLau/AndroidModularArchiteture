@@ -1,0 +1,15 @@
+component {
+    debug {
+        applicationName 'com.effective.android.component.mine.TestApplication'
+    }
+    sdk {
+        groupId 'com.effective.android'
+        artifactId 'compMine'
+
+        dependencies {
+            implementation deps.androidx.appCompat
+            implementation deps.kotlin.stdlib
+        }
+    }
+}
+

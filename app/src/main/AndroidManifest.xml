@@ -25,7 +25,8 @@
         android:supportsRtl="true">
 
         <activity
-            android:name="com.effective.android.example.MainActivity">
+            android:name="com.effective.android.example.MainActivity"
+            android:theme="@style/FullScreenTheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
