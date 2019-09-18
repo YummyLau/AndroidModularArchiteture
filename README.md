@@ -24,34 +24,101 @@
 
 基于完全组件化开发, 协同 gradle plugin 插件进行工程约束辅助. [组件化插件](https://github.com/YummyLau/ComponentPlugin)
 
+* 支持模块独立调试
+* 支持模块依赖暴露(原安卓 module 分割 sdk 和 impl，sdk对外编译暴露)
+* 无需修改原模块配置代码，无缝接入
+* 废除 router 硬编码跳转，采用 sync 可见依赖编程
 
-#####  模块集成
+
+
+####  模块集成
 
 目前项目的所有模块都能单独运行调试,为了更大程度聚合某类功能，基于线上项目及自身经验进行划分。（文档正在逐步完成...）
 
-* **Base层**
+##### **Base层**
 
-    目前提供 `libPermission(done)`,`lib_webview`,`lib_imageloader`,`lib_net`,共有基础库
+* 基础公有类/工具库
 
-* **Service层**
+    `libBase`
 
-    目前提供 `service_login`,`service_share` ,`service_video`,`service_skin`,`service_geo`等
+* H5能力库
+
+    `libWebview`
+
+* 权限管理库
+
+    `libPermission`
+
+* 地理定位库
+
+    `libGeo`
+
+* 网络库
+
+    `libNet`
 
 
+##### **Service层**
 
-* **Component层**
+* 业务账号管理服务
 
-    目前提供 `component_feed` 信息流demo等
+    `serviceAccount`
+
+* 业务网络服务
+
+    `serviceNet`
+
+* 业务分享服务
+
+    `serviceShare`
+
+* 业务换肤服务
+
+    `serviceSkin`
+
+* 业务多媒体服务
+
+    `serviceMedia`
 
 
-##### 项目配置
+##### **Component层**
+
+* wanAndroid-博文组件
+
+    `compBlog`
+
+* wanAndroid-项目组件
+
+    `compProject`
+
+* wanAndroid-公众号组件
+
+    `compPaccounts`
+
+* wanAndroid-体系组件
+
+    `compSystem`
+
+* wanAndroid-我组件
+
+    `compMine`
+
+
+#### **主端层**
+
+* App外壳
+
+    `app`
+
+
+#### 项目配置
 
 * 混淆配置
     * ProGuard 默认会混淆第三方库，要注意根据第三方库的情况进行对应的增加和排除
     * 被 Gson 之类使用的 Bean 实体类不能被混淆
     * 自定义控件不参与混淆，枚举不参与混淆
 
-##### 调试开发
+#### 调试开发
 
 * 真机调试
 
