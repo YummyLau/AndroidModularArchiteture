@@ -1,6 +1,6 @@
 package com.effective.android.base.view.list.interfaces
 
-interface IGifManager {
+interface GifManager {
 
     fun attached(): Boolean
 

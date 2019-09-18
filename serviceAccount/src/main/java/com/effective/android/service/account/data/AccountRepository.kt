@@ -2,7 +2,7 @@ package com.effective.android.service.account.data
 
 import android.app.Application
 import android.text.TextUtils
-import com.effective.android.base.rxjava.Rx2Creator
+import com.effective.android.base.rxjava.RxCreator
 import com.effective.android.base.util.GsonUtils
 import com.effective.android.service.account.AccountComponent
 import com.effective.android.service.account.UserInfo
@@ -35,7 +35,7 @@ class AccountRepository(private val application: Application) : AccountDataSourc
     override fun logout(): Flowable<Boolean> {
         return getAccountApi().logout()
                 .flatMap {
-                    Rx2Creator.createFlowable(Callable<Boolean> {
+                    RxCreator.createFlowable(Callable<Boolean> {
                         AccountComponent.accountServiceImpl.notifyListener(userInfo, false, success = it.isSuccess, message = it.errorMsg)
                         it.isSuccess
                     })
@@ -45,7 +45,7 @@ class AccountRepository(private val application: Application) : AccountDataSourc
     override fun login(username: String, password: String): Flowable<UserInfo> {
         return getAccountApi().login(username, password)
                 .flatMap {
-                    Rx2Creator.createFlowable(Callable<UserInfo> {
+                    RxCreator.createFlowable(Callable<UserInfo> {
                         val data = if (it.isSuccess) it.data else UserInfo.createEmpty()
                         AccountComponent.accountServiceImpl.notifyListener(data, true, success = it.isSuccess, message = it.errorMsg)
                         data
@@ -56,7 +56,7 @@ class AccountRepository(private val application: Application) : AccountDataSourc
     override fun register(username: String, password: String): Flowable<UserInfo> {
         return getAccountApi().register(username, password, password)
                 .flatMap {
-                    Rx2Creator.createFlowable(Callable<UserInfo> {
+                    RxCreator.createFlowable(Callable<UserInfo> {
                         val data = if (it.isSuccess) it.data else UserInfo.createEmpty()
                         AccountComponent.accountServiceImpl.notifyListener(data, true, success = it.isSuccess, message = it.errorMsg)
                         data

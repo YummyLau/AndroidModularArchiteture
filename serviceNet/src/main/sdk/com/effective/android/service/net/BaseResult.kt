@@ -12,14 +12,14 @@ import com.google.gson.annotations.SerializedName
 open class BaseResult<T> {
 
     @SerializedName("errorCode")
-    val errorCode: Int = 0
+    var errorCode: Int = 0
 
     @SerializedName("errorMsg")
-    val errorMsg: String? = null
+    var errorMsg: String? = null
 
     @SerializedName("data")
-    val data: T? = null
+    var data: T? = null
 
     val isSuccess: Boolean
-        get() = errorCode == 0
+        get() = errorCode == 0 && data != null
 }

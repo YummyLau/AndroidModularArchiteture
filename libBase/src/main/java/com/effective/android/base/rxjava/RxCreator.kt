@@ -3,8 +3,6 @@ package com.effective.android.base.rxjava
 import android.util.Log
 import androidx.annotation.NonNull
 
-import org.reactivestreams.Publisher
-
 import java.util.concurrent.Callable
 import java.util.concurrent.TimeUnit
 
@@ -13,10 +11,8 @@ import io.reactivex.Flowable
 import io.reactivex.FlowableOnSubscribe
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
-import io.reactivex.ObservableSource
 import io.reactivex.Scheduler
 import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
 
 /**
  * 方便业务创建
@@ -24,9 +20,9 @@ import io.reactivex.functions.Function
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
  */
-object Rx2Creator {
+object RxCreator {
 
-    val EMPTY_CONSUMER: Consumer<Any> = object : Consumer<Any> {
+    private val EMPTY_CONSUMER: Consumer<Any> = object : Consumer<Any> {
         override fun accept(v: Any) {}
         override fun toString(): String {
             return "EmptyConsumer"
@@ -34,7 +30,7 @@ object Rx2Creator {
     }
 
 
-    val EMPTY_THROWABLE_CONSUMER: Consumer<Throwable> = EmptyThrowable("default")
+    private val EMPTY_THROWABLE_CONSUMER: Consumer<Throwable> = EmptyThrowable("default")
 
 
     @JvmStatic
@@ -42,7 +38,7 @@ object Rx2Creator {
             Observable.create(ObservableOnSubscribe { e ->
                 val t = callable.call()
                 if (t == null) {
-                    e.onError(RuntimeException("Rx2Creator#createObservable error ！Callable#call should result non-null value when create a observable！"))
+                    e.onError(RuntimeException("RxCreator#createObservable error ！Callable#call should result non-null value when create a observable！"))
                     return@ObservableOnSubscribe
                 }
                 e.onNext(t)
@@ -54,7 +50,7 @@ object Rx2Creator {
             Flowable.create(FlowableOnSubscribe { e ->
                 val t = callable.call()
                 if (t == null) {
-                    e.onError(RuntimeException("Rx2Creator#createFlowable error ！Callable#call should result non-null value when create a flowable！"))
+                    e.onError(RuntimeException("RxCreator#createFlowable error ！Callable#call should result non-null value when create a flowable！"))
                     return@FlowableOnSubscribe
                 }
                 e.onNext(t)
@@ -107,7 +103,7 @@ object Rx2Creator {
                 throwable = NullPointerException("onError called with null. Null values are generally not allowed in 2.x operators and sources.")
             }
 
-            Log.e(Rx2Creator::class.java.simpleName, "call" + "-" + toString(), throwable)
+            Log.e(RxCreator::class.java.simpleName, "call" + "-" + toString(), throwable)
         }
 
         override fun toString(): String {

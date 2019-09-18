@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
  */
-object Rx2Schedulers {
+object RxSchedulers {
 
     /**
      * Don't break the chain: use RxJava's compose() operator

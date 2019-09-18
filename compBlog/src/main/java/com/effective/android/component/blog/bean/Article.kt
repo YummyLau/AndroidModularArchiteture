@@ -1,94 +1,140 @@
 package com.effective.android.component.blog.bean
 
+import com.effective.android.base.view.list.IMediaItem
+import com.effective.android.component.blog.Constants
 import com.google.gson.annotations.SerializedName
 
 /**
  * 文章实体
  * created by yummylau on 2019/09/18
  */
-class Article {
+class Article : IMediaItem {
 
     @SerializedName("apkLink")
     var apkLink: String? = null
 
     @SerializedName("audit")
-    val audit: Int? = null
+    var audit: Int? = null
 
     @SerializedName("author")
-    val author: String? = null
+    var author: String? = null
 
     @SerializedName("chapterId")
-    val chapterId: Long? = null
+    var chapterId: Long? = null
 
     @SerializedName("chapterName")
-    val chapterName: String? = null
+    var chapterName: String? = null
 
     @SerializedName("collect")
-    val collect: Boolean? = null
+    var collect: Boolean? = null
 
     @SerializedName("courseId")
-    val courseId: Long? = null
+    var courseId: Long? = null
 
     @SerializedName("desc")
-    val desc: String? = null
+    var desc: String? = null
 
     @SerializedName("envelopePic")
-    val envelopePic: String? = null
+    var envelopePic: String? = null
 
     @SerializedName("fresh")
-    val fresh: Boolean? = null
+    var fresh: Boolean? = null
 
     @SerializedName("id")
-    val id: Long? = null
+    var id: Long? = null
 
     @SerializedName("link")
-    val link: String? = null
+    var link: String? = null
 
     @SerializedName("niceDate")
-    val niceDate: String? = null
+    var niceDate: String? = null
 
     @SerializedName("niceShareDate")
-    val niceShareDate: String? = null
+    var niceShareDate: String? = null
 
     @SerializedName("origin")
-    val origin: String? = null
+    var origin: String? = null
 
     @SerializedName("prefix")
-    val prefix: String? = null
+    var prefix: String? = null
 
     @SerializedName("projectLink")
-    val projectLink: String? = null
+    var projectLink: String? = null
 
     @SerializedName("publishTime")
-    val publishTime: Long? = null
+    var publishTime: Long? = null
 
     @SerializedName("shareData")
-    val shareData: String? = null
+    var shareData: String? = null
 
     @SerializedName("shareUser")
-    val shareUser: String? = null
+    var shareUser: String? = null
 
     @SerializedName("superChapterId")
-    val superChapterId: Long? = null
+    var superChapterId: Long? = null
 
     @SerializedName("superChapterName")
-    val superChapterName: String? = null
+    var superChapterName: String? = null
 
     @SerializedName("tags")
-    val tags: List<Tag>? = null
+    var tags: List<Tag>? = null
 
     @SerializedName("title")
-    val title: String? = null
+    var title: String? = null
 
     @SerializedName("type")
-    val type: Int? = null
+    var type: Int? = null
 
     @SerializedName("userId")
-    val userId: Long? = null
+    var userId: Long? = null
 
     @SerializedName("visible")
-    val visible: Int? = null
+    var visible: Int? = null
 
     @SerializedName("zan")
-    val zan: Int? = null
+    var zan: Int? = null
+
+
+    override fun getType(): Int = Constants.articleType
+
+    override fun getViewType(): Int = Constants.articleType
+
+    override fun replace(item: IMediaItem) {
+        if (item is Article) {
+            apkLink = item.apkLink
+            audit = item.audit
+            author = item.author
+            chapterId = item.chapterId
+            chapterName = item.chapterName
+            collect = item.collect
+            courseId = item.courseId
+            desc = item.desc
+            envelopePic = item.envelopePic
+            fresh = item.fresh
+            id = item.id
+            link = item.link
+            niceDate = item.niceDate
+            niceShareDate = item.niceShareDate
+            origin = item.origin
+            prefix = item.prefix
+            projectLink = item.projectLink
+            publishTime = item.publishTime
+            shareData = item.shareData
+            shareUser = item.shareUser
+            superChapterId = item.superChapterId
+            superChapterName = item.superChapterName
+            tags = item.tags
+            title = item.title
+            type = item.type
+            userId = item.userId
+            visible = item.visible
+            zan = item.zan
+        }
+    }
+
+    override fun isContentSame(item: IMediaItem): Boolean = isIdSame(item)
+
+    override fun isIdSame(item: IMediaItem): Boolean {
+        return item is Article && item.id == id
+    }
 }

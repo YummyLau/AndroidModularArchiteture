@@ -3,17 +3,16 @@ package com.effective.android.base.view.list.listener
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 
 
 import androidx.recyclerview.widget.RecyclerView
 
 import com.effective.android.base.view.list.MediaList
-import com.effective.android.base.view.list.anno.MediaType
-import com.effective.android.base.view.list.interfaces.IGifManager
-import com.effective.android.base.view.list.interfaces.ILifeItem
-import com.effective.android.base.view.list.interfaces.IMediaItem
-import com.effective.android.base.view.list.interfaces.IVideoItem
+import com.effective.android.base.view.list.MediaType
+import com.effective.android.base.view.list.interfaces.GifManager
+import com.effective.android.base.view.list.interfaces.LifeItem
+import com.effective.android.base.view.list.interfaces.MediaItem
+import com.effective.android.base.view.list.interfaces.VideoItem
 
 import java.util.LinkedList
 
@@ -23,11 +22,11 @@ import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
  * 多媒体滑动事件
  * created by yummylau on 2018/4/16
  */
-class MediaScrollListener(private val mMediaList: MediaList, val gifManager: IGifManager) : RecyclerView.OnScrollListener() {
-    private var selectedItem: IMediaItem? = null
+class MediaScrollListener(private val mMediaList: MediaList, val gifManager: GifManager) : RecyclerView.OnScrollListener() {
+    private var selectedItem: MediaItem? = null
 
-    private val attachMediaItems = LinkedList<IMediaItem>()
-    private val lifeItems = LinkedList<ILifeItem>()
+    private val attachMediaItems = LinkedList<MediaItem>()
+    private val lifeItems = LinkedList<LifeItem>()
 
 
     init {
@@ -68,12 +67,12 @@ class MediaScrollListener(private val mMediaList: MediaList, val gifManager: IGi
         return selectedItem != null && selectedItem!!.itemType() === MediaType.VIDEO
     }
 
-    private fun isValidMedia(mediaItem: IMediaItem): Boolean {
+    private fun isValidMedia(mediaItem: MediaItem): Boolean {
         return mediaItem.itemType() !== MediaType.INVALID
     }
 
 
-    private fun filterInValidItem(attachHolders: LinkedList<IMediaItem>?) {
+    private fun filterInValidItem(attachHolders: LinkedList<MediaItem>?) {
         if (attachHolders == null || attachHolders.isEmpty()) {
             return
         }
@@ -88,21 +87,21 @@ class MediaScrollListener(private val mMediaList: MediaList, val gifManager: IGi
         }
     }
 
-    private fun unselectedItem(mediaItem: IMediaItem?) {
+    private fun unselectedItem(mediaItem: MediaItem?) {
         if (mediaItem == null) {
             return
         }
         mediaItem.onUnselected()
     }
 
-    private fun selectedItem(mediaItem: IMediaItem?) {
+    private fun selectedItem(mediaItem: MediaItem?) {
         if (mediaItem == null) {
             return
         }
         mediaItem.onSelected()
     }
 
-    private fun containMediaItem(mediaItems: List<IMediaItem>?, item: IMediaItem?): Boolean {
+    private fun containMediaItem(mediaItems: List<MediaItem>?, item: MediaItem?): Boolean {
         if (mediaItems == null || mediaItems.isEmpty() || item == null) {
             return false
         }
@@ -127,7 +126,7 @@ class MediaScrollListener(private val mMediaList: MediaList, val gifManager: IGi
 
     fun syncResume() {
         if (hasAttachedVideo()) {
-            (selectedItem as IVideoItem).onResume()
+            (selectedItem as VideoItem).onResume()
         }
 
         if (gifManager.attached()) {
@@ -137,7 +136,7 @@ class MediaScrollListener(private val mMediaList: MediaList, val gifManager: IGi
 
     fun syncPause() {
         if (hasAttachedVideo()) {
-            (selectedItem as IVideoItem).onPause()
+            (selectedItem as VideoItem).onPause()
         }
 
         if (gifManager.attached()) {
@@ -147,27 +146,27 @@ class MediaScrollListener(private val mMediaList: MediaList, val gifManager: IGi
 
     fun syncDestroy() {
         if (hasAttachedVideo()) {
-            (selectedItem as IVideoItem).onRelease()
+            (selectedItem as VideoItem).onRelease()
         }
         gifManager.onRelease()
     }
 
     fun syncMediaListChildAttachedToWindow(child: View) {
         val holder = mMediaList.getChildViewHolder(child)
-        if (holder is IMediaItem) {
-            attachMediaItems.addFirst(holder as IMediaItem)
+        if (holder is MediaItem) {
+            attachMediaItems.addFirst(holder as MediaItem)
         }
-        if (holder is ILifeItem) {
-            lifeItems.add(holder as ILifeItem)
-            (holder as ILifeItem).onViewAttach()
+        if (holder is LifeItem) {
+            lifeItems.add(holder as LifeItem)
+            (holder as LifeItem).onViewAttach()
         }
     }
 
     fun syncMediaListChildDetachedFromWindow(child: View) {
         val holder = mMediaList.getChildViewHolder(child)
-        if (holder is IMediaItem) {
+        if (holder is MediaItem) {
 
-            val mediaItem = holder as IMediaItem
+            val mediaItem = holder as MediaItem
 
             if (selectedItem != null && TextUtils.equals(selectedItem!!.itemKey(), mediaItem.itemKey())) {
                 unselectedItem(mediaItem)
@@ -177,16 +176,16 @@ class MediaScrollListener(private val mMediaList: MediaList, val gifManager: IGi
             attachMediaItems.remove(mediaItem)
         }
 
-        if (holder is ILifeItem) {
+        if (holder is LifeItem) {
             if (lifeItems.contains(holder)) {
                 lifeItems.remove(holder)
             }
-            (holder as ILifeItem).onViewDetach()
+            (holder as LifeItem).onViewDetach()
         }
     }
 
-    private fun calValidMediaItem(attachHolders: LinkedList<IMediaItem>): List<IMediaItem> {
-        val result = LinkedList<IMediaItem>()
+    private fun calValidMediaItem(attachHolders: LinkedList<MediaItem>): List<MediaItem> {
+        val result = LinkedList<MediaItem>()
         var bestWeight = 0f
 
         for (i in attachHolders.indices.reversed()) {

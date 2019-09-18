@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * banner实体
  * created by yummylau on 2019/09/18
  */
-class Banner {
+class Banner{
 
     @SerializedName("desc")
     var desc: String? = null

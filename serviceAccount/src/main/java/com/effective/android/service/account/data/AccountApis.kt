@@ -1,24 +1,22 @@
-package com.effective.android.service.account.data;
+package com.effective.android.service.account.data
 
-import com.effective.android.service.account.UserInfo;
-import com.effective.android.service.net.BaseResult;
+import com.effective.android.service.account.UserInfo
+import com.effective.android.service.net.BaseResult
 
-import io.reactivex.Flowable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.Path;
+import io.reactivex.Flowable
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Part
+import retrofit2.http.Path
 
 /**
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2017/11/24.
  */
 
-public interface AccountApis {
-
-    String BASE_URL = "https://www.wanandroid.com/user/";
+interface AccountApis {
 
     /**
      * {
@@ -39,7 +37,8 @@ public interface AccountApis {
      * "errorCode": 0,
      * "errorMsg": ""
      * }
-     * <p>
+     *
+     *
      * 登陆
      *
      * @param username
@@ -48,8 +47,8 @@ public interface AccountApis {
      */
     @FormUrlEncoded
     @POST("login")
-    Flowable<BaseResult<UserInfo>> login(@Field("username") String username,
-                                         @Field("password") String password);
+    fun login(@Field("username") username: String,
+              @Field("password") password: String): Flowable<BaseResult<UserInfo>>
 
     /**
      * {
@@ -79,9 +78,9 @@ public interface AccountApis {
      */
     @FormUrlEncoded
     @POST("register")
-    Flowable<BaseResult<UserInfo>> register(@Field("username") String username,
-                                            @Field("password") String password,
-                                            @Field("repassword") String repassword);
+    fun register(@Field("username") username: String,
+                 @Field("password") password: String,
+                 @Field("repassword") repassword: String): Flowable<BaseResult<UserInfo>>
 
     /**
      * {
@@ -94,6 +93,11 @@ public interface AccountApis {
      * @return
      */
     @GET("logout/json")
-    Flowable<BaseResult> logout();
+    fun logout(): Flowable<BaseResult<*>>
+
+    companion object {
+
+        const val BASE_URL = "https://www.wanandroid.com/user/"
+    }
 }
 

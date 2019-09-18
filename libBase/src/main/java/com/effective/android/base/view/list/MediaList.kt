@@ -73,30 +73,30 @@ class MediaList @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     override fun onWindowVisibilityChanged(visibility: Int) {
         super.onWindowVisibilityChanged(visibility)
-        mediaScrollListener!!.syncMediaListVisibilityChanged(visibility)
+        mediaScrollListener?.syncMediaListVisibilityChanged(visibility)
     }
 
     fun onResume() {
-        mediaScrollListener!!.syncResume()
+        mediaScrollListener?.syncResume()
     }
 
     fun onPause() {
-        mediaScrollListener!!.syncPause()
+        mediaScrollListener?.syncPause()
     }
 
     fun onDestroy() {
-        mediaScrollListener!!.syncDestroy()
+        mediaScrollListener?.syncDestroy()
     }
 
     @CallSuper
     override fun onChildAttachedToWindow(child: View) {
         super.onChildAttachedToWindow(child)
-        mediaScrollListener!!.syncMediaListChildAttachedToWindow(child)
+        mediaScrollListener?.syncMediaListChildAttachedToWindow(child)
     }
 
     override fun onChildDetachedFromWindow(child: View) {
         super.onChildDetachedFromWindow(child)
-        mediaScrollListener!!.syncMediaListChildDetachedFromWindow(child)
+        mediaScrollListener?.syncMediaListChildDetachedFromWindow(child)
     }
 
     fun scrollToTopCompat5Item() {

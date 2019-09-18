@@ -1,6 +1,6 @@
 package com.effective.android.base.view.list.interfaces
 
-interface ILifeItem {
+interface LifeItem {
 
     fun onViewAttach()
 

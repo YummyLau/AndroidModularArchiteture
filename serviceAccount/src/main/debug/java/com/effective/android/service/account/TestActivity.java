@@ -7,14 +7,12 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.effective.android.base.rxjava.Rx2Schedulers;
 import com.effective.android.base.toast.ToastUtils;
 import com.effective.android.base.util.GsonUtils;
 import com.plugin.component.ComponentManager;
 import com.plugin.component.SdkManager;
 
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 public class TestActivity extends AppCompatActivity implements AccountChangeListener {
 

@@ -2,10 +2,9 @@ package com.effective.android.service.account
 
 import android.content.Context
 import android.content.Intent
-import com.effective.android.base.rxjava.Rx2Schedulers
+import com.effective.android.base.rxjava.RxSchedulers
 import com.effective.android.service.account.view.LoginActivity
 import com.plugin.component.anno.AutoInjectImpl
-import io.reactivex.Flowable
 import io.reactivex.functions.Consumer
 
 
@@ -26,7 +25,7 @@ class AccountServiceImpl : AccountSdk {
 
     override fun logout() {
         val result = AccountComponent.accountRepository.logout()
-                .compose(Rx2Schedulers.flowableIoToMain())
+                .compose(RxSchedulers.flowableIoToMain())
                 .subscribe(Consumer { })
     }
 

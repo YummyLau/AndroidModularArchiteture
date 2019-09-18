@@ -1,6 +1,5 @@
-package com.effective.android.component.blog.api
+package com.effective.android.component.blog.data
 
-import android.provider.ContactsContract
 import com.effective.android.component.blog.bean.Article
 import com.effective.android.component.blog.bean.Banner
 import com.effective.android.component.blog.bean.SearchKey
@@ -18,8 +17,9 @@ import retrofit2.http.Path
  */
 interface BlogApis {
 
-    val BASE_URL: String
-        get() = "https://www.wanandroid.com/"
+    companion object {
+        const val BASE_URL = "https://www.wanandroid.com/"
+    }
 
     /**
      * 获取首页文章
@@ -30,7 +30,7 @@ interface BlogApis {
     /**
      * 获取置顶文章
      */
-    @GET("top/json")
+    @GET("/article/top/json")
     fun getTopArticles(): Flowable<BaseResult<List<Article>>>
 
 
