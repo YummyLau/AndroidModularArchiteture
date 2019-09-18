@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  * Email: yummyl.lau@gmail.com
  * blog: yummylau.com
  */
-class BaseResult<T> {
+open class BaseResult<T> {
 
     @SerializedName("errorCode")
     val errorCode: Int = 0

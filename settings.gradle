@@ -19,6 +19,6 @@ include ':app'
 
 
 //调试插件
-includeBuild './component-plugin'
-includeBuild './component-support-plugin'
+//includeBuild './component-plugin'
+//includeBuild './component-support-plugin'
 
