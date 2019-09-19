@@ -32,16 +32,23 @@ android {
         }
     }
 
-    resourcePrefix "cblog_"
+    resourcePrefix "blog_"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
-    implementation deps.retrofit.runtime
-    implementation deps.retrofit.converterGson
-    implementation deps.retrofit.rxJava2Adapter
+    api deps.retrofit.runtime
+    api deps.retrofit.converterGson
+    api deps.retrofit.rxJava2Adapter
+
+    api deps.glide.core
+    api deps.glide.okhttp3
+    api deps.glide.transformations
+    api deps.glide.gpuImage
+
     implementation component(':serviceNet')
     implementation component(':serviceSkin')
+    implementation component(':serviceMedia')
 }
 

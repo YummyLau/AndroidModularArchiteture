@@ -60,8 +60,14 @@ class BlogRepository private constructor() {
                         }
                         if (t2.isSuccess && !t2.data.isNullOrEmpty()) {
                             val bannerList = BannerList()
-                            bannerList.addAll(t2.data!!)
-                            result.data?.data?.add(0, bannerList)
+                            for(banner in t2.data!!){
+                                if(banner.isVisible == 1){
+                                    bannerList.add(0,banner)
+                                }
+                            }
+                            if(!bannerList.isNullOrEmpty()){
+                                result.data?.data?.add(0, bannerList)
+                            }
                         }
                         result
                     }

@@ -66,9 +66,10 @@ versions.guaua = "22.0-android"
 versions.matisse = "0.4.3"
 versions.ucrop = "2.2.1"
 versions.photoview = "2.1.3"
-versions.pageindicatorview = "1.0.0"
 versions.flexbox = "0.3.2"
 versions.qmui = "1.1.3"
+versions.pageindicatorview = "1.0.3"
+versions.loopingviewpager = "1.1.4"
 
 //android x
 versions.constraintlayout = "1.1.2"
@@ -194,6 +195,8 @@ deps.pageindicatorview = "com.romandanylyk:pageindicatorview:$versions.pageindic
 deps.flexbox = "com.google.android:flexbox:$versions.flexbox"
 deps.qmui = "com.qmuiteam:qmui:$versions.qmui"
 deps.exoplayer = "com.google.android.exoplayer:exoplayer:$versions.exoplayer"
+deps.pageindicatorview = "com.romandanylyk:pageindicatorview:$versions.pageindicatorview"
+deps.loopingviewpager = "com.asksira.android:loopingviewpager:$versions.loopingviewpager"
 
 project.ext {
     android = [

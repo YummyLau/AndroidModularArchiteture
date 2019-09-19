@@ -1,5 +1,5 @@
 //library 层
-include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':compSystem', ':compBlog', ':compPaccounts', ':compProject', ':compMine'
+include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':compSystem', ':compBlog', ':compPaccounts', ':compProject', ':compMine', ':serviceMedia'
 
 //service 层
 include ':serviceShare', ':serviceSkin', ':serviceAccount',':serviceNet'
@@ -19,6 +19,6 @@ include ':app'
 
 
 //调试插件
-//includeBuild './component-plugin'
-//includeBuild './component-support-plugin'
+includeBuild './component-plugin'
+includeBuild './component-support-plugin'
 

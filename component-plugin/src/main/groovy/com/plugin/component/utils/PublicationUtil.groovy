@@ -16,7 +16,7 @@ class PublicationUtil {
         return publication.groupId + '-' + publication.artifactId
     }
 
-    static getPublicationId(String groupId,String artifactId) {
+    static getPublicationId(String groupId, String artifactId) {
         return groupId + '-' + artifactId
     }
 
@@ -42,17 +42,25 @@ class PublicationUtil {
         String key = ProjectUtil.getComponentValue(value)
         PublicationOption publication = Runtimes.getSdkPublication(key)
         if (publication != null) {
-            if (projectInfo.aloneEnableAndNoSync()) {
 
-//                Map<String,Object> map = new HashMap<>()
-//                map.put("path",value)
-//                map.put("configuration",'default')
-//                return projectInfo.project.getDependencies().project(map)
+            if (projectInfo.isAssemble) {
                 return projectInfo.project.project(':' + value)
-//                return projectInfo.project.project('path: ' +  value + ', configuration: default')
             } else {
                 return getPublication(publication)
+//                return projectInfo.project.project(':' + value)
             }
+
+//            if (projectInfo.aloneEnableAndNoSync()) {
+//
+////                Map<String,Object> map = new HashMap<>()
+////                map.put("path",value)
+////                map.put("configuration",'default')
+////                return projectInfo.project.getDependencies().project(map)
+//                return projectInfo.project.project(':' + value)
+////                return projectInfo.project.project('path: ' +  value + ', configuration: default')
+//            } else {
+//                return getPublication(publication)
+//            }
         }
         return []
     }

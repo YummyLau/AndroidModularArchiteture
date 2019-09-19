@@ -39,31 +39,40 @@ class ImageLoader : ImageLoaderApi {
         Glide.get(context).clearMemory()
     }
 
-    private fun loadTemp(imageView: ImageView, source: Any, requestOptions: RequestOptions?, requestListener: RequestListener<Drawable>?, transformation: Transformation<Bitmap>) {
+    private fun loadTemp(imageView: ImageView, source: Any, requestOptions: RequestOptions? = null, requestListener: RequestListener<Drawable>? = null, transformation: Transformation<Bitmap>? = null) {
         var context = Utils.isValidContextForGlide(imageView)
         if (context != null) {
-            val makeRequestOptions = RequestOptions.bitmapTransform(transformation)
-            when (transformation) {
-                is BrightnessFilterTransformation -> makeRequestOptions.dontAnimate()
-                is SwirlFilterTransformation -> makeRequestOptions.dontAnimate()
-                is KuwaharaFilterTransformation -> makeRequestOptions.dontAnimate()
-                is VignetteFilterTransformation -> makeRequestOptions.dontAnimate()
+            var requestOption: RequestOptions? = requestOptions
+            if (requestOption == null) {
+                requestOption = RequestOptions()
+                if(transformation != null){
+                    requestOption = requestOption.transform(transformation)
+                    when (transformation) {
+                        is BrightnessFilterTransformation -> requestOption.dontAnimate()
+                        is SwirlFilterTransformation -> requestOption.dontAnimate()
+                        is KuwaharaFilterTransformation -> requestOption.dontAnimate()
+                        is VignetteFilterTransformation -> requestOption.dontAnimate()
+                    }
+                }
             }
             val requestBuilder = Glide.with(imageView.context)
                     .asDrawable()
                     .load(source)
-                    .apply(makeRequestOptions)
-
-            if (requestOptions != null) {
-                requestBuilder.apply(requestOptions)
-            }
-            if (requestListener != null) {
-                requestBuilder.listener(requestListener)
-            }
+                    .apply(requestOption)
+                    .listener(requestListener)
             requestBuilder.into(imageView)
         }
     }
 
+    @JvmOverloads
+    override fun load(imageView: ImageView, source: String, requestOptions: RequestOptions?, requestListener: RequestListener<Drawable>?) {
+        loadTemp(imageView, source, requestOptions, requestListener)
+    }
+
+    @JvmOverloads
+    override fun load(imageView: ImageView, source: Drawable, requestOptions: RequestOptions?, requestListener: RequestListener<Drawable>?) {
+        loadTemp(imageView, source, requestOptions, requestListener)
+    }
 
     @JvmOverloads
     override fun mask(imageView: ImageView, source: Drawable, mask: Int, requestOptions: RequestOptions?, requestListener: RequestListener<Drawable>?) {

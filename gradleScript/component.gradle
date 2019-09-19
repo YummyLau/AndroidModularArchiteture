@@ -6,7 +6,9 @@ component {
 
     mainModuleName 'app'
 
-    include 'app,serviceAccount,serviceNet,serviceSkin,compSystem,compBlog,compPaccounts,compProject,compMine'
+    include 'app,' +
+            'compSystem,compBlog,compPaccounts,compProject,compMine,' +
+            'serviceMedia,serviceNet,serviceAccount,serviceSkin'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

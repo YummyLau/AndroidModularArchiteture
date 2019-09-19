@@ -47,6 +47,8 @@ dependencies {
     api deps.gson
 
     implementation deps.qmui
+    api deps.pageindicatorview
+    api deps.loopingviewpager
 }
 
 

@@ -27,6 +27,11 @@ interface ImageLoaderApi {
     //清除内存缓存
     fun clearMemory(context: Context)
 
+    //正常请求
+    fun load(imageView: ImageView, source: String, requestOptions: RequestOptions? = null, requestListener: RequestListener<Drawable>? = null)
+
+    fun load(imageView: ImageView, source: Drawable, requestOptions: RequestOptions? = null, requestListener: RequestListener<Drawable>? = null)
+
     //遮罩
     fun mask(imageView: ImageView, source: String, @DrawableRes mask: Int, requestOptions: RequestOptions? = null, requestListener: RequestListener<Drawable>? = null)
 
