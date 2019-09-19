@@ -13,6 +13,7 @@
     <color name="windowBackground">#FFFFFF</color>
 
 
+    <color name="transparent">#00000000</color>
     <color name="gray_50">#FAFAFA</color>
     <color name="gray_100">#F5F5F5</color>
     <color name="gray_200">#EEEEEE</color>

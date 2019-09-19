@@ -36,6 +36,11 @@
 
     <declare-styleable name="TitleView">
         <attr name="title" format="string" />
+        <attr name="background" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="StatusBarView">
+        <attr name="color" format="color" />
     </declare-styleable>
 
 </resources>
