@@ -9,7 +9,6 @@ import io.reactivex.Flowable
 
 class BlogViewModel : ViewModel() {
 
-
     fun getBlogList(pageIndex: Int): Flowable<BaseListResult<IMediaItem>> =
             BlogRepository.get().getBlogList(pageIndex)
                     .compose(RxSchedulers.flowableIoToMain())

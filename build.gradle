@@ -33,6 +33,8 @@ allprojects {
         maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
         maven { url "https://jitpack.io" }
+        //for FlycoTabLayout
+        maven { url "https://dl.bintray.com/relish-wang/maven/" }
     }
 }
 

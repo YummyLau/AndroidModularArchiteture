@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
     android:orientation="vertical">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <com.effective.android.base.view.VpSwipeRefreshLayout
         android:id="@+id/articleContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/titleBar">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/articlePager"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/articlePager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tabLayout" />
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_tab_layout_height"
+                android:background="@color/colorPrimary"
+                tl:tl_indicator_color="@color/colorWhite"
+                tl:tl_indicator_corner_radius="1.5dp"
+                tl:tl_indicator_height="3dp"
+                tl:tl_indicator_width="10dp"
+                tl:tl_textBold="SELECT" />
+
+        </RelativeLayout>
+
+    </com.effective.android.base.view.VpSwipeRefreshLayout>
 
     <com.effective.android.base.view.StatusBarView
         android:id="@+id/statusBar"

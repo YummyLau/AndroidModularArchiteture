@@ -7,9 +7,7 @@ import com.effective.android.service.net.BaseListResult
 import com.effective.android.service.net.BaseResult
 import com.effective.android.service.net.Type
 import io.reactivex.Flowable
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+
 
 /**
  * 单例仓库类管理

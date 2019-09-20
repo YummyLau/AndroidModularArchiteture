@@ -68,8 +68,11 @@ versions.ucrop = "2.2.1"
 versions.photoview = "2.1.3"
 versions.flexbox = "0.3.2"
 versions.qmui = "1.1.3"
+
+//viewpgaer+指示器
 versions.pageindicatorview = "1.0.3"
 versions.loopingviewpager = "1.1.4"
+versions.flycoTabLayout = "3.0.0"
 
 //android x
 versions.constraintlayout = "1.1.2"
@@ -197,6 +200,7 @@ deps.qmui = "com.qmuiteam:qmui:$versions.qmui"
 deps.exoplayer = "com.google.android.exoplayer:exoplayer:$versions.exoplayer"
 deps.pageindicatorview = "com.romandanylyk:pageindicatorview:$versions.pageindicatorview"
 deps.loopingviewpager = "com.asksira.android:loopingviewpager:$versions.loopingviewpager"
+deps.flycoTabLayout = "com.flyco.tablayout:FlycoTabLayout_Lib:$versions.flycoTabLayout"
 
 project.ext {
     android = [

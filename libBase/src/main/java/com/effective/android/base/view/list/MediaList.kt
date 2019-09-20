@@ -148,6 +148,13 @@ class MediaList @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         }
     }
 
+    fun isOnTop(): Boolean {
+        if (innerLayoutManager !is LinearLayoutManager) {
+            return false
+        }
+        return (innerLayoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition() == 0
+    }
+
     fun scrollToTop() {
         val count = innerLayoutManager!!.childCount
         if (count > 0) {

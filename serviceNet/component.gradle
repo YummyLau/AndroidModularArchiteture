@@ -11,6 +11,8 @@ component {
             implementation deps.gson
             implementation deps.retrofit.runtime
             implementation deps.androidx.appCompat
+            implementation deps.rx.rxjava2
+            implementation deps.rx.rxAndroid
         }
     }
 }
