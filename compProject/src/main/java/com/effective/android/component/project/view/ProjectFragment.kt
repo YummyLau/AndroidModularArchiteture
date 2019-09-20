@@ -1,6 +1,7 @@
 package com.effective.android.component.project.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -46,14 +47,17 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
             }
             articleFragments[articlePager.currentItem]!!.refreshData(subFragmentFresh)
         }
+        pageState.toLoading("正在加载")
         initData()
     }
 
     private fun initData() {
+        pageState.visibility = View.VISIBLE
         fetchProjectDisposable = viewModel.getProjects()
                 .subscribe({
                     if (it.isSuccess) {
                         if (!it.data.isNullOrEmpty()) {
+                            pageState.visibility = View.GONE
                             projects = it.data!!
                             articlePager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
 
@@ -73,14 +77,20 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
                             }
                             tabLayout.setViewPager(articlePager)
                         } else {
-                            //todo 页面为空场景
+                            pageState.toEmpty("当前页面没有项目", "尝试刷新", Runnable {
+                                pageState.toLoading("正在加载")
+                                initData() })
                         }
                     } else {
-                        //todo 页面失败场景
+                        pageState.toEmpty("网络请求失败", "重新刷新", Runnable {
+                            pageState.toLoading("正在加载")
+                            initData() })
                     }
 
                 }, {
-                    //todo 页面失败场景
+                    pageState.toEmpty("网络请求失败", "重新刷新", Runnable {
+                        pageState.toLoading("正在加载")
+                        initData() })
                 })
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.activity.BaseActivity
+import com.effective.android.base.systemui.StatusbarHelper
 import example.androidmodulararchiteture.R
 import kotlinx.android.synthetic.main.app_activity_main_layout.*
 
@@ -17,6 +18,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        StatusbarHelper.translucentStatusBar(this)
         initData()
         initView()
     }

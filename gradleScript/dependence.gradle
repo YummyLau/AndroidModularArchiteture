@@ -74,6 +74,9 @@ versions.pageindicatorview = "1.0.3"
 versions.loopingviewpager = "1.1.4"
 versions.flycoTabLayout = "3.0.0"
 
+//优秀的视觉ui库
+versions.spinKit = "1.4.0"          //loading 效果 https://github.com/ybq/Android-SpinKit
+
 //android x
 versions.constraintlayout = "1.1.2"
 versions.recyclerview = "1.0.0"
@@ -201,6 +204,7 @@ deps.exoplayer = "com.google.android.exoplayer:exoplayer:$versions.exoplayer"
 deps.pageindicatorview = "com.romandanylyk:pageindicatorview:$versions.pageindicatorview"
 deps.loopingviewpager = "com.asksira.android:loopingviewpager:$versions.loopingviewpager"
 deps.flycoTabLayout = "com.flyco.tablayout:FlycoTabLayout_Lib:$versions.flycoTabLayout"
+deps.spinKit = "com.github.ybq:Android-SpinKit:$versions.spinKit"
 
 project.ext {
     android = [
