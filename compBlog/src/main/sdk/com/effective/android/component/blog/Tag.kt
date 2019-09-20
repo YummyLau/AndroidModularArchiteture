@@ -1,4 +1,4 @@
-package com.effective.android.component.blog.bean
+package com.effective.android.component.blog
 
 import com.google.gson.annotations.SerializedName
 
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * 文章tag实体
  * created by yummylau on 2019/09/18
  */
-class Tag {
+class Tag{
 
     @SerializedName("name")
     var name:String? = null

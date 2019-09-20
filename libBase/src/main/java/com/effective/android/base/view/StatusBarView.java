@@ -44,7 +44,7 @@ public class StatusBarView extends LinearLayout {
     }
 
     private void initView(AttributeSet attrs, int defStyle) {
-        View root = LayoutInflater.from(getContext()).inflate(R.layout.base_statusbar_layout, this, true);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.base_statusbar_layout, this, true);
         final TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.StatusBarView, defStyle, 0);
         if (typedArray != null) {
             mStatusBarColor = typedArray.getResourceId(R.styleable.StatusBarView_color, R.color.colorPrimary);
@@ -54,7 +54,7 @@ public class StatusBarView extends LinearLayout {
         fitSpecialModelStatusBar();
         setBackgroundColor(ContextCompat.getColor(getContext(), mStatusBarColor));
         int statusbarHeight = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ? getStatusBarHeight(getContext()) : 0;
-        root.getLayoutParams().height = statusbarHeight;
+        view.findViewById(R.id.status_bar).getLayoutParams().height = statusbarHeight;
     }
 
 

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.effective.android.base.R;
 
 public class TitleView extends RelativeLayout {
@@ -33,7 +35,8 @@ public class TitleView extends RelativeLayout {
         title = root.findViewById(R.id.title);
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TitleView, defStyleAttr, 0);
         title.setText(typedArray.getString(R.styleable.TitleView_title));
-        setBackgroundColor(typedArray.getColor(R.styleable.TitleView_background, Color.TRANSPARENT));
+        title.setTextColor(ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.TitleView_titleColor, R.color.colorWhite)));
+        setBackgroundColor(ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.TitleView_titleBarBackground, R.color.transparent)));
     }
 
     public TextView getTitle() {

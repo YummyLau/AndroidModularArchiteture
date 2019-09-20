@@ -1,14 +1,10 @@
-package com.effective.android.component.blog.bean
+package com.effective.android.component.project.bean
 
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.blog.ArticleBase
-import com.effective.android.component.blog.Constants
+import com.effective.android.component.project.Constants
 
-/**
- * 文章实体
- * created by yummylau on 2019/09/18
- */
-class Article : ArticleBase(), IMediaItem {
+class Article : ArticleBase(),IMediaItem {
 
     override fun getType(): Int = Constants.articleType
 

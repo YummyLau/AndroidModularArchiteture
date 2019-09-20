@@ -7,15 +7,16 @@
     android:orientation="vertical">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/listContainer"
+        android:id="@+id/articleContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/titleBar">
 
-        <com.effective.android.base.view.list.MediaList
-            android:id="@+id/list"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/articlePager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.effective.android.base.view.StatusBarView
@@ -28,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/statusBar"
-        app:titleBarBackground="@color/colorPrimary"
-        app:title="@string/blog_app_name" />
+        app:title="@string/project_app_name"
+        app:titleBarBackground="@color/colorPrimary" />
 
 </RelativeLayout>
