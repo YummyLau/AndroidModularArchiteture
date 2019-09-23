@@ -34,5 +34,5 @@ class SystemRepository {
 
     fun getTreeChapters(): Flowable<BaseResult<List<Chapter>>> = paccountsApis.getTreeChapters()
 
-    fun getArticles(id: String, pageCount: String): Flowable<BaseListResult<Article>> = paccountsApis.getArticles(id, pageCount)
+    fun getArticles(pageCount: String,id: String): Flowable<BaseListResult<Article>> = paccountsApis.getArticles(pageCount,id)
 }

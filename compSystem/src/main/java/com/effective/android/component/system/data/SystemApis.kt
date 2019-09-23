@@ -7,6 +7,7 @@ import com.effective.android.component.system.bean.Article
 import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface SystemApis {
@@ -26,6 +27,6 @@ interface SystemApis {
      * 知识体系下的文章
      *
      */
-    @GET("list/{id}/{pageCount}/json")
-    fun getArticles(@Path(value = "id") id: String, @Path(value = "pageCount") pageCount: String): Flowable<BaseListResult<Article>>
+    @GET("article/list/{pageCount}/json")
+    fun getArticles(@Path(value = "pageCount") pageCount: String,@Query(value = "cid") id: String): Flowable<BaseListResult<Article>>
 }

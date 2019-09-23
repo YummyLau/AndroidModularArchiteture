@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.system_fragment_article_layout.*
 
 class ArticleFragment(private val chapter: Chapter) : BaseVmFragment<ArticleViewModel>() {
 
-    var pageNum: Int = 1
+    var pageNum: Int = 0
     var fetchDataDisposable: Disposable? = null
     lateinit var adapter: ArticleAdapter
 
@@ -34,11 +34,11 @@ class ArticleFragment(private val chapter: Chapter) : BaseVmFragment<ArticleView
     }
 
     private fun fetchData(boolean: Boolean) {
-        pageNum = if (boolean) 1 else pageNum
+        pageNum = if (boolean) 0 else pageNum
         fetchDataDisposable = viewModel.getArticles(chapter.id, pageNum)
                 .subscribe({
                     if (it.isSuccess) {
-                        if (pageNum == 1) {
+                        if (pageNum == 0) {
                             adapter.replace(it.data!!.data)
                         } else {
                             var list = mutableListOf<IMediaItem>()

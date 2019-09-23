@@ -13,7 +13,7 @@ class ArticleViewModel : ViewModel() {
      * 默认 pageCount 从1开始
      */
     fun getArticles(id: Long, pageCount: Int): Flowable<BaseListResult<Article>> {
-        return SystemRepository.get().getArticles(id.toString(), pageCount.toString())
+        return SystemRepository.get().getArticles(pageCount.toString(), id.toString())
                 .compose(RxSchedulers.flowableIoToMain())
     }
 }

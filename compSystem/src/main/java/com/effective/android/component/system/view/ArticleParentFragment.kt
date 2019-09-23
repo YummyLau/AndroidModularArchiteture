@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.fragment.BaseFragment
 import com.effective.android.component.blog.Chapter
 import com.effective.android.component.system.R
-import kotlinx.android.synthetic.main.system_fragment_laout.*
+import kotlinx.android.synthetic.main.system_fragment_article_parent_layout.*
 
 class ArticleParentFragment(private val chapters: MutableList<Chapter>) : BaseFragment() {
 
@@ -20,7 +20,7 @@ class ArticleParentFragment(private val chapters: MutableList<Chapter>) : BaseFr
     }
 
     private fun initData() {
-        articlePager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
+        parentPager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
             override fun getItem(position: Int): Fragment {
                 var fragment: ArticleFragment? = articleFragments[position]
                 if (fragment == null) {
@@ -34,6 +34,6 @@ class ArticleParentFragment(private val chapters: MutableList<Chapter>) : BaseFr
 
             override fun getPageTitle(position: Int): CharSequence? = chapters[position].name
         }
-        tabLayout.setViewPager(articlePager)
+        parentTab.setViewPager(parentPager)
     }
 }
