@@ -8,6 +8,9 @@ import com.effective.android.base.systemui.StatusbarHelper
 import example.androidmodulararchiteture.R
 import kotlinx.android.synthetic.main.app_activity_main_layout.*
 
+/**
+ * e6e6e6
+ */
 class MainActivity : BaseActivity() {
 
     private val fragmentList = mutableListOf<Fragment>()
@@ -32,16 +35,12 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initView() {
-        blog.text = getString(R.string.app_comp_blog)
-        project.text = getString(R.string.app_comp_project)
-        paccounts.text = getString(R.string.app_comp_paccounts)
-        system.text = getString(R.string.app_comp_system)
-        mine.text = getString(R.string.app_comp_mine)
         viewPager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment = fragmentList[position]
 
             override fun getCount(): Int = fragmentList.size
         }
+        bottomTab.setupWithViewPager(viewPager)
     }
 }
 

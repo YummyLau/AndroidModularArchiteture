@@ -77,6 +77,7 @@ versions.flycoTabLayout = "3.0.0"
 //优秀的视觉ui库
 versions.spinKit = "1.4.0"                       //loading 效果 https://github.com/ybq/Android-SpinKit
 versions.smartRefreshLayout = "1.1.0"            //下拉框架 效果 https://github.com/scwang90/SmartRefreshLayout
+versions.bottomNavigationViewEx = "2.0.4"        //底部栏 效果 https://github.com/ittianyu/BottomNavigationViewEx
 
 //android x
 versions.constraintlayout = "1.1.2"
@@ -207,6 +208,7 @@ deps.loopingviewpager = "com.asksira.android:loopingviewpager:$versions.loopingv
 deps.flycoTabLayout = "com.flyco.tablayout:FlycoTabLayout_Lib:$versions.flycoTabLayout"
 deps.spinKit = "com.github.ybq:Android-SpinKit:$versions.spinKit"
 deps.smartRefreshLayout = "com.scwang.smartrefresh:SmartRefreshLayout:$versions.smartRefreshLayout"
+deps.bottomNavigationViewEx = "com.github.ittianyu:BottomNavigationViewEx:$versions.bottomNavigationViewEx"
 
 project.ext {
     android = [

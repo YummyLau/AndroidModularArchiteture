@@ -35,6 +35,9 @@ allprojects {
         maven { url "https://jitpack.io" }
         //for FlycoTabLayout
         maven { url "https://dl.bintray.com/relish-wang/maven/" }
+        //for BottomNavigationViewEx
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.google.com" }
     }
 }
 

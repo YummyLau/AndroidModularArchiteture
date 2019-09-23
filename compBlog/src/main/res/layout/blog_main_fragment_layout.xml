@@ -8,8 +8,7 @@
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/listContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/statusBar">
+        android:layout_height="match_parent">
 
         <com.effective.android.base.view.list.MediaList
             android:id="@+id/list"
@@ -18,9 +17,5 @@
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    <com.effective.android.base.view.StatusBarView
-        android:id="@+id/statusBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </RelativeLayout>

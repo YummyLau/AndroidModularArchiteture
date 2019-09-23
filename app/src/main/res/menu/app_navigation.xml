@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/blog"
+        android:checked="true"
+        android:icon="@mipmap/ic_blog_normal"
+        android:title="@string/app_comp_blog" />
+    <item
+        android:id="@+id/project"
+        android:icon="@mipmap/ic_project_normal"
+        android:title="@string/app_comp_project" />
+    <item
+        android:id="@+id/paccounts"
+        android:icon="@mipmap/ic_wechat_normal"
+        android:title="@string/app_comp_paccounts" />
+
+    <item
+        android:id="@+id/system"
+        android:icon="@mipmap/ic_system_normal"
+        android:title="@string/app_comp_system" />
+
+    <item
+        android:id="@+id/mine"
+        android:icon="@mipmap/ic_mine_normal"
+        android:title="@string/app_comp_mine" />
+
+</menu>
