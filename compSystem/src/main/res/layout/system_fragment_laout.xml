@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/articlePager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabLayout" />
+
+    <com.effective.android.base.view.PageStateView
+        android:id="@+id/pageState"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.effective.android.base.view.StatusBarView
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_tab_layout_height"
+        android:layout_below="@+id/statusBar"
+        android:background="@color/colorPrimary"
+        tl:tl_indicator_color="@color/colorWhite"
+        tl:tl_indicator_corner_radius="1.5dp"
+        tl:tl_indicator_height="3dp"
+        tl:tl_indicator_width="10dp"
+        tl:tl_textBold="SELECT" />
+
+</RelativeLayout>

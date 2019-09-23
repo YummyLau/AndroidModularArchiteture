@@ -24,19 +24,19 @@ class BlogFragment : BaseVmFragment<BlogViewModel>() {
         super.onActivityCreated(savedInstanceState)
         adapter = ArticleAdapter()
         listContainer.setOnRefreshListener {
-            pageNum = 0
-            fetchData()
+            fetchData(true)
+        }
+        listContainer.setOnLoadMoreListener {
+            fetchData(false)
         }
         list.adapter = adapter
-        fetchData()
+        fetchData(true)
     }
 
-    private fun fetchData() {
+    private fun fetchData(boolean: Boolean) {
+        pageNum = if (boolean) 0 else pageNum
         fetchDataDisposable = viewModel.getBlogList(pageNum)
-                .map {
-                    listContainer.isRefreshing = false
-                    it
-                }.subscribe({
+                .subscribe({
                     if (it.isSuccess) {
                         if (pageNum == 0) {
                             adapter.replace(it.data!!.data)
@@ -48,9 +48,17 @@ class BlogFragment : BaseVmFragment<BlogViewModel>() {
                         }
                         pageNum++
                     }
-                    ToastUtils.show(context!!, if (it.isSuccess) "加载成功" else "加载失败")
+                    if (boolean) {
+                        listContainer.finishRefresh(2000, it.isSuccess, false)
+                    } else {
+                        listContainer.finishLoadMore(2000, it.isSuccess, false)
+                    }
                 }, {
-                    ToastUtils.show(context!!, "加载失败")
+                    if (boolean) {
+                        listContainer.finishRefresh(2000, false, false)
+                    } else {
+                        listContainer.finishLoadMore(2000, false, false)
+                    }
                 })
     }
 

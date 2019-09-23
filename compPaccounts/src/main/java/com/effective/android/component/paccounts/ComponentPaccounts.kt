@@ -11,7 +11,7 @@ class ComponentPaccounts : IComponent {
         //opt
     }
 
-    override fun attachComponent(application: Application?) {
-        //opt
+    override fun attachComponent(application: Application) {
+        Sdks.init(application)
     }
 }

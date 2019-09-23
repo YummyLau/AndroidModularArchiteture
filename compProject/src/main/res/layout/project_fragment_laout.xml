@@ -7,53 +7,32 @@
     android:fitsSystemWindows="false"
     android:orientation="vertical">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/articlePager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabLayout" />
+
+    <com.effective.android.base.view.PageStateView
+        android:id="@+id/pageState"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <com.effective.android.base.view.StatusBarView
         android:id="@+id/statusBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.effective.android.base.view.TitleView
-        android:id="@+id/titleBar"
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/base_tab_layout_height"
         android:layout_below="@+id/statusBar"
-        app:title="@string/project_app_name"
-        app:titleBarBackground="@color/colorPrimary" />
-
-    <com.effective.android.base.view.VpSwipeRefreshLayout
-        android:id="@+id/articleContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/titleBar">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/articlePager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/tabLayout" />
-
-            <com.effective.android.base.view.PageStateView
-                android:id="@+id/pageState"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <com.flyco.tablayout.SlidingTabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/base_tab_layout_height"
-                android:background="@color/colorPrimary"
-                tl:tl_indicator_color="@color/colorWhite"
-                tl:tl_indicator_corner_radius="1.5dp"
-                tl:tl_indicator_height="3dp"
-                tl:tl_indicator_width="10dp"
-                tl:tl_textBold="SELECT" />
-
-        </RelativeLayout>
-
-    </com.effective.android.base.view.VpSwipeRefreshLayout>
+        android:background="@color/colorPrimary"
+        tl:tl_indicator_color="@color/colorWhite"
+        tl:tl_indicator_corner_radius="1.5dp"
+        tl:tl_indicator_height="3dp"
+        tl:tl_indicator_width="10dp"
+        tl:tl_textBold="SELECT" />
 
 </RelativeLayout>

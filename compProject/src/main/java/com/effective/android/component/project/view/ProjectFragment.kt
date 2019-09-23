@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.component.project.R
-import com.effective.android.component.project.bean.Project
+import com.effective.android.component.blog.Chapter
 import com.effective.android.component.project.vm.ProjectViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.project_fragment_laout.*
@@ -16,18 +15,7 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
 
     var fetchProjectDisposable: Disposable? = null
     val articleFragments: HashMap<Int, ArticleFragment> = HashMap()
-    var projects: List<Project>? = null
-    private val subFragmentFresh = object : SubFragmentFresh {
-        override fun onFinish() {
-            articleContainer.isRefreshing = false
-        }
-    }
-
-    private val subFragmentListStatus = object : SubFragmentListStatus {
-        override fun onListStatus(onTop: Boolean) {
-            articleContainer.isEnabled = onTop
-        }
-    }
+    var projects: List<com.effective.android.component.blog.Chapter>? = null
 
     override fun getViewModel(): Class<ProjectViewModel> = ProjectViewModel::class.java
 
@@ -35,18 +23,6 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        articleContainer.setOnRefreshListener {
-            if (projects == null) {
-                articleContainer.isRefreshing = false
-                return@setOnRefreshListener
-            }
-
-            if (articleFragments[articlePager.currentItem] == null) {
-                articleContainer.isRefreshing = false
-                return@setOnRefreshListener
-            }
-            articleFragments[articlePager.currentItem]!!.refreshData(subFragmentFresh)
-        }
         pageState.toLoading("正在加载")
         initData()
     }
@@ -67,7 +43,6 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
                                         fragment = ArticleFragment(projects!![position])
                                         articleFragments[position] = fragment
                                     }
-                                    fragment.attachStatus(subFragmentListStatus)
                                     return fragment
                                 }
 
@@ -79,18 +54,21 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
                         } else {
                             pageState.toEmpty("当前页面没有项目", "尝试刷新", Runnable {
                                 pageState.toLoading("正在加载")
-                                initData() })
+                                initData()
+                            })
                         }
                     } else {
                         pageState.toEmpty("网络请求失败", "重新刷新", Runnable {
                             pageState.toLoading("正在加载")
-                            initData() })
+                            initData()
+                        })
                     }
 
                 }, {
                     pageState.toEmpty("网络请求失败", "重新刷新", Runnable {
                         pageState.toLoading("正在加载")
-                        initData() })
+                        initData()
+                    })
                 })
     }
 
@@ -99,13 +77,5 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
         if (fetchProjectDisposable != null && fetchProjectDisposable!!.isDisposed) {
             fetchProjectDisposable?.dispose()
         }
-    }
-
-    interface SubFragmentFresh {
-        fun onFinish()
-    }
-
-    interface SubFragmentListStatus {
-        fun onListStatus(onTop: Boolean)
     }
 }

@@ -52,6 +52,7 @@ dependencies {
     api deps.pageindicatorview
     api deps.loopingviewpager
     api deps.flycoTabLayout
+    api deps.smartRefreshLayout
 
 
 

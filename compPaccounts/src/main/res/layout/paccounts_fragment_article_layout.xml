@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/articleContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="ResourceName">
+
+    <com.effective.android.base.view.list.MediaList
+        android:id="@+id/articleList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false" />
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

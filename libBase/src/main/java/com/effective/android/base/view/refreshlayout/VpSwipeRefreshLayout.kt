@@ -1,4 +1,4 @@
-package com.effective.android.base.view
+package com.effective.android.base.view.refreshlayout
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,22 +6,19 @@ import android.view.MotionEvent
 import android.view.ViewConfiguration
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 
 /**
  * 解决内部如果存在viewpagerview时滑动冲突
  * https://blog.csdn.net/u010386612/article/details/50548977#bottom
  */
-class VpSwipeRefreshLayout(context: Context, attrs: AttributeSet) : SwipeRefreshLayout(context, attrs) {
+class VpSwipeRefreshLayout(context: Context, attrs: AttributeSet) : SmartRefreshLayout(context, attrs) {
 
     private var startY: Float = 0.toFloat()
     private var startX: Float = 0.toFloat()
     // 记录viewPager是否拖拽的标记
     private var mIsVpDragger: Boolean = false
-    private val mTouchSlop: Int
-
-    init {
-        mTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
-    }
+    private val mTouchSlop2: Int = ViewConfiguration.get(context).scaledTouchSlop
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
         when (ev.action) {
@@ -44,7 +41,7 @@ class VpSwipeRefreshLayout(context: Context, attrs: AttributeSet) : SwipeRefresh
                 val distanceX = Math.abs(endX - startX)
                 val distanceY = Math.abs(endY - startY)
                 // 如果X轴位移大于Y轴位移，那么将事件交给viewPager处理。
-                if (distanceX > mTouchSlop && distanceX > distanceY) {
+                if (distanceX > mTouchSlop2 && distanceX > distanceY) {
                     mIsVpDragger = true
                     return false
                 }

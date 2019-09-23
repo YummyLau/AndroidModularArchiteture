@@ -1,4 +1,4 @@
-package com.effective.android.system
+package com.effective.android.component.system
 
 import android.app.Application
 import com.plugin.component.IComponent
@@ -11,7 +11,7 @@ class ComponentSystem : IComponent {
         //opt
     }
 
-    override fun attachComponent(application: Application?) {
-        //opt
+    override fun attachComponent(application: Application) {
+        Sdks.init(application)
     }
 }

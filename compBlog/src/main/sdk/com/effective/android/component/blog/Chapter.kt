@@ -1,13 +1,11 @@
-package com.effective.android.component.project.bean
+package com.effective.android.component.blog
 
-import com.effective.android.base.view.list.IMediaItem
-import com.effective.android.component.project.Constants
 import com.google.gson.annotations.SerializedName
 
-class Project{
+class Chapter{
 
     @SerializedName("children")
-    var children: MutableList<Project> = mutableListOf()
+    var children: MutableList<Chapter> = mutableListOf()
 
     @SerializedName("courseId")
     var courseId: Int = -1
