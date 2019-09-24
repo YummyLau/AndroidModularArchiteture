@@ -32,11 +32,15 @@ android {
         }
     }
 
-    resourcePrefix "cmine_"
+    resourcePrefix "mine_"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
+    implementation component(':serviceNet')
+    implementation component(':serviceSkin')
+    implementation component(':serviceMedia')
+    implementation component(':serviceAccount')
 }
 

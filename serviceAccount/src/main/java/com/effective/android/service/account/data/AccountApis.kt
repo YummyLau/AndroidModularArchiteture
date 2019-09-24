@@ -93,7 +93,7 @@ interface AccountApis {
      * @return
      */
     @GET("logout/json")
-    fun logout(): Flowable<BaseResult<*>>
+    fun logout(): Flowable<BaseResult<UserInfo>>
 
     companion object {
 

@@ -53,23 +53,17 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                         .subscribe({
                             if(it.isValid()){
                                 finish()
-                                show(this,R.string.saccount_login_success)
-                            }else{
-                                show(this,R.string.saccount_login_fail)
                             }
                         }, {
-                            show(this,R.string.saccount_login_fail)
+
                         })
             }else registerDisposable = viewModel.register(userName, password)
                     .subscribe({
                         if(it.isValid()){
                             finish()
-                            show(this,R.string.saccount_login_success)
-                        }else{
-                            show(this,R.string.saccount_login_fail)
                         }
                     }) {
-                        show(this,R.string.saccount_login_fail)
+
                     }
 
         }

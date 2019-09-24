@@ -21,5 +21,5 @@ open class BaseResult<T> {
     var data: T? = null
 
     val isSuccess: Boolean
-        get() = errorCode == 0 && data != null
+        get() = errorCode == 0
 }
