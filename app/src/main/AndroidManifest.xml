@@ -7,8 +7,8 @@
         android:name=".ModuleApplication"
         android:allowBackup="true"
         android:icon="@drawable/app_ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@drawable/app_ic_launcher"
+        android:label="@string/app_name"
         android:theme="@style/BaseAppTheme"
         android:supportsRtl="true">
 

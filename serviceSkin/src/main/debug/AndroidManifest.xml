@@ -3,15 +3,16 @@
     package="com.effective.android.service.skin">
 
     <application
-        android:name=".TestApplication"
+        android:name="com.effective.android.debug.DebugApplication"
         android:allowBackup="true"
         android:label="@string/skin_app_name"
+        android:icon="@drawable/skin_ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light"
+        android:theme="@style/BaseAppTheme"
         tools:replace="android:label">
 
         <activity
-            android:name=".TestActivity"
+            android:name="com.effective.android.debug.DebugActivity"
             android:label="@string/skin_app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

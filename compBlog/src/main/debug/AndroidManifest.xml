@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.effective.android.component.blog">
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-
     <application
-        android:name=".TestApplication"
+        android:name="com.effective.android.debug.DebugApplication"
         android:allowBackup="true"
+        android:icon="@drawable/kit_ic_blog"
         android:label="@string/blog_app_name"
-        android:supportsRtl="true"
-        android:theme="@style/BaseAppTheme"
-        tools:replace="android:label">
+        android:theme="@style/BaseAppTheme">
         <activity android:name=".TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

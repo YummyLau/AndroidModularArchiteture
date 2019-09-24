@@ -1,6 +1,6 @@
 component {
     debug {
-        applicationName 'com.effective.android.service.media.TestApplication'
+        applicationName 'com.effective.android.debug.DebugApplication'
     }
     sdk {
         groupId 'com.effective.android'

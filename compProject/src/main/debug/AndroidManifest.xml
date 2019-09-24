@@ -3,18 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.effective.android.component.project">
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-
     <application
-        android:name=".TestApplication"
+        android:name="com.effective.android.debug.DebugApplication"
         android:allowBackup="true"
         android:label="@string/project_app_name"
         android:supportsRtl="true"
+        android:icon="@drawable/kit_ic_project"
         android:theme="@style/BaseAppTheme"
         tools:replace="android:label">
         <activity android:name=".TestActivity">

@@ -13,6 +13,7 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         minSdkVersion configs.android.minSdkVersion
         targetSdkVersion configs.android.targetSdkVersion
         versionCode 1
@@ -30,6 +31,7 @@ android {
 }
 
 dependencies {
+    implementation project(':libDebug')
     implementation project(':libBase')
     implementation project(':libImageloader')
     implementation project(':libVideo')

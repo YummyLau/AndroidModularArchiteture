@@ -1,6 +1,6 @@
 component {
     debug {
-        applicationName 'com.effective.android.service.net.TestApplication'
+        applicationName 'com.effective.android.debug.DebugApplication'
     }
 
     sdk {

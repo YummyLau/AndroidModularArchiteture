@@ -3,17 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.effective.android.component.mine">
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-
     <application
-        android:name=".TestApplication"
+        android:name="com.effective.android.debug.DebugApplication"
         android:allowBackup="true"
         android:label="@string/mine_app_name"
+        android:icon="@drawable/kit_ic_mine"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme"
         tools:replace="android:label">

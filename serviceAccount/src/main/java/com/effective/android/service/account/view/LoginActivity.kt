@@ -45,7 +45,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
             var userName = userName.editableText.toString()
             var password = password.editableText.toString()
             if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-                show(this, R.string.saccount_input_invalid)
+                show(this, R.string.account_input_invalid)
                 return@setOnClickListener
             }
             if(isSelectLogin){
@@ -70,9 +70,9 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
     }
 
     private fun initView(isSelectLogin: Boolean) {
-        pageTitle.text = getString(if (isSelectLogin) R.string.saccount_login else R.string.saccount_register)
-        action.text = getString(if (isSelectLogin) R.string.saccount_login else R.string.saccount_register_and_login)
-        actionTip.text = getString(if (isSelectLogin) R.string.saccount_login_tip else R.string.saccount_register_tip)
+        pageTitle.text = getString(if (isSelectLogin) R.string.account_login else R.string.account_register)
+        action.text = getString(if (isSelectLogin) R.string.account_login else R.string.account_register_and_login)
+        actionTip.text = getString(if (isSelectLogin) R.string.account_login_tip else R.string.account_register_tip)
     }
 
 }

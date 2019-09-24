@@ -1,5 +1,5 @@
 //library 层
-include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission'
+include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':libDebug'
 
 //service 层
 include ':serviceShare', ':serviceSkin', ':serviceAccount', ':serviceNet', ':serviceMedia', ':servicekit'

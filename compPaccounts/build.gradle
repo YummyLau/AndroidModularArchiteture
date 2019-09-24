@@ -32,12 +32,13 @@ android {
         }
     }
 
-    resourcePrefix "cpaccounts_"
+    resourcePrefix "paccounts_"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
+    implementation project(':libDebug')
     implementation project(':servicekit')
     implementation component(':serviceNet')
     implementation component(':serviceSkin')
