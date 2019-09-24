@@ -19,14 +19,12 @@ android {
         versionName "1.0"
     }
 
-    resourcePrefix "saccount_"
+    resourcePrefix "account_"
 }
 
 dependencies {
     implementation project(':libBase')
-    implementation component(':serviceNet')
+    implementation project(':servicekit')
     implementation component(':serviceSkin')
-    implementation deps.retrofit.runtime
-    implementation deps.retrofit.converterGson
-    implementation deps.retrofit.rxJava2Adapter
+    implementation component(':serviceNet')
 }

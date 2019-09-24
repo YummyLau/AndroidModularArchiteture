@@ -1,8 +1,8 @@
 package com.effective.android.component.project.data
 
 import com.effective.android.component.project.Sdks
-import com.effective.android.component.project.bean.Article
-import com.effective.android.component.blog.Chapter
+import com.effective.android.service.kit.data.Article
+import com.effective.android.service.kit.data.Chapter
 import com.effective.android.service.net.BaseListResult
 import com.effective.android.service.net.BaseResult
 import com.effective.android.service.net.Type
@@ -37,6 +37,6 @@ class ProjectRepository private constructor() {
 
     fun getArticles(index: String, projectId: Long): Flowable<BaseListResult<Article>> = projectApis.getArticles(index, projectId)
 
-    fun getProjects(): Flowable<BaseResult<List<com.effective.android.component.blog.Chapter>>> = projectApis.getProjects()
+    fun getProjects(): Flowable<BaseResult<List<Chapter>>> = projectApis.getProjects()
 
 }

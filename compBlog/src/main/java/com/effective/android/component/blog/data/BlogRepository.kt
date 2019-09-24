@@ -2,9 +2,9 @@ package com.effective.android.component.blog.data
 
 import com.effective.android.base.rxjava.RxCreator
 import com.effective.android.base.view.list.IMediaItem
-import com.effective.android.component.blog.bean.Article
 import com.effective.android.component.blog.Sdks
 import com.effective.android.component.blog.bean.*
+import com.effective.android.service.kit.data.Article
 import com.effective.android.service.net.BaseListResult
 import com.effective.android.service.net.BaseResult
 import com.effective.android.service.net.Type

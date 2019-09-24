@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.component.project.R
-import com.effective.android.component.blog.Chapter
 import com.effective.android.component.project.vm.ProjectViewModel
+import com.effective.android.service.kit.data.Chapter
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.project_fragment_laout.*
 
@@ -15,7 +15,7 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
 
     var fetchProjectDisposable: Disposable? = null
     val articleFragments: HashMap<Int, ArticleFragment> = HashMap()
-    var projects: List<com.effective.android.component.blog.Chapter>? = null
+    var projects: List<Chapter>? = null
 
     override fun getViewModel(): Class<ProjectViewModel> = ProjectViewModel::class.java
 

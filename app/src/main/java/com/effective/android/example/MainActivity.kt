@@ -5,11 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.activity.BaseActivity
 import com.effective.android.base.systemui.StatusbarHelper
-import example.androidmodulararchiteture.R
 import kotlinx.android.synthetic.main.app_activity_main_layout.*
 
 /**
- * e6e6e6
  */
 class MainActivity : BaseActivity() {
 

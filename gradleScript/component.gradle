@@ -8,7 +8,7 @@ component {
 
     include 'app,' +
             'compSystem,compBlog,compPaccounts,compProject,compMine,' +
-            'serviceMedia,serviceNet,serviceAccount,serviceSkin'
+            'serviceMedia,serviceNet,serviceAccount,serviceSkin,serviceShare'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

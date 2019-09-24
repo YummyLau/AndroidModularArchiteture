@@ -4,13 +4,13 @@ import android.os.Bundle
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.project.R
-import com.effective.android.component.blog.Chapter
-import com.effective.android.component.project.view.adapter.ArticleAdapter
 import com.effective.android.component.project.vm.ArticleViewModel
+import com.effective.android.service.kit.data.Chapter
+import com.effective.android.service.kit.view.ArticleAdapter
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.project_fragment_article_layout.*
 
-class ArticleFragment(private val project: com.effective.android.component.blog.Chapter) : BaseVmFragment<ArticleViewModel>() {
+class ArticleFragment(private val project: Chapter) : BaseVmFragment<ArticleViewModel>() {
 
     var pageNum: Int = 1
     var fetchDataDisposable: Disposable? = null

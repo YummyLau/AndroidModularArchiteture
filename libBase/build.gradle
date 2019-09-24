@@ -55,8 +55,6 @@ dependencies {
     api deps.smartRefreshLayout
     api deps.bottomNavigationViewEx
 
-
-
     api deps.retrofit.runtime
     api deps.retrofit.converterGson
     api deps.retrofit.rxJava2Adapter

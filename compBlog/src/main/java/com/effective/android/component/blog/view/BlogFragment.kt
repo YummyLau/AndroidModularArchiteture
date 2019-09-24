@@ -2,11 +2,11 @@ package com.effective.android.component.blog.view
 
 import android.os.Bundle
 import com.effective.android.base.fragment.BaseVmFragment
-import com.effective.android.base.toast.ToastUtils
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.blog.R
-import com.effective.android.component.blog.view.adapter.ArticleAdapter
+import com.effective.android.component.blog.view.adapter.BlogArticleAdapter
 import com.effective.android.component.blog.vm.BlogViewModel
+import com.effective.android.service.kit.view.ArticleAdapter
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.blog_main_fragment_layout.*
 
@@ -14,7 +14,7 @@ class BlogFragment : BaseVmFragment<BlogViewModel>() {
 
     var pageNum: Int = 0
     var fetchDataDisposable: Disposable? = null
-    lateinit var adapter: ArticleAdapter
+    lateinit var adapter: BlogArticleAdapter
 
     override fun getViewModel(): Class<BlogViewModel> = BlogViewModel::class.java
 
@@ -22,7 +22,7 @@ class BlogFragment : BaseVmFragment<BlogViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        adapter = ArticleAdapter()
+        adapter = BlogArticleAdapter()
         listContainer.setOnRefreshListener {
             fetchData(true)
         }

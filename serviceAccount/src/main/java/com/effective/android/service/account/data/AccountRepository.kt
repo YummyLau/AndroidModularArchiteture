@@ -1,8 +1,6 @@
 package com.effective.android.service.account.data
 
-import android.app.Application
 import android.text.TextUtils
-import androidx.annotation.MainThread
 import com.effective.android.base.rxjava.RxCreator
 import com.effective.android.base.util.GsonUtils
 import com.effective.android.service.account.AccountChangeListener
@@ -11,7 +9,6 @@ import com.effective.android.service.account.Sdks
 import com.effective.android.service.account.UserInfo
 import com.effective.android.service.net.Type
 import io.reactivex.Flowable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.Callable
 

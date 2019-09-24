@@ -1,9 +1,9 @@
 package com.effective.android.component.blog.data
 
-import com.effective.android.component.blog.bean.Article
 import com.effective.android.component.blog.bean.Banner
 import com.effective.android.component.blog.bean.SearchKey
 import com.effective.android.component.blog.bean.Website
+import com.effective.android.service.kit.data.Article
 import com.effective.android.service.net.BaseListResult
 import com.effective.android.service.net.BaseResult
 import io.reactivex.Flowable
