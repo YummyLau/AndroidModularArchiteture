@@ -10,6 +10,6 @@ class MediaComponent : IComponent {
     override fun detachComponent() {
     }
 
-    override fun attachComponent(application: Application?) {
+    override fun attachComponent(application: Application) {
     }
 }

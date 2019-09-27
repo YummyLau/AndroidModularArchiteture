@@ -13,7 +13,7 @@ class ServiceNetComponent : IComponent {
         //暂时不处理
     }
 
-    override fun attachComponent(application: Application?) {
+    override fun attachComponent(application: Application) {
         HttpClient.init(application!!, true)
     }
 }

@@ -236,14 +236,19 @@ class ComponentPlugin implements Plugin<Project> {
 
                     childProject.plugins.whenObjectAdded {
                         if (it instanceof AppPlugin || it instanceof LibraryPlugin) {
+                            Logger.buildOutput("project[" + childProject.name + "]" + "apply plugin: com.android.component")
                             childProject.pluginManager.apply(Constants.PLUGIN_COMPONENT)
                             childProject.dependencies {
                                 implementation Constants.CORE_DEPENDENCY
+                                Logger.buildOutput("project[" + childProject.name + "] add dependency =>" + Constants.CORE_DEPENDENCY)
                             }
                             if (projectInfo.aloneEnable) {
+                                Logger.buildOutput("project[" + childProject.name + "] registerTransform => ScanCodeTransform")
+                                Logger.buildOutput("project[" + childProject.name + "] registerTransform => InjectCodeTransform")
                                 childProject.extensions.findByType(BaseExtension.class).registerTransform(new ScanCodeTransform(childProject))
                                 childProject.extensions.findByType(BaseExtension.class).registerTransform(new InjectCodeTransform(childProject))
                                 if (!projectInfo.isMainModule()) {
+                                    Logger.buildOutput("project[" + childProject.name + "] add sourceSets debug")
                                     childProject.android.sourceSets {
                                         main {
                                             manifest.srcFile Constants.DEBUG_MANIFEST_PATH
@@ -255,7 +260,6 @@ class ComponentPlugin implements Plugin<Project> {
                                     }
                                 }
                             }
-                            Logger.buildOutput("project[" + childProject.name + "]" + "apply plugin: com.android.component")
                         }
                     }
                 } else {
