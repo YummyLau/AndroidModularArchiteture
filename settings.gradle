@@ -13,4 +13,4 @@ include ':app'
 
 
 //调试插件
-includeBuild '../debugGl/ComponentPlugin/component-plugin'
+//includeBuild '../debugGl/ComponentPlugin/component-plugin'

@@ -3,24 +3,19 @@ apply from: "./gradleScript/config.gradle"
 
 buildscript {
     ext.kotlin_version = '1.3.50'
-    ext.component_version = '1.0.1-beta'
+    ext.component_version = '1.0.3-beta'
 
     repositories {
         google()
         jcenter()
-
-        maven { url 'https://dl.bintray.com/yummylau/maven' }
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-//        classpath "com.effective.plugins:component:$component_version"
+        classpath "com.effective.plugins:component:$component_version"
 
-        //dev plugin
-        classpath "com.effective.plugins:component-plugin"
-
-        // NOTE: Do not place your application dependence here; they belong
-        // in the individual module build.gradle files
+        //本地调试d plugin
+//        classpath "com.effective.plugins:component-plugin"
     }
 }
 
