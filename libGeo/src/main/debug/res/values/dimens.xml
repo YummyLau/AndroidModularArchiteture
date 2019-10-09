@@ -1,9 +1,0 @@
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName,geo_">
-
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="main_title_size">18sp</dimen>
-    <dimen name="second_title_size">16sp</dimen>
-    <dimen name="desc_title_size">12sp</dimen>
-</resources>

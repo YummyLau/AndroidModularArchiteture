@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.debug">
 
     <application
         android:name=".DebugApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/account_ic_launcher"
+        android:supportsRtl="true"
+        android:label="@string/account_app_name"
         android:theme="@style/BaseAppTheme">
-        <activity android:name=".DebugActivity">
+
+        <activity
+            android:name=".service.account.TestActivity"
+            android:label="@string/account_app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -18,4 +21,8 @@
         </activity>
 
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>

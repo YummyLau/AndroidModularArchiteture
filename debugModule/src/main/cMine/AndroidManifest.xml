@@ -7,7 +7,7 @@
         android:name=".DebugApplication"
         android:allowBackup="true"
         android:label="@string/mine_app_name"
-        android:icon="@drawable/cmine_ic_launcher"
+        android:icon="@drawable/mine_ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme"
         tools:replace="android:label">

@@ -5,8 +5,8 @@
     <application
         android:name=".DebugApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/geo_ic_launcher"
+        android:label="@string/geo_app_name"
         android:theme="@style/BaseAppTheme">
         <activity android:name=".DebugActivity">
             <intent-filter>
@@ -19,3 +19,4 @@
 
     </application>
 </manifest>
+

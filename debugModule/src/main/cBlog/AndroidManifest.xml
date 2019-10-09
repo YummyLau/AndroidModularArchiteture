@@ -5,7 +5,7 @@
     <application
         android:name=".DebugApplication"
         android:allowBackup="true"
-        android:icon="@drawable/cblog_ic_launcher"
+        android:icon="@drawable/blog_ic_launcher"
         android:label="@string/blog_app_name"
         android:theme="@style/BaseAppTheme">
         <activity android:name=".component.blog.TestActivity">
