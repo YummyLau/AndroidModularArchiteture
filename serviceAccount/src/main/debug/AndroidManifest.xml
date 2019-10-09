@@ -2,7 +2,7 @@
     package="com.effective.android.service.account">
 
     <application
-        android:name="com.effective.android.debug.DebugApplication"
+        android:name="com.debug.DebugApplication"
         android:allowBackup="true"
         android:icon="@drawable/account_ic_launcher"
         android:supportsRtl="true"

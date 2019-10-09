@@ -1,5 +1,5 @@
 //library 层
-include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':libDebug'
+include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':debugModule'
 
 //service 层
 include ':serviceShare', ':serviceSkin', ':serviceAccount', ':serviceNet', ':serviceMedia', ':servicekit'
@@ -11,11 +11,6 @@ include ':compSystem', ':compBlog', ':compPaccounts', ':compProject', ':compMine
 include ':app'
 
 
-//皮肤包
-//include ':SkinBlueGreyProvider', ':SkinPickProvider',':SkinGreenProvider'
-
 
 //调试插件
-includeBuild './component-plugin'
-includeBuild './component-support-plugin'
-
+includeBuild '../debugGl/ComponentPlugin/component-plugin'

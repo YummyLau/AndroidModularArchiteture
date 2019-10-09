@@ -26,6 +26,5 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
-    implementation project(':libDebug')
     implementation project(':libNet')
 }

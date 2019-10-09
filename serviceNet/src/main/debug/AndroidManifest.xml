@@ -2,14 +2,14 @@
     package="com.effective.android.service.net">
 
     <application
-        android:name="com.effective.android.debug.DebugApplication"
+        android:name="com.debug.DebugApplication"
         android:allowBackup="true"
         android:icon="@drawable/net_ic_launcher"
         android:label="@string/net_app_name"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
 
-        <activity android:name="com.effective.android.debug.DebugActivity">
+        <activity android:name="com.debug.DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

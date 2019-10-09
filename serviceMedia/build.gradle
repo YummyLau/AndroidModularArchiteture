@@ -31,7 +31,6 @@ android {
 }
 
 dependencies {
-    implementation project(':libDebug')
     implementation project(':libBase')
     implementation project(':libImageloader')
     implementation project(':libVideo')

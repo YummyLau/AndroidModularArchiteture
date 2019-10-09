@@ -24,7 +24,6 @@ android {
 }
 
 dependencies {
-    implementation project(':libDebug')
     implementation project(':libBase')
     implementation project(':servicekit')
     implementation component(':serviceSkin')

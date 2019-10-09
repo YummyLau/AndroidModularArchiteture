@@ -31,7 +31,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':libDebug')
     implementation project(':libBase')
     api deps.skin.support
     api deps.skin.design

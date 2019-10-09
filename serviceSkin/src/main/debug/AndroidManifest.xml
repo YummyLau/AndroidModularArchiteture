@@ -3,7 +3,7 @@
     package="com.effective.android.service.skin">
 
     <application
-        android:name="com.effective.android.debug.DebugApplication"
+        android:name="com.debug.DebugApplication"
         android:allowBackup="true"
         android:label="@string/skin_app_name"
         android:icon="@drawable/skin_ic_launcher"
@@ -12,7 +12,7 @@
         tools:replace="android:label">
 
         <activity
-            android:name="com.effective.android.debug.DebugActivity"
+            android:name="com.debug.DebugActivity"
             android:label="@string/skin_app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

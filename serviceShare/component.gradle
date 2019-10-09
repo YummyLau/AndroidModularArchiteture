@@ -1,9 +1,0 @@
-component {
-    debug {
-        applicationName 'com.effective.android.debug.DebugApplication'
-    }
-    sdk {
-        groupId 'com.effective.android'
-        artifactId 'serviceShare'
-    }
-}

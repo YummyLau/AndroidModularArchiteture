@@ -2,14 +2,14 @@
     package="com.effective.android.service.media">
 
     <application
-        android:name="com.effective.android.debug.DebugApplication"
+        android:name="com.debug.DebugApplication"
         android:icon="@drawable/media_ic_launcher"
         android:label="@string/media_app_name"
         android:theme="@style/BaseAppTheme">
 
         <activity
             android:theme="@style/FullScreenTheme"
-            android:name="com.effective.android.debug.DebugActivity">
+            android:name="com.debug.DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

@@ -2,26 +2,241 @@ apply plugin: 'com.android.component'
 
 component {
 
+    //注意：下面使用到的模块命等同于 setting 中申明的模块名，严格遵守规范
+
+    //编译版本
     compileSdkVersion 27
 
-    mainModuleName 'app'
-
-    include 'app,' +
-            'compSystem,compBlog,compPaccounts,compProject,compMine,' +
-            'serviceMedia,serviceNet,serviceAccount,serviceSkin,serviceShare'
-
+    //java编译版本
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    //主端模块
+    mainModuleName 'app'
+
+    //申明插件的作用域，用于有 include 和 exclude
+    //生效的模块会自动添加组件依赖 core，可使用 component(:{projectName}) 使用其他组件提供的sdk，同时可在 componentSdks 中配置自己模块暴露的sdk
+//    exclude 'xxxx'
+
+    include 'app,' + 'debugModule,' +
+            'compSystem,compBlog,compPaccounts,compProject,compMine,' +
+            'serviceMedia,serviceNet,serviceAccount,serviceSkin,serviceShare'
+
+    //组件sdk声明，从生效的模块中命中以下配置之后，会自动为模块生成sdk
+    componentSdks {
+
+        //组件层申明
+        'compBlog' {
+            groupId 'com.effective.android.component'
+            artifactId 'blog'
+            dependencies {
+                implementation deps.androidx.appCompat
+                implementation deps.kotlin.stdlib
+                implementation deps.gson
+            }
+        }
+
+        'compMine' {
+            groupId 'com.effective.android.component'
+            artifactId 'mime'
+            dependencies {
+                implementation deps.androidx.appCompat
+                implementation deps.kotlin.stdlib
+            }
+        }
+
+        'compPaccounts' {
+            groupId 'com.effective.android.component'
+            artifactId 'paccounts'
+            dependencies {
+                implementation deps.androidx.appCompat
+                implementation deps.kotlin.stdlib
+            }
+        }
+
+        'compProject' {
+            groupId 'com.effective.android.component'
+            artifactId 'project'
+            dependencies {
+                implementation deps.androidx.appCompat
+                implementation deps.kotlin.stdlib
+                implementation deps.gson
+            }
+        }
+
+        'compSystem' {
+            groupId 'com.effective.android.component'
+            artifactId 'system'
+            dependencies {
+                implementation deps.androidx.appCompat
+                implementation deps.kotlin.stdlib
+            }
+        }
+
+        //服务层申明
+        'serviceAccount' {
+            groupId 'com.effective.android.service'
+            artifactId 'account'
+            dependencies {
+                implementation deps.rx.rxjava2
+                implementation deps.rx.rxAndroid
+                implementation deps.kotlin.stdlib
+            }
+        }
+
+        'serviceMedia' {
+            groupId 'com.effective.android.service'
+            artifactId 'media'
+            dependencies {
+                implementation deps.kotlin.stdlib
+                implementation deps.glide.core
+            }
+        }
+
+        'serviceMedia' {
+            groupId 'com.effective.android.service'
+            artifactId 'media'
+            dependencies {
+                implementation deps.kotlin.stdlib
+                implementation deps.glide.core
+            }
+        }
+
+        'serviceNet' {
+            groupId 'com.effective.android.service'
+            artifactId 'net'
+            dependencies {
+                implementation deps.kotlin.stdlib
+                implementation deps.gson
+                implementation deps.retrofit.runtime
+                implementation deps.androidx.appCompat
+                implementation deps.rx.rxjava2
+                implementation deps.rx.rxAndroid
+            }
+        }
+
+        'serviceShare' {
+            groupId 'com.effective.android.service'
+            artifactId 'share'
+        }
+
+        'serviceSkin' {
+            groupId 'com.effective.android.service'
+            artifactId 'skin'
+            dependencies {
+                implementation deps.androidx.appCompat
+                implementation deps.kotlin.stdlib
+                implementation deps.skin.support
+            }
+        }
+    }
+
+
+    //组件调试声明
+    debug {
+
+        //调试模块，随意在当前项目新建一个module用于调试即可
+        targetModuleName 'debugModule'
+
+        //申明调试模块运行时链接组件的资源，表明运行 debugModule 时使用目录资源
+        targetDebugName 'cProject'
+
+        configuration {
+
+            //component 调试
+            'cBlog' {
+                dependencies {
+                    implementation component(':compBlog')
+                }
+            }
+
+            'cMine' {
+                dependencies {
+                    implementation component(':compMine')
+                }
+            }
+
+            'cPaccounts' {
+                dependencies {
+                    implementation component(':compPaccounts')
+                }
+            }
+
+            'cProject' {
+                dependencies {
+                    implementation component(':compProject')
+                }
+            }
+
+            'cSystem' {
+                dependencies {
+                    implementation component(':compSystem')
+                }
+            }
+
+            //service 调试
+            'sAccount' {
+                dependencies {
+                    implementation component(':serviceAccount')
+                }
+            }
+
+            'sMedia' {
+                dependencies {
+                    implementation component(':serviceMedia')
+                }
+            }
+
+            'sNet' {
+                dependencies {
+                    implementation component(':serviceNet')
+                }
+            }
+
+            'sShare' {
+                dependencies {
+                    implementation component(':serviceShare')
+                }
+            }
+
+            'sSkin' {
+                dependencies {
+                    implementation component(':serviceSkin')
+                }
+            }
+
+            //library 调试
+            'lBase' {
+                dependencies {
+                    implementation project(':libBase')
+                }
+            }
+
+            //自定义 调试
+            'custom' {
+                dependencies {
+                    //....
+                }
+            }
+        }
+    }
+
+
+    addition {
+
+        methodCost {
+            enable false
+        }
+
+    }
+
 }
 
 
-//apply plugin: 'com.android.component.support'
-//
-//componentSupport {
-//
-//    methodCostEnable true
-//
-//    include 'libBase'
-//}
+tasks.whenTaskAdded { task ->
+    if (task.name.contains('AndroidTest') || task.name.contains('Test')) {
+        task.enabled = false
+    }
+}
