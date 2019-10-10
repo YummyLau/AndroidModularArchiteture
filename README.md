@@ -24,7 +24,7 @@
 	基础类库,存放精简的代码，高复用性，一般其他模块直接引用即可，比如Utils，BaseActivity 等
 * **service层** 
 
-	支持某类基础业务功能的独立模块，比如登陆服务，换肤服务，介于 library 层和 component 层中间，也可以直接被 app 层调用
+	支持某类基础业务功能的独立模块，比如登陆服务，换肤服务.介于 library 层和 component 层中间，也可以直接被 app 层调用
 	
 * **component层** 
 

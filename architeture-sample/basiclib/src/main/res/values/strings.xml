@@ -1,6 +1,0 @@
-<resources>
-    <string name="crash_toast">程序异常，已为你重启应用</string>
-
-    <!-- imageviewer -->
-    <string name="transition_name">name:%1$d</string>
-</resources>
