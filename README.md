@@ -1,6 +1,8 @@
-![banner][banner]
+该Sample主要是总结当前自己项目上的经验及学习[Google Architecture Components](https://developer.android.com/arch)方案进行项目尝试。  
+目前已有部分线上App校验过该Sample的运行逻辑，完全可行，适合App快速开发，并结合自身的库及用户需求自定扩展。  
+由于Android项目架构多样化，技术迭代更新很快，该项目会持续集成优化主流技术，并在线上App校验可行的情况下更新项目。希望有经验的开发者能指出不足，一起学习 :relaxed: :relaxed:
 
-### ================================>  新框架（迭代更新中）   <==================================
+### Android 组件化架构实践
 
 ```
 架构原则：内部的业务逻辑与外部无关，独立测试时不需要加载外部依赖
@@ -13,211 +15,116 @@
 
 #### 工程结构
 
+<img src="./doc/component_build_0.png"  alt="component_all" align=center />
+
 按照业务把工程划分以下几类模块
 
-* Base层 - 基础类库,存放精简的代码，高复用性，一般其他模块直接引用即可，比如一些utils，一些baseActivity等
-* Service层 - 支持某类基础业务功能的独立模块，比如登陆服务，换肤服务，一般介于基础类库Base层和业务组件Component层中间，也可以直接被App层调用
-* Component层 - 聚合多中基础业务功能的复杂业务模块，比如朋友圈，附近的人，一般可能使用多个Service服务；
-* App层 - App的入口，聚合多个业务模块；
+* **library层** 
+
+	基础类库,存放精简的代码，高复用性，一般其他模块直接引用即可，比如Utils，BaseActivity 等
+* **service层** 
+
+	支持某类基础业务功能的独立模块，比如登陆服务，换肤服务，介于 library 层和 component 层中间，也可以直接被 app 层调用
+	
+* **component层** 
+
+	聚合多中基础业务功能的复杂业务模块，比如朋友圈，附近的人，一般可能使用多个 service 服务，也可以直接使用 library
+	
+* **app层**
+ 	应用入口，聚合多个业务模块，比如主端或者调试程序
 
 #### 应用结构
 
 基于完全组件化开发, 协同 gradle plugin 插件进行工程约束辅助. [组件化插件](https://github.com/YummyLau/ComponentPlugin)
 
-* 支持模块独立调试
-* 支持模块依赖暴露(原安卓 module 分割 sdk 和 impl，sdk对外编译暴露)
-* 无需修改原模块配置代码，无缝接入
-* 废除 router 硬编码跳转，采用 sync 可见依赖编程
+* 支持组件代码完全隔离，废除 router 硬编码跳转，采用面向接口编程
+* 支持组件循环依赖（A组件依赖B组件sdk，B组件依赖A组件sdk）
+* 便捷集成调试，支持单一模块调试多组件
+* 接入成本极低，只需要导入配置，同时申明各组件sdk资源
 
+把常规 module 转化成 组件
+<img src="./doc/component_build_1.jpg"  alt="component_all" align=center />
 
+打破常规 module 依赖，支持组件循环依赖
+<img src="./doc/component_build_2.jpg"  alt="component_all" align=center />
 
-####  模块集成
+开发时面向接口编程，打包时面向实现编译
+<img src="./doc/component_build_3.jpg"  alt="component_all" align=center />
 
-目前项目的所有模块都能单独运行调试,为了更大程度聚合某类功能，基于线上项目及自身经验进行划分。（文档正在逐步完成...）
+插件同时支持java/kotlin，插件 sample 如下
 
-##### **Base层**
+<img src="./doc/sample.png"  width = "270" height = "500" align=center />
 
-* 基础公有类/工具库
+#### Demo集成（持续完成更新...）
 
-    `libBase`
+* **library层** 
 
-* H5能力库
-
-    `libWebview`
-
-* 权限管理库
-
-    `libPermission`
-
-* 地理定位库
-
-    `libGeo`
-
-* 网络库
-
-    `libNet`
-
-
-##### **Service层**
-
-* 业务账号管理服务
-
-    `serviceAccount`
-
-* 业务网络服务
-
-    `serviceNet`
-
-* 业务分享服务
-
-    `serviceShare`
-
-* 业务换肤服务
-
-    `serviceSkin`
-
-* 业务多媒体服务
-
-    `serviceMedia`
-
-
-##### **Component层**
-
-* wanAndroid-博文组件
-
-    `compBlog`
-
-* wanAndroid-项目组件
-
-    `compProject`
-
-* wanAndroid-公众号组件
-
-    `compPaccounts`
-
-* wanAndroid-体系组件
-
-    `compSystem`
-
-* wanAndroid-我组件
-
-    `compMine`
-
-
-#### **主端层**
-
-* App外壳
-
-    `app`
-
-
-#### 项目配置
-
-* 混淆配置
-    * ProGuard 默认会混淆第三方库，要注意根据第三方库的情况进行对应的增加和排除
-    * 被 Gson 之类使用的 Bean 实体类不能被混淆
-    * 自定义控件不参与混淆，枚举不参与混淆
-
-#### 调试开发
-
-* 真机调试
-
-    * 数据线连接电脑修改手机端口 adb tcpip 5555
-    * 手机和电脑连接同一个局域网
-    * 电脑连接手机 adb connect 手机ip
-
-* 模拟机调试
-* 多ip/地理位置模拟
-
-
-正在整理
 ```
-### 更新技术栈（进行中）
-* 基础库提供
-    * androidx逐步迁移（2019-05-03完成）
-    * 权限模块基于 easyPermisson进行适配
-    * 系统UI适配（沉浸式,状态栏+导航栏）参考 QMUIStatusBarHelper 源码进行封装处理
-
-    使用 [百度地图 SDK ](http://lbsyun.baidu.com/index.php?title=androidsdk/guide/create-project/attention) 做为基础功能支持
-    > 支持5种CPU架构： armeabi、armeabi-v7a、arm64-v8a、x86、x86_64.
-    > 支持Android v4.0以上系统.
-    > 默认http协议，支持https协议，Android P需要设置 https协议.
-
-#### 方向方案
-* 模块化方案（插件方向-进行中）
-    * 解决通讯问题，单播多播
-    * 解决独立调试，dd方案
-    * 解决代码隔离，mis方案
-* 性能优化方案
-* java字节码及android持续集成技术
-* 多渠道打包方案
-    * gradle 方案
-    * 美团 META-INF 修复方案
-* 热修方案 tinker
-
-目前在feature_lab开始进行i
-
-【参考/使用第三方库列表】
-
-* [权限适配-easypermissions](https://github.com/googlesamples/easypermissions)
-* [便捷UI-QMUI_Android](https://github.com/Tencent/QMUI_Android)
-* [美团Android自动化之旅-生成渠道包](https://tech.meituan.com/2014/06/13/mt-apk-packaging.html)
-* [Android targetSdkVersion 原理](https://www.race604.com/android-targetsdkversion/)
+libBase：基础公有类/工具库
+libWebview：H5能力库
+libPermission：权限管理库
+libGeo：基于百度地图sdk封装的地理定位库
+libNet：基于okhttp3+retrofit2封装的网络库
 ```
 
+* **service层** 
 
-### ================================>  旧框架   <==================================
+```
+serviceAccount：应用账号模块
+serviceNet：应用网络模块，涉及接口解析，host配置，线程池管理等
+serviceShare：分享模块
+serviceSkin：换肤模块
+serviceMedia：多媒体模块，包括图片展示，Gif播放管理，视频播放管理等
+```
+	
+* **component层** 
 
-### About
-该Sample主要是总结当前自己项目上的经验及学习[Google Architecture Components](https://developer.android.com/arch)方案进行项目尝试。  
-目前已有部分线上App校验过该Sample的运行逻辑，完全可行，适合一些中小规模App快速开发，并结合自身的库及用户需求自定扩展。  
-由于Android项目架构多样化，技术迭代更新很快，该项目会持续集成优化主流技术，并在线上App校验可行的情况下更新项目。希望有经验的开发者能指出不足，一起学习 :relaxed: :relaxed:
+```
+compBlog：wanAndroid 博文
+compProject：wanAndroid 项目
+compPaccounts：wanAndroid 公众号
+compSystem：wanAndroid 体系
+compMine：wanAndroid 我的
+```
+
+* **app层**
+
+```
+app: 主端 wanAndroid 客户端
+debugModule： 集成调试应用
+```
+
+wanAndroid sample 如下
+
+<img src="./doc/android_modular_architeture.png"  width = "270" height = "500" align=center />
 
 
-### Project Architeture (旧方案)
-项目采用模块化结构设计，基于[Google Architecture Components](https://developer.android.com/arch)方案和MVVM设计模式完成模块开发完成
+### Android 技术栈（实现）
 
-- basiclib 分装实现开源库及私有库，存放公用基础类（如*BaseActivity*）
-- componentlib 开放模块基础服务Api及模块Api，存放模块公用业务类（如*WeiboHttpStatus*）
-- xxService  xx表示某种模块基础服务，按需实现，如*AccountService*、*SkinService*供模块调用
-- xxComponent  xx表示某个模块，按需实现，如*WeiboComponent*等
+#### 技能栈
+* 硬性要求（至少）
+	* 熟悉掌握java/kotlin
+	* 熟悉掌握四大组件/线程/进程通讯源码逻辑清晰
+	* 熟悉掌握View自定义/绘制/扩展
+	* 熟悉掌握ASM，WindowManager窗口管理，app启动流程/系统启动流程熟悉掌握
+	* 熟悉性能优化，字节码相关/插件相关/热修复相关
+	* 熟悉 git 版本管理及应对各种特殊场景
+	* 熟悉 linux/unix 环境，熟悉主流开源框架，有阅读源码经历
 
-<img src="https://github.com/YummyLau/AndroidModularArchiteture/blob/master/art/architeture.png" width = "900" align=center />
+* 掌握（最好）
+	* 了解前段技术，js/h5等
+	* 了解跨段技术，flutter等
+	* 了解ios部分技术，与android常用实现区别
+	* 了解产品开发流程：需求评估-技术评估-迭代开发-提测修复-回归验收-线上监控-反馈修复
+	* 了解团队协同开发：人力评估/人员能力栈/积极性培养/新技术预研
 
-### Modular Component Relationship
-无论是基础服务还是业务组件，都依赖于*Componentlib*  
+#### 项目开发
 
-- IService 定义公用基础服务Api
-- IxxService 定义xx服务暴露的Api
-- xxServiceImpl 定义xx服务api的实现类
-- ServiceManager 管理*Service*的注册与反注册  
-
-- IComponent 定义公用模块Api
-- IxxComponent 定义xx模块暴露的Api
-- xxComponentImpl 定义xx模块api的实现类
-- ComponentManager 管理*Component*的绑定及解绑
-
-<img src="https://github.com/YummyLau/AndroidModularArchiteture/blob/master/art/componentrelationship.png" width = "700" align=center />
-
-### Modular Component Communication
-模块间的交互有两种
-
-- 主动调用某个模块的Api，可通过*ServiceManager*和*ComponentManager*获取具体模块*Impl*实现
-- 针对模块单播、多播事件，可通过*EventBus*驱动实现
-
-<img src="https://github.com/YummyLau/AndroidModularArchiteture/blob/master/art/componentcommunication.png" width = "900" align=center />
-
-### Internal module(Service or Component) Architeture
-模块内使用MVVM+[Google Architecture Components](https://developer.android.com/arch)实现
-
-- Room
-- Lifecycle-aware components
-- ViewModels
-- LiveData
-
-<img src="https://github.com/YummyLau/AndroidModularArchiteture/blob/master/art/final-architecture.png" width = "700" align=center />
-
-[License](https://github.com/YummyLau/AndroidModularArchiteture/blob/master/LICENSE)
-
-[banner]: https://github.com/YummyLau/AndroidModularArchiteture/blob/master/art/banner.png
-
+* 熟悉组件化架构开发
+* 熟悉混淆配置/多渠道打包流程/插件原理
+* 熟悉调试手段/无线调试/模拟ip等
+* 熟悉IDE使用
+	* 内存/cpu/网络调试，卡顿检测
+	* Gradle使用及基本依赖管理
+	* 自定义配置，比如task定义，before run行为等
+* 熟悉Android官方库，androidx标准使用
