@@ -30,7 +30,7 @@
         android:layout_height="@dimen/base_tab_layout_height"
         android:layout_below="@+id/statusBar"
         android:background="@color/colorPrimary"
-        tl:tl_indicator_color="@color/colorWhite"
+        tl:tl_indicator_color="@color/colorThemeText"
         tl:tl_indicator_corner_radius="1.5dp"
         tl:tl_indicator_height="3dp"
         tl:tl_indicator_width="10dp"

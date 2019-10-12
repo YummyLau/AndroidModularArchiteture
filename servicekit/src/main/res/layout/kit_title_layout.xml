@@ -2,16 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/base_title_bar_height">
+    android:layout_height="@dimen/base_title_bar_height"
+    tools:background="@color/colorPrimary">
+
+
+    <ImageView
+        android:id="@+id/left"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="14dp"
+        android:src="@drawable/kit_ic_left" />
 
     <TextView
         android:id="@+id/title"
-        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:gravity="center"
         android:textSize="@dimen/base_title_bar_title_text"
-        tools:text="标题" />
+        tools:text="标题"
+        tools:textColor="@color/colorThemeText" />
 
 
 </RelativeLayout>

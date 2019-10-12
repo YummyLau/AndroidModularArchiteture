@@ -54,7 +54,8 @@ public class StatusBarView extends LinearLayout {
         fitSpecialModelStatusBar();
         setBackgroundColor(ContextCompat.getColor(getContext(), mStatusBarColor));
         int statusbarHeight = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ? getStatusBarHeight(getContext()) : 0;
-        view.findViewById(R.id.status_bar).getLayoutParams().height = statusbarHeight;
+        view.findViewById(R.id.status_bar).setMinimumHeight(statusbarHeight);
+//        view.findViewById(R.id.status_bar).getLayoutParams().height = statusbarHeight;
     }
 
 

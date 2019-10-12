@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/action"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/password"
-        android:layout_alignStart="@+id/userName"
-        android:layout_alignEnd="@+id/userName"
-        android:layout_marginTop="100dp"
-        android:text="登陆" />
 
     <EditText
         android:id="@+id/password"
@@ -21,8 +11,11 @@
         android:layout_below="@+id/userName"
         android:layout_alignStart="@+id/userName"
         android:layout_alignEnd="@+id/userName"
-        android:layout_marginTop="100dp"
-        android:hint="密码" />
+        android:layout_marginTop="5dp"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:textColor="@color/colorTextPrimary"
+        android:textColorHint="@color/colorTextSecondary" />
 
     <EditText
         android:id="@+id/userName"
@@ -30,25 +23,25 @@
         android:layout_height="50dp"
         android:layout_below="@+id/titleLayout"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="40dp"
-        android:hint="用户名" />
+        android:hint="用户名"
+        android:textColor="@color/colorTextPrimary"
+        android:textColorHint="@color/colorTextSecondary" />
 
-    <RelativeLayout
-        android:id="@+id/titleLayout"
+    <TextView
+        android:id="@+id/action"
         android:layout_width="match_parent"
-        android:background="@color/blue_50"
-        android:layout_height="@dimen/base_title_bar_height">
-
-        <TextView
-            android:id="@+id/pageTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/colorTextPrimary"
-            android:text="登陆" />
-
-    </RelativeLayout>
+        android:layout_height="40dp"
+        android:layout_below="@+id/password"
+        android:layout_alignStart="@+id/userName"
+        android:layout_alignEnd="@+id/userName"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/kit_se_btn"
+        android:gravity="center"
+        android:text="登陆"
+        android:textColor="@color/kit_se_btn_text"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/actionTip"
@@ -56,8 +49,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/action"
         android:layout_alignEnd="@+id/userName"
-        android:text="直接登陆"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="35dp"
+        android:text="直接登陆" />
+
+    <com.effective.android.base.view.StatusBarView
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:color="@color/colorPrimary" />
+
+    <com.effective.android.service.kit.view.TitleView
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/status_bar"
+        app:title="登陆"
+        app:titleBarBackground="@color/colorPrimary"
+        app:titleColor="@color/colorThemeText" />
 
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.effective.android.service.account.view
 import android.os.Bundle
 import android.text.TextUtils
 import com.effective.android.base.activity.BaseVmActivity
+import com.effective.android.base.systemui.StatusbarHelper
 import com.effective.android.base.toast.ToastUtils.show
 import com.effective.android.service.account.R
 import com.effective.android.service.account.vm.LoginViewModel
@@ -32,6 +33,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        StatusbarHelper.translucentStatusBar(this)
         initView(isSelectLogin)
         initListener()
     }
@@ -70,7 +72,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
     }
 
     private fun initView(isSelectLogin: Boolean) {
-        pageTitle.text = getString(if (isSelectLogin) R.string.account_login else R.string.account_register)
+        titleLayout.setTitle(getString(if (isSelectLogin) R.string.account_login else R.string.account_register))
         action.text = getString(if (isSelectLogin) R.string.account_login else R.string.account_register_and_login)
         actionTip.text = getString(if (isSelectLogin) R.string.account_login_tip else R.string.account_register_tip)
     }
