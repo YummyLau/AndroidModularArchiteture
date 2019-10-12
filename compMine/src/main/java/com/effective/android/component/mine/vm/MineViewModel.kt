@@ -27,7 +27,7 @@ class MineViewModel : ViewModel() {
     }
 
     fun loadDefaultAvatar(imageView: ImageView) {
-        imageView.setImageResource(R.drawable.mine_ic_default_avatar)
+        imageView.setImageResource(R.drawable.mine_ic_logout)
     }
 
 }

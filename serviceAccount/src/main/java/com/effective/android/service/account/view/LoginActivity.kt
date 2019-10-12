@@ -73,6 +73,9 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
     private fun initView(isSelectLogin: Boolean) {
         titleLayout.setTitle(getString(if (isSelectLogin) R.string.account_login else R.string.account_register))
+        titleLayout.leftAction.setOnClickListener {
+            finish()
+        }
         action.text = getString(if (isSelectLogin) R.string.account_login else R.string.account_register_and_login)
         actionTip.text = getString(if (isSelectLogin) R.string.account_login_tip else R.string.account_register_tip)
     }

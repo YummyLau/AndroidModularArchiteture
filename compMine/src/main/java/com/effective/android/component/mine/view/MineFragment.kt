@@ -1,6 +1,7 @@
 package com.effective.android.component.mine.view
 
 import android.os.Bundle
+import android.view.View
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.toast.ToastUtils
 import com.effective.android.component.mine.R
@@ -44,8 +45,6 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
         avatar.setOnClickListener {
             if (isLogin()) {
                 viewModel.logout()
-            } else {
-                viewModel.login(context!!)
             }
         }
         viewModel.addAccountChangeListener(listener)
@@ -56,11 +55,21 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
         checkoutStatus(isLogin())
     }
 
-    private fun checkoutStatus(login: Boolean) {
-        if (login) {
-            viewModel.loadAvatar(avatar, userInfo!!.icon)
+    private fun checkoutStatus(hasLogin: Boolean) {
+        avatar.isSelected = hasLogin
+        avatar_bg.isSelected = hasLogin
+        if (hasLogin) {
+            login.visibility = View.GONE
+            avatar.setImageResource(R.drawable.mine_ic_login)
+            nick.visibility = View.VISIBLE
+            nick.text = userInfo!!.nickname
         } else {
-            viewModel.loadDefaultAvatar(avatar)
+            login.visibility = View.VISIBLE
+            avatar.setImageResource(R.drawable.mine_ic_logout)
+            nick.visibility = View.GONE
+            login.setOnClickListener {
+                viewModel.login(context!!)
+            }
         }
     }
 
