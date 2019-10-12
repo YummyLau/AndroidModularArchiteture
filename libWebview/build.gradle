@@ -24,6 +24,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
@@ -31,7 +35,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.androidx.appCompat
     implementation deps.kotlin.stdlib
+    implementation deps.kotlin.androidCoreKtx
     implementation deps.gson
     implementation deps.glide.core
+    //https://x5.tencent.com/sdk.html
+    api 'com.tencent.tbs.tbssdk:sdk:43697'
 }
 

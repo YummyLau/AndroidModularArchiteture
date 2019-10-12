@@ -1,6 +1,8 @@
 package com.effective.android.component.blog
 
+import android.content.Context
 import androidx.fragment.app.Fragment
+import com.effective.android.component.blog.view.BlogDetailActivity
 import com.effective.android.component.blog.view.BlogFragment
 import com.plugin.component.anno.AutoInjectImpl
 
@@ -14,5 +16,9 @@ class ComponentBlogImpl : ComponentBlogSdk {
             blogFragment = BlogFragment()
         }
         return blogFragment!!
+    }
+
+    override fun toBlogDetailPager(context: Context, article: String) {
+        BlogDetailActivity.startActivity(context, article)
     }
 }

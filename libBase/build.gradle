@@ -37,6 +37,7 @@ dependencies {
     api deps.androidx.design
     api deps.androidx.appCompat
     api deps.kotlin.stdlib
+    api deps.kotlin.androidCoreKtx
     api deps.multiDex
 
     api deps.rx.rxjava2

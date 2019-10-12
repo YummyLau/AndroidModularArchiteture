@@ -8,7 +8,7 @@
         android:icon="@drawable/webview_ic_launcher"
         android:label="@string/webview_app_name"
         android:theme="@style/BaseAppTheme">
-        <activity android:name=".DebugActivity">
+        <activity android:name=".library.webview.X5WebActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

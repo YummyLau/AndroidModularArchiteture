@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 
 import com.effective.android.webview.interfaces.OnScrollChangeCallback
-import com.effective.android.webview.jsbridge.BridgeWebView
 import com.effective.android.webview.jsbridge.BridgeWebViewClient
 import com.effective.android.webview.interfaces.OnFinishCallback
+import com.effective.android.webview.jsbridge.BridgeWebViewKotlin
 import com.tencent.smtt.sdk.WebViewClient
 
 /**
@@ -20,7 +20,7 @@ import com.tencent.smtt.sdk.WebViewClient
  * 解决问题：通过是否是用户点击来判断是否处理重定向问题
  * Created by yummylau on 2018/5/7.
  */
-class X5JsWebView : BridgeWebView {
+class X5JsWebView : BridgeWebViewKotlin {
 
     private var mOnScrollChangedCallback: OnScrollChangeCallback? = null
     private var bridgeWebViewClient: BridgeWebViewClient? = null

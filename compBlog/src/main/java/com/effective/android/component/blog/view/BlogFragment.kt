@@ -6,9 +6,8 @@ import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.blog.R
 import com.effective.android.component.blog.view.adapter.BlogArticleAdapter
 import com.effective.android.component.blog.vm.BlogViewModel
-import com.effective.android.service.kit.view.ArticleAdapter
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.blog_main_fragment_layout.*
+import kotlinx.android.synthetic.main.blog_fragment_main_layout.*
 
 class BlogFragment : BaseVmFragment<BlogViewModel>() {
 
@@ -18,7 +17,7 @@ class BlogFragment : BaseVmFragment<BlogViewModel>() {
 
     override fun getViewModel(): Class<BlogViewModel> = BlogViewModel::class.java
 
-    override fun getLayoutRes(): Int = R.layout.blog_main_fragment_layout
+    override fun getLayoutRes(): Int = R.layout.blog_fragment_main_layout
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

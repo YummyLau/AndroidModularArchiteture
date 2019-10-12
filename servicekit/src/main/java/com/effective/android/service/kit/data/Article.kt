@@ -1,10 +1,12 @@
 package com.effective.android.service.kit.data
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.service.kit.Constants
 import com.google.gson.annotations.SerializedName
 
-open class Article : IMediaItem {
+open class Article : IMediaItem{
 
     override fun getType(): Int = Constants.articleType
 
@@ -133,5 +135,4 @@ open class Article : IMediaItem {
 
     @SerializedName("zan")
     var zan: Int? = null
-
 }

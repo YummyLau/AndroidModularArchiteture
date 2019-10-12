@@ -1,6 +1,5 @@
 package com.effective.android.webview.jsbridge
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Looper
@@ -9,14 +8,12 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import com.effective.android.webview.interfaces.BridgeHandler
 import com.effective.android.webview.interfaces.CallBackFunction
-
 import com.tencent.smtt.sdk.WebView
 
 import java.util.ArrayList
 import java.util.HashMap
 
-@SuppressLint("SetJavaScriptEnabled")
-open class BridgeWebView : WebView, WebViewJavascriptBridge {
+open class BridgeWebViewKotlin : WebView, WebViewJavascriptBridge {
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init()
@@ -65,10 +62,11 @@ open class BridgeWebView : WebView, WebViewJavascriptBridge {
         this.isHorizontalScrollBarEnabled = false
         this.settings.javaScriptEnabled = true
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WebView.setWebContentsDebuggingEnabled(true)
+            setWebContentsDebuggingEnabled(true)
         }
         this.webViewClient = generateBridgeWebViewClient()
     }
+
 
     protected open fun generateBridgeWebViewClient(): BridgeWebViewClient {
         return BridgeWebViewClient(this)
@@ -179,7 +177,7 @@ open class BridgeWebView : WebView, WebViewJavascriptBridge {
                             val responseData = m.responseData
                             function!!.onCallBack(responseData)
                             responseCallbacks.remove(responseId)
-                        } else {
+                     } else {
                             var responseFunction: CallBackFunction? = null
                             // if had callbackId 如果有回调Id
                             val callbackId = m.callbackId
@@ -214,11 +212,20 @@ open class BridgeWebView : WebView, WebViewJavascriptBridge {
         }
     }
 
+    override fun loadUrl(p0: String?, p1: MutableMap<String, String>?) {
+        super.loadUrl(p0, p1)
+    }
 
-    fun loadUrl(jsUrl: String, returnCallback: CallBackFunction) {
+    override fun loadUrl(p0: String?) {
+        super.loadUrl(p0)
+    }
+
+    fun loadUrl(jsUrl: String?, returnCallback: CallBackFunction) {
         this.loadUrl(jsUrl)
         // 添加至 Map<String, CallBackFunction>
-        responseCallbacks[BridgeUtil.parseFunctionName(jsUrl)] = returnCallback
+        if(!TextUtils.isEmpty(jsUrl)){
+            responseCallbacks[BridgeUtil.parseFunctionName(jsUrl!!)] = returnCallback
+        }
     }
 
     /**

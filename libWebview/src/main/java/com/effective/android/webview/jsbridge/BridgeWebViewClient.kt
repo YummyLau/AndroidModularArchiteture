@@ -25,7 +25,7 @@ import java.net.URLDecoder
  * 如果要自定义WebViewClient必须要集成此类
  * Created by bruce on 10/28/15.
  */
-class BridgeWebViewClient(private var webView: BridgeWebView) : WebViewClient() {
+class BridgeWebViewClient(private var webView: BridgeWebViewKotlin) : WebViewClient() {
 
     private var loadStart: Boolean = false
     private var loadError: Boolean = false
@@ -117,8 +117,8 @@ class BridgeWebViewClient(private var webView: BridgeWebView) : WebViewClient() 
             }
         }
 
-        if (BridgeWebView.toLoadJs != null) {
-            BridgeUtil.webViewLoadLocalJs(view!!, BridgeWebView.toLoadJs)
+        if (BridgeWebViewKotlin.toLoadJs != null) {
+            BridgeUtil.webViewLoadLocalJs(view!!, BridgeWebViewKotlin.toLoadJs)
         }
         if (webView.startupMessage != null) {
             for (m in webView.startupMessage!!) {
@@ -186,8 +186,8 @@ class BridgeWebViewClient(private var webView: BridgeWebView) : WebViewClient() 
     /**
      * 在每一次请求资源时，都会通过这个函数来回调，在非UI线程中执行的
      */
-    override fun shouldInterceptRequest(webView: WebView?, s: String?): WebResourceResponse {
-        Log.d(TAG, "shouldInterceptRequest")
+    override fun shouldInterceptRequest(webView: WebView?, s: String?): WebResourceResponse? {
+        Log.d(TAG, "shouldInterceptRequest(webView: WebView?, s: String?)")
         return if (proxy != null) {
             proxy!!.shouldInterceptRequest(webView, s)
         } else {
@@ -195,8 +195,8 @@ class BridgeWebViewClient(private var webView: BridgeWebView) : WebViewClient() 
         }
     }
 
-    override fun shouldInterceptRequest(webView: WebView, webResourceRequest: WebResourceRequest): WebResourceResponse {
-        Log.d(TAG, "shouldInterceptRequest")
+    override fun shouldInterceptRequest(webView: WebView, webResourceRequest: WebResourceRequest): WebResourceResponse? {
+        Log.d(TAG, "shouldInterceptRequest(webView: WebView, webResourceRequest: WebResourceRequest)")
         return if (proxy != null) {
             proxy!!.shouldInterceptRequest(webView, webResourceRequest)
         } else {
@@ -204,8 +204,8 @@ class BridgeWebViewClient(private var webView: BridgeWebView) : WebViewClient() 
         }
     }
 
-    override fun shouldInterceptRequest(webView: WebView, webResourceRequest: WebResourceRequest, bundle: Bundle?): WebResourceResponse {
-        Log.d(TAG, "shouldInterceptRequest")
+    override fun shouldInterceptRequest(webView: WebView, webResourceRequest: WebResourceRequest, bundle: Bundle?): WebResourceResponse? {
+        Log.d(TAG, "shouldInterceptRequest(webView: WebView, webResourceRequest: WebResourceRequest, bundle: Bundle?)")
         return if (proxy != null) {
             proxy!!.shouldInterceptRequest(webView, webResourceRequest, bundle)
         } else {

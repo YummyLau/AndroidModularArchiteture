@@ -23,13 +23,37 @@ object BridgeUtil {
     val JS_FETCH_QUEUE_FROM_JAVA = "javascript:WebViewJavascriptBridge._fetchQueue();"
     val JAVASCRIPT_STR = "javascript:"
 
+
+    @JvmStatic
+    fun getJsFetchQueueFromJavaString(): String {
+        return JS_FETCH_QUEUE_FROM_JAVA
+    }
+
+    @JvmStatic
+    fun getJsHandleMessageFromJavaString(): String {
+        return JS_HANDLE_MESSAGE_FROM_JAVA
+    }
+
+
+    @JvmStatic
+    fun getCallbackIdFormat(): String {
+        return CALLBACK_ID_FORMAT
+    }
+
+    @JvmStatic
+    fun getUnderLineString(): String {
+        return UNDERLINE_STR
+    }
+
     // 例子 javascript:WebViewJavascriptBridge._fetchQueue(); --> _fetchQueue
+    @JvmStatic
     fun parseFunctionName(jsUrl: String): String {
         return jsUrl.replace("javascript:WebViewJavascriptBridge.", "").replace("\\(.*\\);".toRegex(), "")
     }
 
     // 获取到传递信息的body值
     // url = yy://return/_fetchQueue/[{"responseId":"JAVA_CB_2_3957","responseData":"Javascript Says Right back aka!"}]
+    @JvmStatic
     fun getDataFromReturnUrl(url: String): String? {
         if (url.startsWith(YY_FETCH_QUEUE)) {
             // return = [{"responseId":"JAVA_CB_2_3957","responseData":"Javascript Says Right back aka!"}]
@@ -53,6 +77,7 @@ object BridgeUtil {
 
     // 获取到传递信息的方法
     // url = yy://return/_fetchQueue/[{"responseId":"JAVA_CB_1_360","responseData":"Javascript Says Right back aka!"}]
+    @JvmStatic
     fun getFunctionFromReturnUrl(url: String): String? {
         // temp = _fetchQueue/[{"responseId":"JAVA_CB_1_360","responseData":"Javascript Says Right back aka!"}]
         val temp = url.replace(YY_RETURN_DATA, EMPTY_STR)

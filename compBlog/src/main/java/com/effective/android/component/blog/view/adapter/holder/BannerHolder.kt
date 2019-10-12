@@ -21,7 +21,7 @@ class BannerHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BannerList>(p
             override fun inflateView(viewType: Int, container: ViewGroup?, listPosition: Int): View {
                 val view = ImageView(context)
                 view.scaleType = ImageView.ScaleType.FIT_XY
-                view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
+                view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
                 return view
             }
 
@@ -30,10 +30,13 @@ class BannerHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BannerList>(p
                     if (!TextUtils.isEmpty(data[listPosition].imagePath)) {
                         Sdks.serviceImageloder.load(convertView, data[listPosition].imagePath!!, null)
                     }
+                    convertView.setOnClickListener {
+                        Sdks.innerSdk.toBlogDetailPager(context, data[listPosition].url!!)
+                    }
                 }
             }
         }
-        itemView.bannerPager.setIndicatorPageChangeListener(object : LoopingViewPager.IndicatorPageChangeListener{
+        itemView.bannerPager.setIndicatorPageChangeListener(object : LoopingViewPager.IndicatorPageChangeListener {
 
             override fun onIndicatorProgress(selectingPosition: Int, progress: Float) {
                 itemView.pageIndicatorView.setProgress(selectingPosition, progress);

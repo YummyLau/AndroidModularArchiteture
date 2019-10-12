@@ -70,6 +70,7 @@ class Message {
         }
 
         @NonNull
+        @JvmStatic
         fun toArrayList(jsonStr: String?): List<Message> {
             val list = ArrayList<Message>()
             try {

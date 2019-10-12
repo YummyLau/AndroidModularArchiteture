@@ -7,9 +7,8 @@ import com.effective.android.base.activity.BaseActivity
 import com.effective.android.base.systemui.StatusbarHelper
 import kotlinx.android.synthetic.main.app_activity_main_layout.*
 
-/**
- */
-class MainActivity : BaseActivity() {
+
+class MainActivity : BaseActivity(){
 
     private val fragmentList = mutableListOf<Fragment>()
 
@@ -34,10 +33,17 @@ class MainActivity : BaseActivity() {
 
     private fun initView() {
         viewPager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
-            override fun getItem(position: Int): Fragment = fragmentList[position]
+
+            /**
+             * 当且仅当 findFragmentByTag 为 null 的时候才会调用，否则会使用系统缓存的fragments
+             */
+            override fun getItem(position: Int): Fragment {
+                return fragmentList[position]
+            }
 
             override fun getCount(): Int = fragmentList.size
         }
+        viewPager.offscreenPageLimit = 4
         bottomTab.setupWithViewPager(viewPager)
     }
 }
