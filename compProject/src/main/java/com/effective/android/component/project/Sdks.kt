@@ -13,11 +13,13 @@ class Sdks {
     companion object {
         lateinit var serviceSkin: ServiceSkin
         lateinit var serviceNet: ServiceNet
+        lateinit var blogSdk: ComponentBlogSdk
 
         fun init(application: Application) {
             ComponentManager.init(application)
             serviceSkin = SdkManager.getSdk(ServiceSkin::class.java)!!
             serviceNet = SdkManager.getSdk(ServiceNet::class.java)!!
+            blogSdk = SdkManager.getSdk(ComponentBlogSdk::class.java)!!
         }
     }
 }

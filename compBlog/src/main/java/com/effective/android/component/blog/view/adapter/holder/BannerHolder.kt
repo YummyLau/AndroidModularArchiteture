@@ -31,7 +31,7 @@ class BannerHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BannerList>(p
                         Sdks.serviceImageloder.load(convertView, data[listPosition].imagePath!!, null)
                     }
                     convertView.setOnClickListener {
-                        Sdks.innerSdk.toBlogDetailPager(context, data[listPosition].url!!)
+//                        Sdks.innerSdk.toBlogDetailPager(context, data[listPosition].url!!)
                     }
                 }
             }

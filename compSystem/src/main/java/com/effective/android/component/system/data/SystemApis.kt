@@ -1,7 +1,7 @@
 package com.effective.android.component.system.data
 
-import com.effective.android.service.kit.data.Article
-import com.effective.android.service.kit.data.Chapter
+import com.effective.android.component.blog.bean.Article
+import com.effective.android.component.blog.bean.Chapter
 import com.effective.android.service.net.BaseListResult
 import com.effective.android.service.net.BaseResult
 import io.reactivex.Flowable

@@ -1,8 +1,8 @@
-package com.effective.android.service.kit.data
+package com.effective.android.component.blog.bean
 
 import com.google.gson.annotations.SerializedName
 
-class Chapter{
+open class Chapter{
 
     @SerializedName("children")
     var children: MutableList<Chapter> = mutableListOf()

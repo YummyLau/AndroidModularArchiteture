@@ -11,7 +11,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="14dp"
-        android:src="@drawable/kit_ic_left" />
+        android:src="@drawable/ic_left" />
 
     <TextView
         android:id="@+id/title"

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.fragment.BaseFragment
 import com.effective.android.component.system.R
-import com.effective.android.service.kit.data.Chapter
+import com.effective.android.component.blog.bean.Chapter
 import kotlinx.android.synthetic.main.system_fragment_article_parent_layout.*
 
 class ArticleParentFragment(private val chapters: MutableList<Chapter>) : BaseFragment() {

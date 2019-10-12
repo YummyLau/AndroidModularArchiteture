@@ -3,10 +3,12 @@ package com.effective.android.component.paccounts.view
 import android.os.Bundle
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.view.list.IMediaItem
+import com.effective.android.component.blog.adapter.ArticleAdapter
+import com.effective.android.component.blog.bean.Article
+import com.effective.android.component.blog.bean.Chapter
 import com.effective.android.component.paccounts.R
+import com.effective.android.component.paccounts.Sdks
 import com.effective.android.component.paccounts.vm.ArticleViewModel
-import com.effective.android.service.kit.data.Chapter
-import com.effective.android.service.kit.view.ArticleAdapter
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.paccounts_fragment_article_layout.*
 
@@ -14,7 +16,7 @@ class ArticleFragment(private val chapter: Chapter) : BaseVmFragment<ArticleView
 
     var pageNum: Int = 1
     var fetchDataDisposable: Disposable? = null
-    lateinit var adapter: ArticleAdapter
+    lateinit var adapter: ArticleAdapter<Article>
 
     override fun getViewModel(): Class<ArticleViewModel> = ArticleViewModel::class.java
 
@@ -22,8 +24,8 @@ class ArticleFragment(private val chapter: Chapter) : BaseVmFragment<ArticleView
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        adapter = ArticleAdapter()
-        articleList.adapter = adapter
+        adapter = Sdks.blogSdk.getArticleAdapter()
+        articleList.adapter = adapter.getAdapter()
         articleContainer.setOnRefreshListener {
             fetchData(true)
         }
@@ -39,12 +41,12 @@ class ArticleFragment(private val chapter: Chapter) : BaseVmFragment<ArticleView
                 .subscribe({
                     if (it.isSuccess) {
                         if (pageNum == 1) {
-                            adapter.replace(it.data!!.data)
+                            adapter.replaceData(it.data!!.data)
                         } else {
-                            var list = mutableListOf<IMediaItem>()
-                            list.addAll(adapter.dataList)
+                            var list = mutableListOf<Article>()
+                            list.addAll(adapter.getData())
                             list.addAll(it.data!!.data)
-                            adapter.update(list)
+                            adapter.updateData(list)
                         }
                         pageNum++
                     }

@@ -1,4 +1,4 @@
-package com.effective.android.service.kit.view;
+package com.effective.android.base.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.effective.android.service.kit.R;
+import com.effective.android.base.R;
 
 
 public class TitleView extends RelativeLayout {
@@ -33,7 +33,7 @@ public class TitleView extends RelativeLayout {
     }
 
     private void initView(Context context, AttributeSet attrs, int defStyleAttr) {
-        View root = LayoutInflater.from(getContext()).inflate(R.layout.kit_title_layout, this, true);
+        View root = LayoutInflater.from(getContext()).inflate(R.layout.base_title_layout, this, true);
         title = root.findViewById(R.id.title);
         left = root.findViewById(R.id.left);
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TitleView, defStyleAttr, 0);
@@ -45,6 +45,7 @@ public class TitleView extends RelativeLayout {
     public ImageView getLeftAction() {
         return left;
     }
+
     public void setTitle(String title) {
         this.title.setText(title);
     }

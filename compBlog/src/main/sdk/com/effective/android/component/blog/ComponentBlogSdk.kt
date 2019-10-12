@@ -1,11 +1,10 @@
 package com.effective.android.component.blog
-
-import android.content.Context
 import androidx.fragment.app.Fragment
+import com.effective.android.component.blog.adapter.ArticleAdapter
 
 interface ComponentBlogSdk {
 
     fun getMainFragment(): Fragment
 
-    fun toBlogDetailPager(context: Context, string: String)
+    fun <T>getArticleAdapter():ArticleAdapter<T>
 }

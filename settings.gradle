@@ -2,7 +2,7 @@
 include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':debugModule'
 
 //service 层
-include ':serviceShare', ':serviceSkin', ':serviceAccount', ':serviceNet', ':serviceMedia', ':servicekit'
+include ':serviceShare', ':serviceSkin', ':serviceAccount', ':serviceNet', ':serviceMedia'
 
 //组件层
 include ':compSystem', ':compBlog', ':compPaccounts', ':compProject', ':compMine'

@@ -43,7 +43,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
     implementation project(':libWebview')
-    implementation project(':servicekit')
     implementation component(':serviceNet')
     implementation component(':serviceSkin')
     implementation component(':serviceMedia')

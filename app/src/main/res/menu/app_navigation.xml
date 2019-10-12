@@ -4,25 +4,25 @@
     <item
         android:id="@+id/blog"
         android:checked="true"
-        android:icon="@drawable/kit_ic_blog"
-        android:title="@string/kit_comp_blog" />
+        android:icon="@drawable/app_ic_blog"
+        android:title="@string/app_comp_blog" />
     <item
         android:id="@+id/project"
-        android:icon="@drawable/kit_ic_project"
-        android:title="@string/kit_comp_project" />
+        android:icon="@drawable/app_ic_project"
+        android:title="@string/app_comp_project" />
     <item
         android:id="@+id/paccounts"
-        android:icon="@drawable/kit_ic_wechat"
-        android:title="@string/kit_comp_paccounts" />
+        android:icon="@drawable/app_ic_wechat"
+        android:title="@string/app_comp_paccounts" />
 
     <item
         android:id="@+id/system"
-        android:icon="@drawable/kit_ic_system"
-        android:title="@string/kit_comp_system" />
+        android:icon="@drawable/app_ic_system"
+        android:title="@string/app_comp_system" />
 
     <item
         android:id="@+id/mine"
-        android:icon="@drawable/kit_ic_mine"
-        android:title="@string/kit_comp_mine" />
+        android:icon="@drawable/app_ic_mine"
+        android:title="@string/app_comp_mine" />
 
 </menu>

@@ -38,10 +38,10 @@
         android:layout_alignStart="@+id/userName"
         android:layout_alignEnd="@+id/userName"
         android:layout_marginTop="35dp"
-        android:background="@drawable/kit_se_btn"
+        android:background="@drawable/base_se_btn"
         android:gravity="center"
         android:text="登陆"
-        android:textColor="@color/kit_se_btn_text"
+        android:textColor="@color/base_se_btn_text"
         android:textSize="18sp" />
 
     <TextView
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         app:color="@color/colorPrimary" />
 
-    <com.effective.android.service.kit.view.TitleView
+    <com.effective.android.base.view.TitleView
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

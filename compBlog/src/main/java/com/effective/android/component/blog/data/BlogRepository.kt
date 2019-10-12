@@ -4,7 +4,6 @@ import com.effective.android.base.rxjava.RxCreator
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.blog.Sdks
 import com.effective.android.component.blog.bean.*
-import com.effective.android.service.kit.data.Article
 import com.effective.android.service.net.BaseListResult
 import com.effective.android.service.net.BaseResult
 import com.effective.android.service.net.Type
@@ -57,7 +56,7 @@ class BlogRepository private constructor() {
                     blogApis.getArticles(pageIndex.toString()),
                     blogApis.getBanner(),
                     blogApis.getTopArticles(),
-                    Function3<BaseListResult<Article>, BaseResult<List<Banner>>, BaseResult<List<Article>>, BaseListResult<IMediaItem>> { t1, t2, t3 ->
+                    Function3<BaseListResult<BlogArticle>, BaseResult<List<Banner>>, BaseResult<List<BlogArticle>>, BaseListResult<IMediaItem>> { t1, t2, t3 ->
                         var result = t1.transform<IMediaItem>()
                         if (t3.isSuccess && !t3.data.isNullOrEmpty()) {
                             result.data?.data?.addAll(0, t3.data!!)

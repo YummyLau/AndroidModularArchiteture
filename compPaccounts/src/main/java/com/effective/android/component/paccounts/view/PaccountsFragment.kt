@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.component.paccounts.R
 import com.effective.android.component.paccounts.vm.PaccountsViewModel
-import com.effective.android.service.kit.data.Chapter
+import com.effective.android.component.blog.bean.Chapter
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.paccounts_fragment_laout.*
 

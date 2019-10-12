@@ -27,4 +27,17 @@
         <item name="shadow_bottom">@drawable/shadow_bottom</item>
     </style>
 
+    <style name="TitleStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="ContentStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
 </resources>

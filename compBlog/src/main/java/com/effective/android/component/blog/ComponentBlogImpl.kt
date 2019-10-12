@@ -1,15 +1,15 @@
 package com.effective.android.component.blog
 
-import android.content.Context
 import androidx.fragment.app.Fragment
-import com.effective.android.component.blog.view.BlogDetailActivity
+import com.effective.android.component.blog.adapter.ArticleAdapter
 import com.effective.android.component.blog.view.BlogFragment
+import com.effective.android.component.blog.view.adapter.BlogArticleAdapter
 import com.plugin.component.anno.AutoInjectImpl
 
 @AutoInjectImpl(sdk = [ComponentBlogSdk::class])
 class ComponentBlogImpl : ComponentBlogSdk {
 
-    var blogFragment: Fragment? = null
+    private var blogFragment: Fragment? = null
 
     override fun getMainFragment(): Fragment {
         if (blogFragment == null) {
@@ -18,7 +18,7 @@ class ComponentBlogImpl : ComponentBlogSdk {
         return blogFragment!!
     }
 
-    override fun toBlogDetailPager(context: Context, article: String) {
-        BlogDetailActivity.startActivity(context, article)
+    override fun <T> getArticleAdapter(): ArticleAdapter<T> {
+        return BlogArticleAdapter() as ArticleAdapter<T>
     }
 }

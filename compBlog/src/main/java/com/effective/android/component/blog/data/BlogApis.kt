@@ -1,9 +1,6 @@
 package com.effective.android.component.blog.data
 
-import com.effective.android.component.blog.bean.Banner
-import com.effective.android.component.blog.bean.SearchKey
-import com.effective.android.component.blog.bean.Website
-import com.effective.android.service.kit.data.Article
+import com.effective.android.component.blog.bean.*
 import com.effective.android.service.net.BaseListResult
 import com.effective.android.service.net.BaseResult
 import io.reactivex.Flowable
@@ -25,13 +22,13 @@ interface BlogApis {
      * 获取首页文章
      */
     @GET("article/list/{pageIndex}/json")
-    fun getArticles(@Path(value = "pageIndex") index: String): Flowable<BaseListResult<Article>>
+    fun getArticles(@Path(value = "pageIndex") index: String): Flowable<BaseListResult<BlogArticle>>
 
     /**
      * 获取置顶文章
      */
     @GET("/article/top/json")
-    fun getTopArticles(): Flowable<BaseResult<List<Article>>>
+    fun getTopArticles(): Flowable<BaseResult<List<BlogArticle>>>
 
 
     /**

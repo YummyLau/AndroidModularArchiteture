@@ -84,7 +84,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
-    implementation project(':servicekit')
     implementation component(':compMine')
     implementation component(':compBlog')
     implementation component(':compProject')
