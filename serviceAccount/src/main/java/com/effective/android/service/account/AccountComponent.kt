@@ -18,7 +18,6 @@ class AccountComponent : IComponent {
 
     override fun attachComponent(application: Application) {
         sApplication = application
-        Sdks.init(application)
     }
 
     override fun detachComponent() {

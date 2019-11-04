@@ -1,9 +1,0 @@
-component {
-    debug {
-        applicationName 'com.effective.android.base.TestApplication'
-    }
-    sdk {
-        groupId 'com.effective.android'
-        artifactId 'libBase'
-    }
-}

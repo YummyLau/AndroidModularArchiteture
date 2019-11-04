@@ -1,9 +1,0 @@
-component {
-    debug {
-        applicationName 'com.effective.android.video.TestVideoApplication'
-    }
-    sdk {
-        groupId 'com.effective.android'
-        artifactId 'libVideo'
-    }
-}
