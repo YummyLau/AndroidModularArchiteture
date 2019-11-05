@@ -3,6 +3,8 @@ package com.effective.android.base
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.AbstractFlow
 
 /**
  * 基础application，统一处理 65536

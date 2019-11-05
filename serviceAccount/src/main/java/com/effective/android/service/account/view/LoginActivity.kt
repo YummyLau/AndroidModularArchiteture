@@ -2,6 +2,7 @@ package com.effective.android.service.account.view
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Toast
 import com.effective.android.base.activity.BaseVmActivity
 import com.effective.android.base.systemui.StatusbarHelper
 import com.effective.android.base.toast.ToastUtils.show
@@ -57,7 +58,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                                 finish()
                             }
                         }, {
-
+                            it.message
                         })
             }else registerDisposable = viewModel.register(userName, password)
                     .subscribe({
@@ -65,7 +66,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                             finish()
                         }
                     }) {
-
+                        it.message
                     }
 
         }

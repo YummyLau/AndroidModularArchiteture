@@ -1,6 +1,7 @@
 package com.effective.android.service.account
 
 import android.app.Application
+import com.effective.android.service.account.data.db.AccountDataBase
 import com.plugin.component.IComponent
 import com.plugin.component.anno.AutoInjectComponent
 
@@ -18,6 +19,8 @@ class AccountComponent : IComponent {
 
     override fun attachComponent(application: Application) {
         sApplication = application
+        AccountDataBase.initDataBase(application)
+        Sdks.init(application)
     }
 
     override fun detachComponent() {

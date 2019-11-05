@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -27,4 +28,5 @@ dependencies {
     implementation project(':libBase')
     implementation component(':serviceSkin')
     implementation component(':serviceNet')
+    kapt deps.room.compiler
 }

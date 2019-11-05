@@ -8,9 +8,18 @@ package com.effective.android.service.account
  * Created by yummylau on 2018/01/25.
  */
 
-data class UserInfo(var admin: Boolean = false, var email: String = "", var icon: String = "",
-                    var id: Long = 0L, var nickname: String = "", var password: String = "", val token: String = "",
-                    var type: Int = 0, var username: String = "") {
+open class UserInfo{
+
+    open var admin: Boolean = false
+    open var email: String = ""
+    open var icon: String = ""
+    open var id: Long = 0L
+    open var nickname: String = ""
+    open var password: String = ""
+    open val token: String = ""
+    open var type: Int = 0
+    open var username: String = ""
+
 
     fun isValid() = id != 0L
 

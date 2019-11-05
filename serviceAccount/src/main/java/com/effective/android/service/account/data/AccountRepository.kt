@@ -10,6 +10,7 @@ import com.effective.android.service.account.UserInfo
 import com.effective.android.service.net.Type
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Callable
 
 
@@ -57,6 +58,8 @@ class AccountRepository() : AccountDataSource {
 
     override fun logout(): Flowable<Boolean> {
         return accountApis.logout()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .flatMap {
                     RxCreator.createFlowable(Callable<Boolean> {
                         notifyAccountChange(userInfo, false, success = it.isSuccess, message = it.errorMsg)
@@ -67,6 +70,8 @@ class AccountRepository() : AccountDataSource {
 
     override fun login(username: String, password: String): Flowable<UserInfo> {
         return accountApis.login(username, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .flatMap {
                     RxCreator.createFlowable(Callable<UserInfo> {
                         val data = if (it.isSuccess) it.data else UserInfo.createEmpty()
@@ -78,6 +83,8 @@ class AccountRepository() : AccountDataSource {
 
     override fun register(username: String, password: String): Flowable<UserInfo> {
         return accountApis.register(username, password, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .flatMap {
                     RxCreator.createFlowable(Callable<UserInfo> {
                         val data = if (it.isSuccess) it.data else UserInfo.createEmpty()

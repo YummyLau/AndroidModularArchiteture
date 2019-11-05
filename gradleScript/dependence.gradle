@@ -5,6 +5,7 @@ def versions = [:]
 //kotlin
 versions.kotlin = "1.3.50"
 versions.androidCoreKtx = "1.1.0"
+versions.coroutines = "1.3.2"
 
 //suport
 versions.support = "27.1.1"
@@ -114,6 +115,8 @@ deps.glide = glide
 def kotlin = [:]
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 kotlin.androidCoreKtx = "androidx.core:core-ktx:$versions.androidCoreKtx"
+kotlin.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+kotlin.coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
 deps.kotlin = kotlin
 
 
