@@ -5,6 +5,10 @@ apply plugin: 'kotlin-kapt'
 
 android {
 
+    androidExtensions {
+        experimental = true
+    }
+
     compileSdkVersion configs.android.compileSdkVersion
     buildToolsVersion configs.android.buildToolsVersion
 

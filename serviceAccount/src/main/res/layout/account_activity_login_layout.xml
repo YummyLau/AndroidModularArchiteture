@@ -18,6 +18,16 @@
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextSecondary" />
 
+    <ImageView
+        android:id="@+id/passwordClear"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="15dp"
+        android:visibility="gone"
+        android:layout_alignTop="@id/password"
+        android:layout_alignRight="@id/password"
+        android:src="@drawable/account_ic_clear"/>
+
     <EditText
         android:id="@+id/userName"
         android:layout_width="match_parent"
@@ -29,6 +39,25 @@
         android:hint="用户名"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextSecondary" />
+
+    <ImageView
+        android:id="@+id/userNameClear"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="15dp"
+        android:layout_alignTop="@id/userName"
+        android:layout_alignRight="@id/userName"
+        android:visibility="gone"
+        android:src="@drawable/account_ic_clear"/>
+
+    <ImageView
+        android:id="@+id/userNameList"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="15dp"
+        android:layout_alignTop="@id/userName"
+        android:layout_alignRight="@id/userName"
+        android:src="@drawable/account_ic_down"/>
 
     <TextView
         android:id="@+id/action"

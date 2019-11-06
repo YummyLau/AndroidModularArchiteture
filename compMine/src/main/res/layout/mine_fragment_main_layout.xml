@@ -63,6 +63,7 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_centerInParent="true"
+            tools:src="@drawable/mine_ic_logout"
             tools:background="@drawable/mine_se_avatar" />
 
 

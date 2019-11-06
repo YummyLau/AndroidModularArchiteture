@@ -4,16 +4,19 @@ import android.os.Bundle
 import android.view.View
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.toast.ToastUtils
+import com.effective.android.base.view.dialog.CommonDialog
 import com.effective.android.component.mine.R
 import com.effective.android.component.mine.vm.MineViewModel
 import com.effective.android.service.account.AccountChangeListener
 import com.effective.android.service.account.UserInfo
+import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.mine_fragment_main_layout.*
 
 class MineFragment : BaseVmFragment<MineViewModel>() {
 
     private var userInfo: UserInfo? = null
-
+    private lateinit var accountDisposable: Disposable
     private val listener = object : AccountChangeListener {
 
         override fun onAccountChange(userInfo: UserInfo?, login: Boolean, success: Boolean, message: String?) {
@@ -39,20 +42,38 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
     override fun onDestroy() {
         super.onDestroy()
         viewModel.removeAccountChangeListener(listener)
+        if (!accountDisposable.isDisposed) {
+            accountDisposable.dispose()
+        }
     }
 
     private fun initListener() {
         avatar.setOnClickListener {
             if (isLogin()) {
-                viewModel.logout()
+                CommonDialog.Builder(it.context)
+                        .content("确认退出登录吗")
+                        .left("取消")
+                        .right("确定", View.OnClickListener {
+                            viewModel.logout()
+                        })
+                        .build()
+                        .show()
             }
         }
         viewModel.addAccountChangeListener(listener)
     }
 
     private fun initData() {
-        userInfo = viewModel.getAccount()
         checkoutStatus(isLogin())
+        accountDisposable = viewModel.getLoginAccount()
+                .subscribe({
+                    if (it.isValid()) {
+                        userInfo = it
+                    }
+                    checkoutStatus(isLogin())
+                }, {
+                    checkoutStatus(isLogin())
+                })
     }
 
     private fun checkoutStatus(hasLogin: Boolean) {

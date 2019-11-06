@@ -6,6 +6,7 @@ import com.effective.android.base.rxjava.RxSchedulers
 import com.effective.android.service.account.data.AccountRepository
 import com.effective.android.service.account.view.LoginActivity
 import com.plugin.component.anno.AutoInjectImpl
+import io.reactivex.Flowable
 import io.reactivex.functions.Consumer
 
 
@@ -16,9 +17,7 @@ import io.reactivex.functions.Consumer
 @AutoInjectImpl(sdk = [AccountSdk::class])
 class AccountServiceImpl : AccountSdk {
 
-
-
-    override fun isLogin(): Boolean = AccountRepository.get().isLogin()
+    override fun isLogin(): Flowable<Boolean> = AccountRepository.get().isLogin()
 
     override fun logout() {
         val result = AccountRepository.get().logout()
@@ -31,7 +30,7 @@ class AccountServiceImpl : AccountSdk {
         context.startActivity(Intent(context, LoginActivity::class.java))
     }
 
-    override fun getAccount(): UserInfo? = AccountRepository.get().userInfo
+    override fun getAccount(): Flowable<UserInfo> = AccountRepository.get().getUserInfo()
 
     override fun addAccountChangeListener(accountChangeListener: AccountChangeListener) {
         if (!AccountRepository.get().listeners.contains(accountChangeListener)) {

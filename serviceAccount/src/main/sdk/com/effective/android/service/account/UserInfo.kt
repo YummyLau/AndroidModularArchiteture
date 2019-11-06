@@ -16,7 +16,7 @@ open class UserInfo{
     open var id: Long = 0L
     open var nickname: String = ""
     open var password: String = ""
-    open val token: String = ""
+    open var token: String = ""
     open var type: Int = 0
     open var username: String = ""
 

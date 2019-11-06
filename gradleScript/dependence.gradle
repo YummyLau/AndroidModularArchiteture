@@ -125,6 +125,7 @@ room.runtime = "androidx.room:room-runtime:$versions.room"
 room.compiler = "androidx.room:room-compiler:$versions.room"
 room.ktx = "androidx.room:room-ktx:$versions.room"
 room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+room.debug = 'com.amitshekhar.android:debug-db:1.0.6'
 deps.room = room
 
 def lifecycle = [:]

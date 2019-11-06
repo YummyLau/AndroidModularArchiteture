@@ -94,14 +94,6 @@ component {
                 }
             }
 
-            'serviceMedia' {
-                groupId 'com.effective.android.service'
-                artifactId 'media'
-                dependencies {
-                    implementation deps.kotlin.stdlib
-                    implementation deps.glide.core
-                }
-            }
 
             'serviceNet' {
                 groupId 'com.effective.android.service'

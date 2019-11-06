@@ -5,36 +5,86 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.effective.android.service.account.UserInfo
 
-@Entity(tableName = "user_info")
-class LoginInfoEntity : UserInfo() {
+@Entity(tableName = "login_info")
+class LoginInfoEntity {
 
-    @PrimaryKey(autoGenerate = true)
-    var generateId: Int? = null
+
+    companion object {
+
+        @JvmStatic
+        fun fromUserInfo(userInfo: UserInfo?): LoginInfoEntity {
+            val loginInfoEntity = LoginInfoEntity()
+            if(userInfo != null){
+                loginInfoEntity.admin = userInfo.admin
+                loginInfoEntity.email = userInfo.email
+                loginInfoEntity.icon = userInfo.icon
+                loginInfoEntity.id = userInfo.id
+                loginInfoEntity.nickname = userInfo.nickname
+                loginInfoEntity.password = userInfo.password
+                loginInfoEntity.token = userInfo.token
+                loginInfoEntity.type = userInfo.type
+                loginInfoEntity.username = userInfo.username
+                loginInfoEntity.updateTime = System.currentTimeMillis()
+            }
+            return loginInfoEntity
+        }
+    }
+
+
+    fun toUserInfo(): UserInfo {
+        val userInfo = UserInfo()
+        userInfo.admin = admin
+        userInfo.email = email
+        userInfo.icon = icon
+        userInfo.id = id
+        userInfo.nickname = nickname
+        userInfo.password = password
+        userInfo.token = token
+        userInfo.type = type
+        userInfo.username = username
+        return userInfo
+    }
+
+    /**
+     * 0 表示未登录
+     * 1 表示已经登录
+     */
+    @ColumnInfo(name = "loginState")
+    var loginState: Int = 0
+
+    /**
+     * 更新时间
+     */
+    @ColumnInfo(name = "updateTime")
+    var updateTime:Long = 0L
 
     @ColumnInfo(name = "admin")
-    override var admin: Boolean = false
+    var admin: Boolean = false
 
     @ColumnInfo(name = "email")
-    override var email: String = ""
+    var email: String = ""
 
     @ColumnInfo(name = "icon")
-    override var icon: String = ""
+    var icon: String = ""
 
+    @PrimaryKey
     @ColumnInfo(name = "id")
-    override var id: Long = 0L
+    var id: Long = 0L
 
     @ColumnInfo(name = "nickname")
-    override var nickname: String = ""
+    var nickname: String = ""
 
     @ColumnInfo(name = "password")
-    override var password: String = ""
+    var password: String = ""
 
     @ColumnInfo(name = "token")
-    override val token: String = ""
+    var token: String = ""
 
     @ColumnInfo(name = "type")
-    override var type: Int = 0
+    var type: Int = 0
 
     @ColumnInfo(name = "username")
-    override var username: String = ""
+    var username: String = ""
+
+    fun isLogin() = loginState == 1
 }

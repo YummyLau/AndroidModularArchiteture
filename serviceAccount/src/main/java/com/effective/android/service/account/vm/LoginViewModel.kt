@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.effective.android.base.rxjava.RxSchedulers
 import com.effective.android.service.account.UserInfo
 import com.effective.android.service.account.data.AccountRepository
+import com.effective.android.service.account.data.db.entity.LoginInfoEntity
 import io.reactivex.Flowable
 
 
@@ -23,5 +24,9 @@ class LoginViewModel : ViewModel() {
     fun register(username: String, password: String): Flowable<UserInfo> {
         return AccountRepository.get().register(username, password)
                 .compose(RxSchedulers.flowableIoToMain())
+    }
+
+    fun getLoginHistory(): MutableList<LoginInfoEntity>? {
+        return AccountRepository.get().getLoginHistory()
     }
 }

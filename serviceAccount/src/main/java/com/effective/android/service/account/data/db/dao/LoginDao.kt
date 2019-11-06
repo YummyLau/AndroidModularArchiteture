@@ -15,6 +15,6 @@ interface LoginDao {
     @Update
     fun update(info: LoginInfoEntity)
 
-    @Query("select * from user_info")
-    fun getAllStudents():MutableList<LoginInfoEntity>
+    @Query("select * from login_info")
+    fun getAll():MutableList<LoginInfoEntity>
 }

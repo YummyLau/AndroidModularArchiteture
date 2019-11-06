@@ -89,6 +89,7 @@ dependencies {
     implementation component(':compProject')
     implementation component(':compPaccounts')
     implementation component(':compSystem')
+    debugImplementation  deps.room.debug
 }
 repositories {
     mavenCentral()

@@ -3,14 +3,13 @@ package com.effective.android.component.mine.vm
 import android.content.Context
 import android.widget.ImageView
 import androidx.lifecycle.ViewModel
+import com.effective.android.base.rxjava.RxSchedulers
 import com.effective.android.component.mine.R
 import com.effective.android.component.mine.Sdks
 import com.effective.android.component.mine.data.MineRepository
 import com.effective.android.service.account.AccountChangeListener
 
 class MineViewModel : ViewModel() {
-
-    fun isLogin() = MineRepository.get().isLogin()
 
     fun logout() = MineRepository.get().logout()
 
@@ -20,7 +19,7 @@ class MineViewModel : ViewModel() {
 
     fun removeAccountChangeListener(accountChangeListener: AccountChangeListener) = MineRepository.get().removeAccountChangeListener(accountChangeListener)
 
-    fun getAccount() = MineRepository.get().getAccount()
+    fun getLoginAccount() = MineRepository.get().getAccount().compose(RxSchedulers.flowableIoToMain())!!
 
     fun loadAvatar(imageView: ImageView, avatar: String) {
         Sdks.serviceImageloader.load(imageView, avatar)
