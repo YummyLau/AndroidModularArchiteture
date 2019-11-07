@@ -1,11 +1,13 @@
 package com.effective.android.component.blog
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.blog.adapter.ArticleAdapter
 import com.effective.android.component.blog.bean.Article
 import com.effective.android.component.blog.bean.BlogArticle
+import com.effective.android.component.blog.view.BlogDetailActivity
 import com.effective.android.component.blog.view.BlogFragment
 import com.effective.android.component.blog.view.adapter.BlogArticleAdapter
 import com.plugin.component.anno.AutoInjectImpl
@@ -24,6 +26,10 @@ class ComponentBlogImpl : ComponentBlogSdk {
 
     override fun <T> getArticleAdapter(): ArticleAdapter<T> {
         return ArticleAdapterImpl()
+    }
+
+    override fun gotoDetailActivity(context: Context, article: Article) {
+        BlogDetailActivity.startActivity(context, article)
     }
 }
 

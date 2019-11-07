@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.effective.android.base.util.StringUtils
 import com.effective.android.base.view.list.MediaHolder
+import com.effective.android.component.blog.Sdks
 import com.effective.android.component.blog.bean.BlogArticle
 import kotlinx.android.synthetic.main.blog_holder_article_layout.view.*
 
@@ -17,5 +18,8 @@ class ArticleHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BlogArticle>
         itemView.content.visibility = if (!TextUtils.isEmpty(data.desc)) View.VISIBLE else View.GONE
         itemView.userInfo.text = data.niceDate + "@" + data.author
         itemView.extra.text = "分类：" + data.superChapterName + "/" + data.chapterName
+        itemView.setOnClickListener {
+            Sdks.getSdk().gotoDetailActivity(context, data)
+        }
     }
 }

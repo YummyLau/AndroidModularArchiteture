@@ -13,8 +13,7 @@ class Sdks {
         lateinit var serviceSkin: ServiceSkin
         lateinit var serviceNet: ServiceNet
         lateinit var serviceImageloder: ServiceImageloader
-
-
+        private lateinit var componentBlogSdk: ComponentBlogSdk
 
         fun init(application: Application) {
             ComponentManager.init(application)
@@ -22,5 +21,14 @@ class Sdks {
             serviceNet = SdkManager.getSdk(ServiceNet::class.java)!!
             serviceImageloder = SdkManager.getSdk(ServiceImageloader::class.java)!!
         }
+
+        fun getSdk(): ComponentBlogSdk {
+            if (componentBlogSdk == null) {
+                componentBlogSdk = SdkManager.getSdk(ComponentBlogSdk::class.java)!!
+            }
+            return componentBlogSdk
+        }
     }
+
+
 }

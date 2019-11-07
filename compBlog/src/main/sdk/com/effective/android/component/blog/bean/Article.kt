@@ -1,7 +1,11 @@
 package com.effective.android.component.blog.bean
-import com.google.gson.annotations.SerializedName
 
-open class Article {
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+open class Article : Parcelable {
 
     @SerializedName("apkLink")
     var apkLink: String? = null
