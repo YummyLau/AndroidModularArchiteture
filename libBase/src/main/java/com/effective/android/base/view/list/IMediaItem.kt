@@ -2,7 +2,7 @@ package com.effective.android.base.view.list
 
 interface IMediaItem {
 
-    fun getType(): Int
+    fun getItemType(): Int
 
     fun getViewType(): Int
 

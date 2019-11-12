@@ -5,7 +5,7 @@ import com.effective.android.component.blog.Constants
 
 class BannerList : ArrayList<Banner>(), IMediaItem {
 
-    override fun getType(): Int = Constants.bannerType
+    override fun getItemType(): Int = Constants.bannerType
 
     override fun getViewType(): Int = Constants.bannerType
     override fun replace(item: IMediaItem) {

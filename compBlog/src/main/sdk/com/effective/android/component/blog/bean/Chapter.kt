@@ -33,11 +33,9 @@ open class Chapter : Parcelable {
     constructor()
 
     constructor(source: Parcel) {
-//        children = source.readString()
-
-            val array: ArrayList<Chapter> = ArrayList()
-            source.readTypedList(array, CREATOR)
-            children = array.toMutableList()
+        val array: ArrayList<Chapter> = ArrayList()
+        source.readTypedList(array, CREATOR)
+        children = array.toMutableList()
 
         courseId = source.readInt()
         id = source.readLong()

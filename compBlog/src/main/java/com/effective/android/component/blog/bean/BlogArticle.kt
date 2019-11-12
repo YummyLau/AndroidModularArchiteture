@@ -38,7 +38,7 @@ open class BlogArticle : Article, IMediaItem {
         zan = article.zan
     }
 
-    override fun getType(): Int = Constants.articleType
+    override fun getItemType(): Int = Constants.articleType
 
     override fun getViewType(): Int = Constants.articleType
 
