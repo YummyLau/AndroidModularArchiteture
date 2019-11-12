@@ -3,12 +3,12 @@
     package="com.debug">
 
     <application
-        android:name=".DebugApplication"
+        android:name=".library.webview.TestWebViewApplication"
         android:allowBackup="true"
         android:icon="@drawable/webview_ic_launcher"
         android:label="@string/webview_app_name"
         android:theme="@style/BaseAppTheme">
-        <activity android:name=".library.webview.X5WebActivity">
+        <activity android:name=".library.webview.TestWebViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
