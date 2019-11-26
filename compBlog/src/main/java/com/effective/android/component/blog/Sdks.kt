@@ -23,7 +23,7 @@ class Sdks {
         }
 
         fun getSdk(): ComponentBlogSdk {
-            if (componentBlogSdk == null) {
+            if (!::componentBlogSdk.isInitialized) {
                 componentBlogSdk = SdkManager.getSdk(ComponentBlogSdk::class.java)!!
             }
             return componentBlogSdk
