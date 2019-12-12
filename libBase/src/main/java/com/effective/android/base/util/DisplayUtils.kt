@@ -15,4 +15,5 @@ object DisplayUtils {
         val scale = context.resources.displayMetrics.density
         return (dipValue * scale + 0.5f).toInt()
     }
+
 }

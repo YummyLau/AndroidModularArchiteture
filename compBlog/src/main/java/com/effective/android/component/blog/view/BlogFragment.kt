@@ -5,6 +5,7 @@ import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.blog.R
 import com.effective.android.component.blog.view.adapter.BlogArticleAdapter
+import com.effective.android.component.blog.view.adapter.decoration.CardListDecoration
 import com.effective.android.component.blog.vm.BlogViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.blog_fragment_main_layout.*
@@ -29,6 +30,7 @@ class BlogFragment : BaseVmFragment<BlogViewModel>() {
             fetchData(false)
         }
         list.adapter = adapter
+        list.addItemDecoration(CardListDecoration(context,CardListDecoration.VERTICAL_LIST))
         fetchData(true)
     }
 
