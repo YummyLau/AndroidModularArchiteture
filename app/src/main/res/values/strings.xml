@@ -5,4 +5,5 @@
     <string name="app_comp_paccounts">公众号</string>
     <string name="app_comp_system">体系</string>
     <string name="app_comp_mine">我</string>
+    <string name="app_splash_skin">跳过</string>
 </resources>

@@ -47,7 +47,7 @@ public class StatusBarView extends LinearLayout {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.base_statusbar_layout, this, true);
         final TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.StatusBarView, defStyle, 0);
         if (typedArray != null) {
-            mStatusBarColor = typedArray.getResourceId(R.styleable.StatusBarView_color, R.color.colorPrimary);
+            mStatusBarColor = typedArray.getResourceId(R.styleable.StatusBarView_status_bar_color, R.color.colorPrimary);
         } else {
             mStatusBarColor = R.color.colorPrimary;
         }

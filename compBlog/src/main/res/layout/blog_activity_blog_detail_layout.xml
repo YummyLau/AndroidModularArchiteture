@@ -9,7 +9,7 @@
         android:id="@+id/status_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:color="@color/colorPrimary" />
+        app:status_bar_color="@color/colorPrimary" />
 
     <com.effective.android.base.view.TitleView
         android:id="@+id/titleLayout"

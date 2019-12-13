@@ -1,27 +1,28 @@
-package com.effective.android.example
+package com.effective.android.example.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import com.effective.android.base.activity.BaseActivity
-import com.effective.android.base.systemui.StatusbarHelper
-import kotlinx.android.synthetic.main.app_activity_main_layout.*
+import com.effective.android.base.fragment.BaseVmFragment
+import com.effective.android.example.R
+import com.effective.android.example.Sdks
+import com.effective.android.example.vm.HomeVm
+import kotlinx.android.synthetic.main.app_fragment_home.*
 
-
-class MainActivity : BaseActivity(){
+class HomeFragment : BaseVmFragment<HomeVm>() {
 
     private val fragmentList = mutableListOf<Fragment>()
 
-    override fun getLayoutRes(): Int {
-        return R.layout.app_activity_main_layout
-    }
+    override fun getViewModel(): Class<HomeVm> = HomeVm::class.java
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        StatusbarHelper.translucentStatusBar(this)
+    override fun getLayoutRes(): Int = R.layout.app_fragment_home
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         initData()
         initView()
     }
+
 
     private fun initData() {
         fragmentList.add(Sdks.componentBlogSdk.getMainFragment())
@@ -32,7 +33,7 @@ class MainActivity : BaseActivity(){
     }
 
     private fun initView() {
-        viewPager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
+        homePager.adapter = object : FragmentPagerAdapter(childFragmentManager!!) {
 
             /**
              * 当且仅当 findFragmentByTag 为 null 的时候才会调用，否则会使用系统缓存的fragments
@@ -43,8 +44,7 @@ class MainActivity : BaseActivity(){
 
             override fun getCount(): Int = fragmentList.size
         }
-        viewPager.offscreenPageLimit = 4
-        bottomTab.setupWithViewPager(viewPager)
+        homePager.offscreenPageLimit = 4
+
     }
 }
-

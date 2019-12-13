@@ -18,6 +18,7 @@
     <color name="windowBackground">#FFFFFF</color>
 
 
+    <color name="red_tip_bg">#E76464</color>
     <color name="transparent">#00000000</color>
     <color name="gray_50">#FAFAFA</color>
     <color name="gray_100">#F5F5F5</color>
@@ -64,5 +65,26 @@
     <color name="green_900">#35662D</color>
 
     <color name="toast_text_bg">#F4000000</color>
+
+    <color name="black_alpha_02">#02000000</color>
+    <color name="black_alpha_30">#76000000</color>
+    <color name="black_alpha_40">#66000000</color>
+    <color name="black_alpha_50">#7F000000</color>
+    <color name="black_alpha_60">#99000000</color>
+    <color name="black_alpha_70">#B2000000</color>
+    <color name="black_alpha_80">#CC000000</color>
+    <color name="black_alpha_85">#D8000000</color>
+    <color name="black_alpha_90">#E6000000</color>
+
+    <color name="white_alpha_5">#0DFFFFFF</color>
+    <color name="white_alpha_10">#11FFFFFF</color>
+    <color name="white_alpha_12">#1FFFFFFF</color>
+    <color name="white_alpha_20">#33FFFFFF</color>
+    <color name="white_alpha_30">#4CFFFFFF</color>
+    <color name="white_alpha_50">#7FFFFFFF</color>
+    <color name="white_alpha_40">#66FFFFFF</color>
+    <color name="white_alpha_60">#99FFFFFF</color>
+    <color name="white_alpha_70">#C4FFFFFF</color>
+    <color name="white_alpha_90">#E6FFFFFF</color>
 
 </resources>
