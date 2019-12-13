@@ -52,6 +52,7 @@
         <attr name="super_tab_indicatorStrokeWidth" format="dimension" />
         <attr name="super_tab_indicatorBottomMargin" format="dimension" />
         <attr name="super_tab_indicatorImg" format="reference" />
+        <attr name="super_tab_indicatorPadding" format="dimension" />   <!-- tab内指示器的padding，默认tab宽度就是指示器的宽度 -->
         <attr name="super_tab_tabTextColor" format="reference" />
         <attr name="super_tab_tabMod" format="enum">
             <enum name="scrollable" value="0" />
@@ -67,7 +68,6 @@
         <attr name="super_tab_tabWidth" format="dimension" />
         <attr name="super_tab_boldSelected" format="boolean" />
         <attr name="super_tab_thinUnselected" format="boolean" />        <!-- 未选中字体是否要变细， 通过设sans-serif-light实现 -->
-        <attr name="super_tab_indicatorPadding" format="dimension" />
         <attr name="super_tab_redDotBgResId" format="reference" />
         <attr name="super_tab_smallDotBgResId" format="reference" />
         <attr name="super_tab_redDotGravity" format="integer" />

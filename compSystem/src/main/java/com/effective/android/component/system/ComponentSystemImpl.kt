@@ -15,4 +15,6 @@ class ComponentSystemImpl : ComponentSystemSdk {
         }
         return systemFragment!!
     }
+
+    override fun getMainName(): String = "体系"
 }

@@ -15,4 +15,6 @@ class ComponentProjectImpl : ComponentProjectSdk {
         }
         return mainFragment!!
     }
+
+    override fun getMainName(): String = "项目"
 }

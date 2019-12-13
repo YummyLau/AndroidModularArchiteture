@@ -12,8 +12,9 @@
     <color name="colorThemeTextDark">#9E9E9E</color>
 
     <color name="colorTextIcon">#FFFFFF</color>
-    <color name="colorTextPrimary">#212121</color>
-    <color name="colorTextSecondary">#757575</color>
+    <color name="colorTextPrimary">#000000</color>
+    <color name="colorTextSecondary">#666666</color>
+    <color name="colorTextThird">#999999</color>
     <color name="colorDivider">#BDBDBD</color>
     <color name="windowBackground">#FFFFFF</color>
 

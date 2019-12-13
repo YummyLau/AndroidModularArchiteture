@@ -4,7 +4,6 @@
     xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
     android:orientation="vertical">
 
     <androidx.viewpager.widget.ViewPager
@@ -18,21 +17,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.effective.android.base.view.StatusBarView
-        android:id="@+id/statusBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <com.flyco.tablayout.SlidingTabLayout
+    <com.effective.android.base.view.tab.SuperTabLayout
         android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/base_tab_layout_height"
-        android:layout_below="@+id/statusBar"
-        android:background="@color/colorPrimary"
-        tl:tl_indicator_color="@color/colorThemeText"
-        tl:tl_indicator_corner_radius="1.5dp"
-        tl:tl_indicator_height="3dp"
-        tl:tl_indicator_width="10dp"
-        tl:tl_textBold="SELECT" />
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="10.5dp"
+        app:super_tab_boldSelected="true"
+        app:super_tab_selectTextColor="@color/colorTextSecondary"
+        app:super_tab_tabPadding="5dp"
+        app:super_tab_tabTextColor="@color/colorTextThird"
+        app:super_tab_tabTextSize="15sp"
+        app:super_tab_tabTextSizeSelected="18sp"
+        app:super_tab_textSizeTransition="true" />
 
 </RelativeLayout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.effective.android.base.view.StatusBarView
         android:id="@+id/status_bar_view"
@@ -31,32 +32,31 @@
                 android:id="@+id/icSearch"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="15dp"
                 android:src="@drawable/tabh_ic_search" />
 
             <com.effective.android.base.view.tab.SuperTabLayout
-                android:layout_centerVertical="true"
                 android:id="@+id/tabLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="10.5dp"
                 app:super_tab_boldSelected="true"
                 app:super_tab_selectTextColor="@color/colorTextPrimary"
-                app:super_tab_tabPadding="0dp"
+                app:super_tab_tabPadding="5dp"
                 app:super_tab_tabTextColor="@color/colorTextSecondary"
-                app:super_tab_tabTextSize="18sp"
-                app:super_tab_tabWidth="54dp"
-                tools:background="@android:color/black"
-                tools:layout_width="100dp" />
+                app:super_tab_tabTextSize="17sp"
+                app:super_tab_tabTextSizeSelected="30sp"
+                app:super_tab_textSizeTransition="true" />
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.viewpager.widget.ViewPager
-        android:layout_below="@+id/toolbar"
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar" />
 </RelativeLayout>

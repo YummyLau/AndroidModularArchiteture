@@ -5,4 +5,6 @@ import androidx.fragment.app.Fragment
 interface ComponentSystemSdk {
 
     fun getMainFragment(): Fragment
+
+    fun getMainName(): String
 }

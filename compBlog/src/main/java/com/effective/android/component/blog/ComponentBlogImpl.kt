@@ -31,6 +31,8 @@ class ComponentBlogImpl : ComponentBlogSdk {
     override fun gotoDetailActivity(context: Context, article: Article) {
         BlogDetailActivity.startActivity(context, article)
     }
+
+    override fun getMainName(): String = "博文"
 }
 
 class ArticleAdapterImpl<T> : BlogArticleAdapter(), ArticleAdapter<T> {

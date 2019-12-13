@@ -50,7 +50,7 @@ class SystemFragment: BaseVmFragment<SystemViewModel>() {
 
                                 override fun getPageTitle(position: Int): CharSequence? = chapters!![position].name
                             }
-                            tabLayout.setViewPager(articlePager)
+                            tabLayout.setupWithViewPager(articlePager)
                         } else {
                             pageState.toEmpty("当前页面没有项目", "尝试刷新", Runnable {
                                 pageState.toLoading("正在加载")

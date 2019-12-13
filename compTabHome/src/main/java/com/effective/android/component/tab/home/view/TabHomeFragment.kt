@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.tabh_fragment_home_layout.*
 class TabHomeFragment : BaseVmFragment<TabHomeVm>() {
 
     private val fragmentList = mutableListOf<Fragment>()
+    private val titleList = mutableListOf<String>()
 
     override fun getViewModel(): Class<TabHomeVm> = TabHomeVm::class.java
 
@@ -26,9 +27,16 @@ class TabHomeFragment : BaseVmFragment<TabHomeVm>() {
 
     private fun initData(){
         fragmentList.add(Sdks.blogSdk.getMainFragment())
+        titleList.add(Sdks.blogSdk.getMainName())
+
         fragmentList.add(Sdks.paccountsSdk.getMainFragment())
+        titleList.add(Sdks.paccountsSdk.getMainName())
+
         fragmentList.add(Sdks.systemSdk.getMainFragment())
+        titleList.add(Sdks.systemSdk.getMainName())
+
         fragmentList.add(Sdks.projectSdk.getMainFragment())
+        titleList.add(Sdks.projectSdk.getMainName())
     }
 
     private fun initView(){
@@ -51,13 +59,15 @@ class TabHomeFragment : BaseVmFragment<TabHomeVm>() {
             }
         })
 
-        val pagerAdpter = object : FragmentPagerAdapter(childFragmentManager) {
+        val pagerAdapter = object : FragmentPagerAdapter(childFragmentManager) {
 
             override fun getItem(position: Int): Fragment = fragmentList[position]
 
             override fun getCount(): Int  = fragmentList.size
+
+            override fun getPageTitle(position: Int): CharSequence?  = titleList[position]
         }
-        pager.adapter = pagerAdpter
+        pager.adapter = pagerAdapter
         tabLayout.setupWithViewPager(pager)
     }
 }

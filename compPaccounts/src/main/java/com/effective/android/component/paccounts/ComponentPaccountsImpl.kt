@@ -15,4 +15,6 @@ class ComponentPaccountsImpl : ComponentPaccountsSdk {
         }
         return paccountsFragment!!
     }
+
+    override fun getMainName(): String = "公众号"
 }

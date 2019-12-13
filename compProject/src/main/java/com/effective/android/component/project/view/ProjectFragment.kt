@@ -50,7 +50,7 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel>() {
 
                                 override fun getPageTitle(position: Int): CharSequence? = projects!![position].name
                             }
-                            tabLayout.setViewPager(articlePager)
+                            tabLayout.setupWithViewPager(articlePager)
                         } else {
                             pageState.toEmpty("当前页面没有项目", "尝试刷新", Runnable {
                                 pageState.toLoading("正在加载")

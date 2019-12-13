@@ -8,6 +8,8 @@ interface ComponentBlogSdk {
 
     fun getMainFragment(): Fragment
 
+    fun getMainName(): String
+
     fun <T>getArticleAdapter():ArticleAdapter<T>
 
     fun gotoDetailActivity(context: Context, article: Article)
