@@ -1,10 +1,14 @@
 package com.effective.android.component.paccounts.view
 
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.fragment.BaseVmFragment
+import com.effective.android.base.view.tagdrag.ClickToDeleteItemListenerImpl
+import com.effective.android.base.view.tagdrag.DragAdapter
+import com.effective.android.base.view.tagdrag.DragFlowLayout
 import com.effective.android.component.paccounts.R
 import com.effective.android.component.paccounts.vm.PaccountsViewModel
 import com.effective.android.component.blog.bean.Chapter
@@ -24,7 +28,24 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         pageState.toLoading("正在加载")
+        initView()
         initData()
+    }
+
+    private fun initView(){
+        tabMore.setOnClickListener {
+            dragLayout.visibility = View.VISIBLE
+        }
+//        dragLayout.setOnItemClickListener(object : ClickToDeleteItemListenerImpl() {
+//
+//            override fun performClick(dragFlowLayout: DragFlowLayout?, child: View?, event: MotionEvent?, dragState: Int): Boolean {
+//                return super.performClick(dragFlowLayout, child, event, dragState)
+//            }
+//
+//            override fun onDeleteSuccess(dfl: DragFlowLayout?, child: View?, data: Any?) {
+//                super.onDeleteSuccess(dfl, child, data)
+//            }
+//        })
     }
 
     private fun initData() {
@@ -35,6 +56,24 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
                         if (!it.data.isNullOrEmpty()) {
                             pageState.visibility = View.GONE
                             projects = it.data!!
+
+                            //设置筛选框
+                            dragLayout.setDragAdapter(object : DragAdapter<Chapter>() {
+
+                                override fun getItemLayoutId(): Int {
+                                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                }
+
+                                override fun onBindData(itemView: View?, dragState: Int, data: Chapter?) {
+                                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                }
+
+                                override fun getData(itemView: View?): Chapter {
+                                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                }
+                            })
+
+                            //设置tab
                             articlePager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
 
                                 override fun getItem(position: Int): Fragment {

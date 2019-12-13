@@ -27,6 +27,7 @@
             app:super_tab_textSizeTransition="true" />
 
         <ImageView
+            android:id="@+id/tabMore"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:padding="7dp"
@@ -42,6 +43,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tabContainer" />
+
+    <com.effective.android.base.view.tagdrag.DragFlowLayout
+        android:id="@+id/dragLayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <com.effective.android.base.view.PageStateView
         android:id="@+id/pageState"
