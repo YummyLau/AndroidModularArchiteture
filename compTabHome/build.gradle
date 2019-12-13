@@ -33,4 +33,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
+    implementation component(':compBlog')
+    implementation component(':compProject')
+    implementation component(':compSystem')
+    implementation component(':compPaccounts')
 }

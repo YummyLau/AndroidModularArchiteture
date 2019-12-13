@@ -1,4 +1,4 @@
-package com.effective.android.component.mine
+package com.effective.android.component.tab.mine
 
 class Constants{
 

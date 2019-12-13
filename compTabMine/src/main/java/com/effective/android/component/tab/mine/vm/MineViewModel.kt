@@ -1,12 +1,12 @@
-package com.effective.android.component.mine.vm
+package com.effective.android.component.tab.mine.vm
 
 import android.content.Context
 import android.widget.ImageView
 import androidx.lifecycle.ViewModel
 import com.effective.android.base.rxjava.RxSchedulers
-import com.effective.android.component.mine.R
-import com.effective.android.component.mine.Sdks
-import com.effective.android.component.mine.data.MineRepository
+import com.effective.android.component.tab.mine.R
+import com.effective.android.component.tab.mine.Sdks
+import com.effective.android.component.tab.mine.data.MineRepository
 import com.effective.android.service.account.AccountChangeListener
 
 class MineViewModel : ViewModel() {

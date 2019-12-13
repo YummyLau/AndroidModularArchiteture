@@ -1,12 +1,12 @@
-package com.effective.android.component.mine
+package com.effective.android.component.tab.mine
 
 import androidx.fragment.app.Fragment
-import com.effective.android.component.mine.view.MineFragment
+import com.effective.android.component.tab.mine.view.MineFragment
 import com.plugin.component.anno.AutoInjectImpl
 
 
-@AutoInjectImpl(sdk = [ComponentMineSdk::class])
-class ComponentMineImpl : ComponentMineSdk {
+@AutoInjectImpl(sdk = [ComponentTabMineSdk::class])
+class ComponentMineImpl : ComponentTabMineSdk {
 
     private var mineFragment: MineFragment? = null
 

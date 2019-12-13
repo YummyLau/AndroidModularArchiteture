@@ -1,14 +1,11 @@
 package com.effective.android.example.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.activity.BaseActivity
 import com.effective.android.base.systemui.StatusbarHelper
 import com.effective.android.base.util.FragmentUtils
+import com.effective.android.base.util.ResourceUtils
 import com.effective.android.example.R
-import com.effective.android.example.Sdks
-import kotlinx.android.synthetic.main.app_activity_main_layout.*
 
 
 class MainActivity : BaseActivity(){
@@ -19,7 +16,7 @@ class MainActivity : BaseActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusbarHelper.translucentStatusBar(this)
+        StatusbarHelper.setStatusBarColor(this,ResourceUtils.getColor(this,R.color.windowBackground))
         toSplash()
     }
 
@@ -28,7 +25,7 @@ class MainActivity : BaseActivity(){
     }
 
     fun toHome(){
-        FragmentUtils.replace(supportFragmentManager,R.id.fragment_container,HomeFragment())
+        FragmentUtils.replace(supportFragmentManager,R.id.fragment_container,MainFragment())
     }
 }
 

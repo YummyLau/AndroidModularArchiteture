@@ -8,7 +8,7 @@ component {
 //    exclude 'xxxx'
 
     include ':app', 'debugModule',
-            'compSystem',"compBlog","compPaccounts","compProject","compMine",
+            'compSystem',"compBlog","compPaccounts","compProject",
             'compTabHome',"compTabMine","compTabRecommendation",
             'serviceMedia','serviceNet','serviceAccount','serviceSkin','serviceShare'
 
@@ -38,9 +38,27 @@ component {
                 }
             }
 
-            'compMine' {
-                groupId 'com.effective.android.component'
+            'compTabMine' {
+                groupId 'com.effective.android.component.tab'
                 artifactId 'mime'
+                dependencies {
+                    implementation deps.androidx.appCompat
+                    implementation deps.kotlin.stdlib
+                }
+            }
+
+            'compTabHome' {
+                groupId 'com.effective.android.component.tab'
+                artifactId 'home'
+                dependencies {
+                    implementation deps.androidx.appCompat
+                    implementation deps.kotlin.stdlib
+                }
+            }
+
+            'compTabRecommendation' {
+                groupId 'com.effective.android.component.tab'
+                artifactId 'recommendation'
                 dependencies {
                     implementation deps.androidx.appCompat
                     implementation deps.kotlin.stdlib
@@ -147,7 +165,7 @@ component {
 
             'cMine' {
                 dependencies {
-                    implementation component(':compMine')
+                    implementation component(':compTabMine')
                 }
             }
 

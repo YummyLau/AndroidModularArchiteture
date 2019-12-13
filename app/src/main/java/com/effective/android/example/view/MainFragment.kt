@@ -9,7 +9,7 @@ import com.effective.android.example.Sdks
 import com.effective.android.example.vm.HomeVm
 import kotlinx.android.synthetic.main.app_fragment_home.*
 
-class HomeFragment : BaseVmFragment<HomeVm>() {
+class MainFragment : BaseVmFragment<HomeVm>() {
 
     private val fragmentList = mutableListOf<Fragment>()
 
@@ -23,17 +23,14 @@ class HomeFragment : BaseVmFragment<HomeVm>() {
         initView()
     }
 
-
     private fun initData() {
-        fragmentList.add(Sdks.componentBlogSdk.getMainFragment())
-        fragmentList.add(Sdks.componentProjectSdk.getMainFragment())
-        fragmentList.add(Sdks.componentPaccountsSdk.getMainFragment())
-        fragmentList.add(Sdks.componentSystemSdk.getMainFragment())
+        fragmentList.add(Sdks.componentTabHomeSdk.getMainFragment())
+        fragmentList.add(Sdks.componentTabRecommendationSdk.getMainFragment())
         fragmentList.add(Sdks.componentMineSdk.getMainFragment())
     }
 
     private fun initView() {
-        homePager.adapter = object : FragmentPagerAdapter(childFragmentManager!!) {
+        mainPager.adapter = object : FragmentPagerAdapter(childFragmentManager!!) {
 
             /**
              * 当且仅当 findFragmentByTag 为 null 的时候才会调用，否则会使用系统缓存的fragments
@@ -44,7 +41,15 @@ class HomeFragment : BaseVmFragment<HomeVm>() {
 
             override fun getCount(): Int = fragmentList.size
         }
-        homePager.offscreenPageLimit = 4
-
+        mainPager.offscreenPageLimit = 4
+        homeTab.setOnClickListener {
+            mainPager.currentItem = 0
+        }
+        homeTab1.setOnClickListener {
+            mainPager.currentItem = 1
+        }
+        homeTab2.setOnClickListener {
+            mainPager.currentItem = 2
+        }
     }
 }

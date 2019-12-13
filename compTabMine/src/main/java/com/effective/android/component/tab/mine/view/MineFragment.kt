@@ -1,16 +1,15 @@
-package com.effective.android.component.mine.view
+package com.effective.android.component.tab.mine.view
 
 import android.os.Bundle
 import android.view.View
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.toast.ToastUtils
 import com.effective.android.base.view.dialog.CommonDialog
-import com.effective.android.component.mine.R
-import com.effective.android.component.mine.vm.MineViewModel
+import com.effective.android.component.tab.mine.R
+import com.effective.android.component.tab.mine.vm.MineViewModel
 import com.effective.android.service.account.AccountChangeListener
 import com.effective.android.service.account.UserInfo
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.mine_fragment_main_layout.*
 
 class MineFragment : BaseVmFragment<MineViewModel>() {

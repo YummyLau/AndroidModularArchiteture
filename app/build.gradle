@@ -54,8 +54,6 @@ android {
             matchingFallbacks = ['default']    // instead use this
         }
     }
-    
-
 
 //    //渠道定义，渠道太多的话建议使用美团方案
 //    flavorDimensions 'version'
@@ -78,19 +76,17 @@ android {
 //    }
 
     resourcePrefix "app_"
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
-    implementation component(':compMine')
-    implementation component(':compBlog')
-    implementation component(':compProject')
-    implementation component(':compPaccounts')
-    implementation component(':compSystem')
+    implementation component(':compTabMine')
+    implementation component(':compTabHome')
+    implementation component(':compTabRecommendation')
     debugImplementation  deps.room.debug
 }
+
 repositories {
     mavenCentral()
 }

@@ -80,11 +80,14 @@ serviceMedia：多媒体模块，包括图片展示，Gif播放管理，视频�
 * **component层** 
 
 ```
+compTabMine：wanAndroid 我的
+compTabRecommandation：推荐
+compTabHome：wanAndroid 首页
+其中Home包含：
 compBlog：wanAndroid 博文
 compProject：wanAndroid 项目
 compPaccounts：wanAndroid 公众号
 compSystem：wanAndroid 体系
-compMine：wanAndroid 我的
 ```
 
 * **app层**

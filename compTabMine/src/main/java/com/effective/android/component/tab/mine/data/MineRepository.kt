@@ -1,7 +1,7 @@
-package com.effective.android.component.mine.data
+package com.effective.android.component.tab.mine.data
 
 import android.content.Context
-import com.effective.android.component.mine.Sdks
+import com.effective.android.component.tab.mine.Sdks
 import com.effective.android.service.account.AccountChangeListener
 
 class MineRepository {
