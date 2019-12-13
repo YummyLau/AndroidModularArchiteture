@@ -19,6 +19,7 @@ buildscript {
 //        classpath "com.effective.plugins:component-plugin"
     }
 
+
 }
 
 allprojects {

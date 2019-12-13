@@ -9,6 +9,7 @@ component {
 
     include ':app', 'debugModule',
             'compSystem',"compBlog","compPaccounts","compProject","compMine",
+            'compTabHome',"compTabMine","compTabRecommendation",
             'serviceMedia','serviceNet','serviceAccount','serviceSkin','serviceShare'
 
     //组件sdk声明，从生效的模块中命中以下配置之后，会自动为模块生成sdk

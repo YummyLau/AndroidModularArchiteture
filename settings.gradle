@@ -1,11 +1,15 @@
 //library 层
-include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission', ':debugModule'
+include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImageloader', ':libPermission'
 
 //service 层
 include ':serviceShare', ':serviceSkin', ':serviceAccount', ':serviceNet', ':serviceMedia'
 
 //组件层
-include ':compSystem', ':compBlog', ':compPaccounts', ':compProject', ':compMine'
+include ':compSystem', ':compBlog', ':compPaccounts', ':compProject'
+include  ':compTabMine', ':compTabHome', ':compTabRecommendation'
+
+//debug层
+include  ':debugModule'
 
 //壳层
 include ':app'
