@@ -17,7 +17,10 @@ import android.widget.TextView
 import com.effective.android.base.view.tagdrag.ClickToDeleteItemListenerImpl
 import com.effective.android.base.view.tagdrag.DragAdapter
 import com.effective.android.base.view.tagdrag.DragFlowLayout
+import com.effective.android.base.view.tagdrag.DragFlowLayout.DRAG_STATE_DRAGGING
+import com.effective.android.base.view.tagdrag.DragFlowLayout.DRAG_STATE_IDLE
 import com.effective.android.base.view.tagdrag.IViewObserver
+import com.effective.android.component.paccounts.bean.WarpChapter
 
 
 class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
@@ -25,6 +28,7 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
     private var fetchProjectDisposable: Disposable? = null
     val articleFragments: HashMap<Int, ArticleFragment> = HashMap()
     var projects: List<Chapter>? = null
+    var tags: MutableList<WarpChapter> = mutableListOf()
 
     override fun getViewModel(): Class<PaccountsViewModel> = PaccountsViewModel::class.java
 
@@ -41,7 +45,13 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
         tabMore.setOnClickListener {
             dragContainer.visibility = View.VISIBLE
         }
-        dragLayout.setOnItemClickListener(object : ClickToDeleteItemListenerImpl(R.id.close) {
+    }
+
+    private fun initDragData(data : List<Chapter>){
+        dragContainer.setOnClickListener {
+
+        }
+        dragLayoutDone.setOnItemClickListener(object : ClickToDeleteItemListenerImpl(R.id.close) {
 
             override fun performClick(dragFlowLayout: DragFlowLayout?, child: View?, event: MotionEvent?, dragState: Int): Boolean {
                 return super.performClick(dragFlowLayout, child, event, dragState)
@@ -49,20 +59,22 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
 
             override fun onDeleteSuccess(dfl: DragFlowLayout?, child: View?, data: Any?) {
                 super.onDeleteSuccess(dfl, child, data)
+                val warpChapter = child?.tag as WarpChapter
+                if(warpChapter.selected){
+                    warpChapter.selected = false
+                }
+                dragLayoutTodo.dragItemManager.addItem(data)
             }
         })
-    }
-
-    private fun initDragData(data : List<Chapter>){
-        //设置筛选框
-        dragLayout.setDragAdapter(object : DragAdapter<Chapter>() {
+        dragLayoutDone.setDragAdapter(object : DragAdapter<WarpChapter>() {
 
             override fun getItemLayoutId(): Int  = R.layout.paccounts_item_drag_layout
 
-            override fun onBindData(itemView: View?, dragState: Int, data: Chapter?) {
+            override fun onBindData(itemView: View?, dragState: Int, data: WarpChapter?) {
+                itemView?.isSelected = true
                 itemView?.tag = data
                 val tv = itemView?.findViewById(R.id.content) as TextView
-                tv.text = data?.name
+                tv.text = data?.data?.name
                 //iv_close是关闭按钮。只有再非拖拽空闲的情况下才显示
                 val closeView = itemView?.findViewById(R.id.close) as View
                 closeView.visibility = if (dragState !== DragFlowLayout.DRAG_STATE_IDLE)
@@ -71,28 +83,56 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
                     View.INVISIBLE
             }
 
-            override fun getData(itemView: View?): Chapter = itemView?.tag as Chapter
+            override fun getData(itemView: View?): WarpChapter = itemView?.tag as WarpChapter
         })
-
-        //预存指定个数的Item. 这些Item view会反复使用，避免重复创建, 默认10个
-        dragLayout.prepareItemsByCount(10)
-        //设置拖拽状态监听器
-        dragLayout.setOnDragStateChangeListener { dfl, dragState ->
-            Log.i("paaa", "on drag state change : dragState = $dragState")
+        dragLayoutDone.setOnDragStateChangeListener { dfl, dragState ->
+            finish.text = if(dragState == DRAG_STATE_IDLE){
+                "编辑"
+            }else{
+                "完成"
+            }
+            finish.isEnabled = dragState != DRAG_STATE_DRAGGING
         }
-        //添加view观察者
-        dragLayout.addViewObserver(object : IViewObserver {
-            override fun onAddView(child: View, index: Int) {
-                 Log.i("paaa", "onAddView index = $index");
+        finish.setOnClickListener {
+            if(dragLayoutDone.dragState == DRAG_STATE_IDLE){
+                dragLayoutDone.beginDrag()
+                finish.text = "完成"
+            }else{
+                dragLayoutDone.finishDrag()
+                finish.text = "编辑"
+            }
+        }
+
+        dragLayoutTodo.setDragAdapter(object : DragAdapter<WarpChapter>() {
+
+            override fun getItemLayoutId(): Int  = R.layout.paccounts_item_drag_layout
+
+            override fun onBindData(itemView: View?, dragState: Int, data: WarpChapter?) {
+                itemView?.isSelected = false
+                itemView?.tag = data
+                val tv = itemView?.findViewById(R.id.content) as TextView
+                tv.text = data?.data?.name
+                //iv_close是关闭按钮。只有再非拖拽空闲的情况下才显示
+                val closeView = itemView?.findViewById(R.id.close) as View
+                closeView.visibility = View.INVISIBLE
+                itemView.setOnClickListener {
+                    if(data != null && !data.selected){
+                        data?.selected = true
+                        dragLayoutTodo.dragItemManager.removeItem(data)
+                        dragLayoutDone.dragItemManager.addItem(data)
+                    }
+                }
             }
 
-            override fun onRemoveView(child: View, index: Int) {
-                Log.i("paaa", "onRemoveView  index = $index");
-            }
+            override fun getData(itemView: View?): WarpChapter = itemView?.tag as WarpChapter
         })
+
+        dragLayoutTodo.setDraggable(false)
 
         for(item in data){
-            dragLayout.dragItemManager.addItem(item)
+            val warpChapter = WarpChapter(item)
+            tags.add(warpChapter)
+            dragLayoutDone.dragItemManager.addItem(warpChapter)
         }
     }
 

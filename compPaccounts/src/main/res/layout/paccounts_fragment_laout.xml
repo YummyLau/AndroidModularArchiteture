@@ -11,32 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/tabMore"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:padding="7dp"
+            android:src="@drawable/paccounts_ic_down_more" />
+
         <com.effective.android.base.view.tab.SuperTabLayout
             android:id="@+id/tabLayout"
-            android:layout_marginEnd="50dp"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="10.5dp"
+            android:layout_marginEnd="50dp"
             app:super_tab_boldSelected="true"
             app:super_tab_selectTextColor="@color/colorTextSecondary"
             app:super_tab_tabPadding="5dp"
             app:super_tab_tabTextColor="@color/colorTextThird"
             app:super_tab_tabTextSize="15sp"
             app:super_tab_tabTextSizeSelected="18sp"
-            tools:background="@color/colorPrimary"
-            app:super_tab_textSizeTransition="true" />
-
-        <ImageView
-            android:id="@+id/tabMore"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:padding="7dp"
-            android:src="@drawable/paccounts_ic_down_more"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            app:super_tab_textSizeTransition="true"
+            tools:background="@color/colorPrimary" />
 
     </RelativeLayout>
-
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/articlePager"
@@ -44,22 +43,60 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tabContainer" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/dragContainer"
-        android:background="@color/windowBackground"
-        android:visibility="gone"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/windowBackground"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/doneTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已添加列表"/>
+
+        <TextView
+            android:id="@+id/finish"
+            android:layout_width="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorThemeText"
+            android:gravity="center"
+            android:layout_height="50dp"
+            android:background="@drawable/base_se_btn"
+            android:layout_alignParentRight="true"
+            android:text="编辑" />
 
         <com.effective.android.base.view.tagdrag.DragFlowLayout
-            android:id="@+id/dragLayout"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/doneTitle"
+            android:id="@+id/dragLayoutDone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:itemSpacing="5dp"
-            app:lineSpacing="5dp"/>
+            app:lineSpacing="5dp" />
 
-    </LinearLayout>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/toDoTitle"
+            android:layout_below="@+id/dragLayoutDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未添加列表"/>
+
+
+        <com.effective.android.base.view.tagdrag.DragFlowLayout
+            android:id="@+id/dragLayoutTodo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toDoTitle"
+            app:itemSpacing="5dp"
+            app:lineSpacing="5dp" />
+
+    </RelativeLayout>
 
 
     <com.effective.android.base.view.PageStateView
