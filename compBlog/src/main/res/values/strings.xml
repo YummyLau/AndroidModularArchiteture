@@ -1,8 +1,8 @@
 <resources>
     <string name="blog_app_name">博文</string>
-    <string name="blog_card_title_append">“%s”</string>
-    <string name="blog_card_create_time_prefix">发布于 %s</string>
-    <string name="blog_card_share_time_prefix">分享于 %s</string>
+    <string name="blog_card_title_append">“%1$s”</string>
+    <string name="blog_card_create_time_prefix">发布于 %1$s</string>
+    <string name="blog_card_share_time_prefix">分享于 %1$s</string>
     <string name="blog_card_content_expand">&lt;了解更多&gt;</string>
-    <string name="blog_card_avatar_path">blog_ic_avatar_default_%s</string>
+    <string name="blog_card_avatar_path">blog_ic_avatar_default_%1$s</string>
 </resources>

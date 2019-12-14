@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.debug">
 
     <application
@@ -7,7 +8,8 @@
         android:allowBackup="true"
         android:icon="@drawable/blog_ic_launcher"
         android:label="@string/blog_app_name"
-        android:theme="@style/BaseAppTheme">
+        android:theme="@style/BaseAppTheme"
+        tools:replace="android:label">
         <activity android:name=".component.blog.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

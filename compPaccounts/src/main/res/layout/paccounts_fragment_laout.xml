@@ -44,11 +44,23 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tabContainer" />
 
-    <com.effective.android.base.view.tagdrag.DragFlowLayout
-        android:id="@+id/dragLayout"
+    <LinearLayout
+        android:id="@+id/dragContainer"
+        android:background="@color/windowBackground"
         android:visibility="gone"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <com.effective.android.base.view.tagdrag.DragFlowLayout
+            android:id="@+id/dragLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:itemSpacing="5dp"
+            app:lineSpacing="5dp"/>
+
+    </LinearLayout>
+
 
     <com.effective.android.base.view.PageStateView
         android:id="@+id/pageState"

@@ -2,7 +2,6 @@ package com.effective.android.base.view.tagdrag;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,12 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlowLayout extends ViewGroup {
+
     private static final String TAG = "FlowLayout";
-    private static final boolean sDebug = true;
+    private static final boolean sDebug = false;
     private int mMaxLine = Integer.MAX_VALUE;
     private boolean mHasMoreByMaxLine;
-    private int mHorizontalSpace;
-    private int mVerticalSpace;
 
     public FlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -47,8 +45,6 @@ public class FlowLayout extends ViewGroup {
         if (attrs != null) {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FlowLayout);
             this.mMaxLine = a.getInt(a.getIndex(R.styleable.FlowLayout_flowLayout_maxLine), Integer.MAX_VALUE);
-            this.mHorizontalSpace = a.getDimensionPixelSize(a.getIndex(R.styleable.FlowLayout_flowLayout_horizontal_space), 0);
-            this.mVerticalSpace = a.getDimensionPixelSize(a.getIndex(R.styleable.FlowLayout_flowLayout_vertical_space), 0);
             a.recycle();
         }
     }
@@ -61,32 +57,20 @@ public class FlowLayout extends ViewGroup {
         }
     }
 
-    public int getMaxLine() {
+    public int getMaxLine(){
         return mMaxLine;
     }
 
     /**
      * has more line by the max line.
-     *
-     * @return true if has more line
+     * @return  true if has more line
      */
-    public boolean hasMoreLine() {
+    public boolean hasMoreLine(){
         return mHasMoreByMaxLine;
     }
 
-    @Deprecated
-    public int getRealLineCount() {
+    public int getRealLineCount(){
         return mLineHeights.size();
-    }
-
-    public int getExactLineCount() {
-        return mLineHeights.size();
-    }
-
-    @Override
-    protected void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        //TODO
     }
 
     @Override
@@ -119,83 +103,85 @@ public class FlowLayout extends ViewGroup {
         int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
         mHasMoreByMaxLine = false;
+
         if (sDebug)
             Log.e(TAG, sizeWidth + "," + sizeHeight);
+
         // 如果是warp_content情况下，记录宽和高
-        int maxWidth = 0;
+        int width = 0;
         int height = 0;
-
-/**
- * 记录每一行的宽度，width不断取最大宽度
- */
+        /**
+         * 记录每一行的宽度，width不断取最大宽度
+         */
         int lineWidth = 0;
-
-/**
- * 每一行的高度，累加至height
- */
+        /**
+         * 每一行的高度，累加至height
+         */
         int lineHeight = 0;
-        int childCount = getChildCount();
+
+        int cCount = getChildCount();
+
         int rows = 1;
         boolean limited = false;  //限制多行
+
         // 遍历每个子元素
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 0; i < cCount; i++) {
             View child = getChildAt(i);
             // 测量每一个child的宽和高
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
             // 得到child的lp
-            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+            MarginLayoutParams lp = (MarginLayoutParams) child
+                    .getLayoutParams();
             // 当前子空间实际占据的宽度
-            int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+            int childWidth = child.getMeasuredWidth() + lp.leftMargin
+                    + lp.rightMargin;
             // 当前子空间实际占据的高度
-            int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
-
-/**
- * 如果加入当前child，则超出最大宽度，则的到目前最大宽度给width，类加height 然后开启新行
- */
-            if (lineWidth + childWidth + mHorizontalSpace > sizeWidth) {
-                // 叠加当前高度，
-                height += lineHeight;
-                if (!limited) {
-                    maxWidth = Math.max(lineWidth, childWidth);// 取最大的
-                    lineWidth = childWidth;  //重新开启新行，开始记录
+            int childHeight = child.getMeasuredHeight() + lp.topMargin
+                    + lp.bottomMargin;
+            /**
+             * 如果加入当前child，则超出最大宽度，则的到目前最大宽度给width，类加height 然后开启新行
+             */
+            if (lineWidth + childWidth > sizeWidth) {
+                if(!limited) {
+                    width = Math.max(lineWidth, childWidth);// 取最大的
+                    lineWidth = childWidth; // 重新开启新行，开始记录
+                    // 叠加当前高度，
+                    height += lineHeight;
                     // 开启记录下一行的高度
                     lineHeight = childHeight;
-                    rows++;
-                    //check max line count
+
+                    rows ++;
                     if (rows == mMaxLine) {
                         limited = true;
                     }
                     mHasMoreByMaxLine = false;
-                } else {
-                    maxWidth = Math.max(maxWidth, lineWidth);
+                }else{
+                    width = Math.max(width, lineWidth);
+                    height += lineHeight;
                     mHasMoreByMaxLine = true;
                     break;
                 }
             } else {
-                //否则累加值lineWidth,lineHeight取最大值
-                lineWidth += childWidth + mHorizontalSpace;
+                //否则累加值lineWidth,lineHeight取最大高度
+                lineWidth += childWidth;
                 lineHeight = Math.max(lineHeight, childHeight);
             }
             // 如果是最后一个，则将当前记录的最大宽度和当前lineWidth做比较
-            if (i == childCount - 1) {
-                maxWidth = Math.max(maxWidth, lineWidth);
+            if (i == cCount - 1) {
+                width = Math.max(width, lineWidth);
                 height += lineHeight;
             }
         }
         setMeasuredDimension(
-                (modeWidth == MeasureSpec.EXACTLY) ? sizeWidth : maxWidth,
+                (modeWidth == MeasureSpec.EXACTLY) ? sizeWidth : width,
                 (modeHeight == MeasureSpec.EXACTLY) ? sizeHeight : height);
+
     }
 
     /**
      * 存储所有的View，按行记录
-     * <p>
-     * 记录每一行的最大高度
-     * <p>
-     * 如果不需要换行，则累加
      */
     private List<List<View>> mAllViews = new ArrayList<List<View>>();
-
     /**
      * 记录每一行的最大高度
      */
@@ -205,7 +191,9 @@ public class FlowLayout extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         mAllViews.clear();
         mLineHeights.clear();
+
         int width = getWidth();
+
         int lineWidth = 0;
         int lineHeight = 0;
         // 存储每一行所有的childView
@@ -218,6 +206,7 @@ public class FlowLayout extends ViewGroup {
                     .getLayoutParams();
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
+
             // 如果已经需要换行
             if (childWidth + lp.leftMargin + lp.rightMargin + lineWidth > width) {
                 // 记录这一行所有的View以及最大高度
@@ -227,10 +216,9 @@ public class FlowLayout extends ViewGroup {
                 lineWidth = 0;// 重置行宽
                 lineViews = new ArrayList<View>();
             }
-
-/**
- * 如果不需要换行，则累加
- */
+            /**
+             * 如果不需要换行，则累加
+             */
             lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
             lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
                     + lp.bottomMargin);
@@ -239,6 +227,7 @@ public class FlowLayout extends ViewGroup {
         // 记录最后一行
         mLineHeights.add(lineHeight);
         mAllViews.add(lineViews);
+
         int left = 0;
         int top = 0;
         // 得到总行数
@@ -248,10 +237,12 @@ public class FlowLayout extends ViewGroup {
             lineViews = mAllViews.get(i);
             // 当前行的最大高度
             lineHeight = mLineHeights.get(i);
+
             if (sDebug) {
                 Log.e(TAG, "第" + i + "行 ：" + lineViews.size() + " , " + lineViews);
                 Log.e(TAG, "第" + i + "行， ：" + lineHeight);
             }
+
             // 遍历当前行所有的View
             for (int j = 0; j < lineViews.size(); j++) {
                 View child = lineViews.get(j);
@@ -260,20 +251,25 @@ public class FlowLayout extends ViewGroup {
                 }
                 MarginLayoutParams lp = (MarginLayoutParams) child
                         .getLayoutParams();
+
                 //计算childView的left,top,right,bottom
                 int lc = left + lp.leftMargin;
                 int tc = top + lp.topMargin;
                 int rc = lc + child.getMeasuredWidth();
                 int bc = tc + child.getMeasuredHeight();
+
                 if (sDebug)
                     Log.e(TAG, child + " , l = " + lc + " , t = " + t + " , r ="
                             + rc + " , b = " + bc);
+
                 child.layout(lc, tc, rc, bc);
+
                 left += child.getMeasuredWidth() + lp.rightMargin
                         + lp.leftMargin;
             }
             left = 0;
             top += lineHeight;
         }
+
     }
 }
