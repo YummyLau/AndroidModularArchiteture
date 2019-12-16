@@ -127,7 +127,7 @@ public class SuperTabLayout extends HorizontalScrollView{
     private ArrayList<Tab> mTabs = new ArrayList<>();
     private ArrayList<Integer> mIndicatorLeftList = new ArrayList<>();
     private ArrayList<Integer> mIndicatorWidthList = new ArrayList<>();
-    
+
 
     private OnTabSelectedListener mOnTabSelectedListener;
     private OnTabClickListener mCustomClickListener;
@@ -290,7 +290,7 @@ public class SuperTabLayout extends HorizontalScrollView{
             @Override
             public void onPageSelected(int position) {
                 final int beforePosition = selectedPosition;
-                selectTab(position);
+                selectTab(position,false);
                 if (mOnTabSelectedListener != null) {
                     mOnTabSelectedListener.onTabSelected(getTabAt(position));
                     if (position != beforePosition) {
@@ -388,7 +388,7 @@ public class SuperTabLayout extends HorizontalScrollView{
             mTabWidth = getMeasuredWidth() / tabCount;
             mTabPadding = 0;
         } else if (getLayoutParams() != null) {
-            if (getLayoutParams().width == ViewGroup.LayoutParams.MATCH_PARENT) {     
+            if (getLayoutParams().width == ViewGroup.LayoutParams.MATCH_PARENT) {
                 mTabWidth = ScreenUtils.getDisplayWidth(getContext()) / tabCount;
                 mTabPadding = 0;
             } else if (getLayoutParams().width > 0) {
@@ -643,30 +643,42 @@ public class SuperTabLayout extends HorizontalScrollView{
         }
     }
 
-    public void selectTab(int index) {
+    public void selectTab(int index,boolean updateSize) {
         if (index < 0 || index >= mTabs.size()) {
             return;
         }
         if (index == selectedPosition) {
             return;
         }
-        unSelectTab(selectedPosition);
+        unSelectTab(selectedPosition,updateSize);
         Tab tab = mTabs.get(index);
-        setSelectedStyle(tab.textView);
+        setSelectedStyle(tab.textView,updateSize);
         tab.isSelected = true;
         selectedPosition = index;
     }
 
-    private void unSelectTab(int index) {
+    public void selectTab(int index) {
+        selectTab(index,true);
+    }
+
+    private void unSelectTab(int index,boolean updateSize) {
         if (index < 0 || index >= mTabs.size()) {
             return;
         }
         Tab tab = mTabs.get(index);
-        setNormalStyle(tab.textView);
+        setNormalStyle(tab.textView,updateSize);
         tab.isSelected = false;
     }
 
+    private void unSelectTab(int index) {
+        unSelectTab(index,true);
+    }
+
     protected void setNormalStyle(TextView textView) {
+        setNormalStyle(textView,true);
+    }
+
+    protected void setNormalStyle(TextView textView,boolean updateSizes) {
         textView.setSelected(false);
         if (mIsBoldText) {
             Paint paint = textView.getPaint();
@@ -679,14 +691,13 @@ public class SuperTabLayout extends HorizontalScrollView{
                 textView.setTypeface(mTypefaceLight);
             }
         }
-        if (!mEnableTextSizeTransition && mTextSize != 0 && mSelectedTextSize != mTextSize) {
+        if (updateSizes && mTextSize != 0 && mSelectedTextSize != mTextSize) {
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
         }
         textView.setTextColor(mNormalTextColor);
-
     }
 
-    protected void setSelectedStyle(TextView textView) {
+    protected void setSelectedStyle(TextView textView,boolean updateSize) {
         textView.setSelected(true);
         if (mIsBoldText) {
             Paint paint = textView.getPaint();
@@ -699,10 +710,14 @@ public class SuperTabLayout extends HorizontalScrollView{
                 textView.setTypeface(mTypefaceNormal);
             }
         }
-        if (!mEnableTextSizeTransition && mSelectedTextSize != 0 && mSelectedTextSize != mTextSize) {
+        if (updateSize && mSelectedTextSize != 0 && mSelectedTextSize != mTextSize) {
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mSelectedTextSize);
         }
         textView.setTextColor(mSelectedTextColor);
+    }
+
+    protected void setSelectedStyle(TextView textView) {
+        setSelectedStyle(textView,true);
     }
 
     public void reCalcTabWidth() {
@@ -853,7 +868,7 @@ public class SuperTabLayout extends HorizontalScrollView{
     public void setIndicatorDrawer(IndicatorDrawer indicatorDrawer) {
         this.mIndicatorDrawer = indicatorDrawer;
     }
-    
+
 
     public void updateTabTextColors(Integer normalTextColor, Integer selectTextColor) {
         if (normalTextColor != null) {
