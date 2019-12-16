@@ -6,6 +6,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.Nullable
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import com.effective.android.base.R
 
 object ResourceUtils {
 
@@ -21,4 +22,8 @@ object ResourceUtils {
     @JvmStatic
     fun getString(context: Context, @StringRes string: Int) = context.getString(string)
 
+    @JvmStatic
+    fun formatString(context: Context,@StringRes string: Int, targetSting:String ): String{
+        return String.format(context.getString(string), targetSting.replace("%","%%",false))
+    }
 }

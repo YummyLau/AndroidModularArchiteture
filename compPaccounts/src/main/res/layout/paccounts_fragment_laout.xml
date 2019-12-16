@@ -48,8 +48,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/windowBackground"
-        android:padding="10dp"
         android:orientation="vertical"
+        android:padding="10dp"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -57,38 +57,49 @@
             android:id="@+id/doneTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已添加列表"/>
+            android:textSize="15sp"
+            android:textColor="@color/colorTextPrimary"
+            android:textStyle="bold"
+            android:text="@string/paccounts_list_edit_done" />
 
         <TextView
             android:id="@+id/finish"
             android:layout_width="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/colorThemeText"
-            android:gravity="center"
-            android:layout_height="50dp"
-            android:background="@drawable/base_se_btn"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="编辑" />
+            android:background="@drawable/base_se_btn"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="5dp"
+            android:text="@string/paccounts_edit"
+            android:textColor="@color/colorThemeText"
+            android:textSize="15sp" />
 
         <com.effective.android.base.view.tagdrag.DragFlowLayout
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/doneTitle"
             android:id="@+id/dragLayoutDone"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/doneTitle"
+            android:layout_marginTop="10dp"
             app:itemSpacing="5dp"
             app:lineSpacing="5dp" />
 
         <TextView
-            android:layout_marginTop="10dp"
             android:id="@+id/toDoTitle"
-            android:layout_below="@+id/dragLayoutDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="未添加列表"/>
+            android:layout_below="@+id/dragLayoutDone"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/colorTextPrimary"
+            android:textStyle="bold"
+            android:text="@string/paccounts_list_to_edit" />
 
 
         <com.effective.android.base.view.tagdrag.DragFlowLayout
+            android:layout_marginTop="10dp"
             android:id="@+id/dragLayoutTodo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

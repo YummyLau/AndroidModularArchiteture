@@ -1,3 +1,7 @@
 <resources>
-    <string name="accounts_app_name">公众号</string>
+    <string name="paccounts_app_name">公众号</string>
+    <string name="paccounts_list_edit_done">已添加列表</string>
+    <string name="paccounts_list_to_edit">未添加列表</string>
+    <string name="paccounts_edit">编辑</string>
+    <string name="paccounts_finfish">完成</string>
 </resources>

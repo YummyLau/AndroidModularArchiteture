@@ -11,7 +11,6 @@ import com.effective.android.component.paccounts.vm.PaccountsViewModel
 import com.effective.android.component.blog.bean.Chapter
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.paccounts_fragment_laout.*
-import android.util.Log
 import android.widget.TextView
 
 import com.effective.android.base.view.tagdrag.ClickToDeleteItemListenerImpl
@@ -19,16 +18,17 @@ import com.effective.android.base.view.tagdrag.DragAdapter
 import com.effective.android.base.view.tagdrag.DragFlowLayout
 import com.effective.android.base.view.tagdrag.DragFlowLayout.DRAG_STATE_DRAGGING
 import com.effective.android.base.view.tagdrag.DragFlowLayout.DRAG_STATE_IDLE
-import com.effective.android.base.view.tagdrag.IViewObserver
 import com.effective.android.component.paccounts.bean.WarpChapter
 
 
-class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
+class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
 
     private var fetchProjectDisposable: Disposable? = null
     val articleFragments: HashMap<Int, ArticleFragment> = HashMap()
     var projects: List<Chapter>? = null
     var tags: MutableList<WarpChapter> = mutableListOf()
+    val defaultSelectedSize = 5
+    val defaultDisableDragIndex = 0
 
     override fun getViewModel(): Class<PaccountsViewModel> = PaccountsViewModel::class.java
 
@@ -38,16 +38,13 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
         super.onActivityCreated(savedInstanceState)
         pageState.toLoading("正在加载")
         initView()
-        initData()
+        fetchData()
     }
 
-    private fun initView(){
+    private fun initView() {
         tabMore.setOnClickListener {
             dragContainer.visibility = View.VISIBLE
         }
-    }
-
-    private fun initDragData(data : List<Chapter>){
         dragContainer.setOnClickListener {
 
         }
@@ -60,7 +57,7 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
             override fun onDeleteSuccess(dfl: DragFlowLayout?, child: View?, data: Any?) {
                 super.onDeleteSuccess(dfl, child, data)
                 val warpChapter = child?.tag as WarpChapter
-                if(warpChapter.selected){
+                if (warpChapter.selected) {
                     warpChapter.selected = false
                 }
                 dragLayoutTodo.dragItemManager.addItem(data)
@@ -68,7 +65,7 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
         })
         dragLayoutDone.setDragAdapter(object : DragAdapter<WarpChapter>() {
 
-            override fun getItemLayoutId(): Int  = R.layout.paccounts_item_drag_layout
+            override fun getItemLayoutId(): Int = R.layout.paccounts_item_drag_layout
 
             override fun onBindData(itemView: View?, dragState: Int, data: WarpChapter?) {
                 itemView?.isSelected = true
@@ -77,7 +74,7 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
                 tv.text = data?.data?.name
                 //iv_close是关闭按钮。只有再非拖拽空闲的情况下才显示
                 val closeView = itemView?.findViewById(R.id.close) as View
-                closeView.visibility = if (dragState !== DragFlowLayout.DRAG_STATE_IDLE)
+                closeView.visibility = if (dragState !== DragFlowLayout.DRAG_STATE_IDLE && data?.draggable!!)
                     View.VISIBLE
                 else
                     View.INVISIBLE
@@ -86,26 +83,29 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
             override fun getData(itemView: View?): WarpChapter = itemView?.tag as WarpChapter
         })
         dragLayoutDone.setOnDragStateChangeListener { dfl, dragState ->
-            finish.text = if(dragState == DRAG_STATE_IDLE){
-                "编辑"
-            }else{
-                "完成"
+            finish.text = if (dragState == DRAG_STATE_IDLE) {
+                context?.getString(R.string.paccounts_edit)
+            } else {
+                context?.getString(R.string.paccounts_finfish)
             }
             finish.isEnabled = dragState != DRAG_STATE_DRAGGING
         }
+
         finish.setOnClickListener {
-            if(dragLayoutDone.dragState == DRAG_STATE_IDLE){
+            if (dragLayoutDone.dragState == DRAG_STATE_IDLE) {
                 dragLayoutDone.beginDrag()
-                finish.text = "完成"
-            }else{
+                finish.text = context?.getString(R.string.paccounts_finfish)
+            } else {
                 dragLayoutDone.finishDrag()
-                finish.text = "编辑"
+                finish.text = context?.getString(R.string.paccounts_edit)
+                dragContainer.visibility = View.GONE
+                initPagerData(dragLayoutDone.dragItemManager.getItems())
             }
         }
 
         dragLayoutTodo.setDragAdapter(object : DragAdapter<WarpChapter>() {
 
-            override fun getItemLayoutId(): Int  = R.layout.paccounts_item_drag_layout
+            override fun getItemLayoutId(): Int = R.layout.paccounts_item_drag_layout
 
             override fun onBindData(itemView: View?, dragState: Int, data: WarpChapter?) {
                 itemView?.isSelected = false
@@ -116,7 +116,7 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
                 val closeView = itemView?.findViewById(R.id.close) as View
                 closeView.visibility = View.INVISIBLE
                 itemView.setOnClickListener {
-                    if(data != null && !data.selected){
+                    if (data != null && !data.selected) {
                         data?.selected = true
                         dragLayoutTodo.dragItemManager.removeItem(data)
                         dragLayoutDone.dragItemManager.addItem(data)
@@ -126,17 +126,10 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
 
             override fun getData(itemView: View?): WarpChapter = itemView?.tag as WarpChapter
         })
-
         dragLayoutTodo.setDraggable(false)
-
-        for(item in data){
-            val warpChapter = WarpChapter(item)
-            tags.add(warpChapter)
-            dragLayoutDone.dragItemManager.addItem(warpChapter)
-        }
     }
 
-    private fun initData() {
+    private fun fetchData() {
         pageState.visibility = View.VISIBLE
         fetchProjectDisposable = viewModel.getPaccounts()
                 .subscribe({
@@ -144,44 +137,57 @@ class PaccountsFragment: BaseVmFragment<PaccountsViewModel>() {
                         if (!it.data.isNullOrEmpty()) {
                             pageState.visibility = View.GONE
                             projects = it.data!!
-
                             initDragData(projects!!)
-                            //设置tab
-                            articlePager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
-
-                                override fun getItem(position: Int): Fragment {
-                                    var fragment: ArticleFragment? = articleFragments[position]
-                                    if (fragment == null) {
-                                        fragment = ArticleFragment(projects!![position])
-                                        articleFragments[position] = fragment
-                                    }
-                                    return fragment
-                                }
-
-                                override fun getCount(): Int = projects!!.size
-
-                                override fun getPageTitle(position: Int): CharSequence? = projects!![position].name
-                            }
-                            tabLayout.setupWithViewPager(articlePager)
                         } else {
                             pageState.toEmpty("当前页面没有项目", "尝试刷新", Runnable {
                                 pageState.toLoading("正在加载")
-                                initData()
+                                fetchData()
                             })
                         }
                     } else {
                         pageState.toEmpty("网络请求失败", "重新刷新", Runnable {
                             pageState.toLoading("正在加载")
-                            initData()
+                            fetchData()
                         })
                     }
 
                 }, {
                     pageState.toEmpty("网络请求失败", "重新刷新", Runnable {
                         pageState.toLoading("正在加载")
-                        initData()
+                        fetchData()
                     })
                 })
+    }
+
+    private fun initDragData(data: List<Chapter>) {
+        for ((startIndex, item) in data.withIndex()) {
+            val warpChapter = WarpChapter(item)
+            warpChapter.draggable = startIndex != defaultDisableDragIndex
+            warpChapter.selected = startIndex < defaultSelectedSize
+            tags.add(warpChapter)
+            dragLayoutDone.dragItemManager.addItem(warpChapter)
+        }
+        initPagerData(dragLayoutDone.dragItemManager.getItems())
+    }
+
+    private fun initPagerData(data: List<WarpChapter>){
+        //设置tab
+        articlePager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
+
+            override fun getItem(position: Int): Fragment {
+                var fragment: ArticleFragment? = articleFragments[position]
+                if (fragment == null) {
+                    fragment = ArticleFragment(data[position].data)
+                    articleFragments[position] = fragment
+                }
+                return fragment
+            }
+
+            override fun getCount(): Int = data.size
+
+            override fun getPageTitle(position: Int): CharSequence? = data[position].data.name
+        }
+        tabLayout.setupWithViewPager(articlePager)
     }
 
     override fun onDestroy() {

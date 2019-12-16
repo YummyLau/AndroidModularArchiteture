@@ -4,6 +4,7 @@ import android.text.*
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.effective.android.base.util.ResourceUtils
 import com.effective.android.base.view.Action
 import com.effective.android.base.view.Callback
 import com.effective.android.base.view.SuperMovementMethod
@@ -17,7 +18,7 @@ class ArticleHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BlogArticle>
 
     override fun bindData(data: BlogArticle, position: Int, payloads: List<Any>) {
 
-        itemView.title.text = String.format(context.getString(R.string.blog_card_title_append, data.title))
+        itemView.title.text = ResourceUtils.formatString(context,R.string.blog_card_title_append, data.title)
         val desc = Html.fromHtml(data.desc)
         itemView.content.visibility = if (TextUtils.isEmpty(desc)) {
             View.GONE
