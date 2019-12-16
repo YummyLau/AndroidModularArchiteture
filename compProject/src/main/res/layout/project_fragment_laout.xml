@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/projectRoot"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,7 +12,7 @@
         android:id="@+id/articlePager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tabLayout" />
+        android:layout_below="@+id/tabContainer" />
 
     <com.effective.android.base.view.PageStateView
         android:id="@+id/pageState"
@@ -18,17 +20,35 @@
         android:layout_height="match_parent" />
 
 
-    <com.effective.android.base.view.tab.SuperTabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="10.5dp"
-        app:super_tab_boldSelected="true"
-        app:super_tab_selectTextColor="@color/colorTextSecondary"
-        app:super_tab_tabPadding="5dp"
-        app:super_tab_tabTextColor="@color/colorTextThird"
-        app:super_tab_tabTextSize="15sp"
-        app:super_tab_tabTextSizeSelected="18sp"
-        app:super_tab_textSizeTransition="true" />
+    <RelativeLayout
+        android:id="@+id/tabContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/tabMore"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:padding="7dp"
+            android:src="@drawable/project_ic_down_more" />
+
+        <com.effective.android.base.view.tab.SuperTabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="10.5dp"
+            android:layout_marginEnd="50dp"
+            app:super_tab_boldSelected="true"
+            app:super_tab_selectTextColor="@color/colorTextSecondary"
+            app:super_tab_tabPadding="5dp"
+            app:super_tab_tabTextColor="@color/colorTextThird"
+            app:super_tab_tabTextSize="15sp"
+            app:super_tab_tabTextSizeSelected="18sp"
+            app:super_tab_textSizeTransition="true"
+            tools:background="@color/colorPrimary" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -29,7 +29,7 @@ class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
     val defaultSelectedSize = 5
     val defaultDisableDragIndex = 0
     private var chapterAdapter: ChapterAdapter? = null
-    private var adapterView: View? = null;
+    private var adapterView: View? = null
 
     override fun getViewModel(): Class<PaccountsViewModel> = PaccountsViewModel::class.java
 
