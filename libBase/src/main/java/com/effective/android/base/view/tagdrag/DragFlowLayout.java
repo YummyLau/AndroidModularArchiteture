@@ -118,6 +118,36 @@ public class DragFlowLayout extends FlowLayout implements IViewManager {
     private boolean mRequestedDisallowIntercept;
     private boolean mPendingDrag;
 
+    @Override
+    public int getLineSpacing() {
+        return super.getLineSpacing();
+    }
+
+    @Override
+    public void setLineSpacing(int lineSpacing) {
+        super.setLineSpacing(lineSpacing);
+    }
+
+    @Override
+    public int getItemSpacing() {
+        return super.getItemSpacing();
+    }
+
+    @Override
+    public void setItemSpacing(int itemSpacing) {
+        super.setItemSpacing(itemSpacing);
+    }
+
+    @Override
+    public boolean isSingleLine() {
+        return super.isSingleLine();
+    }
+
+    @Override
+    public void setSingleLine(boolean singleLine) {
+        super.setSingleLine(singleLine);
+    }
+
     /**
      * the drag state change listener
      * if {@link DragFlowLayout #setDraggable(false)} is called, this listener will have nothing effect.

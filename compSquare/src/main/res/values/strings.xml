@@ -4,5 +4,10 @@
     <string name="square_card_create_time_prefix">发布于 %1$s</string>
     <string name="square_card_share_time_prefix">分享于 %1$s</string>
     <string name="square_card_content_expand">&lt;了解更多&gt;</string>
-    <string name="square_card_avatar_path">blog_ic_avatar_default_%1$s</string>
+    <string name="square_card_avatar_path">square_ic_avatar_default_%1$s</string>
+
+    <string name="square_list_edit_done">已添加列表</string>
+    <string name="square_list_to_edit">未添加列表</string>
+    <string name="square_edit">编辑</string>
+    <string name="square_finfish">完成</string>
 </resources>

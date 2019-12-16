@@ -1,0 +1,203 @@
+package com.effective.android.component.square.view
+
+import android.annotation.TargetApi
+import android.content.Context
+import android.graphics.Typeface.*
+import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
+import android.widget.RelativeLayout
+import android.widget.TextView
+import com.effective.android.base.util.DisplayUtils
+import com.effective.android.base.util.ResourceUtils
+import com.effective.android.base.view.tagdrag.ClickToDeleteItemListenerImpl
+import com.effective.android.base.view.tagdrag.DragAdapter
+import com.effective.android.base.view.tagdrag.DragFlowLayout
+import com.effective.android.component.square.R
+import com.effective.android.component.square.bean.DraggableChapter
+import com.effective.android.component.square.bean.SelectableChapter
+import com.effective.android.component.square.listener.OnEditListener
+
+
+/**
+ * 章节选择器，用于用户自主选择章节，可复用于任何文章列表
+ * created by yummylau on 2019/12/16
+ */
+class ChapterSelectView : RelativeLayout {
+
+    private lateinit var dontTitleView: TextView
+    private lateinit var dontDragFlowLayout: DragFlowLayout
+    private lateinit var todoTitleView: TextView
+    private lateinit var todoDragFlowLayout: DragFlowLayout
+    lateinit var action: TextView
+    private var listenter: OnEditListener? = null
+
+    constructor(context: Context) : super(context) {
+        initView(context)
+    }
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        initView(context)
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        initView(context)
+    }
+
+    @TargetApi(21)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
+        initView(context)
+    }
+
+    private fun initView(context: Context) {
+        dontTitleView = TextView(context)
+        dontTitleView.id = View.generateViewId()
+        dontTitleView.textSize = 15f
+        dontTitleView.setTextColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
+        dontTitleView.typeface = defaultFromStyle(BOLD)
+        dontTitleView.text = ResourceUtils.getString(context, R.string.square_list_edit_done)
+        val dontTitleViewLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        addView(dontTitleView, dontTitleViewLp)
+
+        action = TextView(context)
+        action.id = View.generateViewId()
+        action.textSize = 15f
+        action.setTextColor(ResourceUtils.getColor(context, R.color.colorThemeText))
+        action.text = ResourceUtils.getString(context, R.string.square_edit)
+        action.background = ResourceUtils.getDrawable(context, R.drawable.base_se_btn)
+        action.setPadding(DisplayUtils.dip2px(context, 8f), DisplayUtils.dip2px(context, 5f), DisplayUtils.dip2px(context, 8f), DisplayUtils.dip2px(context, 5f))
+        val actionLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        actionLp.addRule(ALIGN_PARENT_RIGHT)
+        action.setOnClickListener {
+            if (action.text == context.getString(R.string.square_edit)) {
+                dontDragFlowLayout.beginDrag()
+                action.text = context.getString(R.string.square_finfish)
+                listenter?.onEdit()
+            } else {
+                dontDragFlowLayout.finishDrag()
+                action.text = context.getString(R.string.square_edit)
+                visibility = View.GONE
+                listenter?.onFinish(dontDragFlowLayout.dragItemManager.getItems(), todoDragFlowLayout.dragItemManager.getItems())
+            }
+        }
+        addView(action, actionLp)
+
+        dontDragFlowLayout = DragFlowLayout(context)
+        dontDragFlowLayout.id = View.generateViewId()
+        val dontDragFlowLayoutLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        dontDragFlowLayoutLp.topMargin = DisplayUtils.dip2px(context, 10f)
+        dontDragFlowLayoutLp.addRule(BELOW, dontTitleView.id)
+        dontDragFlowLayout.lineSpacing = DisplayUtils.dip2px(context, 5f)
+        dontDragFlowLayout.itemSpacing = DisplayUtils.dip2px(context, 5f)
+        dontDragFlowLayout.setOnDragStateChangeListener { dfl, dragState ->
+            action.text = if (dragState == DragFlowLayout.DRAG_STATE_IDLE) {
+                context.getString(R.string.square_edit)
+            } else {
+                listenter?.onEdit()
+                context.getString(R.string.square_finfish)
+            }
+            action.isEnabled = dragState != DragFlowLayout.DRAG_STATE_DRAGGING
+        }
+        dontDragFlowLayout.setOnItemClickListener(object : ClickToDeleteItemListenerImpl(R.id.close) {
+
+            override fun performClick(dragFlowLayout: DragFlowLayout?, child: View?, event: MotionEvent?, dragState: Int): Boolean {
+                return super.performClick(dragFlowLayout, child, event, dragState)
+            }
+
+            override fun onDeleteSuccess(dfl: DragFlowLayout?, child: View?, data: Any?) {
+                super.onDeleteSuccess(dfl, child, data)
+                val SelectableChapter = child?.tag as DraggableChapter
+                if (SelectableChapter.selected) {
+                    SelectableChapter.selected = false
+                }
+                todoDragFlowLayout.dragItemManager.addItem(data)
+            }
+        })
+        dontDragFlowLayout.setDragAdapter(object : DragAdapter<DraggableChapter>() {
+
+            override fun getItemLayoutId(): Int = R.layout.square_item_drag_layout
+
+            override fun onBindData(itemView: View?, dragState: Int, data: DraggableChapter?) {
+                itemView?.isSelected = true
+                itemView?.tag = data
+                val tv = itemView?.findViewById(R.id.content) as TextView
+                tv.text = data?.data?.name
+                val closeView = itemView?.findViewById(R.id.close) as View
+                closeView.visibility = if (dragState !== DragFlowLayout.DRAG_STATE_IDLE && data?.draggable!!)
+                    View.VISIBLE
+                else
+                    View.INVISIBLE
+            }
+
+            override fun getData(itemView: View?): DraggableChapter = itemView?.tag as DraggableChapter
+        })
+        addView(dontDragFlowLayout, dontDragFlowLayoutLp)
+
+        todoTitleView = TextView(context)
+        todoTitleView.id = View.generateViewId()
+        todoTitleView.textSize = 15f
+        todoTitleView.setTextColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
+        todoTitleView.typeface = defaultFromStyle(BOLD)
+        todoTitleView.text = ResourceUtils.getString(context, R.string.square_list_to_edit)
+        val todoTitleViewLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        todoTitleViewLp.topMargin = DisplayUtils.dip2px(context, 10f)
+        todoTitleViewLp.addRule(BELOW, dontDragFlowLayout.id)
+        addView(todoTitleView, todoTitleViewLp)
+
+
+        todoDragFlowLayout = DragFlowLayout(context)
+        todoDragFlowLayout.id = View.generateViewId()
+        val todoDragFlowLayoutLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        todoDragFlowLayoutLp.topMargin = DisplayUtils.dip2px(context, 10f)
+        todoDragFlowLayoutLp.addRule(BELOW, todoTitleView.id)
+        todoDragFlowLayout.lineSpacing = DisplayUtils.dip2px(context, 5f)
+        todoDragFlowLayout.itemSpacing = DisplayUtils.dip2px(context, 5f)
+        todoDragFlowLayout.setDragAdapter(object : DragAdapter<DraggableChapter>() {
+
+            override fun getItemLayoutId(): Int = R.layout.square_item_drag_layout
+
+            override fun onBindData(itemView: View?, dragState: Int, data: DraggableChapter?) {
+                itemView?.isSelected = false
+                itemView?.tag = data
+                val tv = itemView?.findViewById(R.id.content) as TextView
+                tv.text = data?.data?.name
+                //iv_close是关闭按钮。只有再非拖拽空闲的情况下才显示
+                val closeView = itemView.findViewById(R.id.close) as View
+                closeView.visibility = View.INVISIBLE
+                itemView.setOnClickListener {
+                    if (data != null && !data.selected) {
+                        data.selected = true
+                        if (dontDragFlowLayout.dragState != DragFlowLayout.DRAG_STATE_DRAGGABLE) {
+                            dontDragFlowLayout.beginDrag()
+                        }
+                        todoDragFlowLayout.dragItemManager.removeItem(data)
+                        dontDragFlowLayout.dragItemManager.addItem(data)
+                        action.text = context.getString(R.string.square_finfish)
+                    }
+                }
+            }
+
+            override fun getData(itemView: View?): DraggableChapter = itemView?.tag as DraggableChapter
+        })
+        todoDragFlowLayout.setDraggable(false)
+        addView(todoDragFlowLayout, todoDragFlowLayoutLp)
+
+        setOnClickListener {
+            //默认拦截
+        }
+
+        val padding = DisplayUtils.dip2px(context, 10f)
+        setPadding(padding, padding, padding, padding)
+    }
+
+    fun bindData(done: List<SelectableChapter>, todo: List<SelectableChapter>, onEditListener: OnEditListener? = null) {
+        for (item in done) {
+            dontDragFlowLayout.dragItemManager.addItem(DraggableChapter(item))
+        }
+        for (item in todo) {
+            todoDragFlowLayout.dragItemManager.addItem(DraggableChapter(item))
+        }
+        this.listenter = onEditListener
+    }
+
+}
