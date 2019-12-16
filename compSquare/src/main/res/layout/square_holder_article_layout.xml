@@ -33,7 +33,7 @@
         app:collapse_line="3"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        app:collapse_text="@string/blog_card_content_expand"
+        app:collapse_text="@string/square_card_content_expand"
         app:collapse_color="@color/colorAccent"
         android:id="@+id/content"
         android:textSize="15sp"

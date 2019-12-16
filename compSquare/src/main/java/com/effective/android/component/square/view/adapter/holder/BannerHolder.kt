@@ -10,7 +10,7 @@ import com.effective.android.base.view.list.MediaHolder
 import com.effective.android.component.square.Sdks
 import com.effective.android.component.square.bean.Banner
 import com.effective.android.component.square.bean.BannerList
-import kotlinx.android.synthetic.main.blog_holder_banner_layout.view.*
+import kotlinx.android.synthetic.main.square_holder_banner_layout.view.*
 
 class BannerHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BannerList>(parent, layoutId) {
 

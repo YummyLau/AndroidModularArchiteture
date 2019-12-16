@@ -41,7 +41,7 @@ class ItemUserInfoView : RelativeLayout {
         avatarView = View(context)
         avatarView.id = View.generateViewId()
         val avatarViewLp = LayoutParams(DisplayUtils.dip2px(context, 38f), DisplayUtils.dip2px(context, 38f))
-        avatarView.background = ResourceUtils.getDrawable(context, R.drawable.blog_sh_avatar)
+        avatarView.background = ResourceUtils.getDrawable(context, R.drawable.square_sh_avatar)
         avatarViewLp.marginEnd = DisplayUtils.dip2px(context, 10f)
         addView(avatarView, avatarViewLp)
 
@@ -69,13 +69,13 @@ class ItemUserInfoView : RelativeLayout {
     }
 
     fun bindData(data: BlogArticle) {
-        val avatarPath = String.format(ResourceUtils.getString(context,R.string.blog_card_avatar_path),(Random().nextInt(25) + 1).toString())
+        val avatarPath = String.format(ResourceUtils.getString(context,R.string.square_card_avatar_path),(Random().nextInt(25) + 1).toString())
         avatarView.background = ResourceUtils.getDrawable(context, avatarPath)
         nickView.text =  if(!TextUtils.isEmpty(data.author)){
-            createTime.text =  String.format(ResourceUtils.getString(context,R.string.blog_card_create_time_prefix),data.niceDate)
+            createTime.text =  String.format(ResourceUtils.getString(context,R.string.square_card_create_time_prefix),data.niceDate)
             data.author
         }else{
-            createTime.text =  String.format(ResourceUtils.getString(context,R.string.blog_card_share_time_prefix),data.niceDate)
+            createTime.text =  String.format(ResourceUtils.getString(context,R.string.square_card_share_time_prefix),data.niceDate)
             data.shareUser
         }
     }

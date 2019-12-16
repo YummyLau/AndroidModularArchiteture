@@ -46,7 +46,7 @@ class ItemTagInfoView: LinearLayout{
         superChapterNameView.id = View.generateViewId()
         superChapterNameView.includeFontPadding = false
         superChapterNameView.textSize = 12f
-        superChapterNameView.background = ResourceUtils.getDrawable(context,R.drawable.blog_sh_tag_super_chapter)
+        superChapterNameView.background = ResourceUtils.getDrawable(context,R.drawable.square_sh_tag_super_chapter)
         superChapterNameView.setTextColor(ResourceUtils.getColor(context, R.color.colorThemeText))
         superChapterNameView.setPadding(DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 3f), DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 3f))
         val superChapterNameViewLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
@@ -65,7 +65,7 @@ class ItemTagInfoView: LinearLayout{
         chapterNameView.id = View.generateViewId()
         chapterNameView.includeFontPadding = false
         chapterNameView.textSize = 12f
-        chapterNameView.background = ResourceUtils.getDrawable(context,R.drawable.blog_sh_tag_chapter)
+        chapterNameView.background = ResourceUtils.getDrawable(context,R.drawable.square_sh_tag_chapter)
         chapterNameView.setTextColor(ResourceUtils.getColor(context, R.color.colorThemeText))
         chapterNameView.setPadding(DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 3f), DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 3f))
         val chapterNameViewLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)

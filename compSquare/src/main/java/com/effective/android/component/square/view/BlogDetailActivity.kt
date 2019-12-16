@@ -9,7 +9,7 @@ import com.effective.android.component.square.R
 import com.effective.android.component.square.bean.Article
 import com.effective.android.component.square.vm.BlogDetailViewModel
 import com.effective.android.webview.Utils
-import kotlinx.android.synthetic.main.blog_activity_blog_detail_layout.*
+import kotlinx.android.synthetic.main.square_activity_blog_detail_layout.*
 
 class BlogDetailActivity : BaseVmActivity<BlogDetailViewModel>() {
 
@@ -25,7 +25,7 @@ class BlogDetailActivity : BaseVmActivity<BlogDetailViewModel>() {
 
     override fun getViewModel(): Class<BlogDetailViewModel> = BlogDetailViewModel::class.java
 
-    override fun getLayoutRes(): Int = R.layout.blog_activity_blog_detail_layout
+    override fun getLayoutRes(): Int = R.layout.square_activity_blog_detail_layout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

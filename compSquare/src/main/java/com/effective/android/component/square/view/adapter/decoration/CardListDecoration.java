@@ -35,7 +35,7 @@ public class CardListDecoration extends RecyclerView.ItemDecoration {
      * @param orientation layout的方向
      */
     public CardListDecoration(Context context, int orientation) {
-        this(context, orientation, context.getResources().getDrawable(R.drawable.blog_sh_card_decoration),
+        this(context, orientation, context.getResources().getDrawable(R.drawable.square_sh_card_decoration),
                 DisplayUtils.dip2px(context,15f), ContextCompat.getColor(context, R.color.windowBackground));
     }
 

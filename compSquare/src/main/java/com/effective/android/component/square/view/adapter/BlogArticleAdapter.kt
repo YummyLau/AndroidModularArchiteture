@@ -13,9 +13,9 @@ open class BlogArticleAdapter(dataList: MutableList<IMediaItem>? = null) : Media
 
     override fun onCreateVHolder(parent: ViewGroup, viewType: Int): MediaHolder<*> {
         return when (viewType) {
-            Constants.articleType -> ArticleHolder(parent, R.layout.blog_holder_article_layout)
-            Constants.bannerType -> BannerHolder(parent, R.layout.blog_holder_banner_layout)
-            else -> ArticleHolder(parent, R.layout.blog_holder_article_layout)
+            Constants.articleType -> ArticleHolder(parent, R.layout.square_holder_article_layout)
+            Constants.bannerType -> BannerHolder(parent, R.layout.square_holder_banner_layout)
+            else -> ArticleHolder(parent, R.layout.square_holder_article_layout)
         }
     }
 }

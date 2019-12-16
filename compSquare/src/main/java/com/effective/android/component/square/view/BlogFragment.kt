@@ -8,7 +8,7 @@ import com.effective.android.component.square.view.adapter.BlogArticleAdapter
 import com.effective.android.component.square.view.adapter.decoration.CardListDecoration
 import com.effective.android.component.square.vm.BlogViewModel
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.blog_fragment_main_layout.*
+import kotlinx.android.synthetic.main.square_fragment_main_layout.*
 
 class BlogFragment : BaseVmFragment<BlogViewModel>() {
 
@@ -18,7 +18,7 @@ class BlogFragment : BaseVmFragment<BlogViewModel>() {
 
     override fun getViewModel(): Class<BlogViewModel> = BlogViewModel::class.java
 
-    override fun getLayoutRes(): Int = R.layout.blog_fragment_main_layout
+    override fun getLayoutRes(): Int = R.layout.square_fragment_main_layout
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
