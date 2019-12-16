@@ -3,9 +3,9 @@ package com.effective.android.component.paccounts.view
 import android.os.Bundle
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.view.list.IMediaItem
-import com.effective.android.component.blog.adapter.ArticleAdapter
-import com.effective.android.component.blog.bean.Article
-import com.effective.android.component.blog.bean.Chapter
+import com.effective.android.component.square.adapter.ArticleAdapter
+import com.effective.android.component.square.bean.Article
+import com.effective.android.component.square.bean.Chapter
 import com.effective.android.component.paccounts.R
 import com.effective.android.component.paccounts.Sdks
 import com.effective.android.component.paccounts.vm.ArticleViewModel

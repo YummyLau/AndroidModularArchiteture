@@ -40,6 +40,6 @@ dependencies {
     implementation project(':libBase')
     implementation component(':serviceNet')
     implementation component(':serviceSkin')
-    implementation component(':compBlog')
+    implementation component(':compSquare')
 }
 

@@ -2,7 +2,7 @@ package com.effective.android.component.paccounts.vm
 
 import androidx.lifecycle.ViewModel
 import com.effective.android.base.rxjava.RxSchedulers
-import com.effective.android.component.blog.bean.Chapter
+import com.effective.android.component.square.bean.Chapter
 import com.effective.android.component.paccounts.data.PaccountsRepository
 import com.effective.android.service.net.BaseResult
 import io.reactivex.Flowable

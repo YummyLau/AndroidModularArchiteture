@@ -84,7 +84,7 @@ compTabMine：wanAndroid 我的
 compTabRecommandation：推荐
 compTabHome：wanAndroid 首页
 其中Home包含：
-compBlog：wanAndroid 博文
+compSquare：wanAndroid 广场
 compProject：wanAndroid 项目
 compPaccounts：wanAndroid 公众号
 compSystem：wanAndroid 体系

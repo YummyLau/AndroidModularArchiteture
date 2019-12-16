@@ -2,7 +2,7 @@ package com.effective.android.component.system.vm
 
 import androidx.lifecycle.ViewModel
 import com.effective.android.base.rxjava.RxSchedulers
-import com.effective.android.component.blog.bean.Article
+import com.effective.android.component.square.bean.Article
 import com.effective.android.component.system.data.SystemRepository
 import com.effective.android.service.net.BaseListResult
 import io.reactivex.Flowable

@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.component.system.vm.SystemViewModel
 import com.effective.android.component.system.R
-import com.effective.android.component.blog.bean.Chapter
+import com.effective.android.component.square.bean.Chapter
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.system_fragment_laout.*
 

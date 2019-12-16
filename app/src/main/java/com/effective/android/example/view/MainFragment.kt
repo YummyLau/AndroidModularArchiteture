@@ -30,7 +30,7 @@ class MainFragment : BaseVmFragment<HomeVm>() {
     }
 
     private fun initView() {
-        mainPager.adapter = object : FragmentPagerAdapter(childFragmentManager!!) {
+        mainPager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
 
             /**
              * 当且仅当 findFragmentByTag 为 null 的时候才会调用，否则会使用系统缓存的fragments

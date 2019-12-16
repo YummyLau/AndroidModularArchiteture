@@ -8,7 +8,7 @@ component {
 //    exclude 'xxxx'
 
     include ':app', 'debugModule',
-            'compSystem',"compBlog","compPaccounts","compProject",
+            'compSystem',"compSquare","compPaccounts","compProject",
             'compTabHome',"compTabMine","compTabRecommendation",
             'serviceMedia','serviceNet','serviceAccount','serviceSkin','serviceShare'
 
@@ -27,9 +27,9 @@ component {
         configuration {
 
             //组件层申明
-            'compBlog' {
+            'compSquare' {
                 groupId 'com.effective.android.component'
-                artifactId 'blog'
+                artifactId 'square'
                 dependencies {
                     implementation deps.androidx.appCompat
                     implementation deps.androidx.recyclerview
@@ -159,7 +159,7 @@ component {
             //component 调试
             'cBlog' {
                 dependencies {
-                    implementation component(':compBlog')
+                    implementation component(':compSquare')
                 }
             }
 

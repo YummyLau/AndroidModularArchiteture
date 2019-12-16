@@ -5,7 +5,7 @@ include ':libVideo', ':libWebview', ':libNet', ':libBase', ':libGeo', ':libImage
 include ':serviceShare', ':serviceSkin', ':serviceAccount', ':serviceNet', ':serviceMedia'
 
 //组件层
-include ':compSystem', ':compBlog', ':compPaccounts', ':compProject'
+include ':compSystem', ':compSquare', ':compPaccounts', ':compProject'
 include  ':compTabMine', ':compTabHome', ':compTabRecommendation'
 
 //debug层
