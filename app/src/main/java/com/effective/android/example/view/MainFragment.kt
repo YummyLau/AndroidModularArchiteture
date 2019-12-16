@@ -3,7 +3,9 @@ package com.effective.android.example.view
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.effective.android.base.fragment.BaseVmFragment
+import com.effective.android.base.systemui.QMUIStatusBarHelper
 import com.effective.android.example.R
 import com.effective.android.example.Sdks
 import com.effective.android.example.vm.HomeVm
@@ -42,6 +44,22 @@ class MainFragment : BaseVmFragment<HomeVm>() {
             override fun getCount(): Int = fragmentList.size
         }
         mainPager.offscreenPageLimit = 4
+        mainPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                if(position == 0){
+                    QMUIStatusBarHelper.setStatusBarLightMode(activity)
+                }else{
+                    QMUIStatusBarHelper.setStatusBarDarkMode(activity)
+                }
+            }
+        })
         homeTab.setOnClickListener {
             mainPager.currentItem = 0
         }

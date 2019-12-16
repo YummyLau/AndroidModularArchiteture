@@ -1,4 +1,4 @@
-package com.effective.android.base.view.tagdrag;
+package com.effective.android.base.view.dragable.tag;
 
 import android.view.LayoutInflater;
 import android.view.View;

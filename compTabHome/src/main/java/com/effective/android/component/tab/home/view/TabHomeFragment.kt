@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.effective.android.base.fragment.BaseVmFragment
+import com.effective.android.base.systemui.QMUIStatusBarHelper
 import com.effective.android.component.tab.home.R
 import com.effective.android.component.tab.home.Sdks
 import com.effective.android.component.tab.home.vm.TabHomeVm
@@ -21,6 +22,7 @@ class TabHomeFragment : BaseVmFragment<TabHomeVm>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        QMUIStatusBarHelper.setStatusBarLightMode(activity)
         initData()
         initView()
     }

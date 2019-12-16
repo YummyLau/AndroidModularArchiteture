@@ -7,14 +7,13 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.widget.RelativeLayout
-import android.widget.RelativeLayout.ALIGN_PARENT_RIGHT
 import android.widget.ScrollView
 import android.widget.TextView
 import com.effective.android.base.util.DisplayUtils
 import com.effective.android.base.util.ResourceUtils
-import com.effective.android.base.view.tagdrag.ClickToDeleteItemListenerImpl
-import com.effective.android.base.view.tagdrag.DragAdapter
-import com.effective.android.base.view.tagdrag.DragFlowLayout
+import com.effective.android.base.view.dragable.tag.ClickToDeleteItemListenerImpl
+import com.effective.android.base.view.dragable.tag.DragAdapter
+import com.effective.android.base.view.dragable.tag.DragFlowLayout
 import com.effective.android.component.square.R
 import com.effective.android.component.square.bean.DraggableChapter
 import com.effective.android.component.square.bean.SelectableChapter

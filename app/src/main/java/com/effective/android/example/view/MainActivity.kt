@@ -16,7 +16,7 @@ class MainActivity : BaseActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusbarHelper.setStatusBarColor(this,ResourceUtils.getColor(this,R.color.windowBackground))
+        StatusbarHelper.setStatusBarColor(this,ResourceUtils.getColor(this,R.color.transparent))
         toSplash()
     }
 

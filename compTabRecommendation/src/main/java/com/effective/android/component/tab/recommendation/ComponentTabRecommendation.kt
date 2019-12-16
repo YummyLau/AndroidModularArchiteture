@@ -8,7 +8,7 @@ import com.plugin.component.anno.AutoInjectComponent
 class ComponentTabRecommendation : IComponent{
 
     override fun attachComponent(application: Application) {
-
+        Sdks.init(application)
     }
 
     override fun detachComponent() {

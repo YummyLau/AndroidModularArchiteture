@@ -1,4 +1,4 @@
-package com.effective.android.base.view.tagdrag;
+package com.effective.android.base.view.dragable.tag;
 
 public interface ICacher<T, P> {
 

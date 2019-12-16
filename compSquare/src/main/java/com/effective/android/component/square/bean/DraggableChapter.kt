@@ -1,6 +1,6 @@
 package com.effective.android.component.square.bean
 
-import com.effective.android.base.view.tagdrag.IDraggable
+import com.effective.android.base.view.dragable.tag.IDraggable
 
 class DraggableChapter : SelectableChapter, IDraggable {
 
