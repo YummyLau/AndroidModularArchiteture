@@ -1,12 +1,14 @@
 package com.effective.android.base.util
 
 import android.content.Context
+import android.graphics.Bitmap
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.Nullable
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.effective.android.base.R
+import java.io.ByteArrayOutputStream
 
 object ResourceUtils {
 

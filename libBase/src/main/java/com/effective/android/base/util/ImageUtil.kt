@@ -1,13 +1,22 @@
 package com.effective.android.base.util
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.PixelFormat
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.graphics.BitmapFactory
+import androidx.annotation.DrawableRes
+import com.effective.android.base.R
+import java.io.ByteArrayOutputStream
 
-
+/**
+ * 图片相关的工具
+ * bitmap，drawable等
+ * created by yummylau 2019/12/17
+ */
 object ImageUtil {
 
     @JvmStatic
@@ -35,5 +44,28 @@ object ImageUtil {
         drawable.draw(canvas)
         return bitmap
     }
+
+    @JvmStatic
+    fun drawableToBitmap(context: Context, @DrawableRes drawableId: Int): Bitmap = BitmapFactory.decodeResource(context.resources, drawableId)
+
+    @JvmStatic
+    fun bitmapToDrawable(context: Context, bitmap: Bitmap): Drawable = BitmapDrawable(context.resources, bitmap)
+
+    @JvmStatic
+    fun bitmapToBytes(context: Context, bitmap: Bitmap): ByteArray {
+        val outStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream)
+        return outStream.toByteArray()
+    }
+
+    @JvmStatic
+    fun bytesToBitmap(byteArray: ByteArray): Bitmap? {
+        return if (byteArray.isNotEmpty()) {
+            BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+        } else {
+            null
+        }
+    }
+
 
 }
