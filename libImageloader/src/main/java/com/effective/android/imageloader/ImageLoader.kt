@@ -45,14 +45,14 @@ class ImageLoader : ImageLoaderApi {
             var requestOption: RequestOptions? = requestOptions
             if (requestOption == null) {
                 requestOption = RequestOptions()
-                if(transformation != null){
-                    requestOption = requestOption.transform(transformation)
-                    when (transformation) {
-                        is BrightnessFilterTransformation -> requestOption.dontAnimate()
-                        is SwirlFilterTransformation -> requestOption.dontAnimate()
-                        is KuwaharaFilterTransformation -> requestOption.dontAnimate()
-                        is VignetteFilterTransformation -> requestOption.dontAnimate()
-                    }
+            }
+            if(transformation != null){
+                requestOption = requestOption.transform(transformation)
+                when (transformation) {
+                    is BrightnessFilterTransformation -> requestOption.dontAnimate()
+                    is SwirlFilterTransformation -> requestOption.dontAnimate()
+                    is KuwaharaFilterTransformation -> requestOption.dontAnimate()
+                    is VignetteFilterTransformation -> requestOption.dontAnimate()
                 }
             }
             val requestBuilder = Glide.with(imageView.context)

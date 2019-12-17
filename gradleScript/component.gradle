@@ -110,6 +110,7 @@ component {
                 dependencies {
                     implementation deps.kotlin.stdlib
                     implementation deps.glide.core
+                    implementation deps.glide.transformations
                 }
             }
 
