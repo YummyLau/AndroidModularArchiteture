@@ -39,15 +39,6 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
         this.mListener = mListener;
     }
 
-
-    /**
-     * 设置滑动类型标记
-     *
-     * @param recyclerView
-     * @param viewHolder
-     * @return
-     *          返回一个整数类型的标识，用于判断Item那种移动行为是允许的
-     */
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         int dragFlags = 0;
@@ -58,30 +49,14 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
         }
         return makeMovementFlags(dragFlags, swipeFlags);
     }
-    /**
-     * 拖拽切换Item的回调
-     *
-     * @param recyclerView
-     * @param viewHolder
-     * @param target
-     * @return
-     *          如果Item切换了位置，返回true；反之，返回false
-     */
 
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
         return false;
     }
 
-    /**
-     *
-     * 划出时会执行
-     * @param viewHolder
-     * @param direction:左侧划出为:4,右侧划出为:8
-     */
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-        Log.d("glog", "onSwiped: " + direction);
         // 移除 onTouchListener,否则触摸滑动会乱了
         viewHolder.itemView.setOnTouchListener(null);
         int layoutPosition = viewHolder.getLayoutPosition();
@@ -89,37 +64,24 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
         adapter.notifyDataSetChanged();
         if (mListener != null) {
             mListener.onSwiped(viewHolder, remove, direction == ItemTouchHelper.LEFT ? CardConfig.SWIPED_LEFT : CardConfig.SWIPED_RIGHT);
-            mListener.onToSwipe(adapter.getItemCount());
+        }
+        // 当没有数据时回调 mListener
+        if (adapter.getItemCount() == 0) {
+            if (mListener != null) {
+                mListener.onSwipedClear();
+            }
         }
     }
-    /**
-     * Item是否支持滑动
-     *
-     * @return
-     *          true  支持滑动操作
-     *          false 不支持滑动操作
-     */
 
     @Override
     public boolean isItemViewSwipeEnabled() {
         return false;
     }
 
-    /**
-     * 拖动时会执行的方法
-     * @param c
-     * @param recyclerView
-     * @param viewHolder
-     * @param dX
-     * @param dY
-     * @param actionState
-     * @param isCurrentlyActive
-     */
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-        // Log.d("glog", "onChildDraw: 拖动");
         View itemView = viewHolder.itemView;
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             float ratio = dX / getThreshold(recyclerView, viewHolder);
@@ -129,7 +91,6 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
             } else if (ratio < -1) {
                 ratio = -1;
             }
-            Log.d("glog", "onChildDraw: " + ratio);
             itemView.setRotation(ratio * CardConfig.DEFAULT_ROTATE_DEGREE);
             int childCount = recyclerView.getChildCount();
             // 当数据源个数大于最大显示数时
@@ -139,9 +100,6 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
                     View view = recyclerView.getChildAt(position);
                     view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
-
-                   /* view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE );
-                    view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE);*/
                     view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                 }
             } else {
@@ -156,10 +114,8 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
             }
             if (mListener != null) {
                 if (ratio != 0) {
-                    //  Log.d("glog", "onChildDraw: 不为零");
                     mListener.onSwiping(viewHolder, ratio, ratio < 0 ? CardConfig.SWIPING_LEFT : CardConfig.SWIPING_RIGHT);
                 } else {
-                    //  Log.d("glog", "onChildDraw: 为零");
                     mListener.onSwiping(viewHolder, ratio, CardConfig.SWIPING_NONE);
                 }
             }

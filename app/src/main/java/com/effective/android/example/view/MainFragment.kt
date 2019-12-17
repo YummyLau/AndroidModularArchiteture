@@ -53,13 +53,14 @@ class MainFragment : BaseVmFragment<HomeVm>() {
             }
 
             override fun onPageSelected(position: Int) {
-                if(position == 0){
+                if(position <= 1){
                     QMUIStatusBarHelper.setStatusBarLightMode(activity)
                 }else{
                     QMUIStatusBarHelper.setStatusBarDarkMode(activity)
                 }
             }
         })
+        QMUIStatusBarHelper.setStatusBarLightMode(activity)
         homeTab.setOnClickListener {
             mainPager.currentItem = 0
         }

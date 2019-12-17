@@ -11,11 +11,11 @@ public final class CardConfig {
     /**
      * 默认缩放的比例
      */
-    public static final float DEFAULT_SCALE = 0.05f;
+    public static final float DEFAULT_SCALE = 0.1f;
     /**
      * 卡片Y轴偏移量时按照14等分计算
      */
-    public static final int DEFAULT_TRANSLATE_Y = 22;
+    public static final int DEFAULT_TRANSLATE_Y = 14;
     /**
      * 卡片滑动时默认倾斜的角度
      */

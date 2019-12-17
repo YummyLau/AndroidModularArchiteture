@@ -22,7 +22,6 @@ class TabHomeFragment : BaseVmFragment<TabHomeVm>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        QMUIStatusBarHelper.setStatusBarLightMode(activity)
         initData()
         initView()
     }

@@ -1,13 +1,17 @@
 package com.effective.android.component.tab.recommendation.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
+import com.effective.android.base.activity.swipeback.SwipeBackLayout
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.view.dragable.card.CardItemTouchHelperCallback
 import com.effective.android.base.view.dragable.card.CardLayoutManager
+import com.effective.android.base.view.dragable.card.OnSwipeListener
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.square.bean.Article
 import com.effective.android.component.tab.recommendation.R
@@ -22,6 +26,7 @@ class TabRecommendationFragment : BaseVmFragment<TabRecommendationVm>() {
     var pageNum: Int = 0
     var fetchDataDisposable: Disposable? = null
     lateinit var adapter: RecommendAdapter
+    lateinit var data: MutableList<Article>
 
     override fun getViewModel(): Class<TabRecommendationVm> = TabRecommendationVm::class.java
 
@@ -30,26 +35,30 @@ class TabRecommendationFragment : BaseVmFragment<TabRecommendationVm>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val data = mutableListOf<Article>()
+        data = mutableListOf()
+        list.itemAnimator = DefaultItemAnimator()
         adapter = RecommendAdapter(context!!, data)
-        val touchHelper = ItemTouchHelper(object : CardItemTouchHelperCallback<Article>(adapter, data) {
-
-            fun onSwiping(viewHolder: RecyclerView.ViewHolder, ratio: Float, direction: Int) {
-                viewHolder.itemView.alpha = 1 - abs(ratio) * 0.2f
-            }
-
-            fun onSwiped(viewHolder: RecyclerView.ViewHolder, article: Article, direction: Int) {
-
-            }
-
-            fun onToSwipe(number: Int) {
-
-            }
-
-        })
-        list.layoutManager = CardLayoutManager(list, touchHelper)
-        touchHelper.attachToRecyclerView(list)
         list.adapter = adapter
+        val cardItemTouchHelperCallback = CardItemTouchHelperCallback<Article>(adapter, data)
+        cardItemTouchHelperCallback.setOnSwipedListener(object : OnSwipeListener<Article> {
+            override fun onSwiping(viewHolder: ViewHolder?, ratio: Float, direction: Int) {
+                viewHolder?.itemView?.alpha = 1 - abs(ratio) * 0.2f
+                viewHolder?.itemView?.findViewById<View>(R.id.root)?.alpha = 1 - abs(ratio) * 0.2f
+            }
+
+            override fun onSwiped(viewHolder: ViewHolder?, t: Article?, direction: Int) {
+                viewHolder?.itemView?.alpha = 1f
+                viewHolder?.itemView?.findViewById<View>(R.id.root)?.alpha = 1f
+            }
+
+            override fun onSwipedClear() {
+
+            }
+        })
+        val touchHelper = ItemTouchHelper(cardItemTouchHelperCallback)
+        val layoutManager = CardLayoutManager(list, touchHelper)
+        list.layoutManager = layoutManager
+        touchHelper.attachToRecyclerView(list)
         fetchData(true)
     }
 

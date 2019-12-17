@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">compTabRecommendation</string>
+    <string name="tabr_app_name">compTabRecommendation</string>
+    <string name="tabr_card_avatar_path">square_ic_avatar_default_%1$s</string>
+    <string name="tabr_recommend_title">每日必看</string>
 </resources>

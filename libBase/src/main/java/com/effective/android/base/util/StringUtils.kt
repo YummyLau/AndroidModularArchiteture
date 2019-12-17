@@ -5,7 +5,6 @@ import java.util.regex.Pattern
 
 object StringUtils {
 
-
     private val pattern: Pattern = Pattern.compile("\\s*|\t|\r|\n")
 
     @JvmStatic

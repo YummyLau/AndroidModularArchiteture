@@ -30,8 +30,8 @@ public interface OnSwipeListener<T> {
 
 
     /**
-     * 还有多少卡片需要滑动
+     * 所有的卡片全部滑出时回调
      */
-    void onToSwipe(int number);
+    void onSwipedClear();
 
 }
