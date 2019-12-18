@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppMainActivityTheme" parent="BaseAppTheme" >
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/window_background</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+</resources>
