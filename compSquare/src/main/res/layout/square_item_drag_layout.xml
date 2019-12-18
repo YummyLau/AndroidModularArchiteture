@@ -24,7 +24,7 @@
         android:paddingTop="6dp"
         android:paddingRight="14dp"
         android:paddingBottom="6dp"
-        android:textColor="@color/colorTextSecondary"
+        android:textColor="@color/square_item_drag_text_color"
         android:textSize="16sp" />
 
 </FrameLayout>

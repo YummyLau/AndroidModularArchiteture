@@ -64,7 +64,7 @@ class ChapterSelectView : ScrollView {
         dontTitleView.typeface = defaultFromStyle(BOLD)
         dontTitleView.text = ResourceUtils.getString(context, R.string.square_list_edit_done)
         val dontTitleViewLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        dontTitleViewLp.topMargin = DisplayUtils.dip2px(context,3f)
+        dontTitleViewLp.topMargin = DisplayUtils.dip2px(context, 3f)
         container.addView(dontTitleView, dontTitleViewLp)
 
         action = TextView(context)
@@ -114,9 +114,9 @@ class ChapterSelectView : ScrollView {
 
             override fun onDeleteSuccess(dfl: DragFlowLayout?, child: View?, data: Any?) {
                 super.onDeleteSuccess(dfl, child, data)
-                val SelectableChapter = child?.tag as DraggableChapter
-                if (SelectableChapter.selected) {
-                    SelectableChapter.selected = false
+                val selectableChapter = child?.tag as DraggableChapter
+                if (selectableChapter.selected) {
+                    selectableChapter.selected = false
                 }
                 todoDragFlowLayout.dragItemManager.addItem(data)
             }
@@ -126,15 +126,22 @@ class ChapterSelectView : ScrollView {
             override fun getItemLayoutId(): Int = R.layout.square_item_drag_layout
 
             override fun onBindData(itemView: View?, dragState: Int, data: DraggableChapter?) {
-                itemView?.isSelected = true
                 itemView?.tag = data
                 val tv = itemView?.findViewById(R.id.content) as TextView
                 tv.text = data?.data?.name
                 val closeView = itemView?.findViewById(R.id.close) as View
-                closeView.visibility = if (dragState !== DragFlowLayout.DRAG_STATE_IDLE && data?.draggable!!)
-                    View.VISIBLE
-                else
-                    View.INVISIBLE
+                if (dragState != DragFlowLayout.DRAG_STATE_IDLE && data?.draggable!!) {
+                    closeView.visibility = View.VISIBLE
+                } else {
+                    closeView.visibility = View.GONE
+                }
+                if (data?.draggable!!) {
+                    itemView.isSelected = true
+                    tv.isSelected = true
+                } else {
+                    itemView.isSelected = false
+                    tv.isSelected = false
+                }
             }
 
             override fun getData(itemView: View?): DraggableChapter = itemView?.tag as DraggableChapter
@@ -168,6 +175,7 @@ class ChapterSelectView : ScrollView {
                 itemView?.isSelected = false
                 itemView?.tag = data
                 val tv = itemView?.findViewById(R.id.content) as TextView
+                tv.isSelected = false
                 tv.text = data?.data?.name
                 //iv_close是关闭按钮。只有再非拖拽空闲的情况下才显示
                 val closeView = itemView.findViewById(R.id.close) as View
