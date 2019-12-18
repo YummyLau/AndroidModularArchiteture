@@ -1,5 +1,6 @@
 <resources>
     <string name="square_app_name">博文</string>
+
     <string name="square_card_title_append">“ %1$s ”</string>
     <string name="square_card_create_time_prefix">发布于 %1$s</string>
     <string name="square_card_share_time_prefix">分享于 %1$s</string>
@@ -9,5 +10,7 @@
     <string name="square_list_edit_done">已添加列表</string>
     <string name="square_list_to_edit">未添加列表</string>
     <string name="square_edit">编辑</string>
-    <string name="square_finfish">完成</string>
+    <string name="square_finish">完成</string>
+
+    <string name="square_card_detail_page_default_title">详情页</string>
 </resources>

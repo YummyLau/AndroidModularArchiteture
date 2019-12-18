@@ -3,8 +3,11 @@ package com.effective.android.component.square.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import com.effective.android.base.activity.BaseVmActivity
+import com.effective.android.base.systemui.QMUIStatusBarHelper
 import com.effective.android.base.systemui.StatusbarHelper
+import com.effective.android.base.util.ResourceUtils
 import com.effective.android.component.square.R
 import com.effective.android.component.square.bean.Article
 import com.effective.android.component.square.vm.BlogDetailViewModel
@@ -39,18 +42,24 @@ class BlogDetailActivity : BaseVmActivity<BlogDetailViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusbarHelper.translucentStatusBar(this)
+        StatusbarHelper.setStatusBarColor(this, ResourceUtils.getColor(this, R.color.windowBackground))
+        QMUIStatusBarHelper.setStatusBarLightMode(this)
         Utils.setDefaultWebViewSetting(webView)
         val byArticle: Boolean = intent.getBooleanExtra(bundle_model, false)
         if (byArticle) {
             val article: Article = intent.getParcelableExtra(bundle_article)
             webView.loadUrl(article.link)
+            if (!TextUtils.isEmpty(article.title)) {
+                titleLayout.title.text = article.title
+            }
         } else {
             val url: String = intent.getStringExtra(bundle_url)
             webView.loadUrl(url)
         }
+        titleLayout.leftAction.setOnClickListener {
+            finish()
+        }
     }
-
 
 
     override fun onDestroy() {

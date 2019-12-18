@@ -79,7 +79,7 @@ class ChapterSelectView : ScrollView {
         action.setOnClickListener {
             if (action.text == context.getString(R.string.square_edit)) {
                 dontDragFlowLayout.beginDrag()
-                action.text = context.getString(R.string.square_finfish)
+                action.text = context.getString(R.string.square_finish)
                 listenter?.onEdit()
             } else {
                 dontDragFlowLayout.finishDrag()
@@ -102,7 +102,7 @@ class ChapterSelectView : ScrollView {
                 context.getString(R.string.square_edit)
             } else {
                 listenter?.onEdit()
-                context.getString(R.string.square_finfish)
+                context.getString(R.string.square_finish)
             }
             action.isEnabled = dragState != DragFlowLayout.DRAG_STATE_DRAGGING
         }
@@ -180,7 +180,7 @@ class ChapterSelectView : ScrollView {
                         }
                         todoDragFlowLayout.dragItemManager.removeItem(data)
                         dontDragFlowLayout.dragItemManager.addItem(data)
-                        action.text = context.getString(R.string.square_finfish)
+                        action.text = context.getString(R.string.square_finish)
                     }
                 }
             }

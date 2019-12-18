@@ -18,7 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:ellipsize="end"
         android:gravity="center"
+        android:singleLine="true"
         android:textSize="@dimen/base_title_bar_title_text"
         tools:text="标题"
         tools:textColor="@color/colorThemeText" />
