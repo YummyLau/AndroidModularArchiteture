@@ -21,53 +21,84 @@
         android:layout_height="48dp"
         android:orientation="horizontal">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/homeTab"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/homeTabIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/app_se_tab_home" />
 
             <TextView
                 android:id="@+id/homeTabTip"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-2dp"
                 android:gravity="center"
-                android:text="首页" />
+                android:text="@string/app_tab_home"
+                android:textColor="@color/app_se_tab_text_color"
+                android:textSize="10sp" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/homeTab1"
+        <LinearLayout
+            android:id="@+id/recommendTab"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/recommendTabIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/app_se_tab_recommend" />
 
             <TextView
-                android:id="@+id/homeTab1Tip"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/recommendTabTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-2dp"
                 android:gravity="center"
-                android:text="逛一逛" />
+                android:text="@string/app_tab_recommendation"
+                android:textColor="@color/app_se_tab_text_color"
+                android:textSize="10sp" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/homeTab2"
+        <LinearLayout
+            android:id="@+id/mineTab"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/mineTabIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/app_se_tab_mine" />
 
             <TextView
-                android:id="@+id/homeTab2Tip"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/mineTabTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-2dp"
                 android:gravity="center"
-                android:text="我的" />
+                android:text="@string/app_tab_mine"
+                android:textColor="@color/app_se_tab_text_color"
+                android:textSize="10sp" />
 
-        </RelativeLayout>
-
+        </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

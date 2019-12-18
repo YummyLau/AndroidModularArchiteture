@@ -1,6 +1,7 @@
 package com.effective.android.example.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -14,6 +15,9 @@ import kotlinx.android.synthetic.main.app_fragment_home.*
 class MainFragment : BaseVmFragment<HomeVm>() {
 
     private val fragmentList = mutableListOf<Fragment>()
+    private val tabContainer = mutableListOf<View>()
+    private val tabTip = mutableListOf<View>()
+    private val tabIcon = mutableListOf<View>()
 
     override fun getViewModel(): Class<HomeVm> = HomeVm::class.java
 
@@ -21,17 +25,14 @@ class MainFragment : BaseVmFragment<HomeVm>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initData()
         initView()
+        initData()
     }
 
     private fun initData() {
         fragmentList.add(Sdks.componentTabHomeSdk.getMainFragment())
         fragmentList.add(Sdks.componentTabRecommendationSdk.getMainFragment())
         fragmentList.add(Sdks.componentMineSdk.getMainFragment())
-    }
-
-    private fun initView() {
         mainPager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
 
             /**
@@ -43,7 +44,11 @@ class MainFragment : BaseVmFragment<HomeVm>() {
 
             override fun getCount(): Int = fragmentList.size
         }
-        mainPager.offscreenPageLimit = 4
+        mainPager.offscreenPageLimit = 3
+    }
+
+    private fun initView() {
+
         mainPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -53,22 +58,41 @@ class MainFragment : BaseVmFragment<HomeVm>() {
             }
 
             override fun onPageSelected(position: Int) {
-                if(position <= 1){
-                    QMUIStatusBarHelper.setStatusBarLightMode(activity)
-                }else{
-                    QMUIStatusBarHelper.setStatusBarDarkMode(activity)
-                }
+                selectTab(position)
             }
         })
-        QMUIStatusBarHelper.setStatusBarLightMode(activity)
+        tabContainer.add(homeTab)
+        tabContainer.add(recommendTab)
+        tabContainer.add(mineTab)
+        tabTip.add(homeTabTip)
+        tabTip.add(recommendTabTip)
+        tabTip.add(mineTabTip)
+        tabIcon.add(homeTabIcon)
+        tabIcon.add(recommendTabIcon)
+        tabIcon.add(mineTabIcon)
+        selectTab(0)
         homeTab.setOnClickListener {
             mainPager.currentItem = 0
         }
-        homeTab1.setOnClickListener {
+        recommendTab.setOnClickListener {
             mainPager.currentItem = 1
         }
-        homeTab2.setOnClickListener {
+        mineTab.setOnClickListener {
             mainPager.currentItem = 2
+        }
+    }
+
+    private fun selectTab(position: Int) {
+        if (position <= 1) {
+            QMUIStatusBarHelper.setStatusBarLightMode(activity)
+        } else {
+            QMUIStatusBarHelper.setStatusBarDarkMode(activity)
+        }
+        for (index in tabContainer.indices) {
+            val selected = index == position
+            tabContainer[index].isSelected = selected
+            tabTip[index].isSelected = selected
+            tabIcon[index].isSelected = selected
         }
     }
 }
