@@ -26,6 +26,7 @@ class ArticleFragment(private val project: Chapter) : BaseVmFragment<ArticleView
         super.onActivityCreated(savedInstanceState)
         adapter = Sdks.blogSdk.getArticleAdapter()
         articleList.adapter = adapter.getAdapter()
+        articleList.addItemDecoration(adapter.getListItemDecoration(context!!,true))
         articleContainer.setOnRefreshListener {
             fetchData(true)
         }

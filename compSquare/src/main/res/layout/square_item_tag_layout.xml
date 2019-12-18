@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/superChapterNameViewContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/square_ic_tag_parent_chapter">
+
+        <TextView
+            android:id="@+id/superChapterNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="2dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="12sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/chapterNameViewContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/square_ic_tag_chapter">
+
+        <TextView
+            android:id="@+id/chapterNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="2dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="12sp" />
+    </FrameLayout>
+
+</merge>

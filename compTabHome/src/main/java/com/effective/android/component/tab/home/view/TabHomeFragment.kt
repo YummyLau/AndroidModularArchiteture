@@ -44,6 +44,7 @@ class TabHomeFragment : BaseVmFragment<TabHomeVm>() {
         icSearch.setOnClickListener {
 
         }
+        pager.offscreenPageLimit = 4
 
         pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 

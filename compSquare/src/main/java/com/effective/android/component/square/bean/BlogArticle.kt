@@ -1,11 +1,10 @@
 package com.effective.android.component.square.bean
 
+import android.text.TextUtils
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.square.Constants
 
 open class BlogArticle : Article, IMediaItem {
-
-    constructor()
 
     constructor(article: Article) {
         apkLink = article.apkLink
@@ -38,9 +37,14 @@ open class BlogArticle : Article, IMediaItem {
         zan = article.zan
     }
 
-    override fun getItemType(): Int = Constants.articleType
+    override fun getItemType(): Int = getViewType()
 
-    override fun getViewType(): Int = Constants.articleType
+    override fun getViewType(): Int {
+        return when {
+            TextUtils.equals(superChapterName, Constants.weChatValue) -> Constants.weChatArticleType
+            else -> Constants.commonArticleType
+        }
+    }
 
     override fun replace(item: IMediaItem) {
         if (item is Article) {

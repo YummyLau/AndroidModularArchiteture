@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.effective.android.base.util.DisplayUtils;
 import com.effective.android.component.square.R;
+import com.effective.android.component.square.view.adapter.holder.BannerHolder;
 
 
 /**
@@ -135,8 +136,7 @@ public class CardListDecoration extends RecyclerView.ItemDecoration {
 
 
     private boolean filterSomeHolder(Canvas c, RecyclerView parent, boolean vertical, int index, int size) {
-        boolean result = false;
         RecyclerView.ViewHolder currentHolder = parent.getChildViewHolder(parent.getChildAt(index));
-        return result;
+        return currentHolder instanceof BannerHolder;
     }
 }

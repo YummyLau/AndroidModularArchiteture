@@ -8,6 +8,7 @@ class BannerList : ArrayList<Banner>(), IMediaItem {
     override fun getItemType(): Int = Constants.bannerType
 
     override fun getViewType(): Int = Constants.bannerType
+
     override fun replace(item: IMediaItem) {
         if (item is BannerList) {
             clear()

@@ -13,7 +13,7 @@ import com.effective.android.component.square.Sdks
 import com.effective.android.component.square.bean.BlogArticle
 import kotlinx.android.synthetic.main.square_holder_article_layout.view.*
 
-class ArticleHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BlogArticle>(parent, layoutId) {
+class CommonArticleHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BlogArticle>(parent, layoutId) {
 
     override fun bindData(data: BlogArticle, position: Int, payloads: List<Any>) {
 
