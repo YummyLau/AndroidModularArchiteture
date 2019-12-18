@@ -61,7 +61,7 @@ open class Article : Parcelable {
     var publishTime: Long = -1
 
     @SerializedName("shareData")
-    var shareData: String = ""
+    var shareData: Long = 0
 
     @SerializedName("shareUser")
     var shareUser: String = ""
@@ -111,7 +111,7 @@ open class Article : Parcelable {
         prefix = source.readString()
         projectLink = source.readString()
         publishTime = source.readLong()
-        shareData = source.readString()
+        shareData = source.readLong()
         shareUser = source.readString()
         superChapterId = source.readLong()
         superChapterName = source.readString()
@@ -164,7 +164,7 @@ open class Article : Parcelable {
         dest?.writeString(prefix)
         dest?.writeString(projectLink)
         dest?.writeLong(publishTime)
-        dest?.writeString(shareData)
+        dest?.writeLong(shareData)
         dest?.writeString(shareUser)
         dest?.writeLong(superChapterId)
         dest?.writeString(superChapterName)

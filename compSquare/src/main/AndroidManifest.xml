@@ -15,5 +15,10 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+            android:label="dexopt"
+            android:process=":dexopt" />
+
     </application>
 </manifest>

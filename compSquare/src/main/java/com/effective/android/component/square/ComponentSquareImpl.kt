@@ -45,6 +45,10 @@ class ComponentBlogImpl : ComponentSquareSdk {
     }
 
     override fun getMainName(): String = "广场"
+
+    override fun gotoDetailActivity(context: Context, url: String) {
+        BlogDetailActivity.startActivity(context, url)
+    }
 }
 
 class ChapterSelectAdapter(val context: Context) : ChapterAdapter {

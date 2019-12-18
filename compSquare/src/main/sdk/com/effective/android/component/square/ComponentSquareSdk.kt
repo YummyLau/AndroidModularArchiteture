@@ -17,4 +17,6 @@ interface ComponentSquareSdk {
 
     fun gotoDetailActivity(context: Context, article: Article)
 
+    fun gotoDetailActivity(context: Context, url: String)
+
 }

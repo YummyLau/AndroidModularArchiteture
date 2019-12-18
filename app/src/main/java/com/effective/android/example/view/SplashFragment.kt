@@ -35,7 +35,7 @@ class SplashFragment : BaseVmFragment<SplashVm>() {
         splashSkip.setOnClickListener {
             toHome()
         }
-        splashImage.setImageDrawable(ResourceUtils.getDrawable(activity!!, String.format(activity!!.getString(R.string.app_splash_image_prefix), (Random().nextInt(7) + 1).toString())))
+        splashImage.setImageDrawable(ResourceUtils.getDrawable(activity!!, String.format(activity!!.getString(R.string.app_splash_image_prefix), (Random().nextInt(6) + 2).toString())))
         disposable = Flowable.timer(3000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

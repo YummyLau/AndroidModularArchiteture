@@ -14,11 +14,21 @@ import kotlinx.android.synthetic.main.square_activity_blog_detail_layout.*
 class BlogDetailActivity : BaseVmActivity<BlogDetailViewModel>() {
 
     companion object {
+        private const val bundle_model: String = "bundle_by_article"
         private const val bundle_article: String = "bundle_article"
+        private const val bundle_url: String = "bundle_url"
 
         fun startActivity(context: Context, article: Article) {
             val intent = Intent(context, BlogDetailActivity::class.java)
             intent.putExtra(bundle_article, article)
+            intent.putExtra(bundle_model, true)
+            context.startActivity(intent)
+        }
+
+        fun startActivity(context: Context, string: String) {
+            val intent = Intent(context, BlogDetailActivity::class.java)
+            intent.putExtra(bundle_url, string)
+            intent.putExtra(bundle_model, false)
             context.startActivity(intent)
         }
     }
@@ -30,10 +40,18 @@ class BlogDetailActivity : BaseVmActivity<BlogDetailViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StatusbarHelper.translucentStatusBar(this)
-        val article: Article = intent.getParcelableExtra<Article>(bundle_article)
         Utils.setDefaultWebViewSetting(webView)
-        webView.loadUrl(article.link)
+        val byArticle: Boolean = intent.getBooleanExtra(bundle_model, false)
+        if (byArticle) {
+            val article: Article = intent.getParcelableExtra(bundle_article)
+            webView.loadUrl(article.link)
+        } else {
+            val url: String = intent.getStringExtra(bundle_url)
+            webView.loadUrl(url)
+        }
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
