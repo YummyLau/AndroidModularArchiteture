@@ -10,7 +10,7 @@ import com.effective.android.component.square.vm.BlogViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.square_fragment_main_layout.*
 
-class BlogFragment : BaseVmFragment<BlogViewModel>() {
+class SquareFragment : BaseVmFragment<BlogViewModel>() {
 
     var pageNum: Int = 0
     var fetchDataDisposable: Disposable? = null

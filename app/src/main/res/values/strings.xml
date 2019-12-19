@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">安卓屋</string>
     <string name="app_splash_creator">Created by @YummyLau</string>
-    <string name="app_splash_image_prefix">app_ic_splash_%s</string>
+    <string name="app_splash_image_prefix">app_ic_splash_image_%s</string>
     <string name="app_splash_text_font">font/REEJI-HonghuangLiGB-Black-2.ttf</string>
     <string name="app_tab_home">首页</string>
     <string name="app_tab_recommendation">逛一逛</string>

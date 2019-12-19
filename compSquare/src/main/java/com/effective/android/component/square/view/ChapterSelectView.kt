@@ -6,6 +6,7 @@ import android.graphics.Typeface.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.ScrollView
 import android.widget.TextView
@@ -26,7 +27,8 @@ import com.effective.android.component.square.listener.OnEditListener
  */
 class ChapterSelectView : ScrollView {
 
-    private lateinit var container: RelativeLayout;
+    private lateinit var container: RelativeLayout
+    private lateinit var cancel: ImageView
     private lateinit var dontTitleView: TextView
     private lateinit var dontDragFlowLayout: DragFlowLayout
     private lateinit var todoTitleView: TextView
@@ -57,15 +59,16 @@ class ChapterSelectView : ScrollView {
         val containerLp = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         addView(container, containerLp)
 
-        dontTitleView = TextView(context)
-        dontTitleView.id = View.generateViewId()
-        dontTitleView.textSize = 15f
-        dontTitleView.setTextColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
-        dontTitleView.typeface = defaultFromStyle(BOLD)
-        dontTitleView.text = ResourceUtils.getString(context, R.string.square_list_edit_done)
-        val dontTitleViewLp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        dontTitleViewLp.topMargin = DisplayUtils.dip2px(context, 3f)
-        container.addView(dontTitleView, dontTitleViewLp)
+        cancel = ImageView(context)
+        cancel.id = View.generateViewId()
+        cancel.background = ResourceUtils.getDrawable(context, R.drawable.square_ic_chapter_selected_cancel)
+        cancel.setPadding(DisplayUtils.dip2px(context, 0f), DisplayUtils.dip2px(context, 5f), DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 5f))
+        val cancelLp = LayoutParams(DisplayUtils.dip2px(context, 40f), DisplayUtils.dip2px(context, 40f))
+        container.addView(cancel, cancelLp)
+        cancel.setOnClickListener {
+            visibility = View.GONE
+            listenter?.onCancel()
+        }
 
         action = TextView(context)
         action.id = View.generateViewId()
@@ -73,8 +76,9 @@ class ChapterSelectView : ScrollView {
         action.setTextColor(ResourceUtils.getColor(context, R.color.colorThemeText))
         action.text = ResourceUtils.getString(context, R.string.square_edit)
         action.background = ResourceUtils.getDrawable(context, R.drawable.square_se_chatper_selector_action)
-        action.setPadding(DisplayUtils.dip2px(context, 8f), DisplayUtils.dip2px(context, 5f), DisplayUtils.dip2px(context, 8f), DisplayUtils.dip2px(context, 5f))
+        action.setPadding(DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 5f), DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 5f))
         val actionLp = RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        actionLp.topMargin = DisplayUtils.dip2px(context, 5f)
         actionLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
         action.setOnClickListener {
             if (action.text == context.getString(R.string.square_edit)) {
@@ -89,6 +93,17 @@ class ChapterSelectView : ScrollView {
             }
         }
         container.addView(action, actionLp)
+
+        dontTitleView = TextView(context)
+        dontTitleView.id = View.generateViewId()
+        dontTitleView.textSize = 15f
+        dontTitleView.setTextColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
+        dontTitleView.typeface = defaultFromStyle(BOLD)
+        dontTitleView.text = ResourceUtils.getString(context, R.string.square_list_edit_done)
+        val dontTitleViewLp = RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        dontTitleViewLp.addRule(RelativeLayout.BELOW, cancel.id)
+        dontTitleViewLp.topMargin = DisplayUtils.dip2px(context, 5f)
+        container.addView(dontTitleView, dontTitleViewLp)
 
         dontDragFlowLayout = DragFlowLayout(context)
         dontDragFlowLayout.id = View.generateViewId()

@@ -2,11 +2,9 @@ package com.effective.android.component.square
 
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.effective.android.base.view.list.IMediaItem
-import com.effective.android.base.view.list.MediaHolder
 import com.effective.android.component.square.adapter.ArticleAdapter
 import com.effective.android.component.square.adapter.ChapterAdapter
 import com.effective.android.component.square.bean.Article
@@ -14,7 +12,7 @@ import com.effective.android.component.square.bean.BlogArticle
 import com.effective.android.component.square.bean.SelectableChapter
 import com.effective.android.component.square.listener.OnEditListener
 import com.effective.android.component.square.view.BlogDetailActivity
-import com.effective.android.component.square.view.BlogFragment
+import com.effective.android.component.square.view.SquareFragment
 import com.effective.android.component.square.view.ChapterSelectView
 import com.effective.android.component.square.view.adapter.BlogArticleAdapter
 import com.effective.android.component.square.view.adapter.decoration.CardListDecoration
@@ -29,7 +27,7 @@ class ComponentBlogImpl : ComponentSquareSdk {
 
     override fun getMainFragment(): Fragment {
         if (blogFragment == null) {
-            blogFragment = BlogFragment()
+            blogFragment = SquareFragment()
         }
         return blogFragment!!
     }

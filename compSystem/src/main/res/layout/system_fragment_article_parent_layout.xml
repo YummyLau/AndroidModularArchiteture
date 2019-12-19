@@ -8,10 +8,10 @@
         android:id="@+id/parentTab"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
         tl:tl_indicator_color="@color/colorPrimary"
-        tl:tl_textSelectColor="@color/colorThemeText"
+        tl:tl_textSelectColor="@color/colorTextSecondary"
         tl:tl_textUnselectColor="@color/colorTextThird"
         tl:tl_indicator_corner_radius="24dp"
         tl:tl_indicator_style="BLOCK"/>

@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
 
     <!-- CYAN -->
-    <color name="colorPrimary">#FFC107</color>
-    <color name="colorPrimaryLight">#B2EBF2</color>
-    <color name="colorPrimaryDark">#FFC107</color>
-    <color name="colorAccent">#FFEB3B</color>
+    <color name="colorPrimary">#F6D36B</color>
+    <color name="colorPrimaryLight">#F6D36B</color>
+    <color name="colorPrimaryDark">#D9BB5F</color>
+    <color name="colorAccent">#D9BB5F</color>
 
     <!-- 主题色内的颜色 -->
     <color name="colorThemeText">#FFFFFF</color>

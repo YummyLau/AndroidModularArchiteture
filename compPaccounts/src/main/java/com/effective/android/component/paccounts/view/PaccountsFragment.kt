@@ -94,6 +94,10 @@ class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
         chapterAdapter = Sdks.blogSdk.getChapterAdapter(context!!)
         adapterView = chapterAdapter?.bindData(done, todo, object : OnEditListener {
 
+            override fun onCancel() {
+                //暂不需要处理
+            }
+
             override fun onEdit() {
                 //暂不需要处理
             }

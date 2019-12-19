@@ -6,5 +6,7 @@ interface OnEditListener {
 
     fun onEdit()
 
+    fun onCancel()
+
     fun onFinish(done: List<SelectableChapter>, todo: List<SelectableChapter>)
 }

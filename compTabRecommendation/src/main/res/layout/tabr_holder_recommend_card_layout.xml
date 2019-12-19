@@ -3,37 +3,46 @@
     android:layout_width="300dp"
     android:id="@+id/root"
     android:layout_height="450dp"
+    tools:background="@color/colorPrimary"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/image"
-        android:scaleType="centerCrop"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
+
 
     <RelativeLayout
-        android:textStyle="bold"
-        android:layout_below="@+id/image"
-        android:id="@+id/infoContainer"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            tools:text="测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题题测试标题测试标题题测试标题测试标题题测试标题测试标题"
-            android:textSize="20sp"
-            android:maxLines="3"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:textColor="@color/colorTextPrimary"
+        <ImageView
+            android:id="@+id/image"
+            android:scaleType="centerCrop"
+            android:layout_width="300dp"
+            android:layout_height="300dp" />
+
+        <RelativeLayout
+            tools:background="@color/windowBackground"
             android:textStyle="bold"
-            android:includeFontPadding="false" />
+            android:layout_below="@+id/image"
+            android:id="@+id/infoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
 
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                tools:text="测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题题测试标题测试标题题测试标题测试标题题测试标题测试标题"
+                android:textSize="20sp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:textColor="@color/colorTextPrimary"
+                android:textStyle="bold"
+                android:includeFontPadding="false" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
 

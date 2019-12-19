@@ -18,5 +18,8 @@ interface RecommendApis {
     }
 
     @GET("article/list/{pageIndex}/json")
-    fun getArticles(@Path(value = "pageIndex") index: String): Flowable<BaseListResult<Article>>
+    fun getNewArticles(@Path(value = "pageIndex") index: String): Flowable<BaseListResult<Article>>
+
+    @GET("article/listproject/{pageIndex}/json")
+    fun getNewProjects(@Path(value = "pageIndex") index: String): Flowable<BaseListResult<Article>>
 }

@@ -4,6 +4,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.util.ResourceUtils
+import com.effective.android.base.util.SharePreferencesUtil
 import com.effective.android.example.R
 import com.effective.android.example.vm.SplashVm
 import io.reactivex.Flowable
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit
 class SplashFragment : BaseVmFragment<SplashVm>() {
 
     private var disposable: Disposable? = null
+    private val splashKey = "splash_key"
 
     override fun getViewModel(): Class<SplashVm> = SplashVm::class.java
 
@@ -35,7 +37,7 @@ class SplashFragment : BaseVmFragment<SplashVm>() {
         splashSkip.setOnClickListener {
             toHome()
         }
-        splashImage.setImageDrawable(ResourceUtils.getDrawable(activity!!, String.format(activity!!.getString(R.string.app_splash_image_prefix), (Random().nextInt(6) + 2).toString())))
+        loadDifferentSplashImage()
         disposable = Flowable.timer(3000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -45,13 +47,20 @@ class SplashFragment : BaseVmFragment<SplashVm>() {
                 })
     }
 
+    private fun toHome() {
+        disposable?.dispose()
+        (activity as MainActivity).toHome()
+    }
+
+    private fun loadDifferentSplashImage() {
+        val index = SharePreferencesUtil.getInt(context!!, splashKey, 1)
+        splashImage.setImageDrawable(ResourceUtils.getDrawable(activity!!, String.format(activity!!.getString(R.string.app_splash_image_prefix), index.toString())))
+        SharePreferencesUtil.putInt(context!!, splashKey, if (index == 9) 1 else index + 1)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         disposable?.dispose()
     }
 
-    private fun toHome() {
-        disposable?.dispose()
-        (activity as MainActivity).toHome()
-    }
 }
