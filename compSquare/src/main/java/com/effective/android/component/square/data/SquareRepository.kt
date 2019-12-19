@@ -1,5 +1,6 @@
 package com.effective.android.component.square.data
 
+import android.text.TextUtils
 import com.effective.android.base.rxjava.RxCreator
 import com.effective.android.base.view.list.IMediaItem
 import com.effective.android.component.square.Sdks
@@ -15,25 +16,25 @@ import java.util.concurrent.Callable
  * 单例仓库类管理
  * created by yummylau on 2019/09/18
  */
-class BlogRepository private constructor() {
+class SquareRepository private constructor() {
 
     private val blogApis by lazy {
         Sdks.serviceNet.service(
-                BlogApis.BASE_URL, Type.GSON, BlogApis::class.java)
+                SquareApis.BASE_URL, Type.GSON, SquareApis::class.java)
     }
     
 
     companion object {
-        private var instance: BlogRepository? = null
+        private var instance: SquareRepository? = null
             get() {
                 if (field == null) {
-                    field = BlogRepository()
+                    field = SquareRepository()
                 }
                 return field
             }
 
         @Synchronized
-        fun get(): BlogRepository {
+        fun get(): SquareRepository {
             return instance!!
         }
     }
@@ -59,7 +60,15 @@ class BlogRepository private constructor() {
                     Function3<BaseListResult<BlogArticle>, BaseResult<List<Banner>>, BaseResult<List<BlogArticle>>, BaseListResult<IMediaItem>> { t1, t2, t3 ->
                         var result = t1.transform<IMediaItem>()
                         if (t3.isSuccess && !t3.data.isNullOrEmpty()) {
-                            result.data?.data?.addAll(0, t3.data!!)
+                            val stickyList = StickyList()
+                            for(sticky in t3.data!!){
+                                if(!TextUtils.isEmpty(sticky.title)){
+                                    stickyList.add(0,sticky)
+                                }
+                            }
+                            if(!stickyList.isNullOrEmpty()){
+                                result.data?.data?.add(0, stickyList)
+                            }
                         }
                         if (t2.isSuccess && !t2.data.isNullOrEmpty()) {
                             val bannerList = BannerList()
@@ -77,9 +86,4 @@ class BlogRepository private constructor() {
             )
         }
     }
-
-
-    fun getFriendWebsize(): Flowable<BaseResult<List<Website>>> = blogApis.getFriendWebsize()
-
-    fun getHotSearchKey(): Flowable<BaseResult<List<SearchKey>>> = blogApis.getHotSearchKey()
 }

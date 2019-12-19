@@ -15,17 +15,18 @@ import retrofit2.http.Path
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2017/11/24.
  */
-interface BlogApis {
+interface SquareApis {
 
     companion object {
         const val BASE_URL = "https://www.wanandroid.com/"
     }
 
+
     /**
-     * 获取首页文章
+     * 获取banner
      */
-    @GET("article/list/{pageIndex}/json")
-    fun getArticles(@Path(value = "pageIndex") index: String): Flowable<BaseListResult<BlogArticle>>
+    @GET("banner/json")
+    fun getBanner(): Flowable<BaseResult<List<Banner>>>
 
     /**
      * 获取置顶文章
@@ -33,23 +34,10 @@ interface BlogApis {
     @GET("/article/top/json")
     fun getTopArticles(): Flowable<BaseResult<List<BlogArticle>>>
 
-
     /**
-     * 获取首页banner
+     * 获取广场文章
      */
-    @GET("banner/json")
-    fun getBanner(): Flowable<BaseResult<List<Banner>>>
-
-    /**
-     * 获取常用网站
-     */
-    @GET("friend/json")
-    fun getFriendWebsize(): Flowable<BaseResult<List<Website>>>
-
-    /**
-     * 获取搜索热词
-     */
-    @GET("hotkey/json")
-    fun getHotSearchKey(): Flowable<BaseResult<List<SearchKey>>>
+    @GET("user_article/list/{pageIndex}/json")
+    fun getArticles(@Path(value = "pageIndex") index: String): Flowable<BaseListResult<BlogArticle>>
 
 }

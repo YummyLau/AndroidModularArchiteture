@@ -13,4 +13,5 @@
     <string name="square_finish">完成</string>
 
     <string name="square_card_detail_page_default_title">详情页</string>
+    <string name="square_sticky_text">置顶</string>
 </resources>
