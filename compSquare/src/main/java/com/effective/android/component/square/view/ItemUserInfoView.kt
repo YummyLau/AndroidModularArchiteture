@@ -69,13 +69,20 @@ class ItemUserInfoView : RelativeLayout {
     }
 
     fun bindData(data: BlogArticle) {
-        val avatarPath = String.format(ResourceUtils.getString(context,R.string.square_card_avatar_path),(Random().nextInt(25) + 1).toString())
+        var randomString = data.author
+        if (TextUtils.isEmpty(randomString)) {
+            randomString = data.shareUser
+        }
+        if (TextUtils.isEmpty(randomString)) {
+            randomString = ""
+        }
+        val avatarPath = String.format(ResourceUtils.getString(context, R.string.square_card_avatar_path), ((randomString.length % 25) + 1).toString())
         avatarView.background = ResourceUtils.getDrawable(context, avatarPath)
-        nickView.text =  if(!TextUtils.isEmpty(data.author)){
-            createTime.text =  String.format(ResourceUtils.getString(context,R.string.square_card_create_time_prefix),data.niceDate)
+        nickView.text = if (!TextUtils.isEmpty(data.author)) {
+            createTime.text = String.format(ResourceUtils.getString(context, R.string.square_card_create_time_prefix), data.niceDate)
             data.author
-        }else{
-            createTime.text =  String.format(ResourceUtils.getString(context,R.string.square_card_share_time_prefix),data.niceDate)
+        } else {
+            createTime.text = String.format(ResourceUtils.getString(context, R.string.square_card_share_time_prefix), data.niceDate)
             data.shareUser
         }
     }
