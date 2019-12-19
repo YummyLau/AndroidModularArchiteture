@@ -1,56 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
-    android:layout_height="450dp"
-    tools:background="@color/colorPrimary"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_width="306dp"
+    android:layout_height="450dp">
 
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:id="@+id/cover"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/tabr_ic_card_cover" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/infoContainer"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/image"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        tools:background="@color/windowBackground">
 
-        <ImageView
-            android:id="@+id/image"
-            android:scaleType="centerCrop"
-            android:layout_width="300dp"
-            android:layout_height="300dp" />
-
-        <View
-            android:id="@+id/cover"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@drawable/tabr_ic_card_cover" />
-
-        <RelativeLayout
-            tools:background="@color/windowBackground"
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_below="@+id/image"
-            android:id="@+id/infoContainer"
-            android:layout_width="match_parent"
-            android:layout_height="150dp">
+            tools:text="测题标题测试标题题" />
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                tools:text="测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题题测试标题测试标题题测试标题测试标题题测试标题测试标题"
-                android:textSize="20sp"
-                android:maxLines="3"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:textColor="@color/colorTextPrimary"
-                android:textStyle="bold"
-                android:includeFontPadding="false" />
-
-        </RelativeLayout>
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/cardTag"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/tabr_ic_card_tag"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingStart="20dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/colorThemeText"
+        android:textSize="15sp"
+        tools:text="为你推荐" />
 
 
 

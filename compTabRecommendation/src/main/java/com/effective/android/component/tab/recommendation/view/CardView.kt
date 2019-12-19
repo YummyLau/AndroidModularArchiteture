@@ -44,6 +44,15 @@ class CardView(context: Context) : LinearLayout(context) {
         } else {
             itemView.image.setImageDrawable(avatarDrawable)
         }
+        itemView.cardTag.text = if (TextUtils.isEmpty(data.chapterName)) {
+            if (TextUtils.isEmpty(data.superChapterName)) {
+                ResourceUtils.getString(context, R.string.tabr_recommend_card_tip)
+            } else {
+                data.superChapterName
+            }
+        } else {
+            data.chapterName
+        }
     }
 
     private fun loadImageByLocal(data: Article) {
