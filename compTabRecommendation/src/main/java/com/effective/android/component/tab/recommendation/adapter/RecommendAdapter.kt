@@ -11,9 +11,7 @@ import com.effective.android.component.tab.recommendation.view.CardView
 
 class RecommendAdapter(private val context: Context, private val mutableList: MutableList<Article>) : RecyclerView.Adapter<RecommendCard>() {
 
-    private val imageCache = LruCache<String, Drawable>(12)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendCard = RecommendCard(CardView(imageCache,context))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendCard = RecommendCard(CardView(context))
 
     override fun getItemCount(): Int = mutableList.size
 
