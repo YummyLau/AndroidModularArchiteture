@@ -61,7 +61,7 @@ class TabHomeFragment : BaseVmFragment<TabHomeVm>() {
             }
         })
 
-        val pagerAdapter = object : FragmentPagerAdapter(childFragmentManager) {
+        val pagerAdapter = object : FragmentPagerAdapter(childFragmentManager,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
             override fun getItem(position: Int): Fragment = fragmentList[position]
 

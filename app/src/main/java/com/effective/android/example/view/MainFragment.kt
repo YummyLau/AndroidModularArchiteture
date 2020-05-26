@@ -33,7 +33,7 @@ class MainFragment : BaseVmFragment<HomeVm>() {
         fragmentList.add(Sdks.componentTabHomeSdk.getMainFragment())
         fragmentList.add(Sdks.componentTabRecommendationSdk.getMainFragment())
         fragmentList.add(Sdks.componentMineSdk.getMainFragment())
-        mainPager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
+        mainPager.adapter = object : FragmentPagerAdapter(childFragmentManager,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
             /**
              * 当且仅当 findFragmentByTag 为 null 的时候才会调用，否则会使用系统缓存的fragments
