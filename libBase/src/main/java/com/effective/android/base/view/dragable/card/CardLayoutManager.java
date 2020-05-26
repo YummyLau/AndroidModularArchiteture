@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.core.view.MotionEventCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -19,6 +20,8 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
 
     private RecyclerView mRecyclerView;
     private ItemTouchHelper mItemTouchHelper;
+    private View topView;
+    private int touchViewId;
 
     public CardLayoutManager(@NonNull RecyclerView recyclerView, @NonNull ItemTouchHelper itemTouchHelper) {
         this.mRecyclerView = checkIsNull(recyclerView);
@@ -37,6 +40,9 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
         return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
+    public View getTopView() {
+        return topView;
+    }
 
     @Override
     public void onLayoutChildren(final RecyclerView.Recycler recycler, RecyclerView.State state) {
@@ -65,6 +71,8 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
                     view.setTranslationY(position * view.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                 } else {
                     view.setOnTouchListener(mOnTouchListener);
+                    mOnTouchListener.setUpTouchFromParent(view);
+                    topView = view;
                 }
             }
         } else {
@@ -86,22 +94,59 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
                     view.setTranslationY(position * view.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                 } else {
                     view.setOnTouchListener(mOnTouchListener);
+                    mOnTouchListener.setUpTouchFromParent(view);
+                    topView = view;
                 }
             }
         }
     }
 
-    private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
+
+    private class CardTouchListener implements View.OnTouchListener {
+
+        private TouchFromParent touchFromParent;
+        private float lastX = 0;// 记录上次X位置
+        private float lastY = 0;// 记录上次Y位置
+        boolean startSwipe = false;
+
+        public void setUpTouchFromParent(View view) {
+            if (view instanceof TouchFromParent) {
+                touchFromParent = (TouchFromParent) view;
+            }
+        }
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+            if (touchFromParent != null) {
+                touchFromParent.onTouch(v, event);
+            }
             RecyclerView.ViewHolder childViewHolder = mRecyclerView.getChildViewHolder(v);
-            if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
-                mItemTouchHelper.startSwipe(childViewHolder);
+            int x = (int) event.getRawX();
+            int y = (int) event.getRawY();
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    startSwipe = false;
+                    lastX = x;
+                    lastY = y;
+                    return true;
+                }
+                case MotionEvent.ACTION_MOVE: {
+                    if (startSwipe) {
+                        return true;
+                    }
+                    if (Math.abs(x - lastX) > Math.abs(y - lastY) && !startSwipe) {
+                        mItemTouchHelper.startSwipe(childViewHolder);
+                        startSwipe = true;
+                        return true;
+                    }
+                }
             }
             return false;
         }
-    };
+    }
+
+    private CardTouchListener mOnTouchListener = new CardTouchListener();
 
 }
 

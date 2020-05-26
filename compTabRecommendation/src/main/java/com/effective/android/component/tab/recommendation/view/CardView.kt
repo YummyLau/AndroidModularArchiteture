@@ -1,10 +1,12 @@
 package com.effective.android.component.tab.recommendation.view
 
 import android.content.Context
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.LruCache
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
 import com.bumptech.glide.load.DataSource
@@ -14,14 +16,15 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.effective.android.base.util.ResourceUtils
+import com.effective.android.base.view.dragable.card.TouchFromParent
 import com.effective.android.component.square.bean.Article
 import com.effective.android.component.tab.recommendation.R
 import com.effective.android.component.tab.recommendation.Sdks
-import io.reactivex.disposables.Disposable
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.tabr_holder_recommend_card_layout.view.*
+import kotlin.math.abs
 
-class CardView(context: Context) : LinearLayout(context) {
+class CardView(context: Context) : LinearLayout(context), TouchFromParent {
 
     companion object {
         private val imageCache: LruCache<String, Drawable> = LruCache(10)
@@ -30,8 +33,10 @@ class CardView(context: Context) : LinearLayout(context) {
 
     private var itemView: View = LayoutInflater.from(context).inflate(R.layout.tabr_holder_recommend_card_layout, this, true)
     var avatarDrawable: Drawable? = null
+    var data: Article? = null
 
     fun bindData(data: Article, position: Int) {
+        this.data = data
         itemView.title.text = data.title
         itemView.infoContainer.background = ResourceUtils.getDrawable(context, R.drawable.tabr_sh_card_content_bg)
         avatarDrawable = imageCache.get(data.title)
@@ -108,4 +113,44 @@ class CardView(context: Context) : LinearLayout(context) {
                 data.envelopePic, 10, 0, RoundedCornersTransformation.CornerType.TOP, requestOptions, requestListener)
     }
 
+    private var toClickView: View? = null
+    private var lastX = 0f // 记录上次X位置
+    private var lastY = 0f // 记录上次Y位置
+
+
+    private fun getTouchInTargetView(event: MotionEvent): View? {
+        val x = event.rawX
+        val y = event.rawY
+        val rect = Rect()
+        getGlobalVisibleRect(rect)
+        return if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+            this
+        } else null
+    }
+
+    override fun onTouch(v: View?, event: MotionEvent) {
+        val x = event.rawX
+        val y = event.rawY
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                lastX = x
+                lastY = y
+                toClickView = getTouchInTargetView(event)
+                return
+            }
+            MotionEvent.ACTION_MOVE -> {
+                if (toClickView != null && abs(x - lastX) > abs(y - lastY)) {
+                    toClickView = null
+                }
+                return
+            }
+            MotionEvent.ACTION_UP -> {
+                if (toClickView != null && data != null) {
+                    Sdks.getSdk().gotoDetailActivity(context, data!!)
+                    toClickView = null
+                }
+                return
+            }
+        }
+    }
 }

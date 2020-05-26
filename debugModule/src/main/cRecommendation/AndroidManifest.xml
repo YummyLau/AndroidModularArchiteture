@@ -6,7 +6,7 @@
     <application
         android:name=".DebugApplication"
         android:allowBackup="true"
-        android:label="@string/paccounts_app_name"
+        android:label="@string/recommendation_app_name"
         android:icon="@drawable/paccounts_ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme"

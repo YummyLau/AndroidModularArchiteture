@@ -16,7 +16,7 @@ component {
     sdk {
 
         //编译版本
-        compileSdkVersion 27
+        compileSdkVersion 28
 
         //java编译版本
         compileOptions {
@@ -153,7 +153,7 @@ component {
         targetModuleName 'debugModule'
 
         //申明调试模块运行时链接组件的资源，表明运行 debugModule 时使用目录资源
-        targetDebugName 'cPaccounts'
+        targetDebugName 'CRecommendation'
 
         configuration {
 
@@ -161,6 +161,12 @@ component {
             'cBlog' {
                 dependencies {
                     implementation component(':compSquare')
+                }
+            }
+
+            'CRecommendation' {
+                dependencies {
+                    implementation component(':compTabRecommendation')
                 }
             }
 
