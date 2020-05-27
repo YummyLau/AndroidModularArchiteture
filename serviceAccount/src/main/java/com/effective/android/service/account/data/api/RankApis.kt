@@ -1,5 +1,6 @@
-package com.effective.android.service.account.data
+package com.effective.android.service.account.data.api
 
+import com.effective.android.service.account.RankInfo
 import com.effective.android.service.account.UserInfo
 import com.effective.android.service.net.BaseResult
 
@@ -16,7 +17,7 @@ import retrofit2.http.Path
  * Created by yummylau on 2017/11/24.
  */
 
-interface AccountApis {
+interface RankApis {
 
     /**
      * {
@@ -49,6 +50,9 @@ interface AccountApis {
     @POST("login")
     fun login(@Field("username") username: String,
               @Field("password") password: String): Flowable<BaseResult<UserInfo>>
+
+    @GET("https://www.wanandroid.com/lg/coin/userinfo/json")
+    fun getRankInfo(): Flowable<BaseResult<RankInfo>>
 
     /**
      * {
