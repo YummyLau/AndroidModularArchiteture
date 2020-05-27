@@ -63,10 +63,10 @@
 
             <com.effective.android.base.view.roundimage.RoundedImageView
                 android:id="@+id/avatar"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 tools:background="@drawable/mine_se_avatar"
                 tools:src="@drawable/mine_ic_logout" />
 
