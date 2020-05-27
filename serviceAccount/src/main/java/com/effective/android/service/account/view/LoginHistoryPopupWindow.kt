@@ -39,7 +39,6 @@ class LoginHistoryPopupWindow : PopupWindow {
             this.callback = callback
             val adapter = Adapter(list)
             width = view.width
-            height = 100
             contentView.login_list.adapter = adapter
             adapter.notifyDataSetChanged()
             showAsDropDown(view)
@@ -54,25 +53,27 @@ class LoginHistoryPopupWindow : PopupWindow {
     inner class Adapter(private val list: MutableList<LoginInfoEntity>) : RecyclerView.Adapter<Holder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder =
-                Holder(LayoutInflater.from(this@LoginHistoryPopupWindow.context).inflate(R.layout.account_pop_login_history_item, null, false))
+                Holder(LayoutInflater.from(this@LoginHistoryPopupWindow.context).inflate(R.layout.account_pop_login_history_item, parent, false))
 
         override fun getItemCount(): Int = list.size
 
         override fun onBindViewHolder(holder: Holder, position: Int) {
-            holder.bind(list[position])
+            holder.bind(list[position], position == itemCount - 1)
         }
     }
 
 
     inner class Holder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(loginInfoEntity: LoginInfoEntity) {
+        fun bind(loginInfoEntity: LoginInfoEntity, isLast: Boolean) {
 
             view.text.text = loginInfoEntity.nickname
             view.setOnClickListener {
                 this@LoginHistoryPopupWindow.callback?.onLoginInfoSelected(loginInfoEntity.username, loginInfoEntity.password)
                 this@LoginHistoryPopupWindow.dismiss()
             }
+            view.divider.visibility =
+                    if (isLast) View.GONE else View.VISIBLE
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.effective.android.service.account.view
 
+import android.graphics.Color
 import android.opengl.Visibility
 import android.os.Bundle
 import android.text.Editable
@@ -40,7 +41,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusbarHelper.translucentStatusBar(this)
+        StatusbarHelper.setStatusBarColor(this, Color.TRANSPARENT, Color.WHITE)
         initView(isSelectLogin)
         initListener()
     }
@@ -101,13 +102,13 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
             }
         })
-        userName.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus -> checkoutUserName(userName.text,hasFocus) }
+        userName.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus -> checkoutUserName(userName.text, hasFocus) }
 
 
         password.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable?) {
-                checkoutPassword(s,true)
+                checkoutPassword(s, true)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -118,7 +119,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
             }
         })
-        password.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus -> checkoutPassword(userName.text,hasFocus) }
+        password.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus -> checkoutPassword(userName.text, hasFocus) }
 
 
         userNameClear.setOnClickListener {
@@ -174,8 +175,8 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
         }
         action.text = getString(if (isSelectLogin) R.string.account_login else R.string.account_register_and_login)
         actionTip.text = getString(if (isSelectLogin) R.string.account_login_tip else R.string.account_register_tip)
-        checkoutUserName(userName.text,userName.hasFocus())
-        checkoutPassword(password.text,password.hasFocus())
+        checkoutUserName(userName.text, userName.hasFocus())
+        checkoutPassword(password.text, password.hasFocus())
     }
 
 }

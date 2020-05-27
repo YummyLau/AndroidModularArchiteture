@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:fitsSystemWindows="false"
+    android:background="@color/pageBackground"
     android:layout_height="match_parent">
 
     <EditText
@@ -86,7 +87,7 @@
         android:id="@+id/status_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:status_bar_color="@color/colorPrimary" />
+        app:status_bar_color="@color/colorThemeText" />
 
     <com.effective.android.base.view.TitleView
         android:id="@+id/titleLayout"
@@ -94,8 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/status_bar"
         app:title="登陆"
-        app:titleBarBackground="@color/colorPrimary"
-        app:titleColor="@color/colorThemeText" />
+        app:titleBarBackground="@color/colorThemeText"
+        app:titleColor="@color/colorTextPrimary" />
 
 
 </RelativeLayout>
