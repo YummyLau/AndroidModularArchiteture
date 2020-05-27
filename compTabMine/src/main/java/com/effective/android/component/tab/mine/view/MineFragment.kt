@@ -1,5 +1,6 @@
 package com.effective.android.component.tab.mine.view
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import com.effective.android.base.fragment.BaseVmFragment
@@ -11,6 +12,7 @@ import com.effective.android.service.account.AccountChangeListener
 import com.effective.android.service.account.UserInfo
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.mine_fragment_main_layout.*
+
 
 class MineFragment : BaseVmFragment<MineViewModel>() {
 
@@ -34,8 +36,15 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initView()
         initListener()
         initData()
+    }
+
+    private fun initView(){
+        val type = Typeface.createFromAsset(context?.assets, "fonts/DIN-Condensed-Bold-2.ttf")
+        share_count.typeface = type
+        collect_count.typeface = type
     }
 
     override fun onDestroy() {

@@ -16,55 +16,60 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/statusView"
         android:background="@color/colorPrimary"
-        android:paddingStart="20dp"
-        android:paddingTop="40dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="30dp">
+        android:padding="20dp">
 
-        <TextView
-            android:id="@+id/nick"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/user_info"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="30dp"
-            android:layout_toEndOf="@+id/avatar"
-            android:textColor="@color/colorThemeText"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            tools:text="Yummylau" />
+            android:layout_marginTop="15dp">
 
-        <TextView
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="30dp"
-            android:layout_toEndOf="@+id/avatar"
-            android:background="@drawable/mine_se_login"
-            android:paddingStart="20dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="8dp"
-            android:text="前往登陆"
-            android:textColor="@color/mine_se_color_login"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/avatar"
+                android:textColor="@color/colorThemeText"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:text="Yummylau" />
 
-        <View
-            android:id="@+id/avatar_bg"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/mine_se_avatar_bg" />
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/avatar"
+                android:background="@drawable/mine_se_login"
+                android:paddingStart="20dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text="前往登陆"
+                android:textColor="@color/mine_se_color_login"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-        <com.effective.android.base.view.roundimage.RoundedImageView
-            android:id="@+id/avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            tools:background="@drawable/mine_se_avatar"
-            tools:src="@drawable/mine_ic_logout" />
+            <View
+                android:id="@+id/avatar_bg"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/mine_se_avatar_bg" />
+
+            <com.effective.android.base.view.roundimage.RoundedImageView
+                android:id="@+id/avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                tools:background="@drawable/mine_se_avatar"
+                tools:src="@drawable/mine_ic_logout" />
+
+        </RelativeLayout>
 
         <View
             android:id="@+id/setting"
@@ -73,49 +78,64 @@
             android:layout_alignParentEnd="true"
             android:background="@drawable/mine_ic_setting" />
 
-        <LinearLayout
-            android:id="@+id/share_and_collect_layout"
+        <RelativeLayout
+            android:id="@+id/append_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/avatar_bg"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:layout_below="@+id/user_info"
+            android:layout_marginTop="20dp">
 
             <TextView
-                android:id="@+id/share"
-                android:layout_width="0dp"
+                android:id="@+id/share_count"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:text="-- 分享"
+                android:text="--"
                 android:textColor="@color/colorThemeText"
-                android:textSize="18sp">
+                android:textSize="18sp" />
 
-            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@+id/share_count"
+                android:text="@string/mine_share"
+                android:textColor="@color/colorThemeText"
+                android:textSize="12sp" />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="15dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/colorDivider" />
+                android:layout_centerInParent="true"
+                android:background="@color/colorThemeText" />
 
             <TextView
-                android:id="@+id/collect_layout"
-                android:layout_width="0dp"
+                android:id="@+id/collect_count"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:text="-- 收藏"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/collect_tip"
+                android:text="--"
                 android:textColor="@color/colorThemeText"
-                android:textSize="18sp">
+                android:textSize="18sp" />
 
-            </TextView>
+            <TextView
+                android:id="@+id/collect_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:text="@string/mine_collection"
+                android:textColor="@color/colorThemeText"
+                android:textSize="12sp" />
 
-        </LinearLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
