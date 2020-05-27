@@ -1,4 +1,4 @@
-package com.effective.android.service.account.data
+package com.effective.android.service.account.data.api
 
 import com.effective.android.service.account.RankInfo
 import com.effective.android.service.account.UserInfo
@@ -51,8 +51,6 @@ interface AccountApis {
     fun login(@Field("username") username: String,
               @Field("password") password: String): Flowable<BaseResult<UserInfo>>
 
-    @GET("https://www.wanandroid.com/lg/coin/userinfo/json")
-    fun getRankInfo(): Flowable<BaseResult<RankInfo>>
 
     /**
      * {

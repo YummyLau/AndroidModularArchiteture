@@ -32,6 +32,7 @@ public class PrivilegeProgressBar extends ProgressBar {
         mPaint = new Paint();
         mPaint.setColor(Color.WHITE);
         mPaint.setTextSize(DisplayUtils.dip2px(getContext(), 10));
+        setMax(100);
     }
 
     @Override
@@ -43,7 +44,8 @@ public class PrivilegeProgressBar extends ProgressBar {
     }
 
     public void setPrivilegeProgress(int progress) {
-        String mText = (progress % 100) + "";
+        progress = progress % 100;
+        String mText = progress + "";
         boolean textChange = !TextUtils.equals(progressText, mText);
         this.progressText = mText;
         Rect rect = new Rect();
@@ -65,7 +67,7 @@ public class PrivilegeProgressBar extends ProgressBar {
         if (progress >= getMax()) {
             progress = getMax();
         }
-        if (textChange && getProgress() == progress) {   //防止progress相同文本有变而导致文本没有刷新
+        if (textChange && getProgress() == progress) {
             invalidate();
         }
         setProgress(progress);

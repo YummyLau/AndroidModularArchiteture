@@ -2,17 +2,20 @@ package com.effective.android.service.account.data
 
 import androidx.annotation.WorkerThread
 import com.effective.android.base.rxjava.RxCreator
-import com.effective.android.base.rxjava.RxSchedulers
-import com.effective.android.service.account.AccountChangeListener
-import com.effective.android.service.account.Sdks
-import com.effective.android.service.account.UserInfo
+import com.effective.android.service.account.*
+import com.effective.android.service.account.data.api.AccountApis
+import com.effective.android.service.account.data.api.ExtraApis
+import com.effective.android.service.account.data.bean.TmpShareBean
 import com.effective.android.service.account.data.db.AccountDataBase
 import com.effective.android.service.account.data.db.entity.LoginInfoEntity
+import com.effective.android.service.net.BaseResult
+import com.effective.android.service.net.ListData
 import com.effective.android.service.net.Type
 import io.reactivex.Flowable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Function3
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 import java.util.concurrent.Callable
 
 
@@ -27,9 +30,19 @@ class AccountRepository() {
     var user: LoginInfoEntity? = null
 
     private var users: MutableSet<LoginInfoEntity>? = null
+
     private val accountApis by lazy {
         Sdks.serviceNet.service(
                 AccountApis.BASE_URL, Type.GSON, AccountApis::class.java)
+    }
+    private val extraApis by lazy {
+        Sdks.serviceNet.service(
+                ExtraApis.BASE_URL, Type.GSON, ExtraApis::class.java)
+    }
+
+    private val extraUserApis by lazy {
+        Sdks.serviceNet.service(
+                ExtraApis.SHARE_URL, Type.GSON, ExtraApis::class.java)
     }
 
     companion object {
@@ -82,7 +95,7 @@ class AccountRepository() {
 
     fun getUserInfo(): Flowable<UserInfo> {
         if (user != null) {
-            return RxCreator.createFlowable (Callable<UserInfo> { user!!.toUserInfo() })
+            return RxCreator.createFlowable(Callable<UserInfo> { user!!.toUserInfo() })
         }
         return RxCreator
                 .createFlowable(Callable<Boolean> { getDataFromDB() })
@@ -121,11 +134,38 @@ class AccountRepository() {
                 }
     }
 
+
     fun login(username: String, password: String): Flowable<UserInfo> {
         return RxCreator
                 .createFlowable(Callable<Boolean> { getDataFromDB() })
                 .flatMap { accountApis.login(username, password) }
-                .map {
+                .flatMap { it ->
+                    Flowable.zip(
+                            extraApis.getRankInfo(),
+                            extraApis.getCollectInfo(),
+                            extraUserApis.getShareInfo(),
+                            Function3<BaseResult<RankInfo>, BaseResult<ListData<Any>>, BaseResult<TmpShareBean>, Pair<RankInfo, ActionInfo>> { t1, t2, t3 ->
+                                var rankInfo = RankInfo.createEmpty()
+                                var actionInfo = ActionInfo.createEmpty()
+                                if (t1.isSuccess && t1.data != null) {
+                                    rankInfo = t1.data!!
+                                }
+                                if (t2.isSuccess && t2.data != null) {
+                                    actionInfo.collectCount = t2.data!!.total.toLong()
+                                }
+                                if (t3.isSuccess && t3.data?.shareArticles != null) {
+                                    actionInfo.shareCount = t3.data?.shareArticles!!.total.toLong()
+                                }
+                                Pair(rankInfo, actionInfo)
+                            })
+                            .flatMap {pair ->
+                                if(it.isSuccess){
+                                    it.data?.rankInfo = pair.first
+                                    it.data?.actionInfo = pair.second
+                                }
+                                Flowable.just(it)
+                            }
+                }.map {
                     if (it.isSuccess) {
                         it.data?.password = password
                         user = LoginInfoEntity.fromUserInfo(it.data)
@@ -150,6 +190,33 @@ class AccountRepository() {
         return RxCreator
                 .createFlowable(Callable<Boolean> { getDataFromDB() })
                 .flatMap { accountApis.register(username, password, password) }
+                .flatMap { it ->
+                    Flowable.zip(
+                            extraApis.getRankInfo(),
+                            extraApis.getCollectInfo(),
+                            extraUserApis.getShareInfo(),
+                            Function3<BaseResult<RankInfo>, BaseResult<ListData<Any>>, BaseResult<TmpShareBean>, Pair<RankInfo, ActionInfo>> { t1, t2, t3 ->
+                                var rankInfo = RankInfo.createEmpty()
+                                var actionInfo = ActionInfo.createEmpty()
+                                if (t1.isSuccess && t1.data != null) {
+                                    rankInfo = t1.data!!
+                                }
+                                if (t2.isSuccess && t2.data != null) {
+                                    actionInfo.collectCount = t2.data!!.total.toLong()
+                                }
+                                if (t3.isSuccess && t3.data?.shareArticles != null) {
+                                    actionInfo.shareCount = t3.data?.shareArticles!!.total.toLong()
+                                }
+                                Pair(rankInfo, actionInfo)
+                            })
+                            .flatMap {pair ->
+                                if(it.isSuccess){
+                                    it.data?.rankInfo = pair.first
+                                    it.data?.actionInfo = pair.second
+                                }
+                                Flowable.just(it)
+                            }
+                }
                 .map {
                     if (it.isSuccess) {
                         it.data?.password = password

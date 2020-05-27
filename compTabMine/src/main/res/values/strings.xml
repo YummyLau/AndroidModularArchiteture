@@ -3,4 +3,7 @@
     <string name="mine_share">分享</string>
     <string name="mine_collection">收藏</string>
     <string name="mine_rank">我的积分</string>
+    <string name="mine_rank_check">前往查看我的积分之旅</string>
+    <string name="mine_rank_logout">-- 积分</string>
+    <string name="mine_rank_check_logout">如何获取积分</string>
 </resources>

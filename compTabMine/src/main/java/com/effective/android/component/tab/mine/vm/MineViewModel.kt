@@ -21,6 +21,7 @@ class MineViewModel : ViewModel() {
 
     fun getLoginAccount() = MineRepository.get().getAccount().compose(RxSchedulers.flowableIoToMain())!!
 
+
     fun loadAvatar(imageView: ImageView, avatar: String) {
         Sdks.serviceImageloader.load(imageView, avatar)
     }

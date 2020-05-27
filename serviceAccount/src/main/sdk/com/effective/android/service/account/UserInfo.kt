@@ -8,7 +8,7 @@ package com.effective.android.service.account
  * Created by yummylau on 2018/01/25.
  */
 
-open class UserInfo{
+open class UserInfo {
 
     open var admin: Boolean = false
     open var email: String = ""
@@ -19,7 +19,8 @@ open class UserInfo{
     open var token: String = ""
     open var type: Int = 0
     open var username: String = ""
-
+    open var rankInfo: RankInfo = RankInfo.createEmpty()
+    open var actionInfo:ActionInfo = ActionInfo.createEmpty()
 
     fun isValid() = id != 0L
 

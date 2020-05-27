@@ -1,5 +1,6 @@
 package com.effective.android.component.tab.mine.view
 
+import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
@@ -23,7 +24,7 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
         override fun onAccountChange(userInfo: UserInfo?, login: Boolean, success: Boolean, message: String?) {
             if (success) {
                 this@MineFragment.userInfo = if (login) userInfo else null
-                checkoutStatus(isLogin())
+                checkoutStatus()
             } else {
                 ToastUtils.show(context!!, message ?: "操作失败")
             }
@@ -41,7 +42,7 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
         initData()
     }
 
-    private fun initView(){
+    private fun initView() {
         val type = Typeface.createFromAsset(context?.assets, "fonts/DIN-Condensed-Bold-2.ttf")
         share_count.typeface = type
         collect_count.typeface = type
@@ -72,27 +73,36 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
     }
 
     private fun initData() {
-        checkoutStatus(isLogin())
+        checkoutStatus()
         accountDisposable = viewModel.getLoginAccount()
                 .subscribe({
                     if (it.isValid()) {
                         userInfo = it
                     }
-                    checkoutStatus(isLogin())
+                    checkoutStatus()
                 }, {
-                    checkoutStatus(isLogin())
+                    checkoutStatus()
                 })
     }
 
-    private fun checkoutStatus(hasLogin: Boolean) {
+    private fun checkoutStatus() {
+        refreshUserInfo()
+        refreshRank()
+        refreshShareAndCollection()
+    }
+
+    private fun refreshUserInfo(){
+        val hasLogin = userInfo != null
         avatar.isSelected = hasLogin
         avatar_bg.isSelected = hasLogin
         if (hasLogin) {
+            //个人信息
             login.visibility = View.GONE
             avatar.setImageResource(R.drawable.mine_ic_login)
             nick.visibility = View.VISIBLE
             nick.text = userInfo!!.nickname
         } else {
+            //个人信息
             login.visibility = View.VISIBLE
             avatar.setImageResource(R.drawable.mine_ic_logout)
             nick.visibility = View.GONE
@@ -101,6 +111,37 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
             }
         }
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun refreshRank() {
+        if (isLogin()) {
+            userInfo?.rankInfo.let {
+                rank_title.text = getString(R.string.mine_rank)
+                rank_hint.text = getString(R.string.mine_rank_check)
+                tv_privilege_level.text = "Lv.${it?.level.toString()}"
+                pb_privilege_exp.setPrivilegeProgress(it?.coinCount?.toInt() ?: 0)
+            }
+        } else {
+            rank_title.text = getString(R.string.mine_rank_logout)
+            rank_hint.text = getString(R.string.mine_rank_check_logout)
+            tv_privilege_level.text = "Lv.--"
+            pb_privilege_exp.setPrivilegeProgress(0)
+        }
+    }
+
+    private fun refreshShareAndCollection(){
+        if (isLogin()) {
+            userInfo?.actionInfo.let {
+                share_count.text = it?.shareCount.toString()
+                collect_count.text = it?.collectCount.toString()
+            }
+        } else {
+            share_count.text = "--"
+            collect_count.text = "--"
+        }
+    }
+
+
 
     private fun isLogin() = userInfo != null
 }

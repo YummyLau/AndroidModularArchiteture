@@ -10,4 +10,8 @@ class ServiceNetImpl : ServiceNet {
     override fun <T> service(baseUrl: String, type: Type, tClass: Class<T>): T {
         return RetrofitClient.instance.getService(baseUrl, type.ordinal, tClass)
     }
+
+    override fun <T> serviceWithoutRx(baseUrl: String, type: Type, tClass: Class<T>): T {
+        return RetrofitClient.instance.getServiceWithoutRx(baseUrl, type.ordinal, tClass)
+    }
 }

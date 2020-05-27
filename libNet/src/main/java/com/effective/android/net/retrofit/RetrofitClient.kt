@@ -21,7 +21,11 @@ class RetrofitClient private constructor() {
         return getRetrofit(baseUrl, type).create(tClass)
     }
 
-    private fun getRetrofit(baseUrl: String?, @Type type: Int): Retrofit {
+    fun <T> getServiceWithoutRx(baseUrl: String? = null, @Type type: Int = Type.GSON, tClass: Class<T>): T {
+        return getRetrofit(baseUrl, type, false).create(tClass)
+    }
+
+    private fun getRetrofit(baseUrl: String?, @Type type: Int, byRx: Boolean = true): Retrofit {
         val builder = Retrofit.Builder()
                 .client(HttpClient.instance)
         when (type) {
@@ -38,7 +42,10 @@ class RetrofitClient private constructor() {
                 builder.addConverterFactory(GsonConverterFactory.create())
             }
         }
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+
+        if(byRx){
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        }
 
         if (!TextUtils.isEmpty(baseUrl)) {
             builder.baseUrl(baseUrl!!)

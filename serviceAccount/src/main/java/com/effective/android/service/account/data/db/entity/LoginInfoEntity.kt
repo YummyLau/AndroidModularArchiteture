@@ -3,6 +3,8 @@ package com.effective.android.service.account.data.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.effective.android.base.util.GsonUtils
+import com.effective.android.service.account.RankInfo
 import com.effective.android.service.account.UserInfo
 
 @Entity(tableName = "login_info")
@@ -25,6 +27,7 @@ class LoginInfoEntity {
                 loginInfoEntity.type = userInfo.type
                 loginInfoEntity.username = userInfo.username
                 loginInfoEntity.updateTime = System.currentTimeMillis()
+                loginInfoEntity.rankInfo = GsonUtils.getJsonString(userInfo.rankInfo) ?: ""
             }
             return loginInfoEntity
         }
@@ -42,6 +45,7 @@ class LoginInfoEntity {
         userInfo.token = token
         userInfo.type = type
         userInfo.username = username
+        userInfo.rankInfo = GsonUtils.getObj(rankInfo, RankInfo::class.java) ?: RankInfo.createEmpty()
         return userInfo
     }
 
@@ -85,6 +89,9 @@ class LoginInfoEntity {
 
     @ColumnInfo(name = "username")
     var username: String = ""
+
+    @ColumnInfo(name = "rankInfo")
+    var rankInfo: String = ""
 
     fun isLogin() = loginState == 1
 }

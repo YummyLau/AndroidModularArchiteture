@@ -142,7 +142,7 @@
         android:background="@android:color/white">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/rank_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -157,12 +157,12 @@
             android:id="@+id/tv_privilege_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_alignStart="@id/title"
+            android:layout_below="@+id/rank_title"
+            android:layout_alignStart="@id/rank_title"
             android:layout_marginTop="15dp"
             android:gravity="bottom"
             android:includeFontPadding="false"
-            android:text="Lv.0"
+            android:text="Lv.--"
             android:textColor="#646F99"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -190,7 +190,7 @@
             android:src="@drawable/mine_privilege_exp" />
 
         <TextView
-            android:layout_alignStart="@id/title"
+            android:layout_alignStart="@id/rank_title"
             android:id="@+id/rank_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -239,7 +239,7 @@
             android:layout_centerVertical="true"
             android:text="夜间模式"
             android:layout_toEndOf="@+id/nice_ic"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="15dp"
             android:id="@+id/night_tip"
             android:textSize="15sp"
             android:textColor="@color/colorTextPrimary"
@@ -278,7 +278,7 @@
             android:layout_centerVertical="true"
             android:text="设置"
             android:layout_toEndOf="@+id/setting_ic"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="15dp"
             android:textSize="15sp"
             android:textColor="@color/colorTextPrimary"
             android:layout_width="wrap_content"
