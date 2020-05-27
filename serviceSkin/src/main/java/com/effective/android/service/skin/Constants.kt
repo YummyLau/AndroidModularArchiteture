@@ -6,10 +6,7 @@ package com.effective.android.service.skin
  */
 
 object Constants {
-
     const val LOG_TAG: String = "SkinService"
-    const val DEFAULT_KEY: String = "default"
-    const val BLUE_GREY_KEY: String = "blueGrey"
-    const val GREEN_KEY: String = "green"
-    const val PICK_KEY: String = "pick"
+    const val SUN_KEY: String = "sun"
+    const val NIGHT_KEY: String = "night"
 }

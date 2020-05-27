@@ -13,10 +13,8 @@ import skin.support.design.app.SkinMaterialViewInflater
 class SkinComponent : IComponent {
 
     override fun attachComponent(application: Application) {
-        sSkinTypeMap.put(Constants.DEFAULT_KEY, Skin(Constants.DEFAULT_KEY, "", Color.parseColor("#00BCD4")))
-        sSkinTypeMap.put(Constants.BLUE_GREY_KEY, Skin(Constants.BLUE_GREY_KEY, "blueGrey.skin", Color.parseColor("#607D8B")))
-        sSkinTypeMap.put(Constants.GREEN_KEY, Skin(Constants.GREEN_KEY, "green.skin", Color.parseColor("#4CAF50")))
-        sSkinTypeMap.put(Constants.PICK_KEY, Skin(Constants.PICK_KEY, "pick.skin", Color.parseColor("#E91E63")))
+        sSkinTypeMap[Constants.SUN_KEY] = Skin(Constants.SUN_KEY, "日间版本", Color.WHITE)
+        sSkinTypeMap[Constants.NIGHT_KEY] = Skin(Constants.NIGHT_KEY, "夜间版本", Color.BLACK)
 
         SkinCompatManager.withoutActivity(application)
                 .addInflater(SkinMaterialViewInflater())      // 基础控件换肤初始化

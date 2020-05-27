@@ -22,11 +22,11 @@ class SkinSdkImpl : ServiceSkin {
     }
 
     override fun changeSkin(skin: Skin) {
-        if (skin.key == Constants.DEFAULT_KEY) {
+        if (skin.key == Constants.SUN_KEY) {
             SkinCompatManager.getInstance().restoreDefaultTheme()
             notifyChange(skin, true)
         } else {
-            SkinCompatManager.getInstance().loadSkin(skin.sourceName, object : SkinCompatManager.SkinLoaderListener {
+            SkinCompatManager.getInstance().loadSkin("night", object : SkinCompatManager.SkinLoaderListener {
                 override fun onStart() {
                     Log.d(Constants.LOG_TAG, "start load skin: " + skin.key)
                 }
@@ -43,7 +43,7 @@ class SkinSdkImpl : ServiceSkin {
                     }
                     notifyChange(skin, false)
                 }
-            }, SkinCompatManager.SKIN_LOADER_STRATEGY_ASSETS)
+            }, SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN)
         }
     }
 
@@ -59,7 +59,7 @@ class SkinSdkImpl : ServiceSkin {
     override fun getSkins(): List<Skin> {
         val skins = mutableListOf<Skin>()
         for (key in SkinComponent.sSkinTypeMap.keys) {
-            if (key != Constants.DEFAULT_KEY) {
+            if (key != Constants.SUN_KEY) {
                 skins.add(SkinComponent.sSkinTypeMap[key]!!)
             } else {
                 skins.add(0, SkinComponent.sSkinTypeMap[key]!!)

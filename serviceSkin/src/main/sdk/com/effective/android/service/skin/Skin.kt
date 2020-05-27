@@ -8,4 +8,4 @@ import androidx.annotation.ColorInt
  * Created by yummylau on 2018/01/24.
  */
 
-class Skin(var key: String, var sourceName: String, @param:ColorInt var color: Int)
+class Skin(var key: String, var desc: String, @param:ColorInt var color: Int)
