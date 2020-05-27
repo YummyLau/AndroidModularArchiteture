@@ -179,6 +179,7 @@ def skin = [:]
 skin.support = "skin.support:skin-support:$versions.skin"
 skin.design = "skin.support:skin-support-design:$versions.skin"
 skin.cardview = "skin.support:skin-support-cardview:$versions.skin"
+skin.appcompat = "skin.support:skin-support-appcompat:$versions.skin"
 deps.skin = skin
 
 deps.permissions = "pub.devrel:easypermissions:$versions.permission"

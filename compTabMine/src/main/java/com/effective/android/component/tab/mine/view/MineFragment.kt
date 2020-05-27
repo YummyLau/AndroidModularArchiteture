@@ -8,6 +8,7 @@ import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.toast.ToastUtils
 import com.effective.android.base.view.dialog.CommonDialog
 import com.effective.android.component.tab.mine.R
+import com.effective.android.component.tab.mine.Sdks
 import com.effective.android.component.tab.mine.vm.MineViewModel
 import com.effective.android.service.account.AccountChangeListener
 import com.effective.android.service.account.UserInfo
@@ -70,6 +71,20 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
             }
         }
         viewModel.addAccountChangeListener(listener)
+        night_mode.setOnClickListener {
+            /**
+             * 如果app有多种皮肤，则需要这样处理，如果只有日间/夜间，其实可以不用的
+             * demo需要
+             */
+            val allSkins = Sdks.serviceSkin.getSkins()
+            val curSkin = Sdks.serviceSkin.getCurSkin()
+            allSkins.forEach{
+                if(it.key != curSkin.key){
+                    Sdks.serviceSkin.changeSkin(it)
+                    return@forEach
+                }
+            }
+        }
     }
 
     private fun initData() {
@@ -140,8 +155,6 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
             collect_count.text = "--"
         }
     }
-
-
 
     private fun isLogin() = userInfo != null
 }

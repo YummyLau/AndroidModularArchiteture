@@ -10,12 +10,11 @@ import com.plugin.component.SdkManager
 
 class Sdks{
     companion object {
-
+        
         lateinit var serviceSkin: ServiceSkin
         lateinit var serviceNet: ServiceNet
         lateinit var serviceAccount: AccountSdk
         lateinit var serviceImageloader: ServiceImageloader
-
 
         fun init(application: Application) {
             ComponentManager.init(application)

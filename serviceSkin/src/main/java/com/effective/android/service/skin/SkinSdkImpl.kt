@@ -21,6 +21,9 @@ class SkinSdkImpl : ServiceSkin {
         }
     }
 
+    /**
+     * demo只有白天夜间，通过 skin 可扩展多样式皮肤
+     */
     override fun changeSkin(skin: Skin) {
         if (skin.key == Constants.SUN_KEY) {
             SkinCompatManager.getInstance().restoreDefaultTheme()
@@ -55,6 +58,13 @@ class SkinSdkImpl : ServiceSkin {
         listeners.add(skinChangeListener)
     }
 
+    override fun getCurSkin(): Skin {
+        return if(SkinCompatManager.getInstance().curSkinName == Constants.NIGHT_KEY){
+            SkinComponent.sSkinTypeMap[Constants.NIGHT_KEY]!!
+        }else{
+            SkinComponent.sSkinTypeMap[Constants.SUN_KEY]!!
+        }
+    }
 
     override fun getSkins(): List<Skin> {
         val skins = mutableListOf<Skin>()

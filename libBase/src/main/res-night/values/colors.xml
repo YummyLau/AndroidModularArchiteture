@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
+    <!-- CYAN -->
+    <color name="colorPrimary_night">@android:color/black</color>
+    <color name="colorPrimaryLight_night">@android:color/black</color>
+    <color name="colorPrimaryDark_night">@android:color/black</color>
+    <color name="colorAccent_night">@android:color/black</color>
+
+    <!-- 主题色内的颜色 -->
+    <color name="colorThemeText_night">#FFFFFF</color>
+    <color name="colorThemeTextDark_night">#9E9E9E</color>
+
+    <color name="colorTextIcon_night">#FFFFFF</color>
+    <color name="colorTextPrimary_night">#000000</color>
+    <color name="colorTextSecondary_night">#666666</color>
+    <color name="colorTextThird_night">#999999</color>
+    <color name="colorDivider_night">#BDBDBD</color>
+    <color name="windowBackground_night">@android:color/black</color>
+    <color name="pageBackground_night">@color/gray_900</color>
+
+
+    <color name="red_tip_bg_night">#E76464</color>
+    <color name="transparent_night">#00000000</color>
+    <color name="toast_text_bg_night">#F4000000</color>
+
+
+</resources>

@@ -22,6 +22,9 @@
 
     <color name="red_tip_bg">#E76464</color>
     <color name="transparent">#00000000</color>
+    <color name="toast_text_bg">#F4000000</color>
+
+
     <color name="gray_50">#FAFAFA</color>
     <color name="gray_100">#F5F5F5</color>
     <color name="gray_200">#EEEEEE</color>
@@ -65,8 +68,6 @@
     <color name="green_700">#3F7736</color>
     <color name="green_800">#35662D</color>
     <color name="green_900">#35662D</color>
-
-    <color name="toast_text_bg">#F4000000</color>
 
     <color name="black_alpha_02">#02000000</color>
     <color name="black_alpha_30">#76000000</color>

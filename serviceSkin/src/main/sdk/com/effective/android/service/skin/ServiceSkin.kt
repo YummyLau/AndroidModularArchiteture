@@ -5,6 +5,8 @@ interface ServiceSkin {
 
     fun getSkins(): List<Skin>
 
+    fun getCurSkin(): Skin
+
     fun changeSkin(skin: Skin)
 
     fun addSkinChangeListener(skinChangeListener: SkinChangeListener)

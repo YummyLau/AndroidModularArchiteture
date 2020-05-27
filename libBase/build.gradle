@@ -26,6 +26,12 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-night']
+        }
+    }
+
     resourcePrefix "base_"
 }
 
@@ -73,6 +79,8 @@ dependencies {
     api deps.room.runtime
     api deps.room.ktx
     api deps.room.rxjava2
+
+    implementation deps.skin.appcompat
 }
 
 

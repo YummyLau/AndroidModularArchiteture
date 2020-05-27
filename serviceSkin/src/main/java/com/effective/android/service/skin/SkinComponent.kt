@@ -6,6 +6,7 @@ import com.plugin.component.IComponent
 import com.plugin.component.anno.AutoInjectComponent
 import java.util.HashMap
 import skin.support.SkinCompatManager
+import skin.support.app.SkinAppCompatViewInflater
 import skin.support.app.SkinCardViewInflater
 import skin.support.design.app.SkinMaterialViewInflater
 
@@ -17,8 +18,9 @@ class SkinComponent : IComponent {
         sSkinTypeMap[Constants.NIGHT_KEY] = Skin(Constants.NIGHT_KEY, "夜间版本", Color.BLACK)
 
         SkinCompatManager.withoutActivity(application)
-                .addInflater(SkinMaterialViewInflater())      // 基础控件换肤初始化
-                .addInflater(SkinCardViewInflater())          // material design 控件换肤初始化[可选]
+                .addInflater(SkinMaterialViewInflater())
+                .addInflater(SkinCardViewInflater())
+                .addInflater(SkinAppCompatViewInflater())
                 .setSkinStatusBarColorEnable(false)
                 .setSkinWindowBackgroundEnable(false)
                 .loadSkin()

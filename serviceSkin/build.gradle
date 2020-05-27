@@ -33,6 +33,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
     api deps.skin.support
+    api deps.skin.appcompat
     api deps.skin.design
     api deps.skin.cardview
 }
