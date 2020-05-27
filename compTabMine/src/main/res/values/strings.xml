@@ -2,4 +2,5 @@
     <string name="mine_app_name">我</string>
     <string name="mine_share">分享</string>
     <string name="mine_collection">收藏</string>
+    <string name="mine_rank">我的积分</string>
 </resources>
