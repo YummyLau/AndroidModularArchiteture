@@ -84,7 +84,11 @@ class MainFragment : BaseVmFragment<HomeVm>() {
 
     private fun selectTab(position: Int) {
         if (position <= 1) {
-            QMUIStatusBarHelper.setStatusBarLightMode(activity)
+            if(Sdks.serviceSkin.isLoadingDefaultSkin()){
+                QMUIStatusBarHelper.setStatusBarLightMode(activity)
+            }else{
+                QMUIStatusBarHelper.setStatusBarDarkMode(activity)
+            }
         } else {
             QMUIStatusBarHelper.setStatusBarDarkMode(activity)
         }

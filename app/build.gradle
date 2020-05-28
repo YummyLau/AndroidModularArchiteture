@@ -87,6 +87,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
+    implementation component(':serviceSkin')
     implementation component(':compTabMine')
     implementation component(':compTabHome')
     implementation component(':compTabRecommendation')
