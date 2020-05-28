@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/pageBackground"
     android:fitsSystemWindows="false">
 
@@ -139,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/infoContainer"
         android:layout_marginTop="10dp"
-        android:background="@android:color/white">
+        android:background="@color/blockBackground">
 
         <TextView
             android:id="@+id/rank_title"
@@ -149,7 +150,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/mine_rank"
-            android:textColor="@color/mine_rank_text_color"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -163,7 +164,7 @@
             android:gravity="bottom"
             android:includeFontPadding="false"
             android:text="Lv.--"
-            android:textColor="#646F99"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -203,7 +204,7 @@
             android:maxEms="10"
             android:singleLine="true"
             android:text="前往查看我的积分之旅"
-            android:textColor="#AAB0C8"
+            android:textColor="@color/colorTextThird"
             android:textSize="12sp"
             android:textStyle="normal" />
 
@@ -224,7 +225,7 @@
         android:layout_height="50dp"
         android:layout_below="@+id/rank_layout"
         android:layout_marginTop="10dp"
-        android:background="@android:color/white"
+        android:background="@color/blockBackground"
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
 
@@ -243,7 +244,7 @@
             android:layout_marginStart="15dp"
             android:layout_toEndOf="@+id/nice_ic"
             android:text="夜间模式"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="15sp" />
 
         <View
@@ -266,7 +267,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/night_mode_divider"
-        android:background="@android:color/white"
+        android:background="@color/blockBackground"
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
 
@@ -284,7 +285,7 @@
             android:layout_marginStart="15dp"
             android:layout_toEndOf="@+id/setting_ic"
             android:text="设置"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="15sp" />
 
         <TextView

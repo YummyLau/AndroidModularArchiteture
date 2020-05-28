@@ -21,7 +21,7 @@ import com.effective.android.component.square.view.adapter.holder.BannerHolder;
  * 动态列表自定义分割
  * created by yummylau 2019/07/09
  */
-public class CardListDecoration extends RecyclerView.ItemDecoration {
+public class CardListDecoration extends RecyclerView.ItemDecoration{
 
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
@@ -37,7 +37,7 @@ public class CardListDecoration extends RecyclerView.ItemDecoration {
      */
     public CardListDecoration(Context context, int orientation) {
         this(context, orientation, context.getResources().getDrawable(R.drawable.square_sh_card_decoration),
-                DisplayUtils.dip2px(context,15f), ContextCompat.getColor(context, R.color.windowBackground));
+                DisplayUtils.dip2px(context,15f), ContextCompat.getColor(context, R.color.blockBackground));
     }
 
     public CardListDecoration(Context context, int orientation, Drawable drawable, int inset, int insetColor) {

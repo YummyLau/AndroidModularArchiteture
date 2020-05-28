@@ -22,7 +22,7 @@ class ComponentSquare : IComponent {
         AppRxPlugins.init()
         Utils.initX5Webkit(application)
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
-            layout.setPrimaryColorsId(R.color.windowBackground, R.color.colorTextPrimary)
+            layout.setPrimaryColorsId(R.color.pageBackground, R.color.colorTextPrimary)
             ClassicsHeader(context)
         }
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> ClassicsFooter(context).setDrawableSize(20f); }

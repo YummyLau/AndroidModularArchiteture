@@ -107,7 +107,7 @@ class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
             }
         })
         adapterView?.visibility = View.GONE
-        adapterView?.setBackgroundColor(ResourceUtils.getColor(context!!,R.color.windowBackground))
+        adapterView?.setBackgroundColor(ResourceUtils.getColor(context!!,R.color.blockBackground))
         root.addView(adapterView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
         initPagerData(done)
     }

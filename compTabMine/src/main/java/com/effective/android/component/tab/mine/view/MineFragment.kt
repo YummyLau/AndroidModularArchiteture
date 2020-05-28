@@ -1,11 +1,14 @@
 package com.effective.android.component.tab.mine.view
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.toast.ToastUtils
+import com.effective.android.base.util.DisplayUtils
+import com.effective.android.base.util.ResourceUtils
 import com.effective.android.base.view.dialog.CommonDialog
 import com.effective.android.component.tab.mine.R
 import com.effective.android.component.tab.mine.Sdks
@@ -50,7 +53,19 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
         val type = Typeface.createFromAsset(context?.assets, "fonts/DIN-Condensed-Bold-2.ttf")
         share_count.typeface = type
         collect_count.typeface = type
-        night_action.isSelected = !Sdks.serviceSkin.isLoadingDefaultSkin()
+        initSkin()
+    }
+
+    private fun initSkin(){
+        if(Sdks.serviceSkin.isLoadingDefaultSkin()){
+            night_action.isSelected = false
+            statusView.setBackgroundColor(ResourceUtils.getColor(context!!,R.color.colorPrimary))
+            infoContainer.setBackgroundColor(ResourceUtils.getColor(context!!,R.color.colorPrimary))
+        }else{
+            night_action.isSelected = true
+            statusView.setBackgroundColor(ResourceUtils.getColor(context!!,R.color.blockBackground))
+            infoContainer.setBackgroundColor(ResourceUtils.getColor(context!!,R.color.blockBackground))
+        }
     }
 
     override fun onDestroy() {
@@ -86,6 +101,7 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
                     override fun onSkinChange(skin: Skin, success: Boolean) {
                         if(success){
                             night_action.isSelected = !Sdks.serviceSkin.isLoadingDefaultSkin()
+                            initSkin()
                         }
                     }
                 }

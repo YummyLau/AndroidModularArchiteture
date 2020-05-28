@@ -33,6 +33,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libBase')
+    implementation component(':serviceSkin')
     implementation component(':compSquare')
     implementation component(':compProject')
     implementation component(':compSystem')

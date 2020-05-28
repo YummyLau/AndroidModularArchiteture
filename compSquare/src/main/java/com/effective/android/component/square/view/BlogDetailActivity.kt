@@ -42,7 +42,7 @@ class BlogDetailActivity : BaseVmActivity<BlogDetailViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusbarHelper.setStatusBarColor(this, ResourceUtils.getColor(this, R.color.windowBackground))
+        StatusbarHelper.setStatusBarColor(this, ResourceUtils.getColor(this, R.color.blockBackground))
         QMUIStatusBarHelper.setStatusBarLightMode(this)
         Utils.setDefaultWebViewSetting(webView)
         val byArticle: Boolean = intent.getBooleanExtra(bundle_model, false)

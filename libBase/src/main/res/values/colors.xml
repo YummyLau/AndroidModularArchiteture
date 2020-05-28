@@ -4,20 +4,26 @@
     <!-- CYAN -->
     <color name="colorPrimary">#F6D36B</color>
     <color name="colorPrimaryLight">#F6D36B</color>
-    <color name="colorPrimaryDark">#D9BB5F</color>
-    <color name="colorAccent">#D9BB5F</color>
+    <color name="colorPrimaryDark">#F6D36B</color>
+    <color name="colorAccent">#F6D36B</color>
 
     <!-- 主题色内的颜色 -->
     <color name="colorThemeText">#FFFFFF</color>
     <color name="colorThemeTextDark">#9E9E9E</color>
-
     <color name="colorTextIcon">#FFFFFF</color>
+
+    <!-- 字体颜色 -->
     <color name="colorTextPrimary">#000000</color>
     <color name="colorTextSecondary">#666666</color>
     <color name="colorTextThird">#999999</color>
+
+    <!-- 分割线颜色 -->
     <color name="colorDivider">#BDBDBD</color>
+
+    <!-- 窗口颜色，页面底色，块底色 -->
     <color name="windowBackground">#FFFFFF</color>
     <color name="pageBackground">#F5F5F5</color>
+    <color name="blockBackground">#FFFFFF</color>
 
 
     <color name="red_tip_bg">#E76464</color>

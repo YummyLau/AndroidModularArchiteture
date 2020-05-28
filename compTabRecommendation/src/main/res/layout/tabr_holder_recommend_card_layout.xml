@@ -27,7 +27,7 @@
         android:layout_below="@+id/image"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
-        tools:background="@color/windowBackground">
+        tools:background="@color/blockBackground">
 
         <TextView
             android:id="@+id/title"

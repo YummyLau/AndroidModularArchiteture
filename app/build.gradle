@@ -55,6 +55,12 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-night']
+        }
+    }
+
 //    //渠道定义，渠道太多的话建议使用美团方案
 //    flavorDimensions 'version'
 //    productFlavors {

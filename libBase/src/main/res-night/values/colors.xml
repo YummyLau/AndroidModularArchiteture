@@ -2,22 +2,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
 
     <!-- CYAN -->
-    <color name="colorPrimary_night">@android:color/black</color>
-    <color name="colorPrimaryLight_night">@android:color/black</color>
-    <color name="colorPrimaryDark_night">@android:color/black</color>
-    <color name="colorAccent_night">@android:color/black</color>
+    <color name="colorPrimary_night">#16191F</color>
+    <color name="colorPrimaryLight_night">#16191F</color>
+    <color name="colorPrimaryDark_night">#16191F</color>
+    <color name="colorAccent_night">#16191F</color>
 
     <!-- 主题色内的颜色 -->
-    <color name="colorThemeText_night">#FFFFFF</color>
-    <color name="colorThemeTextDark_night">#9E9E9E</color>
+    <color name="colorThemeText_night">#5E6885</color>
+    <color name="colorThemeTextDark_night">#494E5A</color>
+    <color name="colorTextIcon_night">#5E6885</color>
 
-    <color name="colorTextIcon_night">#FFFFFF</color>
-    <color name="colorTextPrimary_night">#000000</color>
-    <color name="colorTextSecondary_night">#666666</color>
-    <color name="colorTextThird_night">#999999</color>
-    <color name="colorDivider_night">#BDBDBD</color>
-    <color name="windowBackground_night">@android:color/black</color>
-    <color name="pageBackground_night">@color/gray_900</color>
+    <!-- 字体颜色 -->
+    <color name="colorTextPrimary_night">#5E6885</color>
+    <color name="colorTextSecondary_night">#494E5A</color>
+    <color name="colorTextThird_night">#3F4145</color>
+
+    <!-- 分割线颜色 -->
+    <color name="colorDivider_night">#1D2435</color>
+
+    <!-- 窗口颜色，页面底色，块底色 -->
+    <color name="windowBackground_night">#161A1F</color>
+    <color name="pageBackground_night">#0E1215</color>
+    <color name="blockBackground_night">#161A1F</color>
 
 
     <color name="red_tip_bg_night">#E76464</color>
