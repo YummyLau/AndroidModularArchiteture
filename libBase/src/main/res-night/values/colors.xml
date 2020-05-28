@@ -18,7 +18,7 @@
     <color name="colorTextThird_night">#525459</color>
 
     <!-- 分割线颜色 -->
-    <color name="colorDivider_night">#1D2435</color>
+    <color name="colorDivider_night">#282B34</color>
 
     <!-- 窗口颜色，页面底色，块底色 -->
     <color name="windowBackground_night">#161A1F</color>

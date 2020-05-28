@@ -17,7 +17,7 @@
         android:includeFontPadding="false"
         android:text="@string/square_sticky_text"
         android:background="@drawable/square_ic_sticky_text_bg"
-        android:textColor="@color/colorThemeText"/>
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_marginStart="10dp"

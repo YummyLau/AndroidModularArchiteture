@@ -19,7 +19,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="2dp"
             android:includeFontPadding="false"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@android:color/black"
             android:textSize="12sp" />
     </FrameLayout>
 
@@ -38,7 +38,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="2dp"
             android:includeFontPadding="false"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@android:color/black"
             android:textSize="12sp" />
     </FrameLayout>
 

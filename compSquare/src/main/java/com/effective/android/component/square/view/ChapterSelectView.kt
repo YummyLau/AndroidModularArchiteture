@@ -1,6 +1,5 @@
 package com.effective.android.component.square.view
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Typeface.*
 import android.util.AttributeSet
@@ -8,7 +7,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import com.effective.android.base.util.DisplayUtils
 import com.effective.android.base.util.ResourceUtils
@@ -19,13 +17,14 @@ import com.effective.android.component.square.R
 import com.effective.android.component.square.bean.DraggableChapter
 import com.effective.android.component.square.bean.SelectableChapter
 import com.effective.android.component.square.listener.OnEditListener
+import skin.support.widget.SkinCompatScrollView
 
 
 /**
  * 章节选择器，用于用户自主选择章节，可复用于任何文章列表
  * created by yummylau on 2019/12/16
  */
-class ChapterSelectView : ScrollView {
+class ChapterSelectView : SkinCompatScrollView {
 
     private lateinit var container: RelativeLayout
     private lateinit var cancel: ImageView
@@ -48,12 +47,19 @@ class ChapterSelectView : ScrollView {
         initView(context)
     }
 
-    @TargetApi(21)
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
-        initView(context)
+    override fun applySkin() {
+        super.applySkin()
+        setBackgroundColor(ResourceUtils.getColor(context,R.color.windowBackground))
+        cancel.setImageDrawable(ResourceUtils.getDrawable(context, R.drawable.square_ic_chapter_selected_cancel))
+        action.setTextColor(ResourceUtils.getColor(context, R.color.colorThemeText))
+        action.background = ResourceUtils.getDrawable(context, R.drawable.square_se_chatper_selector_action)
+        dontTitleView.setTextColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
+        todoTitleView.setTextColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
     }
 
     private fun initView(context: Context) {
+
+        setBackgroundColor(ResourceUtils.getColor(context,R.color.windowBackground))
 
         container = RelativeLayout(context)
         val containerLp = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
@@ -61,8 +67,8 @@ class ChapterSelectView : ScrollView {
 
         cancel = ImageView(context)
         cancel.id = View.generateViewId()
-        cancel.background = ResourceUtils.getDrawable(context, R.drawable.square_ic_chapter_selected_cancel)
-        cancel.setPadding(DisplayUtils.dip2px(context, 0f), DisplayUtils.dip2px(context, 5f), DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 5f))
+        cancel.setImageDrawable(ResourceUtils.getDrawable(context, R.drawable.square_ic_chapter_selected_cancel))
+        cancel.setPadding(DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 10f), DisplayUtils.dip2px(context, 10f))
         val cancelLp = LayoutParams(DisplayUtils.dip2px(context, 40f), DisplayUtils.dip2px(context, 40f))
         container.addView(cancel, cancelLp)
         cancel.setOnClickListener {
@@ -219,7 +225,7 @@ class ChapterSelectView : ScrollView {
 
         val padding = DisplayUtils.dip2px(context, 10f)
         isFillViewport = true
-        setPadding(padding, padding, padding, padding)
+        container.setPadding(padding, padding, padding, padding)
     }
 
     fun bindData(done: List<SelectableChapter>, todo: List<SelectableChapter>, onEditListener: OnEditListener? = null) {

@@ -46,16 +46,6 @@
         android:layout_below="@+id/tabContainer" />
 
 
-
-<!--    <com.effective.android.component.paccounts.view.ChapterSelectView-->
-<!--        android:id="@+id/chapterSelector"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@color/windowBackground"-->
-<!--        android:padding="10dp"-->
-<!--        android:visibility="gone"-->
-<!--        tools:visibility="visible"/>-->
-
     <com.effective.android.base.view.PageStateView
         android:id="@+id/pageState"
         android:layout_width="match_parent"

@@ -1,6 +1,7 @@
 package com.effective.android.component.paccounts
 
 import android.app.Application
+import android.util.Log
 import com.effective.android.component.square.ComponentSquareSdk
 import com.effective.android.service.net.ServiceNet
 import com.effective.android.service.skin.ServiceSkin

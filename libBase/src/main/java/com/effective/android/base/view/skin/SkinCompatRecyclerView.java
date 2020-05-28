@@ -41,5 +41,12 @@ public class SkinCompatRecyclerView extends RecyclerView implements SkinCompatSu
         if (mBackgroundTintHelper != null) {
             mBackgroundTintHelper.applySkin();
         }
+        int decorationCount = getItemDecorationCount();
+        for(int i = 0; i < decorationCount; i++){
+            ItemDecoration itemDecoration = getItemDecorationAt(i);
+            if(itemDecoration instanceof SkinCompatSupportable){
+                ((SkinCompatSupportable) itemDecoration).applySkin();
+            }
+        }
     }
 }

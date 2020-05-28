@@ -36,6 +36,13 @@ android {
         }
     }
 
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-night']
+        }
+    }
+
     resourcePrefix "square_"
 }
 

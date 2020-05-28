@@ -14,9 +14,12 @@ import com.effective.android.component.square.bean.Chapter
 import com.effective.android.component.square.bean.SelectableChapter
 import com.effective.android.component.square.listener.OnEditListener
 import com.effective.android.component.system.Sdks
+import com.effective.android.service.skin.Skin
+import com.effective.android.service.skin.SkinChangeListener
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.system_fragment_laout.*
 import kotlinx.android.synthetic.main.system_holder_article_layout.*
+import skin.support.widget.SkinCompatSupportable
 
 class SystemFragment: BaseVmFragment<SystemViewModel>() {
 
@@ -27,6 +30,14 @@ class SystemFragment: BaseVmFragment<SystemViewModel>() {
     val defaultDisableDragIndex = 0
     private var chapterAdapter: ChapterAdapter? = null
     private var adapterView: View? = null
+    private val skinChangeListener = object : SkinChangeListener {
+
+        override fun onSkinChange(skin: Skin, success: Boolean) {
+            if (success && adapterView is SkinCompatSupportable) {
+                (adapterView as SkinCompatSupportable).applySkin()
+            }
+        }
+    }
 
     override fun getViewModel(): Class<SystemViewModel> = SystemViewModel::class.java
 
@@ -104,8 +115,8 @@ class SystemFragment: BaseVmFragment<SystemViewModel>() {
             }
         })
         adapterView?.visibility = View.GONE
-        adapterView?.setBackgroundColor(ResourceUtils.getColor(context!!,R.color.blockBackground))
         systemRoot.addView(adapterView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+        Sdks.serviceSkin.addSkinChangeListener(skinChangeListener)
         initPagerData(done)
     }
 
@@ -133,5 +144,6 @@ class SystemFragment: BaseVmFragment<SystemViewModel>() {
         if (fetchProjectDisposable != null && fetchProjectDisposable!!.isDisposed) {
             fetchProjectDisposable?.dispose()
         }
+        Sdks.serviceSkin.removeSkinChangeListener(skinChangeListener)
     }
 }

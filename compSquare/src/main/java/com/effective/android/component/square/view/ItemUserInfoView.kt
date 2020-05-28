@@ -1,24 +1,22 @@
 package com.effective.android.component.square.view
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Typeface
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.effective.android.base.util.DisplayUtils
 import com.effective.android.base.util.ResourceUtils
 import com.effective.android.component.square.R
 import com.effective.android.component.square.bean.BlogArticle
-import java.util.*
+import skin.support.widget.SkinCompatRelativeLayout
 
 /**
  * 卡片 用户信息实体
  * created by yummylau on 2019/12/12
  */
-class ItemUserInfoView : RelativeLayout {
+class ItemUserInfoView : SkinCompatRelativeLayout {
 
     private lateinit var avatarView: View
     private lateinit var nickView: TextView
@@ -26,12 +24,9 @@ class ItemUserInfoView : RelativeLayout {
 
     constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : this(context, attrs, 0)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs, 0)
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : this(context, attrs, defStyleAttr, 0)
-
-    @TargetApi(21)
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
         initView(context)
@@ -66,6 +61,12 @@ class ItemUserInfoView : RelativeLayout {
         createTimeLp.addRule(RIGHT_OF, avatarView.id)
         createTimeLp.bottomMargin = DisplayUtils.dip2px(context, 4f)
         addView(createTime, createTimeLp)
+    }
+
+    override fun applySkin() {
+        super.applySkin()
+        nickView.setTextColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
+        createTime.setTextColor(ResourceUtils.getColor(context, R.color.colorTextSecondary))
     }
 
     fun bindData(data: BlogArticle) {

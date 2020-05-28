@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.paccounts_fragment_laout.*
 import com.effective.android.component.square.adapter.ChapterAdapter
 import com.effective.android.component.square.bean.SelectableChapter
 import com.effective.android.component.square.listener.OnEditListener
+import com.effective.android.service.skin.Skin
+import com.effective.android.service.skin.SkinChangeListener
+import skin.support.widget.SkinCompatSupportable
 
 
 class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
@@ -30,6 +33,14 @@ class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
     val defaultDisableDragIndex = 0
     private var chapterAdapter: ChapterAdapter? = null
     private var adapterView: View? = null
+    private val skinChangeListener = object : SkinChangeListener {
+
+        override fun onSkinChange(skin: Skin, success: Boolean) {
+            if (success && adapterView is SkinCompatSupportable) {
+                (adapterView as SkinCompatSupportable).applySkin()
+            }
+        }
+    }
 
     override fun getViewModel(): Class<PaccountsViewModel> = PaccountsViewModel::class.java
 
@@ -107,10 +118,12 @@ class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
             }
         })
         adapterView?.visibility = View.GONE
-        adapterView?.setBackgroundColor(ResourceUtils.getColor(context!!,R.color.blockBackground))
-        root.addView(adapterView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
+        root.addView(adapterView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+        Sdks.serviceSkin.addSkinChangeListener(skinChangeListener)
         initPagerData(done)
     }
+
+
 
     private fun initPagerData(data: List<SelectableChapter>) {
         //设置tab
@@ -137,5 +150,6 @@ class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
         if (fetchProjectDisposable != null && fetchProjectDisposable!!.isDisposed) {
             fetchProjectDisposable?.dispose()
         }
+        Sdks.serviceSkin.removeSkinChangeListener(skinChangeListener)
     }
 }

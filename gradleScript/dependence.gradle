@@ -74,7 +74,7 @@ versions.flycoTabLayout = "3.0.0"
 
 //优秀的视觉ui库
 versions.spinKit = "1.4.0"                       //loading 效果 https://github.com/ybq/Android-SpinKit
-versions.smartRefreshLayout = "1.1.0"            //下拉框架 效果 https://github.com/scwang90/SmartRefreshLayout
+versions.smartRefreshLayout = "1.1.2"            //下拉框架 效果 https://github.com/scwang90/SmartRefreshLayout
 versions.bottomNavigationViewEx = "2.0.4"        //底部栏 效果 https://github.com/ittianyu/BottomNavigationViewEx
 
 //android x

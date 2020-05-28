@@ -17,12 +17,14 @@ import com.effective.android.base.util.ResourceUtils;
 import com.effective.android.component.square.R;
 import com.effective.android.component.square.view.adapter.holder.BannerHolder;
 
+import skin.support.widget.SkinCompatSupportable;
+
 
 /**
  * 动态列表自定义分割
  * created by yummylau 2019/07/09
  */
-public class CardListDecoration extends RecyclerView.ItemDecoration{
+public class CardListDecoration extends RecyclerView.ItemDecoration implements SkinCompatSupportable {
 
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
@@ -30,7 +32,9 @@ public class CardListDecoration extends RecyclerView.ItemDecoration{
     protected int mOrientation;
     protected int inset;
     protected Paint paint;
+    protected RecyclerView recyclerView;
     protected Context context;
+    protected Canvas canvas;
 
     /**
      * @param context
@@ -38,7 +42,7 @@ public class CardListDecoration extends RecyclerView.ItemDecoration{
      */
     public CardListDecoration(Context context, int orientation) {
         this(context, orientation, ResourceUtils.getDrawable(context,R.drawable.square_sh_card_decoration),
-                DisplayUtils.dip2px(context,15f), ResourceUtils.getColor(context, R.color.blockBackground));
+                DisplayUtils.dip2px(context,0f), ResourceUtils.getColor(context, R.color.blockBackground));
     }
 
     public CardListDecoration(Context context, int orientation, Drawable drawable, int inset, int insetColor) {
@@ -50,6 +54,17 @@ public class CardListDecoration extends RecyclerView.ItemDecoration{
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
         setOrientation(orientation);
+    }
+
+    @Override
+    public void applySkin() {
+        mDivider = ResourceUtils.getDrawable(context,R.drawable.square_sh_card_decoration);
+        paint.setColor( ResourceUtils.getColor(context, R.color.blockBackground));
+        if (mOrientation == VERTICAL_LIST) {
+            drawVertical(canvas, recyclerView);
+        } else {
+            drawHorizontal(canvas, recyclerView);
+        }
     }
 
     public void setOrientation(int orientation) {
@@ -73,6 +88,8 @@ public class CardListDecoration extends RecyclerView.ItemDecoration{
 
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        this.recyclerView = parent;
+        this.canvas = c;
         if (mOrientation == VERTICAL_LIST) {
             drawVertical(c, parent);
         } else {
