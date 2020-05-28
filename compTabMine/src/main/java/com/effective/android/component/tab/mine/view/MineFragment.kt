@@ -12,6 +12,8 @@ import com.effective.android.component.tab.mine.Sdks
 import com.effective.android.component.tab.mine.vm.MineViewModel
 import com.effective.android.service.account.AccountChangeListener
 import com.effective.android.service.account.UserInfo
+import com.effective.android.service.skin.Skin
+import com.effective.android.service.skin.SkinChangeListener
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.mine_fragment_main_layout.*
 
@@ -20,7 +22,7 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
 
     private var userInfo: UserInfo? = null
     private lateinit var accountDisposable: Disposable
-    private val listener = object : AccountChangeListener {
+    private val accountChangeListener = object : AccountChangeListener {
 
         override fun onAccountChange(userInfo: UserInfo?, login: Boolean, success: Boolean, message: String?) {
             if (success) {
@@ -31,6 +33,7 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
             }
         }
     }
+    private var skinChangeListener : SkinChangeListener? = null
 
     override fun getViewModel(): Class<MineViewModel> = MineViewModel::class.java
 
@@ -47,14 +50,16 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
         val type = Typeface.createFromAsset(context?.assets, "fonts/DIN-Condensed-Bold-2.ttf")
         share_count.typeface = type
         collect_count.typeface = type
+        night_action.isSelected = !Sdks.serviceSkin.isLoadingDefaultSkin()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        viewModel.removeAccountChangeListener(listener)
+        viewModel.removeAccountChangeListener(accountChangeListener)
         if (!accountDisposable.isDisposed) {
             accountDisposable.dispose()
         }
+        Sdks.serviceSkin.removeSkinChangeListener(skinChangeListener)
     }
 
     private fun initListener() {
@@ -70,22 +75,27 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
                         .show()
             }
         }
-        viewModel.addAccountChangeListener(listener)
+        viewModel.addAccountChangeListener(accountChangeListener)
         night_mode.setOnClickListener {
             /**
-             * 如果app有多种皮肤，则需要这样处理，如果只有日间/夜间，其实可以不用的
-             * demo需要
+             * 如果app有多种皮肤，则需要 changeSkin(skin: com.effective.android.service.skin.Skin)
              */
-            val allSkins = Sdks.serviceSkin.getSkins()
-            val curSkin = Sdks.serviceSkin.getCurSkin()
-            allSkins.forEach{
-                if(it.key != curSkin.key){
-                    Sdks.serviceSkin.changeSkin(it)
-                    return@forEach
+            if(skinChangeListener == null){
+                skinChangeListener = object : SkinChangeListener {
+
+                    override fun onSkinChange(skin: Skin, success: Boolean) {
+                        if(success){
+                            night_action.isSelected = !Sdks.serviceSkin.isLoadingDefaultSkin()
+                        }
+                    }
                 }
+                Sdks.serviceSkin.addSkinChangeListener(skinChangeListener)
             }
+            Sdks.serviceSkin.changeSkin()
         }
     }
+
+
 
     private fun initData() {
         checkoutStatus()
@@ -106,7 +116,7 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
         refreshShareAndCollection()
     }
 
-    private fun refreshUserInfo(){
+    private fun refreshUserInfo() {
         val hasLogin = userInfo != null
         avatar.isSelected = hasLogin
         avatar_bg.isSelected = hasLogin
@@ -144,7 +154,7 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
         }
     }
 
-    private fun refreshShareAndCollection(){
+    private fun refreshShareAndCollection() {
         if (isLogin()) {
             userInfo?.actionInfo.let {
                 share_count.text = it?.shareCount.toString()

@@ -7,9 +7,13 @@ interface ServiceSkin {
 
     fun getCurSkin(): Skin
 
+    fun isLoadingDefaultSkin(): Boolean
+
+    fun changeSkin()
+
     fun changeSkin(skin: Skin)
 
-    fun addSkinChangeListener(skinChangeListener: SkinChangeListener)
+    fun addSkinChangeListener(skinChangeListener: SkinChangeListener?)
 
-    fun removeSkinChangeListener(skinChangeListener: SkinChangeListener)
+    fun removeSkinChangeListener(skinChangeListener: SkinChangeListener?)
 }
