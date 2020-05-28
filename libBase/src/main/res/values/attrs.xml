@@ -60,7 +60,7 @@
     </declare-styleable>
 
 
-    <declare-styleable name="SuperTabLayout">
+    <declare-styleable name="SkinCompatSuperTabLayout">
         <attr name="super_tab_indicatorColor" format="color" />
         <attr name="super_tab_indicatorWidth" format="dimension" />
         <attr name="super_tab_indicatorStrokeWidth" format="dimension" />

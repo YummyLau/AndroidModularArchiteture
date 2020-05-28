@@ -1,4 +1,4 @@
-package com.effective.android.base.view.tab;
+package com.effective.android.base.view.skin;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 import com.effective.android.base.R;
 import com.effective.android.base.util.DisplayUtils;
 import com.effective.android.base.util.ResourceUtils;
@@ -35,6 +37,8 @@ import com.effective.android.base.util.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import skin.support.widget.SkinCompatSupportable;
 
 
 /**
@@ -67,7 +71,7 @@ import java.util.List;
  * 　　- tabTextSizeSelected 设置选择文本大小。
  * 　　- textSizeTransition 是否在滑动viewpager时文本大小做过渡变化
  */
-public class SuperTabLayout extends HorizontalScrollView{
+public class SkinCompatSuperTabLayout extends HorizontalScrollView implements SkinCompatSupportable {
     private static final String TAG = "CustomTabLayout2";
 
     public static final int TABMODE_SCROLLABLE = 0;
@@ -149,48 +153,56 @@ public class SuperTabLayout extends HorizontalScrollView{
         }
     };
 
-    public SuperTabLayout(Context context) {
+    public SkinCompatSuperTabLayout(Context context) {
         this(context, null);
     }
 
-    public SuperTabLayout(Context context, @Nullable AttributeSet attrs) {
+    public SkinCompatSuperTabLayout(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SuperTabLayout(@NonNull Context context, @Nullable AttributeSet attrs,
-                          @AttrRes int defStyleAttr) {
+    public SkinCompatSuperTabLayout(@NonNull Context context, @Nullable AttributeSet attrs,
+                                    @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.SuperTabLayout, defStyleAttr, 0);
-        mEnableTextSizeTransition = typedArray.getBoolean(R.styleable.SuperTabLayout_super_tab_textSizeTransition, mEnableTextSizeTransition);
-        mTextAlignBottom = typedArray.getBoolean(R.styleable.SuperTabLayout_super_tab_textAlignBottom, mTextAlignBottom);
-        mTextSize = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_tabTextSize, mTextSize);
-        mSelectedTextSize = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_tabTextSizeSelected, mTextSize);
-        mTabPadding = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_tabPadding, mTabPadding);
-        mTabMargin = typedArray.getDimensionPixelOffset(R.styleable.SuperTabLayout_super_tab_tabMargin, mTabMargin);
-        mTabWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_tabWidth, mTabWidth);
-        mIndicatorColor = typedArray.getColor(R.styleable.SuperTabLayout_super_tab_indicatorColor, mIndicatorColor);
-        mIndicatorResId = typedArray.getResourceId(R.styleable.SuperTabLayout_super_tab_indicatorImg, mIndicatorResId);
-        mIndicatorBottomMargin = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_indicatorBottomMargin, mIndicatorBottomMargin);
-        mIsBoldText = typedArray.getBoolean(R.styleable.SuperTabLayout_super_tab_boldSelected, mIsBoldText);
-        mIsThinUnselected = typedArray.getBoolean(R.styleable.SuperTabLayout_super_tab_thinUnselected, mIsThinUnselected);
-        mNormalTextColorResId = typedArray.getResourceId(R.styleable.SuperTabLayout_super_tab_tabTextColor, -1);
-        mSelectedTextColorResId = typedArray.getResourceId(R.styleable.SuperTabLayout_super_tab_selectTextColor, -1);
-        mIndicatorWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_indicatorWidth, mIndicatorWidth);
-        mIndicatorStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_indicatorStrokeWidth, mIndicatorStrokeWidth);
-        mIndicatorPadding = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_indicatorPadding, mIndicatorPadding);
-        mRedDotBgResId = typedArray.getResourceId(R.styleable.SuperTabLayout_super_tab_redDotBgResId, mRedDotBgResId);
-        mSmallRedDotBgResId = typedArray.getResourceId(R.styleable.SuperTabLayout_super_tab_smallDotBgResId, mSmallRedDotBgResId);
-        mRedDotMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_redDotMarginLeft, mRedDotMarginLeft);
-        mRedDotMarginTop = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_redDotMarginTop, mRedDotMarginTop);
-        mRedDotMarginRight = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_redDotMarginRight, mRedDotMarginRight);
-        mRedDotMarginBottom = typedArray.getDimensionPixelSize(R.styleable.SuperTabLayout_super_tab_redDotMarginBottom, mRedDotMarginBottom);
-        mRedDotGravity = typedArray.getInteger(R.styleable.SuperTabLayout_super_tab_redDotGravity, mRedDotGravity);
-        mTabBackgroundResId = typedArray.getResourceId(R.styleable.SuperTabLayout_super_tab_tabBackgroundRes, mTabBackgroundResId);
-        mTabMode = typedArray.getInt(R.styleable.SuperTabLayout_super_tab_tabMod, mTabMode);
-        mShowIndicator = typedArray.getBoolean(R.styleable.SuperTabLayout_super_tab_showIndicator, mShowIndicator);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.SkinCompatSuperTabLayout, defStyleAttr, 0);
+        mEnableTextSizeTransition = typedArray.getBoolean(R.styleable.SkinCompatSuperTabLayout_super_tab_textSizeTransition, mEnableTextSizeTransition);
+        mTextAlignBottom = typedArray.getBoolean(R.styleable.SkinCompatSuperTabLayout_super_tab_textAlignBottom, mTextAlignBottom);
+        mTextSize = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_tabTextSize, mTextSize);
+        mSelectedTextSize = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_tabTextSizeSelected, mTextSize);
+        mTabPadding = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_tabPadding, mTabPadding);
+        mTabMargin = typedArray.getDimensionPixelOffset(R.styleable.SkinCompatSuperTabLayout_super_tab_tabMargin, mTabMargin);
+        mTabWidth = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_tabWidth, mTabWidth);
+        mIndicatorColor = typedArray.getColor(R.styleable.SkinCompatSuperTabLayout_super_tab_indicatorColor, mIndicatorColor);
+        mIndicatorResId = typedArray.getResourceId(R.styleable.SkinCompatSuperTabLayout_super_tab_indicatorImg, mIndicatorResId);
+        mIndicatorBottomMargin = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_indicatorBottomMargin, mIndicatorBottomMargin);
+        mIsBoldText = typedArray.getBoolean(R.styleable.SkinCompatSuperTabLayout_super_tab_boldSelected, mIsBoldText);
+        mIsThinUnselected = typedArray.getBoolean(R.styleable.SkinCompatSuperTabLayout_super_tab_thinUnselected, mIsThinUnselected);
+        mNormalTextColorResId = typedArray.getResourceId(R.styleable.SkinCompatSuperTabLayout_super_tab_tabTextColor, -1);
+        mSelectedTextColorResId = typedArray.getResourceId(R.styleable.SkinCompatSuperTabLayout_super_tab_selectTextColor, -1);
+        mIndicatorWidth = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_indicatorWidth, mIndicatorWidth);
+        mIndicatorStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_indicatorStrokeWidth, mIndicatorStrokeWidth);
+        mIndicatorPadding = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_indicatorPadding, mIndicatorPadding);
+        mRedDotBgResId = typedArray.getResourceId(R.styleable.SkinCompatSuperTabLayout_super_tab_redDotBgResId, mRedDotBgResId);
+        mSmallRedDotBgResId = typedArray.getResourceId(R.styleable.SkinCompatSuperTabLayout_super_tab_smallDotBgResId, mSmallRedDotBgResId);
+        mRedDotMarginLeft = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_redDotMarginLeft, mRedDotMarginLeft);
+        mRedDotMarginTop = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_redDotMarginTop, mRedDotMarginTop);
+        mRedDotMarginRight = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_redDotMarginRight, mRedDotMarginRight);
+        mRedDotMarginBottom = typedArray.getDimensionPixelSize(R.styleable.SkinCompatSuperTabLayout_super_tab_redDotMarginBottom, mRedDotMarginBottom);
+        mRedDotGravity = typedArray.getInteger(R.styleable.SkinCompatSuperTabLayout_super_tab_redDotGravity, mRedDotGravity);
+        mTabBackgroundResId = typedArray.getResourceId(R.styleable.SkinCompatSuperTabLayout_super_tab_tabBackgroundRes, mTabBackgroundResId);
+        mTabMode = typedArray.getInt(R.styleable.SkinCompatSuperTabLayout_super_tab_tabMod, mTabMode);
+        mShowIndicator = typedArray.getBoolean(R.styleable.SkinCompatSuperTabLayout_super_tab_showIndicator, mShowIndicator);
         typedArray.recycle();
         updateSkinTextColor(context);
+    }
+
+    @Override
+    public void applySkin() {
+        updateSkinTextColor(getContext());
+        for (int i = 0; i < mTabs.size(); i++) {
+            mTabs.get(i).textView.setTextColor(selectedPosition == i ? mSelectedTextColor : mNormalTextColor);
+        }
     }
 
     public int getTextSize() {
@@ -210,7 +222,9 @@ public class SuperTabLayout extends HorizontalScrollView{
     }
 
     @SuppressLint("ResourceType")
-    private void updateSkinTextColor(Context context) {
+    protected void updateSkinTextColor(Context context) {
+
+        //按需添加修改
         if (mSelectedTextColorResId > 0) {
             mSelectedTextColor = ResourceUtils.getColor(context, mSelectedTextColorResId);
         }
@@ -228,7 +242,7 @@ public class SuperTabLayout extends HorizontalScrollView{
     /**
      * 仅仅用于重置setupWithViewPager之后的状态，其他场景使用需要测试后使用
      *
-     * @see SuperTabLayout#setupWithViewPager(ViewPager)
+     * @see SkinCompatSuperTabLayout#setupWithViewPager(ViewPager)
      */
     public void resetForsetupWithViewPager() {
         if (mTabContainerLayout != null) {
@@ -290,7 +304,7 @@ public class SuperTabLayout extends HorizontalScrollView{
             @Override
             public void onPageSelected(int position) {
                 final int beforePosition = selectedPosition;
-                selectTab(position,false);
+                selectTab(position, false);
                 if (mOnTabSelectedListener != null) {
                     mOnTabSelectedListener.onTabSelected(getTabAt(position));
                     if (position != beforePosition) {
@@ -643,42 +657,42 @@ public class SuperTabLayout extends HorizontalScrollView{
         }
     }
 
-    public void selectTab(int index,boolean updateSize) {
+    public void selectTab(int index, boolean updateSize) {
         if (index < 0 || index >= mTabs.size()) {
             return;
         }
         if (index == selectedPosition) {
             return;
         }
-        unSelectTab(selectedPosition,updateSize);
+        unSelectTab(selectedPosition, updateSize);
         Tab tab = mTabs.get(index);
-        setSelectedStyle(tab.textView,updateSize);
+        setSelectedStyle(tab.textView, updateSize);
         tab.isSelected = true;
         selectedPosition = index;
     }
 
     public void selectTab(int index) {
-        selectTab(index,true);
+        selectTab(index, true);
     }
 
-    private void unSelectTab(int index,boolean updateSize) {
+    private void unSelectTab(int index, boolean updateSize) {
         if (index < 0 || index >= mTabs.size()) {
             return;
         }
         Tab tab = mTabs.get(index);
-        setNormalStyle(tab.textView,updateSize);
+        setNormalStyle(tab.textView, updateSize);
         tab.isSelected = false;
     }
 
     private void unSelectTab(int index) {
-        unSelectTab(index,true);
+        unSelectTab(index, true);
     }
 
     protected void setNormalStyle(TextView textView) {
-        setNormalStyle(textView,true);
+        setNormalStyle(textView, true);
     }
 
-    protected void setNormalStyle(TextView textView,boolean updateSizes) {
+    protected void setNormalStyle(TextView textView, boolean updateSizes) {
         textView.setSelected(false);
         if (mIsBoldText) {
             Paint paint = textView.getPaint();
@@ -697,7 +711,7 @@ public class SuperTabLayout extends HorizontalScrollView{
         textView.setTextColor(mNormalTextColor);
     }
 
-    protected void setSelectedStyle(TextView textView,boolean updateSize) {
+    protected void setSelectedStyle(TextView textView, boolean updateSize) {
         textView.setSelected(true);
         if (mIsBoldText) {
             Paint paint = textView.getPaint();
@@ -717,7 +731,7 @@ public class SuperTabLayout extends HorizontalScrollView{
     }
 
     protected void setSelectedStyle(TextView textView) {
-        setSelectedStyle(textView,true);
+        setSelectedStyle(textView, true);
     }
 
     public void reCalcTabWidth() {

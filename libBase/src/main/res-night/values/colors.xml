@@ -9,13 +9,13 @@
 
     <!-- 主题色内的颜色 -->
     <color name="colorThemeText_night">#B7BEC3</color>
-    <color name="colorThemeTextDark_night">#5E6885</color>
+    <color name="colorThemeTextDark_night">#878A95</color>
     <color name="colorTextIcon_night">#B7BEC3</color>
 
     <!-- 字体颜色 -->
     <color name="colorTextPrimary_night">#B7BEC3</color>
-    <color name="colorTextSecondary_night">#5E6885</color>
-    <color name="colorTextThird_night">#494E5A</color>
+    <color name="colorTextSecondary_night">#878A95</color>
+    <color name="colorTextThird_night">#525459</color>
 
     <!-- 分割线颜色 -->
     <color name="colorDivider_night">#1D2435</color>

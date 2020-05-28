@@ -30,14 +30,15 @@
 
             <ImageView
                 android:id="@+id/icSearch"
+                android:padding="2.5dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="15dp"
                 android:src="@drawable/tabh_ic_search" />
 
-            <com.effective.android.base.view.tab.SuperTabLayout
+            <com.effective.android.base.view.skin.SkinCompatSuperTabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
@@ -47,6 +48,7 @@
                 app:super_tab_selectTextColor="@color/colorTextPrimary"
                 app:super_tab_tabPadding="5dp"
                 app:super_tab_tabTextColor="@color/colorTextSecondary"
+                app:super_tab_indicatorColor="@android:color/transparent"
                 app:super_tab_tabTextSize="17sp"
                 app:super_tab_tabTextSizeSelected="30sp"
                 app:super_tab_textSizeTransition="true" />

@@ -27,7 +27,13 @@ android {
         }
     }
 
-    resourcePrefix "tabH_"
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-night']
+        }
+    }
+
+    resourcePrefix "tabh_"
 }
 
 dependencies {

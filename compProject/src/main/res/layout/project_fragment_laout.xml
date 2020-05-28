@@ -34,13 +34,14 @@
             android:padding="7dp"
             android:src="@drawable/project_ic_down_more" />
 
-        <com.effective.android.base.view.tab.SuperTabLayout
+        <com.effective.android.base.view.skin.SkinCompatSuperTabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="10.5dp"
             android:layout_marginEnd="50dp"
             app:super_tab_boldSelected="true"
+            app:super_tab_indicatorColor="@android:color/transparent"
             app:super_tab_selectTextColor="@color/colorTextSecondary"
             app:super_tab_tabPadding="5dp"
             app:super_tab_tabTextColor="@color/colorTextThird"
