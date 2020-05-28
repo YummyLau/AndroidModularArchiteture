@@ -27,7 +27,7 @@
         android:layout_below="@+id/image"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
-        tools:background="@color/blockBackground">
+        android:background="@drawable/tabr_sh_card_content_bg">
 
         <TextView
             android:id="@+id/title"
@@ -61,7 +61,7 @@
         android:paddingStart="20dp"
         android:paddingTop="3dp"
         android:paddingEnd="10dp"
-        android:textColor="@color/colorThemeText"
+        android:textColor="@color/tabr_color_tag"
         android:textSize="15sp"
         tools:text="为你推荐" />
 

@@ -27,7 +27,7 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.effective.android.base.view.skin.SkinCompatRecyclerView
         android:id="@+id/list"
         android:layout_below="@+id/titleContainer"
         android:layout_width="match_parent"

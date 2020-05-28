@@ -135,7 +135,6 @@ class MineFragment : BaseVmFragment<MineViewModel>() {
     private fun refreshUserInfo() {
         val hasLogin = userInfo != null
         avatar.isSelected = hasLogin
-        avatar_bg.isSelected = hasLogin
         if (hasLogin) {
             //个人信息
             login.visibility = View.GONE

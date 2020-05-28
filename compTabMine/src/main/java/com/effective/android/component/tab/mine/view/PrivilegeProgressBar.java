@@ -11,8 +11,12 @@ import android.widget.ProgressBar;
 
 import com.effective.android.base.util.DisplayUtils;
 
+import skin.support.widget.SkinCompatProgressBar;
+import skin.support.widget.SkinCompatSeekBar;
+import skin.support.widget.SkinCompatSupportable;
 
-public class PrivilegeProgressBar extends ProgressBar {
+
+public class PrivilegeProgressBar extends SkinCompatProgressBar{
     private Paint mPaint;
     private String progressText = "0";
     private float textX;

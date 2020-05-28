@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.effective.android.base.util.DisplayUtils;
+import com.effective.android.base.util.ResourceUtils;
 import com.effective.android.component.square.R;
 import com.effective.android.component.square.view.adapter.holder.BannerHolder;
 
@@ -36,8 +37,8 @@ public class CardListDecoration extends RecyclerView.ItemDecoration{
      * @param orientation layout的方向
      */
     public CardListDecoration(Context context, int orientation) {
-        this(context, orientation, context.getResources().getDrawable(R.drawable.square_sh_card_decoration),
-                DisplayUtils.dip2px(context,15f), ContextCompat.getColor(context, R.color.blockBackground));
+        this(context, orientation, ResourceUtils.getDrawable(context,R.drawable.square_sh_card_decoration),
+                DisplayUtils.dip2px(context,15f), ResourceUtils.getColor(context, R.color.blockBackground));
     }
 
     public CardListDecoration(Context context, int orientation, Drawable drawable, int inset, int insetColor) {

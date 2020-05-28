@@ -10,7 +10,7 @@
     <!-- 主题色内的颜色 -->
     <color name="colorThemeText">#FFFFFF</color>
     <color name="colorThemeTextDark">#9E9E9E</color>
-    <color name="colorTextIcon">#FFFFFF</color>
+    <color name="colorTextIcon">#BFBFBF</color>
 
     <!-- 字体颜色 -->
     <color name="colorTextPrimary">#000000</color>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.view.isInvisible
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
@@ -22,9 +23,11 @@ import com.effective.android.component.tab.recommendation.R
 import com.effective.android.component.tab.recommendation.Sdks
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.tabr_holder_recommend_card_layout.view.*
+import skin.support.widget.SkinCompatLinearLayout
+import skin.support.widget.SkinCompatSupportable
 import kotlin.math.abs
 
-class CardView(context: Context) : LinearLayout(context), TouchFromParent {
+class CardView(context: Context) : SkinCompatLinearLayout(context), TouchFromParent{
 
     companion object {
         private val imageCache: LruCache<String, Drawable> = LruCache(10)
@@ -34,11 +37,12 @@ class CardView(context: Context) : LinearLayout(context), TouchFromParent {
     private var itemView: View = LayoutInflater.from(context).inflate(R.layout.tabr_holder_recommend_card_layout, this, true)
     var avatarDrawable: Drawable? = null
     var data: Article? = null
+    var position = 0
 
     fun bindData(data: Article, position: Int) {
         this.data = data
+        this.position = position
         itemView.title.text = data.title
-        itemView.infoContainer.background = ResourceUtils.getDrawable(context, R.drawable.tabr_sh_card_content_bg)
         avatarDrawable = imageCache.get(data.title)
         if (avatarDrawable == null) {
             if (TextUtils.isEmpty(data.envelopePic)) {

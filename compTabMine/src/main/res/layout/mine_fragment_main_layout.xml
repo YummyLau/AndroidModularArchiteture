@@ -60,7 +60,7 @@
                 android:id="@+id/avatar_bg"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="@drawable/mine_se_avatar_bg" />
+                android:background="@drawable/mine_sh_avatar_bg" />
 
             <com.effective.android.base.view.roundimage.RoundedImageView
                 android:id="@+id/avatar"
@@ -150,7 +150,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/mine_rank"
-            android:textColor="@color/colorTextSecondary"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -164,7 +164,7 @@
             android:gravity="bottom"
             android:includeFontPadding="false"
             android:text="Lv.--"
-            android:textColor="@color/colorTextSecondary"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -204,7 +204,7 @@
             android:maxEms="10"
             android:singleLine="true"
             android:text="前往查看我的积分之旅"
-            android:textColor="@color/colorTextThird"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="12sp"
             android:textStyle="normal" />
 
@@ -231,10 +231,10 @@
 
         <View
             android:id="@+id/nice_ic"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/mine_night" />
+            android:background="@drawable/mine_ic_moon" />
 
         <TextView
             android:id="@+id/night_tip"
@@ -244,7 +244,7 @@
             android:layout_marginStart="15dp"
             android:layout_toEndOf="@+id/nice_ic"
             android:text="夜间模式"
-            android:textColor="@color/colorTextSecondary"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="15sp" />
 
         <View
@@ -273,10 +273,10 @@
 
         <View
             android:id="@+id/setting_ic"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/mine_setting" />
+            android:background="@drawable/mine_ic_setting" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -285,7 +285,7 @@
             android:layout_marginStart="15dp"
             android:layout_toEndOf="@+id/setting_ic"
             android:text="设置"
-            android:textColor="@color/colorTextSecondary"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="15sp" />
 
         <TextView

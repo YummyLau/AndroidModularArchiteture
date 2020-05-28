@@ -80,7 +80,10 @@ dependencies {
     api deps.room.ktx
     api deps.room.rxjava2
 
-    implementation deps.skin.appcompat
+    api deps.skin.appcompat
+    api deps.skin.support
+    api deps.skin.design
+    api deps.skin.cardview
 }
 
 
