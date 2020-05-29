@@ -4,6 +4,7 @@ import android.text.*
 import android.view.View
 import android.view.ViewGroup
 import com.effective.android.base.util.ResourceUtils
+import com.effective.android.base.util.StringUtils
 import com.effective.android.base.view.Action
 import com.effective.android.base.view.Callback
 import com.effective.android.base.view.SuperMovementMethod
@@ -17,8 +18,9 @@ class CommonArticleHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BlogAr
 
     override fun bindData(data: BlogArticle, position: Int, payloads: List<Any>) {
 
-        itemView.title.text = ResourceUtils.formatString(context,R.string.square_card_title_append, data.title)
-        val desc = Html.fromHtml(data.desc)
+        itemView.title.text = ResourceUtils.formatString(context, R.string.square_card_title_append, StringUtils.filterSpecialChat(data.title)
+                ?: "--")
+        val desc = StringUtils.filterSpecialChat(data.desc) ?: ""
         itemView.content.visibility = if (TextUtils.isEmpty(desc)) {
             View.GONE
         } else {
@@ -34,7 +36,7 @@ class CommonArticleHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BlogAr
             itemView.content.setText(desc, false, callback)
             itemView.content.movementMethod = SuperMovementMethod()
             itemView.post {
-                Selection.setSelection(itemView.content.text as Spannable,0,1)
+                Selection.setSelection(itemView.content.text as Spannable, 0, 1)
             }
             View.VISIBLE
         }

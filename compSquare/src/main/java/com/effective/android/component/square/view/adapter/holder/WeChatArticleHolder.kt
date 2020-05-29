@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import com.effective.android.base.util.ResourceUtils
+import com.effective.android.base.util.StringUtils
 import com.effective.android.base.view.Action
 import com.effective.android.base.view.Callback
 import com.effective.android.base.view.SuperMovementMethod
@@ -23,8 +24,9 @@ class WeChatArticleHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<BlogAr
 
     override fun bindData(data: BlogArticle, position: Int, payloads: List<Any>) {
 
-        itemView.title.text = ResourceUtils.formatString(context, R.string.square_card_title_append, data.title)
-        val desc = Html.fromHtml(data.desc)
+        itemView.title.text = ResourceUtils.formatString(context, R.string.square_card_title_append, StringUtils.filterSpecialChat(data.title)
+                ?: "--")
+        val desc = StringUtils.filterSpecialChat(data.desc) ?: ""
         itemView.content.visibility = if (TextUtils.isEmpty(desc)) {
             View.GONE
         } else {

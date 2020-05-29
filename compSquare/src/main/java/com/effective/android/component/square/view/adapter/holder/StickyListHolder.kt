@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.effective.android.base.util.StringUtils
 import com.effective.android.base.view.list.MediaHolder
 import com.effective.android.component.square.R
 import com.effective.android.component.square.Sdks
@@ -18,7 +19,7 @@ class StickyListHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<StickyLis
 
     override fun bindData(data: StickyList, position: Int, payloads: List<Any>) {
         itemView.stickList.layoutManager = LinearLayoutManager(context)
-        itemView.stickList.adapter = StickyAdapter(context,data)
+        itemView.stickList.adapter = StickyAdapter(context, data)
     }
 
     inner class StickyAdapter(private val context: Context, private val articles: MutableList<BlogArticle>) : RecyclerView.Adapter<StickyHolder>() {
@@ -33,7 +34,7 @@ class StickyListHolder(parent: ViewGroup, layoutId: Int) : MediaHolder<StickyLis
     inner class StickyHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindData(article: BlogArticle) {
-            view.title.text = article.title
+            view.title.text = StringUtils.filterSpecialChat(article.title) ?: ""
             view.setOnClickListener {
                 Sdks.getSdk().gotoDetailActivity(context, article)
             }

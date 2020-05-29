@@ -1,5 +1,6 @@
 package com.effective.android.base.util
 
+import android.text.Html
 import android.text.TextUtils
 import java.util.regex.Pattern
 
@@ -10,7 +11,7 @@ object StringUtils {
     @JvmStatic
     fun filterSpecialChat(string: String?): String? {
         return if (!TextUtils.isEmpty(string)) {
-            pattern.matcher(string).replaceAll("")
+            Html.fromHtml(pattern.matcher(string).replaceAll("")).toString()
         } else {
             string
         }
