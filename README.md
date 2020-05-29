@@ -15,21 +15,28 @@
 
 ### wanAndroid 效果展示，两种皮肤
 
-<img src="./wanandroid/sun_square.jpg" />  <img src="./wanandroid/night_square.jpg" />
+<img src="./doc/wanandroid/sun_square.png" height="660" width="300" />  <img src="./doc/wanandroid/night_square.png" height="660" width="300" />
 
-<img src="./wanandroid/sun_paccount.jpg" />  <img src="./wanandroid/night_paccount.jpg" />
 
-<img src="./wanandroid/sun_paccount_2.jpg" />  <img src="./wanandroid/night_paccount_2.jpg" />
+<img src="./doc/wanandroid/sun_paccount.png" height="660" width="300" />  <img src="./doc/wanandroid/night_paccount.png" height="660" width="300"/>
 
-<img src="./wanandroid/sun_project.jpg" />  <img src="./wanandroid/night_project.jpg" />
 
-<img src="./wanandroid/sun_recommend.jpg" />  <img src="./wanandroid/night_recommend.jpg" />
+<img src="./doc/wanandroid/sun_paccount_2.png" height="660" width="300" />  <img src="./doc/wanandroid/night_paccount_2.png" height="660" width="300" />
 
-<img src="./wanandroid/sun_login.jpg" />  <img src="./wanandroid/night_login.jpg" />
 
-<img src="./wanandroid/sun_logout.jpg" />  <img src="./wanandroid/night_logout.jpg" />
+<img src="./doc/wanandroid/sun_project.png" height="660" width="300"/>  <img src="./doc/wanandroid/night_project.png" height="660" width="300" />
 
-<img src="./wanandroid/sun_login_page.jpg" />  <img src="./wanandroid/night_login_page.jpg" />
+
+<img src="./doc/wanandroid/sun_recommend.png" height="660" width="300"/>  <img src="./doc/wanandroid/night_recommend.png" height="660" width="300" />
+
+
+<img src="./doc/wanandroid/sun_login.png" height="660" width="300" />  <img src="./doc/wanandroid/night_login.png" height="660" width="300" />
+
+
+<img src="./doc/wanandroid/sun_logout.png" height="660" width="300" />  <img src="./doc/wanandroid/night_logout.png" height="660" width="300" />
+
+
+<img src="./doc/wanandroid/sun_login_page.png" height="660" width="300" />  <img src="./doc/wanandroid/night_login_page.png" height="660" width="300" />
 
 目前功能逐步完善，要做成一个可以发布的产品的。
 
