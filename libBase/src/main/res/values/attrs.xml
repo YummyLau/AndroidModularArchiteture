@@ -49,7 +49,7 @@
         <attr name="status_bar_color" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="TitleView">
+    <declare-styleable name="SkinCompatTitleView">
         <attr name="title" format="string" />
         <attr name="titleId" format="reference" />
         <attr name="titleColor" format="color" />

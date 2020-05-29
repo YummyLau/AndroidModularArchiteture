@@ -9,8 +9,10 @@ import com.effective.android.base.systemui.QMUIStatusBarHelper
 import com.effective.android.base.systemui.StatusbarHelper
 import com.effective.android.base.util.ResourceUtils
 import com.effective.android.component.square.R
+import com.effective.android.component.square.Sdks
 import com.effective.android.component.square.bean.Article
 import com.effective.android.component.square.vm.BlogDetailViewModel
+import com.effective.android.service.skin.Skin
 import com.effective.android.webview.Utils
 import kotlinx.android.synthetic.main.square_activity_blog_detail_layout.*
 
@@ -43,7 +45,11 @@ class BlogDetailActivity : BaseVmActivity<BlogDetailViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StatusbarHelper.setStatusBarColor(this, ResourceUtils.getColor(this, R.color.blockBackground))
-        QMUIStatusBarHelper.setStatusBarLightMode(this)
+        if(Sdks.serviceSkin.isLoadingDefaultSkin()){
+            QMUIStatusBarHelper.setStatusBarLightMode(this)
+        }else{
+            QMUIStatusBarHelper.setStatusBarDarkMode(this)
+        }
         Utils.setDefaultWebViewSetting(webView)
         val byArticle: Boolean = intent.getBooleanExtra(bundle_model, false)
         if (byArticle) {

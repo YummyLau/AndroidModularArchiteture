@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         app:status_bar_color="@color/colorThemeText" />
 
-    <com.effective.android.base.view.TitleView
+    <com.effective.android.base.view.skin.SkinCompatTitleView
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

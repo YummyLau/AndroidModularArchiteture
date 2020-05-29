@@ -6,15 +6,15 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <com.effective.android.base.view.TitleView
+    <com.effective.android.base.view.skin.SkinCompatTitleView
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleBarBackground="@color/windowBackground"
         app:titleColor="@color/colorTextPrimary"
         app:titleId="@string/square_card_detail_page_default_title"
-        app:titleLeftEnable="true"
         app:titleLeftImage="@drawable/square_ic_back"
+        app:titleLeftEnable="true"
         app:titleSize="18sp" />
 
     <View

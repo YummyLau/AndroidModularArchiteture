@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/base_title_bar_height"
-    tools:background="@color/colorPrimary">
+    tools:background="@color/windowBackground">
 
 
     <ImageView
         android:id="@+id/left"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:padding="14dp"
-        android:src="@drawable/ic_left" />
+        android:padding="15dp"
+        android:src="@drawable/ic_back" />
 
     <TextView
         android:id="@+id/title"
@@ -25,7 +25,7 @@
         android:singleLine="true"
         android:textSize="@dimen/base_title_bar_title_text"
         tools:text="标题"
-        tools:textColor="@color/colorThemeText" />
+        tools:textColor="@color/colorTextPrimary" />
 
 
 </RelativeLayout>

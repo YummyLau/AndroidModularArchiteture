@@ -25,6 +25,12 @@
             android:text="@string/tabr_recommend_title"
             android:textColor="@color/colorTextPrimary"
             android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorDivider" />
     </RelativeLayout>
 
     <com.effective.android.base.view.skin.SkinCompatRecyclerView

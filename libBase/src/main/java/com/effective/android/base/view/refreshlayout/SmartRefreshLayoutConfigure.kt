@@ -35,7 +35,7 @@ object SmartRefreshLayoutConfigure {
     }
 
     @JvmStatic
-    fun refreshRefreshTheme(context : Context,layout: RefreshLayout) {
+    fun refreshRefreshTheme(context: Context, layout: RefreshLayout?) {
         SmartRefreshLayout.setDefaultRefreshInitializer { context: Context?, layout: RefreshLayout ->
             //全局设置（优先级最低）
             layout.setEnableAutoLoadMore(true)
@@ -48,7 +48,7 @@ object SmartRefreshLayoutConfigure {
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
             ClassicsFooter(context).setDrawableSize(20f).setPrimaryColor(ResourceUtils.getColor(context, R.color.windowBackground)).setAccentColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
         }
-        (layout.refreshFooter as ClassicsFooter).setPrimaryColor(ResourceUtils.getColor(context, R.color.windowBackground)).setAccentColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
+        (layout?.refreshFooter as ClassicsFooter).setPrimaryColor(ResourceUtils.getColor(context, R.color.windowBackground)).setAccentColor(ResourceUtils.getColor(context, R.color.colorTextPrimary))
         layout.setPrimaryColors(ResourceUtils.getColor(context, R.color.windowBackground), ResourceUtils.getColor(context, R.color.colorTextPrimary))
     }
 }
