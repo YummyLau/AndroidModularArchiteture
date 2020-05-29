@@ -71,7 +71,11 @@ abstract class MediaAdapter<T : IMediaItem>(dataList: MutableList<T>?) : Recycle
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             var oldItem = oldDataList[oldItemPosition]
             var newItem = newDataList[oldItemPosition]
-            return oldItem.isIdSame(newItem)
+            return if(oldItem.javaClass == newItem.javaClass){
+                oldItem.isIdSame(newItem)
+            }else{
+                false
+            }
         }
 
         /**

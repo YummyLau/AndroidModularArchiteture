@@ -16,7 +16,7 @@ class BannerList : ArrayList<Banner>(), IMediaItem {
         }
     }
 
-    override fun isContentSame(item: IMediaItem): Boolean = false
+    override fun isContentSame(item: IMediaItem): Boolean = true
 
-    override fun isIdSame(item: IMediaItem): Boolean = false
+    override fun isIdSame(item: IMediaItem): Boolean = true
 }
