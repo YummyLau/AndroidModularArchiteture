@@ -1,6 +1,5 @@
 package com.effective.android.component.square.view.adapter.holder
 
-import android.text.Html
 import android.text.Selection
 import android.text.Spannable
 import android.text.TextUtils
@@ -15,7 +14,6 @@ import com.effective.android.base.view.list.MediaHolder
 import com.effective.android.component.square.R
 import com.effective.android.component.square.Sdks
 import com.effective.android.component.square.bean.BlogArticle
-import kotlinx.android.synthetic.main.square_holder_article_layout.view.*
 import kotlinx.android.synthetic.main.square_holder_article_layout.view.content
 import kotlinx.android.synthetic.main.square_holder_article_layout.view.title
 import kotlinx.android.synthetic.main.square_holder_wechat_article_layout.view.*

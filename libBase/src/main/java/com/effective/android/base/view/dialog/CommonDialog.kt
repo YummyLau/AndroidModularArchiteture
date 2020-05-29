@@ -17,6 +17,7 @@ class CommonDialog : AppCompatDialog {
         window?.setGravity(Gravity.CENTER)
         window?.attributes?.width = WindowManager.LayoutParams.WRAP_CONTENT
         window?.attributes?.height = WindowManager.LayoutParams.WRAP_CONTENT
+        window.setBackgroundDrawableResource(android.R.color.transparent)
         setCanceledOnTouchOutside(true)
     }
 
