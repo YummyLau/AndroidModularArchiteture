@@ -13,6 +13,26 @@
 持续集成：jenkins + ci
 ```
 
+### wanAndroid 效果展示，两种皮肤
+
+<img src="./wanandroid/sun_square.jpg" />  <img src="./wanandroid/night_square.jpg" />
+
+<img src="./wanandroid/sun_paccount.jpg" />  <img src="./wanandroid/night_paccount.jpg" />
+
+<img src="./wanandroid/sun_paccount_2.jpg" />  <img src="./wanandroid/night_paccount_2.jpg" />
+
+<img src="./wanandroid/sun_project.jpg" />  <img src="./wanandroid/night_project.jpg" />
+
+<img src="./wanandroid/sun_recommend.jpg" />  <img src="./wanandroid/night_recommend.jpg" />
+
+<img src="./wanandroid/sun_login.jpg" />  <img src="./wanandroid/night_login.jpg" />
+
+<img src="./wanandroid/sun_logout.jpg" />  <img src="./wanandroid/night_logout.jpg" />
+
+<img src="./wanandroid/sun_login_page.jpg" />  <img src="./wanandroid/night_login_page.jpg" />
+
+目前功能逐步完善，要做成一个可以发布的产品的。
+
 #### 工程结构
 
 <img src="./doc/component_build_0.png"  alt="component_all" align=center />
