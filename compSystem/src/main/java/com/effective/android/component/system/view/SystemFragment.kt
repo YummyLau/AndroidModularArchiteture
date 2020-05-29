@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.util.ResourceUtils
+import com.effective.android.base.view.refreshlayout.SmartRefreshLayoutConfigure
 import com.effective.android.component.square.adapter.ChapterAdapter
 import com.effective.android.component.system.vm.SystemViewModel
 import com.effective.android.component.system.R

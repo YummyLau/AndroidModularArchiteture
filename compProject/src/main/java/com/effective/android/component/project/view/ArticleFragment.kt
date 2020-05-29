@@ -3,20 +3,30 @@ package com.effective.android.component.project.view
 import android.os.Bundle
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.view.list.IMediaItem
+import com.effective.android.base.view.refreshlayout.SmartRefreshLayoutConfigure
 import com.effective.android.component.square.adapter.ArticleAdapter
 import com.effective.android.component.square.bean.Article
 import com.effective.android.component.square.bean.Chapter
 import com.effective.android.component.project.R
 import com.effective.android.component.project.Sdks
 import com.effective.android.component.project.vm.ArticleViewModel
+import com.effective.android.service.skin.Skin
+import com.effective.android.service.skin.SkinChangeListener
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.project_fragment_article_layout.*
 
 class ArticleFragment(private val project: Chapter) : BaseVmFragment<ArticleViewModel>() {
 
-    var pageNum: Int = 1
-    var fetchDataDisposable: Disposable? = null
-    lateinit var adapter: ArticleAdapter<Article>
+    private var pageNum: Int = 1
+    private var fetchDataDisposable: Disposable? = null
+    private lateinit var adapter: ArticleAdapter<Article>
+    private val skinChangeListener = object : SkinChangeListener {
+        override fun onSkinChange(skin: Skin, success: Boolean) {
+            if(success){
+                SmartRefreshLayoutConfigure.refreshRefreshTheme(context!!, articleContainer)
+            }
+        }
+    }
 
     override fun getViewModel(): Class<ArticleViewModel> = ArticleViewModel::class.java
 
@@ -24,6 +34,7 @@ class ArticleFragment(private val project: Chapter) : BaseVmFragment<ArticleView
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Sdks.serviceSkin.addSkinChangeListener(skinChangeListener)
         adapter = Sdks.blogSdk.getArticleAdapter()
         articleList.adapter = adapter.getAdapter()
         articleList.addItemDecoration(adapter.getListItemDecoration(context!!,true))
@@ -70,5 +81,6 @@ class ArticleFragment(private val project: Chapter) : BaseVmFragment<ArticleView
         if (fetchDataDisposable != null && fetchDataDisposable!!.isDisposed) {
             fetchDataDisposable?.dispose()
         }
+        Sdks.serviceSkin.removeSkinChangeListener(skinChangeListener)
     }
 }

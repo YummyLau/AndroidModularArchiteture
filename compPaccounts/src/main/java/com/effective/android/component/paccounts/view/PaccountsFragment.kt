@@ -27,10 +27,10 @@ import skin.support.widget.SkinCompatSupportable
 class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
 
     private var fetchProjectDisposable: Disposable? = null
-    val articleFragments: HashMap<Int, ArticleFragment> = HashMap()
-    var projects: List<Chapter>? = null
-    val defaultSelectedSize = 5
-    val defaultDisableDragIndex = 0
+    private val articleFragments: HashMap<Int, ArticleFragment> = HashMap()
+    private var projects: List<Chapter>? = null
+    private val defaultSelectedSize = 5
+    private val defaultDisableDragIndex = 0
     private var chapterAdapter: ChapterAdapter? = null
     private var adapterView: View? = null
     private val skinChangeListener = object : SkinChangeListener {
@@ -48,6 +48,7 @@ class PaccountsFragment : BaseVmFragment<PaccountsViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Sdks.serviceSkin.addSkinChangeListener(skinChangeListener)
         pageState.toLoading("正在加载")
         initView()
         fetchData()

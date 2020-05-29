@@ -3,9 +3,8 @@ package com.effective.android.base
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
 import com.effective.android.base.view.refreshlayout.SmartRefreshLayoutConfigure
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.AbstractFlow
 
 /**
  * 基础application，统一处理 65536
@@ -22,15 +21,4 @@ import kotlinx.coroutines.flow.AbstractFlow
  * Email yummyl.lau@gmail.com
  * Created by yummylau on 2019/06/16.
  */
-open class BaseApplication : Application() {
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        SmartRefreshLayoutConfigure.init(this)
-    }
-}
+open class BaseApplication : MultiDexApplication()

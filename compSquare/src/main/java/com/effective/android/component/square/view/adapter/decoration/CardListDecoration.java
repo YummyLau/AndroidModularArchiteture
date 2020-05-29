@@ -2,8 +2,12 @@ package com.effective.android.component.square.view.adapter.decoration;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.Xfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -24,7 +28,7 @@ import skin.support.widget.SkinCompatSupportable;
  * 动态列表自定义分割
  * created by yummylau 2019/07/09
  */
-public class CardListDecoration extends RecyclerView.ItemDecoration implements SkinCompatSupportable {
+public class CardListDecoration extends RecyclerView.ItemDecoration {
 
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
@@ -34,7 +38,6 @@ public class CardListDecoration extends RecyclerView.ItemDecoration implements S
     protected Paint paint;
     protected RecyclerView recyclerView;
     protected Context context;
-    protected Canvas canvas;
 
     /**
      * @param context
@@ -42,7 +45,7 @@ public class CardListDecoration extends RecyclerView.ItemDecoration implements S
      */
     public CardListDecoration(Context context, int orientation) {
         this(context, orientation, ResourceUtils.getDrawable(context,R.drawable.square_sh_card_decoration),
-                DisplayUtils.dip2px(context,0f), ResourceUtils.getColor(context, R.color.blockBackground));
+                DisplayUtils.dip2px(context,15f), ResourceUtils.getColor(context, R.color.blockBackground));
     }
 
     public CardListDecoration(Context context, int orientation, Drawable drawable, int inset, int insetColor) {
@@ -56,16 +59,6 @@ public class CardListDecoration extends RecyclerView.ItemDecoration implements S
         setOrientation(orientation);
     }
 
-    @Override
-    public void applySkin() {
-        mDivider = ResourceUtils.getDrawable(context,R.drawable.square_sh_card_decoration);
-        paint.setColor( ResourceUtils.getColor(context, R.color.blockBackground));
-        if (mOrientation == VERTICAL_LIST) {
-            drawVertical(canvas, recyclerView);
-        } else {
-            drawHorizontal(canvas, recyclerView);
-        }
-    }
 
     public void setOrientation(int orientation) {
         if (orientation != HORIZONTAL_LIST && orientation != VERTICAL_LIST) {
@@ -88,8 +81,8 @@ public class CardListDecoration extends RecyclerView.ItemDecoration implements S
 
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        this.recyclerView = parent;
-        this.canvas = c;
+        mDivider = ResourceUtils.getDrawable(context,R.drawable.square_sh_card_decoration);
+        paint.setColor(ResourceUtils.getColor(context, R.color.blockBackground));
         if (mOrientation == VERTICAL_LIST) {
             drawVertical(c, parent);
         } else {

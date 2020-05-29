@@ -3,18 +3,29 @@ package com.effective.android.component.square.view
 import android.os.Bundle
 import com.effective.android.base.fragment.BaseVmFragment
 import com.effective.android.base.view.list.IMediaItem
+import com.effective.android.base.view.refreshlayout.SmartRefreshLayoutConfigure
 import com.effective.android.component.square.R
+import com.effective.android.component.square.Sdks
 import com.effective.android.component.square.view.adapter.BlogArticleAdapter
 import com.effective.android.component.square.view.adapter.decoration.CardListDecoration
 import com.effective.android.component.square.vm.BlogViewModel
+import com.effective.android.service.skin.Skin
+import com.effective.android.service.skin.SkinChangeListener
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.square_fragment_main_layout.*
 
 class SquareFragment : BaseVmFragment<BlogViewModel>() {
 
-    var pageNum: Int = 0
-    var fetchDataDisposable: Disposable? = null
+    private var pageNum: Int = 0
+    private var fetchDataDisposable: Disposable? = null
     lateinit var adapter: BlogArticleAdapter
+    private val skinChangeListener = object : SkinChangeListener {
+        override fun onSkinChange(skin: Skin, success: Boolean) {
+            if(success){
+                SmartRefreshLayoutConfigure.refreshRefreshTheme(context!!, listContainer)
+            }
+        }
+    }
 
     override fun getViewModel(): Class<BlogViewModel> = BlogViewModel::class.java
 
@@ -22,6 +33,7 @@ class SquareFragment : BaseVmFragment<BlogViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Sdks.serviceSkin.addSkinChangeListener(skinChangeListener)
         adapter = BlogArticleAdapter()
         listContainer.setOnRefreshListener {
             fetchData(true)
@@ -68,5 +80,6 @@ class SquareFragment : BaseVmFragment<BlogViewModel>() {
         if (fetchDataDisposable != null && fetchDataDisposable!!.isDisposed) {
             fetchDataDisposable?.dispose()
         }
+        Sdks.serviceSkin.removeSkinChangeListener(skinChangeListener)
     }
 }

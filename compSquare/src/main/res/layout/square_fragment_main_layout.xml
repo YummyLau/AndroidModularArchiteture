@@ -2,19 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="false"
     android:orientation="vertical">
+
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/listContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        app:srlEnableLoadMore="true"
+        app:srlEnableAutoLoadMore="false">
         <com.effective.android.base.view.list.MediaList
             android:id="@+id/list"
+            android:overScrollMode="never"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
