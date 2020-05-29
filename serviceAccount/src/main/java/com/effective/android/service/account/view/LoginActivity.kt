@@ -9,9 +9,13 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import com.effective.android.base.activity.BaseVmActivity
+import com.effective.android.base.systemui.QMUIStatusBarHelper
 import com.effective.android.base.systemui.StatusbarHelper
 import com.effective.android.base.toast.ToastUtils.show
+import com.effective.android.base.util.ResourceUtils
 import com.effective.android.service.account.R
+import com.effective.android.service.account.Sdks
+import com.effective.android.service.account.util.EditTextUtil
 import com.effective.android.service.account.vm.LoginViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.account_activity_login_layout.*
@@ -25,10 +29,10 @@ import kotlinx.android.synthetic.main.account_activity_login_layout.view.*
  */
 class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
-    var isSelectLogin: Boolean = true
-    var loginDisposable: Disposable? = null
-    var registerDisposable: Disposable? = null
-    lateinit var pop: LoginHistoryPopupWindow
+    private var isSelectLogin: Boolean = true
+    private var loginDisposable: Disposable? = null
+    private var registerDisposable: Disposable? = null
+    private lateinit var pop: LoginHistoryPopupWindow
 
 
     override fun getViewModel(): Class<LoginViewModel> {
@@ -41,7 +45,12 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusbarHelper.setStatusBarColor(this, Color.TRANSPARENT, Color.WHITE)
+        StatusbarHelper.setStatusBarColor(this, ResourceUtils.getColor(this, R.color.blockBackground))
+        if(Sdks.serviceSkin.isLoadingDefaultSkin()){
+            QMUIStatusBarHelper.setStatusBarLightMode(this)
+        }else{
+            QMUIStatusBarHelper.setStatusBarDarkMode(this)
+        }
         initView(isSelectLogin)
         initListener()
     }
@@ -163,7 +172,9 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                     }) {
                         it.message
                     }
-
+        }
+        titleLayout.leftAction.setOnClickListener {
+            finish()
         }
     }
 

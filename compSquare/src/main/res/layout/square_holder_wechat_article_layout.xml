@@ -53,7 +53,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         app:collapse_text="@string/square_card_content_expand"
-        app:collapse_color="@color/colorAccent"
+        app:collapse_color="@color/colorPrimary"
         android:id="@+id/content"
         android:textSize="15sp"
         tools:text="公众号内容"

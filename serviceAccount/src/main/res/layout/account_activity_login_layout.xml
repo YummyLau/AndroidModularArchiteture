@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="false"
+    android:layout_height="match_parent"
     android:background="@color/pageBackground"
-    android:layout_height="match_parent">
+    android:fitsSystemWindows="true">
 
     <EditText
         android:id="@+id/password"
@@ -14,51 +15,66 @@
         android:layout_alignStart="@+id/userName"
         android:layout_alignEnd="@+id/userName"
         android:layout_marginTop="5dp"
-        android:hint="密码"
+        android:background="@drawable/account_ll_input_bg"
+        android:ellipsize="start"
+        android:hint="@string/account_password"
         android:inputType="textPassword"
+        android:paddingTop="7dp"
+        android:paddingEnd="50dp"
+        android:singleLine="true"
         android:textColor="@color/colorTextPrimary"
-        android:textColorHint="@color/colorTextSecondary" />
+        android:textColorHint="@color/colorTextSecondary"
+        android:textCursorDrawable="@drawable/account_sh_input_cursor" />
 
     <ImageView
         android:id="@+id/passwordClear"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:padding="15dp"
-        android:visibility="gone"
         android:layout_alignTop="@id/password"
         android:layout_alignRight="@id/password"
-        android:src="@drawable/account_ic_clear"/>
+        android:layout_marginTop="5dp"
+        android:padding="15dp"
+        android:src="@drawable/account_ic_close"
+        android:visibility="gone" />
 
     <EditText
         android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/titleLayout"
+        android:layout_below="@+id/divider"
         android:layout_marginStart="40dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="40dp"
-        android:hint="用户名"
+        android:background="@drawable/account_ll_input_bg"
+        android:ellipsize="start"
+        android:hint="@string/account_username"
+        android:paddingTop="7dp"
+        android:paddingEnd="50dp"
+        android:singleLine="true"
         android:textColor="@color/colorTextPrimary"
-        android:textColorHint="@color/colorTextSecondary" />
+        android:textColorHint="@color/colorTextSecondary"
+        android:textCursorDrawable="@drawable/account_sh_input_cursor" />
 
     <ImageView
         android:id="@+id/userNameClear"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:padding="15dp"
         android:layout_alignTop="@id/userName"
         android:layout_alignRight="@id/userName"
-        android:visibility="gone"
-        android:src="@drawable/account_ic_clear"/>
+        android:layout_marginTop="5dp"
+        android:padding="15dp"
+        android:src="@drawable/account_ic_close"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/userNameList"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:padding="15dp"
         android:layout_alignTop="@id/userName"
         android:layout_alignRight="@id/userName"
-        android:src="@drawable/account_ic_down"/>
+        android:layout_marginTop="5dp"
+        android:padding="15dp"
+        android:src="@drawable/account_ic_down_more" />
 
     <TextView
         android:id="@+id/action"
@@ -70,7 +86,7 @@
         android:layout_marginTop="35dp"
         android:background="@drawable/base_se_btn"
         android:gravity="center"
-        android:text="登陆"
+        android:text="@string/account_login"
         android:textColor="@color/base_se_btn_text"
         android:textSize="18sp" />
 
@@ -81,22 +97,25 @@
         android:layout_below="@+id/action"
         android:layout_alignEnd="@+id/userName"
         android:layout_marginTop="35dp"
-        android:text="直接登陆" />
-
-    <com.effective.android.base.view.StatusBarView
-        android:id="@+id/status_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:status_bar_color="@color/colorThemeText" />
+        android:text="@string/account_login_tip"
+        android:textColor="@color/colorTextSecondary" />
 
     <com.effective.android.base.view.skin.SkinCompatTitleView
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/status_bar"
-        app:title="登陆"
-        app:titleBarBackground="@color/colorThemeText"
+        app:title="@string/account_login"
+        app:titleLeftImage="@drawable/account_ic_back"
+        app:titleLeftEnable="true"
+        app:titleBarBackground="@color/windowBackground"
         app:titleColor="@color/colorTextPrimary" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/titleLayout"
+        android:background="@color/colorDivider" />
 
 
 </RelativeLayout>
